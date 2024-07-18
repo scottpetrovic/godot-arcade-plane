@@ -31,7 +31,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_wiqa6")
 
 [node name="Airplane" parent="." instance=ExtResource("1_niayg")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0.300846, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0.399083, 0)
 
 [node name="CameraTarget" type="Node3D" parent="Airplane"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39257e-07, 0.638382, 3.18583)

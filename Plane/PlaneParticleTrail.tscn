@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://t4va7dth6mjf"]
+
+[sub_resource type="Gradient" id="Gradient_v66vv"]
+colors = PackedColorArray(0.99925, 0.958136, 0.133259, 1, 1, 1, 1, 0.262745)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ujn1o"]
+gradient = SubResource("Gradient_v66vv")
+
+[sub_resource type="Curve" id="Curve_j8rg0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.107098), -1.13808, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_myght"]
+curve = SubResource("Curve_j8rg0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cxmc6"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_myght")
+color_ramp = SubResource("GradientTexture1D_ujn1o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqoop"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_uorge"]
+material = SubResource("StandardMaterial3D_kqoop")
+radius = 0.04
+height = 0.08
+radial_segments = 4
+rings = 4
+
+[node name="AirParticles" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.656163, -0.0271605, 0)
+cast_shadow = 0
+amount = 300
+lifetime = 0.3
+visibility_aabb = AABB(-1, -0.98, -2.035, 2, 1.7, 5.135)
+trail_lifetime = 0.91
+process_material = SubResource("ParticleProcessMaterial_cxmc6")
+draw_pass_1 = SubResource("SphereMesh_uorge")
