@@ -1,0 +1,1 @@
+Godot cannot read these, but it is more useful for source control
