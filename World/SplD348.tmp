@@ -39,13 +39,12 @@ rings = 8
 
 [sub_resource type="Gradient" id="Gradient_6c32q"]
 offsets = PackedFloat32Array(0.652174, 1)
-colors = PackedColorArray(0.388215, 0.928104, 0.827767, 1, 1, 1, 1, 0)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_p8jve"]
 gradient = SubResource("Gradient_6c32q")
 
 [sub_resource type="Curve" id="Curve_fg864"]
-min_value = 0.4
 max_value = 50.0
 _data = [Vector2(0, 1.77419), 0.0, 0.0, 0, 0, Vector2(1, 37.9435), 1.29832, 0.0, 0, 0]
 point_count = 2
@@ -73,9 +72,10 @@ ring_segments = 5
 
 [node name="GPUParticles3D" type="GPUParticles3D"]
 emitting = false
-amount = 400
+amount = 1000
+lifetime = 2.0
 one_shot = true
-explosiveness = 0.24
+explosiveness = 0.4
 process_material = SubResource("ParticleProcessMaterial_5kfj8")
 draw_pass_1 = SubResource("SphereMesh_0mr0n")
 script = ExtResource("1_3smvi")
@@ -83,9 +83,8 @@ script = ExtResource("1_3smvi")
 [node name="WaterRingsParticles" type="GPUParticles3D" parent="."]
 emitting = false
 amount = 5
-lifetime = 1.5
 one_shot = true
-speed_scale = 0.4
-explosiveness = 0.31
+speed_scale = 0.3
+explosiveness = 0.43
 process_material = SubResource("ParticleProcessMaterial_qe8u0")
 draw_pass_1 = SubResource("TorusMesh_m53i2")
