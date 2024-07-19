@@ -19,16 +19,17 @@ var air_particles_right: GPUParticles3D
 
 var air_particles_scene: PackedScene = load("res://Plane/PlaneParticleTrail.tscn")
 
+var has_crashed = false # only water will make us crash
+
 @onready var plane_mesh: Node3D = $Plane_Mesh
 
 func _ready() -> void:
 	self.velocity = Vector3.ZERO
-	
-	# particles come from wings with max speed
-	# dynamically created since they are attached to mesh
 	create_air_particles() 
 
 
+## particles come from wings with max speed
+## dynamically created since they are attached to mesh
 func create_air_particles():
 	# position manually done. probably better way to do this
 	air_particles_right = air_particles_scene.instantiate()
@@ -43,8 +44,8 @@ func create_air_particles():
 	air_particles_left.position.z = -1.5
 	plane_mesh.add_child(air_particles_left)
 
-
 func _process(delta: float) -> void:
+	
 	# rotate propellor based off forward speed
 	var propellor_speed_multiplier: float = 3.0
 	var rotate_amount = delta * forward_speed * propellor_speed_multiplier
@@ -55,6 +56,11 @@ func _process(delta: float) -> void:
 	air_particles_right.emitting = target_speed == max_flight_speed
 
 func _physics_process(delta: float) -> void:
+	
+	if has_crashed:
+		# velocity = Vector3.ZERO
+		# move_and_slide()
+		return
 	
 	get_input(delta)
 	
@@ -102,3 +108,8 @@ func get_input(delta: float) -> void:
 	pitch_input = 0.0
 	pitch_input += Input.get_action_strength("pitch_up")
 	pitch_input -= Input.get_action_strength("pitch_down")
+
+# Water will call this if there is an impact
+func crashed():
+	has_crashed = true
+	visible = false

@@ -26,14 +26,14 @@ size = Vector3(2000, 0.2, 2000)
 
 [node name="World" type="Node3D"]
 
-[node name="Water" type="Area3D" parent="."]
+[node name="Ground" type="Area3D" parent="."]
 script = ExtResource("1_0ni7o")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Water"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("BoxMesh_vsd7p")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Water"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_wiqa6")
 
 [node name="Airplane" parent="." instance=ExtResource("1_niayg")]
