@@ -38,7 +38,7 @@ shape = SubResource("BoxShape3D_wiqa6")
 transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -23.9878, 2.40651, 1.46834)
 
 [node name="CameraTarget" type="Node3D" parent="Airplane"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39257e-07, 0.638382, 3.18583)
+transform = Transform3D(1, 0, 1.63913e-07, 0, 1, 0, -1.63913e-07, 0, 1, -0.272615, 1.33387, 4.36149)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.673941, 0.738785, 0, -0.738785, -0.673941, 0, 15.0104, 0)
@@ -48,12 +48,10 @@ shadow_enabled = true
 environment = ExtResource("3_wr3gr")
 
 [node name="InterpolatedCamera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -28.3122, 2.59272, 2.33065)
+transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -31.961, 4.05581, 2.36323)
 current = true
 fov = 66.6
 script = ExtResource("4_4maxk")
-translate_speed = 0.598
-rotate_speed = 0.787
 target = NodePath("../Airplane/CameraTarget")
 
 [node name="AircraftCarrier" parent="." instance=ExtResource("5_oawla")]
