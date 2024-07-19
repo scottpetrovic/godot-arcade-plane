@@ -38,7 +38,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_wiqa6")
 
 [node name="Airplane" parent="." instance=ExtResource("1_niayg")]
-transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -23.9878, 2.40651, 1.46834)
+transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -23.9878, 2.35853, 1.46834)
 slide_on_ceiling = false
 
 [node name="CameraTarget" type="Node3D" parent="Airplane"]

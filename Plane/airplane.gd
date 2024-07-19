@@ -20,11 +20,13 @@ var air_particles_right: GPUParticles3D
 var air_particles_scene: PackedScene = load("res://Plane/PlaneParticleTrail.tscn")
 
 var has_crashed = false # only water will make us crash
+var airplane_original_scale: float
 
 @onready var plane_mesh: Node3D = $Plane_Mesh
 
 func _ready() -> void:
 	self.velocity = Vector3.ZERO
+	airplane_original_scale = plane_mesh.scale.y # TODO: clean this up
 	create_air_particles() 
 
 
@@ -80,6 +82,18 @@ func _physics_process(delta: float) -> void:
 		plane_mesh.rotation.z = 0 # straighten out and don't do banking
 	else:
 		plane_mesh.rotation.z = lerp(plane_mesh.rotation.z, -turn_input, level_speed * delta)
+	
+	# a bit of squash and stretch when pitching in the air
+	if is_on_floor() == false:
+		var scale_pitch_amount_y = airplane_original_scale
+		var scale_pitch_amount_x = airplane_original_scale
+		if pitch_input != 0.0:
+			scale_pitch_amount_y = airplane_original_scale * 0.8
+			scale_pitch_amount_x = airplane_original_scale * 1.2
+		plane_mesh.scale.y = lerp(plane_mesh.scale.y, scale_pitch_amount_y, level_speed * delta)
+		plane_mesh.scale.x = lerp(plane_mesh.scale.x, scale_pitch_amount_x, level_speed * delta)
+
+	
 	
 	# accelerate/decelerate
 	forward_speed = lerp(forward_speed, target_speed, acceleration * delta)
