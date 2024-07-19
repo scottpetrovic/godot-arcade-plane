@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbiuhcomvpcn8"
-path.s3tc="res://.godot/imported/aircraft-carrier_Image_1.png-6a9454639044ed080f63bcabf9b0aa1b.s3tc.ctex"
+uid="uid://c62rglqqy3icg"
+path.s3tc="res://.godot/imported/plane_color-palette.png-7fa765680641bc47ae6f41a627cf8d1f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "853284c228d62ca0ec1e8e1cd5c03a12"
+"md5": "6f40c9682c4b0a1c226ccc1bb7135cde"
 }
 
 [deps]
 
-source_file="res://AircraftCarrier/aircraft-carrier_Image_1.png"
-dest_files=["res://.godot/imported/aircraft-carrier_Image_1.png-6a9454639044ed080f63bcabf9b0aa1b.s3tc.ctex"]
+source_file="res://Plane/plane_color-palette.png"
+dest_files=["res://.godot/imported/plane_color-palette.png-7fa765680641bc47ae6f41a627cf8d1f.s3tc.ctex"]
 
 [params]
 
@@ -27,8 +27,8 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=8
-roughness/src_normal="res://AircraftCarrier/aircraft-carrier_Image_2.jpg"
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

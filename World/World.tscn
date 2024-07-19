@@ -1,21 +1,24 @@
-[gd_scene load_steps=9 format=3 uid="uid://dk0av4tlip45w"]
+[gd_scene load_steps=8 format=3 uid="uid://dk0av4tlip45w"]
 
-[ext_resource type="Texture2D" uid="uid://bs7rio5pun7i8" path="res://World/ground-grid.png" id="1_d50x1"]
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="1_niayg"]
 [ext_resource type="Environment" uid="uid://rl8h2c4eejfg" path="res://World/WorldEnvironment.tres" id="3_wr3gr"]
 [ext_resource type="Script" path="res://godot-interpolated-camera3d-master/addons/interpolated_camera_3d/interpolated_camera_3d.gd" id="4_4maxk"]
 [ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://AircraftCarrier/Aircraft_Carrier.tscn" id="5_oawla"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w3fyu"]
-albedo_texture = ExtResource("1_d50x1")
-uv1_scale = Vector3(800, 800, 800)
+shading_mode = 2
+albedo_color = Color(0.025459, 0.381502, 0.508481, 1)
+metallic = 1.0
+roughness = 0.69
+distance_fade_min_distance = 82.75
+distance_fade_max_distance = 0.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_vsd7p"]
 material = SubResource("StandardMaterial3D_w3fyu")
 size = Vector3(2000, 0.2, 2000)
-subdivide_width = 30
+subdivide_width = 20
 subdivide_height = 1
-subdivide_depth = 30
+subdivide_depth = 20
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wiqa6"]
 size = Vector3(2000, 0.2, 2000)
@@ -32,7 +35,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_wiqa6")
 
 [node name="Airplane" parent="." instance=ExtResource("1_niayg")]
-transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -22.4193, 3.6526, 1.46834)
+transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -23.9878, 2.40651, 1.46834)
 
 [node name="CameraTarget" type="Node3D" parent="Airplane"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39257e-07, 0.638382, 3.18583)
@@ -45,7 +48,7 @@ shadow_enabled = true
 environment = ExtResource("3_wr3gr")
 
 [node name="InterpolatedCamera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -26.7437, 3.83881, 2.33065)
+transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -28.3122, 2.59272, 2.33065)
 current = true
 fov = 66.6
 script = ExtResource("4_4maxk")
@@ -54,4 +57,4 @@ rotate_speed = 0.787
 target = NodePath("../Airplane/CameraTarget")
 
 [node name="AircraftCarrier" parent="." instance=ExtResource("5_oawla")]
-transform = Transform3D(-8.74228e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.74228e-09, 0, 2.04257, 0)
+transform = Transform3D(2.62268e-08, 0, -0.2, 0, 0.2, 0, 0.2, 0, 2.62268e-08, -11.3819, 0.379997, 0)

@@ -1,21 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://cl861nerpvmo8"]
+[gd_scene load_steps=5 format=3 uid="uid://cl861nerpvmo8"]
 
 [ext_resource type="PackedScene" uid="uid://bc7flfj4e2c14" path="res://AircraftCarrier/aircraft_carrier_mesh.tscn" id="1_6s1ql"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_518md"]
-size = Vector3(58, 17.4396, 189)
+size = Vector3(38.0914, 13.8756, 104.401)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6swja"]
-size = Vector3(26.5334, 17.4004, 81.6611)
+size = Vector3(26.5334, 13.7705, 46.4128)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bdlhb"]
+size = Vector3(7.87558, 18.8159, 16.8191)
 
 [node name="AircraftCarrier" type="StaticBody3D"]
 
 [node name="aircraft-carrier_mesh" parent="." instance=ExtResource("1_6s1ql")]
 
 [node name="CollisionShapeBase" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.28021, -34.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.492523, 1.52048, 13.1412)
 shape = SubResource("BoxShape3D_518md")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.2998, 100.731)
+[node name="CollisionShapeFront" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64334, -62.2255)
 shape = SubResource("BoxShape3D_6swja")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3616, 17.8418, 42.9036)
+shape = SubResource("BoxShape3D_bdlhb")

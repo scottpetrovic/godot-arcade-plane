@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kjix72pf88dq"
-path.s3tc="res://.godot/imported/aircraft-carrier_Image_0.png-9626be417780061800059bb526fd9a92.s3tc.ctex"
+uid="uid://w0isknjs0vbb"
+path.s3tc="res://.godot/imported/aircraft-carrier_color-palette.png-d0866875e2cd2f8d13dd19f2bc8667d8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "ba2e04fa1abf801db3470f47009bfed5"
+"md5": "6f40c9682c4b0a1c226ccc1bb7135cde"
 }
 
 [deps]
 
-source_file="res://AircraftCarrier/aircraft-carrier_Image_0.png"
-dest_files=["res://.godot/imported/aircraft-carrier_Image_0.png-9626be417780061800059bb526fd9a92.s3tc.ctex"]
+source_file="res://AircraftCarrier/aircraft-carrier_color-palette.png"
+dest_files=["res://.godot/imported/aircraft-carrier_color-palette.png-d0866875e2cd2f8d13dd19f2bc8667d8.s3tc.ctex"]
 
 [params]
 
