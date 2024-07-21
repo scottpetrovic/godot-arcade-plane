@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://f5q3lvkkp6et"]
+
+[ext_resource type="Script" path="res://World/Water.gd" id="1_msbox"]
+[ext_resource type="Material" uid="uid://du7r8ihpapvr0" path="res://World/OceanShaderMaterial.tres" id="2_ydh0k"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3g13u"]
+material = ExtResource("2_ydh0k")
+size = Vector2(2000, 2000)
+subdivide_width = 1000
+subdivide_depth = 1000
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ukltq"]
+shading_mode = 2
+albedo_color = Color(0.128482, 0.246943, 0.829826, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_18jg5"]
+material = SubResource("StandardMaterial3D_ukltq")
+size = Vector2(2000, 2000)
+orientation = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wiqa6"]
+size = Vector3(2000, 0.2, 2000)
+
+[node name="Ocean" type="Area3D"]
+script = ExtResource("1_msbox")
+
+[node name="MeshWireframe" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_3g13u")
+skeleton = NodePath("../..")
+
+[node name="MeshSolid" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.427462, 0)
+mesh = SubResource("QuadMesh_18jg5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_wiqa6")
