@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-var min_flight_speed: int = 12 # Can't fly below this speed
-var max_flight_speed: int = 15 # Maximum airspeed
+var min_flight_speed: int = 7 # Can't fly below this speed
+var max_flight_speed: int = 12 # Maximum airspeed
 var turn_speed: float = 0.75 # Turn rate
 var pitch_speed: float = 0.5 # Climb/dive rate
 var level_speed: float = 3.0 # Wings "autolevel" speed
@@ -56,12 +56,11 @@ func _process(delta: float) -> void:
 	# turn on air particle trail on wings when we are going max speed!
 	air_particles_left.emitting = target_speed == max_flight_speed
 	air_particles_right.emitting = target_speed == max_flight_speed
+	
 
 func _physics_process(delta: float) -> void:
 	
 	if has_crashed:
-		# velocity = Vector3.ZERO
-		# move_and_slide()
 		return
 	
 	get_input(delta)
@@ -88,12 +87,13 @@ func _physics_process(delta: float) -> void:
 		var scale_pitch_amount_y = airplane_original_scale
 		var scale_pitch_amount_x = airplane_original_scale
 		if pitch_input != 0.0:
-			scale_pitch_amount_y = airplane_original_scale * 0.8
-			scale_pitch_amount_x = airplane_original_scale * 1.2
+			scale_pitch_amount_y = airplane_original_scale * 0.95
+			scale_pitch_amount_x = airplane_original_scale * 1.4
 		plane_mesh.scale.y = lerp(plane_mesh.scale.y, scale_pitch_amount_y, level_speed * delta)
 		plane_mesh.scale.x = lerp(plane_mesh.scale.x, scale_pitch_amount_x, level_speed * delta)
-
-	
+	else:
+		plane_mesh.scale.y = airplane_original_scale
+		plane_mesh.scale.x = airplane_original_scale
 	
 	# accelerate/decelerate
 	forward_speed = lerp(forward_speed, target_speed, acceleration * delta)
