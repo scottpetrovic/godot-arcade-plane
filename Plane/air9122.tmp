@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3ovo2it7nbnh"]
+
+[ext_resource type="Script" path="res://Plane/airplane.gd" id="1_wihbf"]
+[ext_resource type="PackedScene" uid="uid://d3qn3es4bmao8" path="res://Plane/Airplane_Mesh.tscn" id="2_j34yd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsjsx"]
+radius = 0.27119
+height = 0.926175
+
+[node name="Airplane" type="CharacterBody3D"]
+script = ExtResource("1_wihbf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.90152e-15, 4.35017e-08, 0.995204, 0.995204, -4.35018e-08, 0, 4.35018e-08, 0.995204, -4.35017e-08, 0.0113626, -0.0178279, -0.0221037)
+shape = SubResource("CapsuleShape3D_gsjsx")
+
+[node name="Plane_Mesh" parent="." instance=ExtResource("2_j34yd")]
+transform = Transform3D(-0.2, 0, 1.74846e-08, 0, 0.2, 0, -1.74846e-08, 0, -0.2, 0, 0.0461788, 0)

@@ -2,7 +2,7 @@ extends Area3D
 
 @onready var airplane: CharacterBody3D = $"../Airplane"
 
-var splash: PackedScene = load("res://World/SplashParticles.tscn")
+var splash: PackedScene = load("res://World/Ocean/SplashParticles.tscn")
 @onready var utility_functions: Node3D = $"../UtilityFunctions"
 
 
