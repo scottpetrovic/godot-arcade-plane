@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://8na2e6k42my3"]
+
+[ext_resource type="Script" path="res://Effects/FXRotate.gd" id="1_4e2t0"]
+
+[node name="FXRotate" type="Node"]
+script = ExtResource("1_4e2t0")

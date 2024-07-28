@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo6lrhuf1pfak"]
+
+[ext_resource type="Script" path="res://World/ElapsedTime.gd" id="1_3nd8s"]
+
+[node name="ElapsedTime" type="Node"]
+script = ExtResource("1_3nd8s")

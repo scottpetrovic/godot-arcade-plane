@@ -25,11 +25,12 @@ size = Vector3(2000, 0.2, 2000)
 script = ExtResource("1_msbox")
 
 [node name="MeshWireframe" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.457132, 0)
 mesh = SubResource("PlaneMesh_3g13u")
 skeleton = NodePath("../..")
 
 [node name="MeshSolid" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.427462, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.362134, 0)
 mesh = SubResource("QuadMesh_18jg5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

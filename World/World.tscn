@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://dk0av4tlip45w"]
+[gd_scene load_steps=14 format=3 uid="uid://dk0av4tlip45w"]
 
 [ext_resource type="PackedScene" uid="uid://f5q3lvkkp6et" path="res://World/Ocean/Ocean.tscn" id="1_cd52o"]
+[ext_resource type="Script" path="res://GameManager.gd" id="1_gafx6"]
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="1_niayg"]
 [ext_resource type="Script" path="res://Plane/CameraFollow.gd" id="3_rpdqv"]
 [ext_resource type="Environment" uid="uid://rl8h2c4eejfg" path="res://World/WorldEnvironment.tres" id="3_wr3gr"]
@@ -8,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://AircraftCarrier/Aircraft_Carrier.tscn" id="5_oawla"]
 [ext_resource type="Script" path="res://Plane/ScreenShake.gd" id="5_qhh85"]
 [ext_resource type="Script" path="res://World/SpeedLinesEffect.gd" id="8_8lvy2"]
+[ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://GateCheckpoint/GateCheckpoint.tscn" id="9_2bf8e"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ko185"]
 noise_type = 5
@@ -29,11 +31,12 @@ shader_parameter/animation_speed = 15.413
 shader_parameter/noise = SubResource("NoiseTexture2D_1tvyi")
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_gafx6")
 
 [node name="Ocean" parent="." instance=ExtResource("1_cd52o")]
 
 [node name="Airplane" parent="." instance=ExtResource("1_niayg")]
-transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -23.9878, 2.35853, 1.46834)
+transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -23.9878, 2.10126, 1.46834)
 slide_on_ceiling = false
 
 [node name="CameraTarget" type="Node3D" parent="Airplane"]
@@ -71,3 +74,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_8lvy2")
+
+[node name="Gates" type="Node" parent="."]
+
+[node name="GateCheckpoint" parent="Gates" instance=ExtResource("9_2bf8e")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 74.3455, 25.1171, 0)
+
+[node name="GateCheckpoint2" parent="Gates" instance=ExtResource("9_2bf8e")]
+transform = Transform3D(-0.805194, 0, -0.593011, 0, 1, 0, 0.593011, 0, -0.805194, 154.65, 25.1171, 140.689)
+
+[node name="GateCheckpoint3" parent="Gates" instance=ExtResource("9_2bf8e")]
+transform = Transform3D(-0.639828, 0, 0.768518, 0, 1, 0, -0.768518, 0, -0.639828, 84.5958, 25.1171, 232.458)
+
+[node name="GateCheckpoint4" parent="Gates" instance=ExtResource("9_2bf8e")]
+transform = Transform3D(-0.0729772, 0, 0.997334, 0, 1, 0, -0.997334, 0, -0.0729772, -28.5695, 25.1171, 271.102)
+
+[node name="GateCheckpoint5" parent="Gates" instance=ExtResource("9_2bf8e")]
+transform = Transform3D(0.564348, 0, 0.825537, 0, 1, 0, -0.825537, 0, 0.564348, -164.163, 25.1171, 275.71)
+
+[node name="GateCheckpoint6" parent="Gates" instance=ExtResource("9_2bf8e")]
+transform = Transform3D(0.93436, 0, 0.35633, 0, 1, 0, -0.35633, 0, 0.93436, -227.26, 25.1171, 204.043)
+
+[node name="GateCheckpoint7" parent="Gates" instance=ExtResource("9_2bf8e")]
+transform = Transform3D(0.805059, 0, -0.593194, 0, 1, 0, 0.593194, 0, 0.805059, -240.742, 25.1171, 35.0743)

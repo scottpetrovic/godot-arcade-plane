@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-var min_flight_speed: int = 7 # Can't fly below this speed
+var takeoff_speed: int = 7 # Can't fly below this speed
 var max_flight_speed: int = 12 # Maximum airspeed
 var turn_speed: float = 0.75 # Turn rate
 var pitch_speed: float = 0.5 # Climb/dive rate
@@ -68,7 +68,7 @@ func _physics_process(delta: float) -> void:
 	# change pitch. If we are on the ground, we cannot make our pitch negative to look underground
 	if is_on_floor():
 		pitch_input = maxf(pitch_input, 0.0) # cannot look down if we are grounded
-		if min_flight_speed > forward_speed:
+		if forward_speed < takeoff_speed:
 			pitch_input = 0.0 # cannot pitch up if going below mininum flight speed
 
 	transform.basis = transform.basis.rotated(transform.basis.x, pitch_input * pitch_speed * delta)
@@ -97,9 +97,20 @@ func _physics_process(delta: float) -> void:
 	
 	# accelerate/decelerate
 	forward_speed = lerp(forward_speed, target_speed, acceleration * delta)
-
+	
 	velocity = -transform.basis.z * forward_speed # Movement is always forward
+	
+	apply_gravity(delta)
 	move_and_slide()
+
+
+func apply_gravity(delta):
+	# if we are going below minimum flight speed, slowly descend to help with collisions
+	if takeoff_speed > forward_speed:
+		# for simple arcade-ness, don't worry about accumulating gravity
+		var magic_gravity_number := 20.0 
+		velocity.y += get_gravity().y * delta * magic_gravity_number
+
 
 func get_input(delta: float) -> void:
 	if Input.is_action_pressed("throttle_up"):
@@ -108,7 +119,7 @@ func get_input(delta: float) -> void:
 	if Input.is_action_pressed("throttle_down"):
 		# if plane is touching ground, we can stop
 		# if plane is in mid air, don't allow to stop since it looks weird
-		var limit := 5
+		var limit := takeoff_speed
 		if is_on_floor():
 			limit = 0
 		target_speed = max(forward_speed - throttle_delta * delta, limit)
