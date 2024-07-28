@@ -36,7 +36,7 @@ script = ExtResource("1_gafx6")
 [node name="Ocean" parent="." instance=ExtResource("1_cd52o")]
 
 [node name="Airplane" parent="." instance=ExtResource("1_niayg")]
-transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -23.9878, 2.10126, 1.46834)
+transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -23.9878, 2.27109, 1.46834)
 slide_on_ceiling = false
 
 [node name="CameraTarget" type="Node3D" parent="Airplane"]

@@ -16,11 +16,11 @@ size = Vector3(7.87558, 18.8159, 16.8191)
 [node name="aircraft-carrier_mesh" parent="." instance=ExtResource("1_6s1ql")]
 
 [node name="CollisionShapeBase" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.492523, 1.52048, 13.1412)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.492523, 2.39048, 13.1412)
 shape = SubResource("BoxShape3D_518md")
 
 [node name="CollisionShapeFront" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64334, -62.2255)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.67444, -62.2255)
 shape = SubResource("BoxShape3D_6swja")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
