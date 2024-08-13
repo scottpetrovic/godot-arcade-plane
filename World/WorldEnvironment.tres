@@ -1,25 +1,22 @@
 [gd_resource type="Environment" load_steps=3 format=3 uid="uid://rl8h2c4eejfg"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_grv6w"]
-sky_top_color = Color(0.619073, 0.881646, 0.894986, 1)
-sky_horizon_color = Color(0.344641, 0.719726, 0.799969, 1)
-ground_horizon_color = Color(0.167792, 0.725534, 0.839562, 1)
-energy_multiplier = 2.0
+[ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://sky/examples/day_sky.tres" id="1_54wba"]
 
 [sub_resource type="Sky" id="Sky_6xugb"]
-sky_material = SubResource("ProceduralSkyMaterial_grv6w")
+sky_material = ExtResource("1_54wba")
 
 [resource]
 background_mode = 2
 background_color = Color(0.617341, 0.93432, 0.707474, 1)
 sky = SubResource("Sky_6xugb")
 ambient_light_source = 3
+ambient_light_sky_contribution = 0.74
 ssao_enabled = true
 glow_intensity = 2.24
 glow_strength = 1.07
 fog_enabled = true
-fog_light_color = Color(0.293777, 0.912119, 0.942475, 1)
-fog_light_energy = 1.2
-fog_density = 0.0005
+fog_light_color = Color(0.271189, 0.323592, 0.853485, 1)
+fog_light_energy = 2.75
+fog_density = 0.0009
 fog_sky_affect = 0.0
 adjustment_brightness = 1.22
