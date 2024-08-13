@@ -14,8 +14,7 @@ var turn_input: float = 0.0
 var pitch_input: float = 0.0
 
 # trail particles once our plane starts going faster
-var air_particles_left: GPUParticles3D
-var air_particles_right: GPUParticles3D
+var air_particles: GPUParticles3D
 
 var air_particles_scene: PackedScene = load("res://Plane/PlaneParticleTrail.tscn")
 
@@ -34,17 +33,11 @@ func _ready() -> void:
 ## dynamically created since they are attached to mesh
 func create_air_particles():
 	# position manually done. probably better way to do this
-	air_particles_right = air_particles_scene.instantiate()
-	air_particles_right.position.x = -3.5
-	air_particles_right.position.y = -0.5
-	air_particles_right.position.z = -1.5
-	plane_mesh.add_child(air_particles_right)
-	
-	air_particles_left = air_particles_scene.instantiate()
-	air_particles_left.position.x = 3.5
-	air_particles_left.position.y = -0.5
-	air_particles_left.position.z = -1.5
-	plane_mesh.add_child(air_particles_left)
+	air_particles = air_particles_scene.instantiate()
+	air_particles.position.x = 0
+	air_particles.position.y = 0.25
+	air_particles.position.z = 0
+	plane_mesh.add_child(air_particles)
 
 func _process(delta: float) -> void:
 	
@@ -54,8 +47,7 @@ func _process(delta: float) -> void:
 	plane_mesh.get_node("Propellor").rotate( Vector3.FORWARD, rotate_amount)
 	
 	# turn on air particle trail on wings when we are going max speed!
-	air_particles_left.emitting = target_speed == max_flight_speed
-	air_particles_right.emitting = target_speed == max_flight_speed
+	air_particles.emitting = target_speed == max_flight_speed
 	
 
 func _physics_process(delta: float) -> void:
