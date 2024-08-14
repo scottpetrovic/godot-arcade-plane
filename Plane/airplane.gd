@@ -34,9 +34,9 @@ func _ready() -> void:
 func create_air_particles():
 	# position manually done. probably better way to do this
 	air_particles = air_particles_scene.instantiate()
-	air_particles.position.y = 0
-	air_particles.position.z = 0.25
-	air_particles.position.x = 0
+	air_particles.position.y = 0.2
+	air_particles.position.z = 0.0
+	air_particles.position.x = 0.0
 	plane_mesh.add_child(air_particles)
 
 func _process(delta: float) -> void:
