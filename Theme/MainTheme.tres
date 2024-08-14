@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b6n1yoly1eyhl"]
+
+[ext_resource type="FontFile" uid="uid://dag26oxpo2ms2" path="res://Theme/NewAmsterdam-Regular.ttf" id="1_htikd"]
+
+[resource]
+default_font = ExtResource("1_htikd")
+Label/font_sizes/font_size = 16
+Label/fonts/DefaultFont = ExtResource("1_htikd")

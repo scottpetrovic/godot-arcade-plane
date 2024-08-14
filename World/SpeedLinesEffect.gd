@@ -4,7 +4,8 @@ extends ColorRect
 
 # airplane node has a couple variables on it to tell current speed
 # and maximum speed
-@onready var airplane: CharacterBody3D = $"../Airplane"
+@onready var airplane: CharacterBody3D = $"../../Airplane"
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

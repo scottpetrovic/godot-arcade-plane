@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://befsooyoi5ib3"]
+[gd_scene load_steps=8 format=3 uid="uid://befsooyoi5ib3"]
 
 [ext_resource type="Script" path="res://GateCheckpoint/gate_checkpoint.gd" id="1_ll65n"]
 [ext_resource type="PackedScene" uid="uid://dlwq32a6vy4t2" path="res://GateCheckpoint/gate_checkpoint_mesh.tscn" id="2_0qgag"]
@@ -8,6 +8,20 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_qq5xe"]
 height = 0.3
 radius = 1.46206
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dnkg7"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.976471, 0.505882, 0.737255, 0.368627)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_j6mre"]
+material = SubResource("StandardMaterial3D_dnkg7")
+top_radius = 1.5
+bottom_radius = 1.5
+height = 0.5
+radial_segments = 20
+rings = 2
 
 [node name="GateCheckpoint" type="Area3D"]
 script = ExtResource("1_ll65n")
@@ -19,5 +33,10 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 shape = SubResource("CylinderShape3D_qq5xe")
 
 [node name="FXScaleUpDown" parent="." instance=ExtResource("3_meh3s")]
+scale_amount = 0.5
 
 [node name="FXRotate" parent="." instance=ExtResource("4_m5s3t")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_j6mre")

@@ -109,7 +109,6 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="UI/CheckpointsPassedOverlay"]
 layout_mode = 2
 theme = ExtResource("11_3yveq")
-theme_type_variation = &"HeaderLarge"
 text = "Checkpoint Success. Finish landing."
 uppercase = true
 
