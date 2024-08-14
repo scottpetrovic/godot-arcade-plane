@@ -43,15 +43,8 @@ slide_on_ceiling = false
 [node name="CameraTarget" type="Node3D" parent="Airplane"]
 transform = Transform3D(1, 0, 1.63913e-07, 0, 1, 0, -1.63913e-07, 0, 1, -0.272615, 1.33387, 4.36149)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.673941, 0.738785, 0, -0.738785, -0.673941, 0, 15.0104, 0)
-light_energy = 0.39
-shadow_enabled = true
-shadow_opacity = 0.76
-shadow_blur = 2.304
-
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -28.0942, 3.49113, 2.48922)
+transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -25.7889, 3.25894, 1.84443)
 current = true
 fov = 66.6
 far = 1000.0
@@ -68,25 +61,25 @@ script = ExtResource("5_qhh85")
 [node name="Gates" type="Node" parent="."]
 
 [node name="GateCheckpoint" parent="Gates" instance=ExtResource("9_2bf8e")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 74.3455, 15.5557, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 51.3455, 15.5557, 1)
 
 [node name="GateCheckpoint2" parent="Gates" instance=ExtResource("9_2bf8e")]
-transform = Transform3D(-0.999987, 0, 0.00502685, 0, 1, 0, -0.00502685, 0, -0.999987, 101.148, 25.1171, 42.5267)
+transform = Transform3D(-0.999987, 0, 0.00502685, 0, 1, 0, -0.00502685, 0, -0.999987, 65.148, 25.1171, 30.5267)
 
 [node name="GateCheckpoint3" parent="Gates" instance=ExtResource("9_2bf8e")]
-transform = Transform3D(-0.639828, 0, 0.768518, 0, 1, 0, -0.768518, 0, -0.639828, 51.226, 25.1171, 104.935)
+transform = Transform3D(-0.639828, 0, 0.768518, 0, 1, 0, -0.768518, 0, -0.639828, 45.226, 25.1171, 65.935)
 
 [node name="GateCheckpoint4" parent="Gates" instance=ExtResource("9_2bf8e")]
-transform = Transform3D(-0.0729772, 0, 0.997334, 0, 1, 0, -0.997334, 0, -0.0729772, -49.9618, 25.1171, 120.361)
+transform = Transform3D(-0.0729772, 0, 0.997334, 0, 1, 0, -0.997334, 0, -0.0729772, -15.9618, 25.1171, 74.361)
 
 [node name="GateCheckpoint5" parent="Gates" instance=ExtResource("9_2bf8e")]
-transform = Transform3D(0.755385, 0, 0.655281, 0, 1, 0, -0.655281, 0, 0.755385, -113.997, 25.1171, 88.726)
+transform = Transform3D(0.755385, 0, 0.655281, 0, 1, 0, -0.655281, 0, 0.755385, -71.997, 25.1171, 67.726)
 
 [node name="GateCheckpoint6" parent="Gates" instance=ExtResource("9_2bf8e")]
-transform = Transform3D(0.967161, 0, -0.254163, 0, 1, 0, 0.254163, 0, 0.967161, -126.94, 25.1171, 36.8144)
+transform = Transform3D(0.967161, 0, -0.254163, 0, 1, 0, 0.254163, 0, 0.967161, -86.94, 19.1171, 34.8144)
 
 [node name="GateCheckpoint7" parent="Gates" instance=ExtResource("9_2bf8e")]
-transform = Transform3D(0.482166, 0, -0.876079, 0, 1, 0, 0.876079, 0, 0.482166, -95.3888, 16.7952, 14.266)
+transform = Transform3D(0.482166, 0, -0.876079, 0, 1, 0, 0.876079, 0, 0.482166, -72.3888, 12.7952, 5.266)
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -104,11 +97,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="UI/CheckpointsPassedOverlay"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CheckpointsPassedOverlay"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/CheckpointsPassedOverlay/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("11_3yveq")
 theme_type_variation = &"HeaderLarge"
-text = "Checkpoint Success. Finish landing."
+theme_override_font_sizes/font_size = 60
+text = "All Checkpoints Completed"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Label2" type="Label" parent="UI/CheckpointsPassedOverlay/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("11_3yveq")
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 30
+text = "land to complete"
+horizontal_alignment = 1
 uppercase = true
 
 [node name="SpeedLinesCameraEffect" type="ColorRect" parent="UI"]

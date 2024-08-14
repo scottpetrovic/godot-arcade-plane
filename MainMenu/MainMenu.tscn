@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dt0rnx5u22agk"]
+[gd_scene load_steps=9 format=3 uid="uid://dt0rnx5u22agk"]
 
 [ext_resource type="Script" path="res://MainMenu/MainMenu.gd" id="1_hxtm5"]
 [ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://AircraftCarrier/Aircraft_Carrier.tscn" id="1_qfpby"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="4_ta1sr"]
 [ext_resource type="Script" path="res://MainMenu/CameraMovement.gd" id="6_yuge5"]
 [ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="6_ywkv5"]
+[ext_resource type="PackedScene" uid="uid://d3qn3es4bmao8" path="res://Plane/Airplane_Mesh.tscn" id="8_d3uqa"]
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_hxtm5")
@@ -21,10 +22,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.4794, 0, 3.266)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.5047, 18.0404, 2.17298)
 
 [node name="Airplane" parent="." instance=ExtResource("4_ta1sr")]
-transform = Transform3D(0.996855, 0, -0.079242, 0, 1, 0, 0.079242, 0, 0.996855, 0.357428, 1.86236, 6.89412)
+transform = Transform3D(0.999292, 0, -0.0376205, 0, 1, 0, 0.0376205, 0, 0.999292, -0.101195, 1.86236, 5.21982)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.611259, -0.0866441, 0.786673, -0.0389977, 0.996079, 0.0794062, -0.790469, 0.0178593, -0.612241, 0.990318, 2.06368, 5.82102)
+transform = Transform3D(-0.611259, -0.0866441, 0.786673, -0.0389977, 0.996079, 0.0794062, -0.790469, 0.0178593, -0.612241, 0.700955, 2.23178, 4.73481)
+h_offset = 0.545
+current = true
+far = 39.71
 script = ExtResource("6_yuge5")
 
 [node name="UI" type="Control" parent="."]
@@ -48,7 +52,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="UI/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_ywkv5")
-theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 140
 text = "Take Off"
 horizontal_alignment = 1
 
@@ -56,5 +60,15 @@ horizontal_alignment = 1
 layout_mode = 2
 theme = ExtResource("6_ywkv5")
 theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 25
 text = "Press Anywhere"
 horizontal_alignment = 1
+
+[node name="plane" parent="." instance=ExtResource("8_d3uqa")]
+transform = Transform3D(0.678301, 0, 0.734784, 0, 1, 0, -0.734784, 0, 0.678301, -3.79116, 1.86566, 5.3526)
+
+[node name="plane2" parent="." instance=ExtResource("8_d3uqa")]
+transform = Transform3D(0.678301, 0, 0.734784, 0, 1, 0, -0.734784, 0, 0.678301, -2.64982, 1.86566, 4.76321)
+
+[node name="plane3" parent="." instance=ExtResource("8_d3uqa")]
+transform = Transform3D(0.678301, 0, 0.734784, 0, 1, 0, -0.734784, 0, 0.678301, -3.35896, 1.86566, 3.89178)

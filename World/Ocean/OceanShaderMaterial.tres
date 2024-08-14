@@ -13,7 +13,7 @@ noise = SubResource("FastNoiseLite_kl7go")
 [resource]
 render_priority = 0
 shader = ExtResource("1_xcadl")
-shader_parameter/albedo = Color(0.281458, 0.190988, 0.659376, 1)
+shader_parameter/albedo = Color(0.155763, 0.243998, 0.656104, 1)
 shader_parameter/scroll_speed1 = Vector2(0.02, 0)
 shader_parameter/scroll_speed2 = Vector2(-0.02, 0)
 shader_parameter/blend_factor = 0.5

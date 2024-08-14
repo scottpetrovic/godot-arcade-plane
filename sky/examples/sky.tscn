@@ -11,6 +11,7 @@ background_color = Color(0.434155, 0.453861, 0.508999, 1)
 sky = SubResource("Sky_ieg05")
 ambient_light_source = 2
 ambient_light_color = Color(0.24905, 0.577417, 0.791645, 1)
+ambient_light_energy = 0.3
 tonemap_mode = 2
 glow_enabled = true
 glow_bloom = 0.2

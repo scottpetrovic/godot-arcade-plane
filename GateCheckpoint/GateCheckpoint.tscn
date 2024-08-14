@@ -33,7 +33,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 shape = SubResource("CylinderShape3D_qq5xe")
 
 [node name="FXScaleUpDown" parent="." instance=ExtResource("3_meh3s")]
-scale_amount = 0.5
+scale_amount = 0.2
 
 [node name="FXRotate" parent="." instance=ExtResource("4_m5s3t")]
 

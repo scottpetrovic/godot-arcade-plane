@@ -19,3 +19,6 @@ func camera_shake(time_length: float = 1.5, magnitude: float = 1.0):
 		await get_tree().process_frame
 
 	main_camera.transform = initial_transform
+
+func wait(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout
