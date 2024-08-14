@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://dt0rnx5u22agk"]
+
+[ext_resource type="Script" path="res://MainMenu/MainMenu.gd" id="1_hxtm5"]
+[ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://AircraftCarrier/Aircraft_Carrier.tscn" id="1_qfpby"]
+[ext_resource type="PackedScene" uid="uid://f5q3lvkkp6et" path="res://World/Ocean/Ocean.tscn" id="2_bqd8t"]
+[ext_resource type="PackedScene" uid="uid://cg3m5qnyxjev4" path="res://sky/examples/sky.tscn" id="3_xmrd7"]
+[ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="4_ta1sr"]
+[ext_resource type="Script" path="res://MainMenu/CameraMovement.gd" id="6_yuge5"]
+[ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="6_ywkv5"]
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_hxtm5")
+
+[node name="AircraftCarrier" parent="." instance=ExtResource("1_qfpby")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.853448, 1.19209e-07, -0.481261)
+
+[node name="Ocean" parent="." instance=ExtResource("2_bqd8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.4794, 0, 3.266)
+
+[node name="Sky" parent="." instance=ExtResource("3_xmrd7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.5047, 18.0404, 2.17298)
+
+[node name="Airplane" parent="." instance=ExtResource("4_ta1sr")]
+transform = Transform3D(0.996855, 0, -0.079242, 0, 1, 0, 0.079242, 0, 0.996855, 0.357428, 1.86236, 6.89412)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.611259, -0.0866441, 0.786673, -0.0389977, 0.996079, 0.0794062, -0.790469, 0.0178593, -0.612241, 0.990318, 2.06368, 5.82102)
+script = ExtResource("6_yuge5")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 1.001
+anchor_bottom = 1.005
+offset_right = -0.1521
+offset_bottom = -0.23999
+
+[node name="CenterContainer" type="CenterContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_ywkv5")
+theme_type_variation = &"HeaderLarge"
+text = "Take Off"
+horizontal_alignment = 1
+
+[node name="Instructions" type="Label" parent="UI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_ywkv5")
+theme_type_variation = &"HeaderLarge"
+text = "Press Anywhere"
+horizontal_alignment = 1

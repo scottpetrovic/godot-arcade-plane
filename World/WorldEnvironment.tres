@@ -1,14 +1,8 @@
-[gd_resource type="Environment" load_steps=3 format=3 uid="uid://rl8h2c4eejfg"]
-
-[ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://sky/examples/day_sky.tres" id="1_54wba"]
-
-[sub_resource type="Sky" id="Sky_6xugb"]
-sky_material = ExtResource("1_54wba")
+[gd_resource type="Environment" format=3 uid="uid://rl8h2c4eejfg"]
 
 [resource]
 background_mode = 2
 background_color = Color(0.617341, 0.93432, 0.707474, 1)
-sky = SubResource("Sky_6xugb")
 ambient_light_source = 3
 ambient_light_sky_contribution = 0.74
 ssao_enabled = true

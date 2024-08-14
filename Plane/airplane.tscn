@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d3qn3es4bmao8" path="res://Plane/Airplane_Mesh.tscn" id="2_j34yd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsjsx"]
-radius = 0.220279
+radius = 0.259621
 height = 1.17604
 
 [node name="Airplane" type="CharacterBody3D"]

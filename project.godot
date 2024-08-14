@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Arcade Airplane"
-run/main_scene="res://World/World.tscn"
+run/main_scene="res://MainMenu/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [filesystem]

@@ -38,12 +38,14 @@ func create_air_particles():
 	air_particles.position.y = 0.2
 	air_particles.position.z = 0.0
 	air_particles.position.x = -0.7
+	air_particles.emitting = false
 	plane_mesh.add_child(air_particles)
 	
 	air_particles_2 = air_particles_scene.instantiate()
 	air_particles_2.position.y = 0.2
 	air_particles_2.position.z = 0.0
 	air_particles_2.position.x = 0.7
+	air_particles_2.emitting = false
 	plane_mesh.add_child(air_particles_2)
 
 func _process(delta: float) -> void:

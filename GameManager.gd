@@ -14,5 +14,5 @@ func _process(_delta: float) -> void:
 	
 func are_all_gates_passed():
 	var unchecked_children = gates.get_children().filter(func(x): return not x.is_checked)
-	print("Gates left: ", unchecked_children.size())
+	# print("Gates left: ", unchecked_children.size())
 	return unchecked_children.size() == 0
