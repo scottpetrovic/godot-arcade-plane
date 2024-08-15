@@ -20,6 +20,7 @@ var air_particles_2: GPUParticles3D
 var air_particles_scene: PackedScene = load("res://Plane/PlaneParticleTrail.tscn")
 
 var has_crashed = false # only water will make us crash
+var is_engine_on = true # turn off when we complete mission
 var airplane_original_scale: float
 
 @onready var plane_mesh: Node3D = $Plane_Mesh
@@ -59,11 +60,13 @@ func _process(delta: float) -> void:
 	var is_going_max_speed =  target_speed == max_flight_speed
 	air_particles.emitting = is_going_max_speed
 	air_particles_2.emitting = is_going_max_speed
-	
+
+func turn_engine_off():
+	is_engine_on = false
 
 func _physics_process(delta: float) -> void:
 	
-	if has_crashed:
+	if has_crashed || is_engine_on == false:
 		return
 	
 	get_input(delta)

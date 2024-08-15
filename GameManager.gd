@@ -1,11 +1,16 @@
 extends Node3D
 
 @onready var gates: Node = $Gates
-@onready var checkpoints_passed_overlay: CenterContainer = $UI/CheckpointsPassedOverlay
 @onready var aircraft_carrier: Node3D = $AircraftCarrier
 @onready var airplane: CharacterBody3D = $Airplane
 
 var gates_completed_message_shown: bool = false
+
+@onready var checkpoints_passed_overlay: CenterContainer = $UI/CheckpointsPassedOverlay
+@onready var training_complete_overlay: CenterContainer = $UI/TrainingCompleteOverlay
+@onready var player_crashed_overlay: CenterContainer = $UI/PlayerCrashedOverlay
+
+var splash: PackedScene = load("res://World/Ocean/SplashParticles.tscn")
 
 func check_for_final_landing() -> bool:
 	# all gates are passed
@@ -31,9 +36,11 @@ func _process(_delta: float) -> void:
 		goal_completed()
 
 func goal_completed():
-	print('we did it')
-	# TODO: Show UI that we did a good job
-	# TODO: wait a few seconds and go to a summary screen
+	airplane.turn_engine_off()
+	training_complete_overlay.visible = true
+	await get_tree().create_timer(4.0).timeout
+	# TODO: queue music for success
+	get_tree().change_scene_to_file("res://MissionEndOverview/MissionEndOverview.tscn")
 	# TODO: UI on in-game with time taken
 	# TODO: UI on in-game with rings left
 	# TODO: slight fog to make horizon less harsh
@@ -45,3 +52,23 @@ func are_all_gates_passed():
 	var unchecked_children = gates.get_children().filter(func(x): return not x.is_checked)
 	# print("Gates left: ", unchecked_children.size())
 	return unchecked_children.size() == 0
+
+func player_crashed():
+	airplane.turn_engine_off()
+	airplane.crashed() # tell plane it crashed so it stops moving
+	player_crashed_overlay.visible = true
+	
+	# create particle effect of splashing
+	# VERY important to add splash_object to scene tree before
+	# setting global position. 
+	var splash_object: GPUParticles3D = splash.instantiate()
+	add_child(splash_object)
+	splash_object.global_position = airplane.global_position
+	$UtilityFunctions.camera_shake(1.7, 1.0)
+	
+	# restart the level after 4 seconds
+	await get_tree().create_timer(9.0).timeout # waits for 1 second
+	restart_scene()
+
+func restart_scene():
+	get_tree().reload_current_scene()

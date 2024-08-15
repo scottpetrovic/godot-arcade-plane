@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=3 uid="uid://xulxfupki51m"]
+
+[ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="1_aifyh"]
+[ext_resource type="Script" path="res://MissionEndOverview/MissionEndOverview.gd" id="1_n6hbo"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_51skd"]
+color = Color(1, 1, 1, 1)
+thickness = 5
+
+[node name="MissionEndOverview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n6hbo")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.568432, 0.721779, 0.999264, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+offset_left = 1.0
+offset_top = 27.0
+offset_right = 1151.0
+offset_bottom = 123.0
+theme = ExtResource("1_aifyh")
+theme_override_font_sizes/font_size = 80
+text = "Mission Complete"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 128.0
+offset_top = 140.0
+offset_right = 473.0
+offset_bottom = 446.0
+theme_override_constants/separation = 10
+metadata/_edit_group_ = true
+
+[node name="TimeScore" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_aifyh")
+theme_override_font_sizes/font_size = 50
+text = "Time . . . . . .100 pts"
+
+[node name="AccuracyScore" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_aifyh")
+theme_override_font_sizes/font_size = 50
+text = "gates . . . . .100 pts"
+
+[node name="LandingScore" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_aifyh")
+theme_override_font_sizes/font_size = 50
+text = "Landing . . . 100 pts"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_51skd")
+
+[node name="LandingScore2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_aifyh")
+theme_override_font_sizes/font_size = 50
+text = "Total . . . . . 300 pts"
+
+[node name="Message background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 472.0
+offset_right = 1153.0
+offset_bottom = 648.0
+color = Color(0.0123368, 0.237512, 0.328009, 1)
+
+[node name="ProfilePicture" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 733.0
+offset_top = 140.0
+offset_right = 1035.0
+offset_bottom = 432.0
+
+[node name="InstructorMessage" type="Label" parent="."]
+layout_mode = 2
+offset_left = 221.0
+offset_top = 508.0
+offset_right = 938.0
+offset_bottom = 607.0
+theme = ExtResource("1_aifyh")
+theme_override_font_sizes/font_size = 40
+text = "By the grace of god you somehow did it. how could did you pull of something like this?"
+horizontal_alignment = 1
+autowrap_mode = 2
