@@ -82,17 +82,17 @@ func _process(delta: float) -> void:
 		goal_completed()
 
 func goal_completed():
-	airplane.turn_engine_off()
-	training_complete_overlay.visible = true
-	await get_tree().create_timer(4.0).timeout
-	# TODO: queue music for success
-	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
-	# TODO: UI on in-game with time taken
-	# TODO: UI on in-game with rings left
-	# TODO: slight fog to make horizon less harsh
-	# TODO: Controls for controller
-	# TODO: export to HTML5
-	# TODO: controls if on mobile
+	# make sure to only call this one time
+	if training_complete_overlay.visible == false:
+		airplane.turn_engine_off()
+		training_complete_overlay.visible = true
+		await get_tree().create_timer(4.0).timeout
+		# TODO: queue music for success
+		SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
+		# TODO: Controls for controller
+		# TODO: export to HTML5
+		# TODO: pause screen
+		# TODO: controls if on mobile
 
 func are_all_gates_passed():
 	var unchecked_children = gates.get_children().filter(func(x): return not x.is_checked)
