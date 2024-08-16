@@ -40,7 +40,7 @@ func goal_completed():
 	training_complete_overlay.visible = true
 	await get_tree().create_timer(4.0).timeout
 	# TODO: queue music for success
-	get_tree().change_scene_to_file("res://MissionEndOverview/MissionEndOverview.tscn")
+	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
 	# TODO: UI on in-game with time taken
 	# TODO: UI on in-game with rings left
 	# TODO: slight fog to make horizon less harsh

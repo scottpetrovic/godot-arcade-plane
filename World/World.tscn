@@ -35,6 +35,7 @@ shader_parameter/noise = SubResource("NoiseTexture2D_1tvyi")
 script = ExtResource("1_gafx6")
 
 [node name="Ocean" parent="." instance=ExtResource("1_cd52o")]
+transform = Transform3D(0.999998, -0.00167487, 0.000804524, 0.0016722, 0.999993, 0.00332093, -0.000810061, -0.00331959, 0.999994, 0, 0, 0)
 
 [node name="Airplane" parent="." instance=ExtResource("1_niayg")]
 transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -23.9878, 2.23225, 1.46834)

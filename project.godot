@@ -14,6 +14,10 @@ config/name="Arcade Airplane"
 run/main_scene="res://MainMenu/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
+[autoload]
+
+SceneTransition="*res://SceneTransition/SceneTransition.tscn"
+
 [filesystem]
 
 import/blender/enabled=false
