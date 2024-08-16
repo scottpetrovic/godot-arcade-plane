@@ -10,6 +10,13 @@ var gates_completed_message_shown: bool = false
 @onready var training_complete_overlay: CenterContainer = $UI/TrainingCompleteOverlay
 @onready var player_crashed_overlay: CenterContainer = $UI/PlayerCrashedOverlay
 
+# HUD display items to always show
+@onready var speed_label: Label = $UI/SpeedLabel
+@onready var altitude_label: Label = $UI/AltitudeLabel
+@onready var time_label: Label = $UI/TimeLabel
+
+var elapsed_time: float = 0.0
+
 var splash: PackedScene = load("res://World/Ocean/SplashParticles.tscn")
 
 func check_for_final_landing() -> bool:
@@ -22,8 +29,26 @@ func check_for_final_landing() -> bool:
 			return true
 	return false
 
+func update_hud():
+	var speed_multiplier = 20.0 # magic number that looks better on UI
+	var altitude_multiplier = 5.0 # magic number that looks better on UI
+	speed_label.text = str(int(airplane.forward_speed * speed_multiplier)) + " MPH"
+
+	var altitude_string = str(int(airplane.global_transform.origin.y * altitude_multiplier)) + " M"
+	altitude_label.text = altitude_string.pad_zeros(7)
+	time_label.text = format_elapsed_time(elapsed_time)
+
+func format_elapsed_time(elapsed: float) -> String:
+	var minutes = int(elapsed) / 60
+	var seconds = int(elapsed) % 60
+	return str(minutes) + ":" + str(seconds).pad_zeros(2)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	
+	elapsed_time += delta
+	update_hud()
+	
 	# maybe show this on the UI somewhere?
 	if are_all_gates_passed() && gates_completed_message_shown == false:
 		gates_completed_message_shown = true

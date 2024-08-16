@@ -171,5 +171,29 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_8lvy2")
 
+[node name="SpeedLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 18.0
+offset_right = 71.0
+offset_bottom = 41.0
+text = "4 MPH"
+
+[node name="AltitudeLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 63.0
+offset_right = 75.0
+offset_bottom = 86.0
+text = "0000432 FT"
+
+[node name="TimeLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 106.0
+offset_right = 111.0
+offset_bottom = 129.0
+text = "0:23"
+
 [node name="Sky" parent="." instance=ExtResource("11_o2xs3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.014, 5.99028, 0.6255)
