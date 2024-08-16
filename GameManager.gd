@@ -11,9 +11,11 @@ var gates_completed_message_shown: bool = false
 @onready var player_crashed_overlay: CenterContainer = $UI/PlayerCrashedOverlay
 
 # HUD display items to always show
-@onready var speed_label: Label = $UI/SpeedLabel
-@onready var altitude_label: Label = $UI/AltitudeLabel
-@onready var time_label: Label = $UI/TimeLabel
+@onready var speed_label: Label = $UI/HUD/SpeedLabel
+@onready var altitude_label: Label = $UI/HUD/AltitudeLabel
+@onready var time_label: Label = $UI/HUD/TimeLabel
+@onready var speed_indicator: ColorRect = $UI/HUD/TextureRect/Speedindicator
+
 
 var elapsed_time: float = 0.0
 
@@ -29,15 +31,34 @@ func check_for_final_landing() -> bool:
 			return true
 	return false
 
-func update_hud():
-	var speed_multiplier = 20.0 # magic number that looks better on UI
-	var altitude_multiplier = 5.0 # magic number that looks better on UI
-	speed_label.text = str(int(airplane.forward_speed * speed_multiplier)) + " MPH"
 
-	var altitude_string = str(int(airplane.global_transform.origin.y * altitude_multiplier)) + " M"
-	altitude_label.text = altitude_string.pad_zeros(7)
+func update_hud():
+	
+	var altitude_multiplier = 5.0 # magic number that looks better on UI
+	var speed_multiplier = 20.0 # magic number that looks better on UI
+	speed_label.text = str(int(airplane.forward_speed * speed_multiplier))
+
+	var altitude_string = str(int(airplane.global_transform.origin.y * altitude_multiplier))
+	altitude_label.text = altitude_string.pad_zeros(5)
 	time_label.text = format_elapsed_time(elapsed_time)
 
+	update_speed_indicator()
+	
+func update_speed_indicator():
+	
+	# find out min and max for speed indicator
+	# 0 degrees is facing straight up
+	var min_angle_for_indicator = -83
+	var max_angle_for_indicator = 83
+	var total_angle_values = abs(min_angle_for_indicator) + abs(max_angle_for_indicator)
+	
+	# create ratio to help map angle facing and current speed
+	var speed_indicator_multiplier = 13.7 # magic number
+	var conversion_ratio: float = (airplane.max_flight_speed * speed_indicator_multiplier) / total_angle_values
+	speed_indicator.rotation_degrees = min_angle_for_indicator + (airplane.forward_speed*speed_indicator_multiplier*conversion_ratio)
+
+
+# move this to a utility function
 func format_elapsed_time(elapsed: float) -> String:
 	var minutes = int(elapsed) / 60
 	var seconds = int(elapsed) % 60
