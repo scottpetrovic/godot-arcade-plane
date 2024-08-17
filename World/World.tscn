@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dk0av4tlip45w"]
+[gd_scene load_steps=19 format=3 uid="uid://dk0av4tlip45w"]
 
 [ext_resource type="PackedScene" uid="uid://f5q3lvkkp6et" path="res://World/Ocean/Ocean.tscn" id="1_cd52o"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_gafx6"]
@@ -12,6 +12,9 @@
 [ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="11_3yveq"]
 [ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/speedometer.png" id="11_b0nkq"]
 [ext_resource type="PackedScene" uid="uid://cg3m5qnyxjev4" path="res://sky/examples/sky.tscn" id="11_o2xs3"]
+[ext_resource type="Texture2D" uid="uid://co4bls0sy8o31" path="res://MissionEndOverview/MISSION-COMPLETE-8-16-2024.png" id="12_r7l58"]
+[ext_resource type="Texture2D" uid="uid://b3oljv8lyncny" path="res://UI/UI-crashed.png" id="12_sgfqp"]
+[ext_resource type="Texture2D" uid="uid://bufhyxm73wqho" path="res://UI/UI-objective-complete.png" id="14_m2qvt"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ko185"]
 noise_type = 5
@@ -90,78 +93,6 @@ anchor_bottom = 1.003
 offset_right = -0.1521
 offset_bottom = 0.0559692
 
-[node name="CheckpointsPassedOverlay" type="CenterContainer" parent="UI"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/CheckpointsPassedOverlay"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/CheckpointsPassedOverlay/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("11_3yveq")
-theme_type_variation = &"HeaderLarge"
-theme_override_font_sizes/font_size = 60
-text = "All Checkpoints Completed"
-horizontal_alignment = 1
-uppercase = true
-
-[node name="Label2" type="Label" parent="UI/CheckpointsPassedOverlay/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("11_3yveq")
-theme_type_variation = &"HeaderLarge"
-theme_override_font_sizes/font_size = 30
-text = "land to complete"
-horizontal_alignment = 1
-uppercase = true
-
-[node name="PlayerCrashedOverlay" type="CenterContainer" parent="UI"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/PlayerCrashedOverlay"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/PlayerCrashedOverlay/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("11_3yveq")
-theme_type_variation = &"HeaderLarge"
-theme_override_font_sizes/font_size = 60
-text = "CRASHED!"
-horizontal_alignment = 1
-uppercase = true
-
-[node name="TrainingCompleteOverlay" type="CenterContainer" parent="UI"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/TrainingCompleteOverlay"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/TrainingCompleteOverlay/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("11_3yveq")
-theme_type_variation = &"HeaderLarge"
-theme_override_font_sizes/font_size = 60
-text = "Mission Complete!"
-horizontal_alignment = 1
-uppercase = true
-
 [node name="SpeedLinesCameraEffect" type="ColorRect" parent="UI"]
 material = SubResource("ShaderMaterial_uiy3f")
 layout_mode = 1
@@ -177,6 +108,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 0.128052
+offset_bottom = -574.36
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -282,6 +215,64 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 16
 text = "MPH"
 horizontal_alignment = 1
+
+[node name="PlayerCrashedOverlay" type="CenterContainer" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PlayerCrashedOverlay"]
+layout_mode = 2
+
+[node name="Ui-crashed" type="Sprite2D" parent="UI/PlayerCrashedOverlay/VBoxContainer"]
+scale = Vector2(0.438596, 0.438596)
+texture = ExtResource("12_sgfqp")
+
+[node name="TrainingCompleteOverlay" type="CenterContainer" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/TrainingCompleteOverlay"]
+layout_mode = 2
+
+[node name="Mission-complete-8-16-2024" type="Sprite2D" parent="UI/TrainingCompleteOverlay/VBoxContainer"]
+scale = Vector2(0.614537, 0.614537)
+texture = ExtResource("12_r7l58")
+
+[node name="CheckpointsPassedOverlay" type="CenterContainer" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CheckpointsPassedOverlay"]
+layout_mode = 2
+
+[node name="Ui-objective-complete" type="Sprite2D" parent="UI/CheckpointsPassedOverlay/VBoxContainer"]
+position = Vector2(89, -33)
+scale = Vector2(0.693878, 0.693878)
+texture = ExtResource("14_m2qvt")
+
+[node name="Label2" type="Label" parent="UI/CheckpointsPassedOverlay/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("11_3yveq")
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 30
+text = "land to complete"
+horizontal_alignment = 1
+uppercase = true
 
 [node name="Sky" parent="." instance=ExtResource("11_o2xs3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.014, 5.99028, 0.6255)

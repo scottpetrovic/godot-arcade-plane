@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dt0rnx5u22agk"]
+[gd_scene load_steps=11 format=3 uid="uid://dt0rnx5u22agk"]
 
 [ext_resource type="Script" path="res://MainMenu/MainMenu.gd" id="1_hxtm5"]
 [ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://AircraftCarrier/Aircraft_Carrier.tscn" id="1_qfpby"]
@@ -9,6 +9,7 @@
 [ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="6_ywkv5"]
 [ext_resource type="Texture2D" uid="uid://c67q4xuh2de08" path="res://MainMenu/TAKE-OFF-8-16-2024.png" id="7_tibdh"]
 [ext_resource type="PackedScene" uid="uid://d3qn3es4bmao8" path="res://Plane/Airplane_Mesh.tscn" id="8_d3uqa"]
+[ext_resource type="PackedScene" uid="uid://bq0ccx2rvgthf" path="res://Effects/FX_ScaleUpDown.tscn" id="8_j1553"]
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_hxtm5")
@@ -50,13 +51,28 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/CenterContainer"]
 layout_mode = 2
 
-[node name="Take-off-8-16-2024" type="Sprite2D" parent="UI/CenterContainer/VBoxContainer"]
-position = Vector2(76, -61)
-scale = Vector2(0.660767, 0.660767)
+[node name="TitleGraphic" type="Sprite2D" parent="UI/CenterContainer/VBoxContainer"]
+position = Vector2(82, -64)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_tibdh")
 
-[node name="Instructions" type="Label" parent="UI/CenterContainer/VBoxContainer"]
+[node name="FXScaleUpDown" parent="UI/CenterContainer/VBoxContainer/TitleGraphic" instance=ExtResource("8_j1553")]
+scale_amount = 0.05
+starting_scale = 0.5
+
+[node name="ColorRect" type="ColorRect" parent="UI/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(170, 35)
 layout_mode = 2
+color = Color(0, 0.440606, 0.740426, 1)
+metadata/_edit_group_ = true
+
+[node name="Instructions" type="Label" parent="UI/CenterContainer/VBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("6_ywkv5")
 theme_type_variation = &"HeaderLarge"
 theme_override_font_sizes/font_size = 25

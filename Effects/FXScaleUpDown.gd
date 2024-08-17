@@ -3,6 +3,7 @@ extends Node
 var time_start = 0
 var time_now = 0
 @export var scale_amount = 0.3
+@export var starting_scale = 1.0
 
 func _process(delta):
 	time_now += delta 
@@ -14,9 +15,12 @@ func _process(delta):
 
 	# we want the model to scale just a bit between 0.9 and 1.1
 	# multiply by .3 will make sinValue go from -.3 to .3
-	var newScale = (sinValue * scale_amount) + 1
+	var newScale = (sinValue * scale_amount) + starting_scale
 	
-	self.get_parent().scale = Vector3(newScale, newScale, newScale)	
+	if self.get_parent().scale is Vector2:
+		self.get_parent().scale = Vector2(newScale, newScale)
+	else:
+		self.get_parent().scale =Vector3(newScale, newScale, newScale)	
 
 
 func get_elapsed_time():
