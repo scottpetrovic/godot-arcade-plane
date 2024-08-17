@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dt0rnx5u22agk"]
+[gd_scene load_steps=10 format=3 uid="uid://dt0rnx5u22agk"]
 
 [ext_resource type="Script" path="res://MainMenu/MainMenu.gd" id="1_hxtm5"]
 [ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://AircraftCarrier/Aircraft_Carrier.tscn" id="1_qfpby"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="4_ta1sr"]
 [ext_resource type="Script" path="res://MainMenu/CameraMovement.gd" id="6_yuge5"]
 [ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="6_ywkv5"]
+[ext_resource type="Texture2D" uid="uid://c67q4xuh2de08" path="res://MainMenu/TAKE-OFF-8-16-2024.png" id="7_tibdh"]
 [ext_resource type="PackedScene" uid="uid://d3qn3es4bmao8" path="res://Plane/Airplane_Mesh.tscn" id="8_d3uqa"]
 
 [node name="MainMenu" type="Node3D"]
@@ -49,12 +50,10 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("6_ywkv5")
-theme_override_font_sizes/font_size = 140
-text = "Take Off"
-horizontal_alignment = 1
+[node name="Take-off-8-16-2024" type="Sprite2D" parent="UI/CenterContainer/VBoxContainer"]
+position = Vector2(76, -61)
+scale = Vector2(0.660767, 0.660767)
+texture = ExtResource("7_tibdh")
 
 [node name="Instructions" type="Label" parent="UI/CenterContainer/VBoxContainer"]
 layout_mode = 2

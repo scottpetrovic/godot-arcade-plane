@@ -18,6 +18,11 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 SceneTransition="*res://SceneTransition/SceneTransition.tscn"
 
+[display]
+
+window/size/viewport_width=1024
+window/size/viewport_height=768
+
 [filesystem]
 
 import/blender/enabled=false
