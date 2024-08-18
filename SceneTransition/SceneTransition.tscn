@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfscy40pf017v"]
+[gd_scene load_steps=6 format=3 uid="uid://cfscy40pf017v"]
 
 [ext_resource type="Script" path="res://SceneTransition/scene_transition.gd" id="1_th42b"]
+[ext_resource type="AudioStream" uid="uid://hct5slhey131" path="res://SceneTransition/ui-scene-change.mp3" id="2_h7k7x"]
 
 [sub_resource type="Animation" id="Animation_5dq3m"]
 resource_name = "RESET"
@@ -55,3 +56,6 @@ mouse_filter = 2
 libraries = {
 "": SubResource("AnimationLibrary_7pmyi")
 }
+
+[node name="TransitionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_h7k7x")
