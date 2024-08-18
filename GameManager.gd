@@ -21,25 +21,26 @@ var elapsed_time: float = 0.0
 
 var splash: PackedScene = load("res://World/Ocean/SplashParticles.tscn")
 
-func check_for_final_landing() -> bool:
+func is_mission_complete() -> bool:
 	# all gates are passed
 	# airplane is currently on landing strip
 	# airplane has come to a stop
-	# print(aircraft_carrier.is_player_on_landing_strip, are_all_gates_passed(), airplane.forward_speed)
 	if aircraft_carrier.is_player_on_landing_strip && are_all_gates_passed():
 		if airplane.forward_speed < 0.01:
 			return true
 	return false
 
 
-func update_hud():
-	
+func update_hud(delta: float):
+
 	var altitude_multiplier = 5.0 # magic number that looks better on UI
 	var speed_multiplier = 20.0 # magic number that looks better on UI
 	speed_label.text = str(int(airplane.forward_speed * speed_multiplier))
 
 	var altitude_string = str(int(airplane.global_transform.origin.y * altitude_multiplier))
 	altitude_label.text = altitude_string.pad_zeros(5)
+	
+	elapsed_time += delta
 	time_label.text = format_elapsed_time(elapsed_time)
 
 	update_speed_indicator()
@@ -67,8 +68,10 @@ func format_elapsed_time(elapsed: float) -> String:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	elapsed_time += delta
-	update_hud()
+	# stop updating UI when we are complete
+	# this also upates time mission is taking
+	if is_mission_complete() == false:
+		update_hud(delta)
 	
 	# maybe show this on the UI somewhere?
 	if are_all_gates_passed() && gates_completed_message_shown == false:
@@ -78,7 +81,7 @@ func _process(delta: float) -> void:
 		await get_tree().create_timer(2.0).timeout
 		checkpoints_passed_overlay.visible = false
 
-	if check_for_final_landing():
+	if is_mission_complete():
 		goal_completed()
 
 func goal_completed():
@@ -110,11 +113,8 @@ func player_crashed():
 	var splash_object: GPUParticles3D = splash.instantiate()
 	add_child(splash_object)
 	splash_object.global_position = airplane.global_position
-	$UtilityFunctions.camera_shake(1.7, 1.0)
+	$Camera/ScreenShake.camera_shake(1.3, 0.4)
 	
 	# restart the level after 4 seconds
 	await get_tree().create_timer(9.0).timeout # waits for 1 second
-	restart_scene()
-
-func restart_scene():
-	get_tree().reload_current_scene()
+	SceneTransition.change_scene("res://World/World.tscn")

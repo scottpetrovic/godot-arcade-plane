@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3ovo2it7nbnh"]
+[gd_scene load_steps=6 format=3 uid="uid://d3ovo2it7nbnh"]
 
 [ext_resource type="Script" path="res://Plane/airplane.gd" id="1_wihbf"]
 [ext_resource type="PackedScene" uid="uid://d3qn3es4bmao8" path="res://Plane/Airplane_Mesh.tscn" id="2_j34yd"]
+[ext_resource type="AudioStream" uid="uid://c5bmui870wk38" path="res://Plane/plane-engine.mp3" id="3_610pa"]
+[ext_resource type="Script" path="res://Plane/EngineSound.gd" id="4_874ub"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsjsx"]
 radius = 0.259621
@@ -16,3 +18,11 @@ shape = SubResource("CapsuleShape3D_gsjsx")
 
 [node name="Plane_Mesh" parent="." instance=ExtResource("2_j34yd")]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
+
+[node name="EngineSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_610pa")
+volume_db = -17.802
+pitch_scale = 0.82
+autoplay = true
+parameters/looping = true
+script = ExtResource("4_874ub")

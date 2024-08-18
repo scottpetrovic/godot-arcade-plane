@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-@onready var global_sound_effect_player = $SoundEffectPlayer
 @onready var transition_sound: AudioStreamPlayer2D = $TransitionSound
 	
 func change_scene(target: String) -> void:

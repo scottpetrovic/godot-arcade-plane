@@ -56,12 +56,12 @@ far = 1000.0
 script = ExtResource("3_rpdqv")
 target = NodePath("../Airplane/CameraTarget")
 
+[node name="ScreenShake" type="Node3D" parent="Camera"]
+transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 0, 0, 1, -0.698183, 0.79687, 6.15439)
+script = ExtResource("5_qhh85")
+
 [node name="AircraftCarrier" parent="." instance=ExtResource("5_oawla")]
 transform = Transform3D(2.62268e-08, 0, -0.2, 0, 0.2, 0, 0.2, 0, 2.62268e-08, -11.3819, 0.379997, 0)
-
-[node name="UtilityFunctions" type="Node3D" parent="."]
-transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -31.961, 4.05581, 2.36323)
-script = ExtResource("5_qhh85")
 
 [node name="Gates" type="Node" parent="."]
 

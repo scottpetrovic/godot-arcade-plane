@@ -70,7 +70,7 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	get_input(delta)
-	
+
 	# change pitch. If we are on the ground, we cannot make our pitch negative to look underground
 	if is_on_floor():
 		pitch_input = maxf(pitch_input, 0.0) # cannot look down if we are grounded

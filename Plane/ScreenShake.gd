@@ -1,6 +1,7 @@
 extends Node3D
 
-@onready var main_camera: Camera3D = $"../Camera"
+# add screen shake node as child of normal camera
+@onready var main_camera: Camera3D = $"../"
 
 ## Shake the camera with parameters for amount of time and intensity
 func camera_shake(time_length: float = 1.5, magnitude: float = 1.0):
@@ -19,6 +20,3 @@ func camera_shake(time_length: float = 1.5, magnitude: float = 1.0):
 		await get_tree().process_frame
 
 	main_camera.transform = initial_transform
-
-func wait(seconds: float) -> void:
-	await get_tree().create_timer(seconds).timeout

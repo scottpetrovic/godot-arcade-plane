@@ -3,8 +3,6 @@ extends Node3D
 @onready var area_landing_strip: Area3D = $AreaLandingStrip
 var wheel_impact_particles: PackedScene = load("res://Plane/LandingParticles.tscn")
 
-signal character_collided(body: Node3D)
-
 var is_player_on_landing_strip: bool = false
 
 # prevents smoke fx at start when plane is just sitting there
@@ -23,6 +21,9 @@ func _body_entered(body: Node3D):
 			var landing_impact: Node3D = wheel_impact_particles.instantiate()
 			body.add_child(landing_impact)
 			landing_impact.global_position = body.global_position
+			
+			# play sound effect
+			$PlaneLandingSound.play()
 
 
 func _body_exited(body: Node3D):
