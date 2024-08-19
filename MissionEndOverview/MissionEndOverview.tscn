@@ -70,7 +70,6 @@ offset_top = 204.0
 offset_right = 466.0
 offset_bottom = 510.0
 theme_override_constants/separation = 10
-metadata/_edit_group_ = true
 
 [node name="TimeScore" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -82,7 +81,7 @@ text = "Time . . . . . .100 pts"
 layout_mode = 2
 theme = ExtResource("1_aifyh")
 theme_override_font_sizes/font_size = 50
-text = "gates . . . . .100 pts"
+text = "Objective. . .100 pts"
 
 [node name="LandingScore" type="Label" parent="VBoxContainer"]
 layout_mode = 2

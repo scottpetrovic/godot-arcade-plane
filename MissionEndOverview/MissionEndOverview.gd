@@ -17,6 +17,11 @@ func change_audio_stream(new_audio_file_path: String):
 func _ready() -> void:
 	
 	GlobalAudio.start_music_mission_debrief()
+	
+	# level 1 just has to finish. give them a high score
+	if GameManager.current_level == 1:
+		GameManager.is_level_1_complete = true
+		GameManager.level_1_best_score = 300
 
 	instructor_message.visible_ratio = 0.0
 	await get_tree().create_timer(2.0).timeout
