@@ -1,20 +1,20 @@
 [gd_scene load_steps=19 format=3 uid="uid://dk0av4tlip45w"]
 
-[ext_resource type="PackedScene" uid="uid://f5q3lvkkp6et" path="res://World/Ocean/Ocean.tscn" id="1_cd52o"]
-[ext_resource type="Script" path="res://GameManager.gd" id="1_gafx6"]
-[ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="1_niayg"]
-[ext_resource type="Script" path="res://Plane/CameraFollow.gd" id="3_rpdqv"]
-[ext_resource type="Shader" path="res://World/SpeedLines.gdshader" id="5_gpr4w"]
-[ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://AircraftCarrier/Aircraft_Carrier.tscn" id="5_oawla"]
-[ext_resource type="Script" path="res://Plane/ScreenShake.gd" id="5_qhh85"]
-[ext_resource type="Script" path="res://World/SpeedLinesEffect.gd" id="8_8lvy2"]
-[ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://GateCheckpoint/GateCheckpoint.tscn" id="9_2bf8e"]
-[ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="11_3yveq"]
-[ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/speedometer.png" id="11_b0nkq"]
-[ext_resource type="PackedScene" uid="uid://cg3m5qnyxjev4" path="res://sky/examples/sky.tscn" id="11_o2xs3"]
-[ext_resource type="Texture2D" uid="uid://co4bls0sy8o31" path="res://MissionEndOverview/MISSION-COMPLETE-8-16-2024.png" id="12_r7l58"]
-[ext_resource type="Texture2D" uid="uid://b3oljv8lyncny" path="res://UI/UI-crashed.png" id="12_sgfqp"]
-[ext_resource type="Texture2D" uid="uid://bufhyxm73wqho" path="res://UI/UI-objective-complete.png" id="14_m2qvt"]
+[ext_resource type="Script" path="res://Levels/Level1.gd" id="1_hbooc"]
+[ext_resource type="PackedScene" uid="uid://f5q3lvkkp6et" path="res://Ocean/Ocean.tscn" id="2_lfnpl"]
+[ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="3_yry5l"]
+[ext_resource type="Script" path="res://Plane/CameraFollow.gd" id="4_lu1gi"]
+[ext_resource type="Script" path="res://Plane/ScreenShake.gd" id="5_cajsq"]
+[ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://AircraftCarrier/Aircraft_Carrier.tscn" id="6_m7lfe"]
+[ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://GateCheckpoint/GateCheckpoint.tscn" id="7_57csd"]
+[ext_resource type="Shader" path="res://Effects/SpeedLines.gdshader" id="8_uvmg4"]
+[ext_resource type="Script" path="res://Effects/SpeedLinesEffect.gd" id="9_shgos"]
+[ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="10_grq0o"]
+[ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="11_cdsjs"]
+[ext_resource type="Texture2D" uid="uid://b3oljv8lyncny" path="res://Assets/UI/UI-crashed.png" id="12_83on8"]
+[ext_resource type="Texture2D" uid="uid://co4bls0sy8o31" path="res://Assets/UI/MISSION-COMPLETE-8-16-2024.png" id="13_uv7nv"]
+[ext_resource type="Texture2D" uid="uid://bufhyxm73wqho" path="res://Assets/UI/UI-objective-complete.png" id="14_h33io"]
+[ext_resource type="PackedScene" uid="uid://cg3m5qnyxjev4" path="res://sky/examples/sky.tscn" id="15_nf1oj"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ko185"]
 noise_type = 5
@@ -25,7 +25,7 @@ fractal_type = 0
 noise = SubResource("FastNoiseLite_ko185")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uiy3f"]
-shader = ExtResource("5_gpr4w")
+shader = ExtResource("8_uvmg4")
 shader_parameter/line_color = Color(1, 1, 1, 0.45098)
 shader_parameter/line_count = 1.15
 shader_parameter/line_density = 0.224
@@ -35,13 +35,13 @@ shader_parameter/mask_edge = 0.68
 shader_parameter/animation_speed = 15.413
 shader_parameter/noise = SubResource("NoiseTexture2D_1tvyi")
 
-[node name="World" type="Node3D"]
-script = ExtResource("1_gafx6")
+[node name="Level1" type="Node3D"]
+script = ExtResource("1_hbooc")
 
-[node name="Ocean" parent="." instance=ExtResource("1_cd52o")]
+[node name="Ocean" parent="." instance=ExtResource("2_lfnpl")]
 transform = Transform3D(0.999998, -0.00167487, 0.000804524, 0.0016722, 0.999993, 0.00332093, -0.000810061, -0.00331959, 0.999994, 0, 0, 0)
 
-[node name="Airplane" parent="." instance=ExtResource("1_niayg")]
+[node name="Airplane" parent="." instance=ExtResource("3_yry5l")]
 transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -23.9878, 2.23225, 1.46834)
 slide_on_ceiling = false
 
@@ -53,37 +53,37 @@ transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, 
 current = true
 fov = 66.6
 far = 1000.0
-script = ExtResource("3_rpdqv")
+script = ExtResource("4_lu1gi")
 target = NodePath("../Airplane/CameraTarget")
 
 [node name="ScreenShake" type="Node3D" parent="Camera"]
 transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 0, 0, 1, -0.698183, 0.79687, 6.15439)
-script = ExtResource("5_qhh85")
+script = ExtResource("5_cajsq")
 
-[node name="AircraftCarrier" parent="." instance=ExtResource("5_oawla")]
+[node name="AircraftCarrier" parent="." instance=ExtResource("6_m7lfe")]
 transform = Transform3D(2.62268e-08, 0, -0.2, 0, 0.2, 0, 0.2, 0, 2.62268e-08, -11.3819, 0.379997, 0)
 
 [node name="Gates" type="Node" parent="."]
 
-[node name="GateCheckpoint" parent="Gates" instance=ExtResource("9_2bf8e")]
+[node name="GateCheckpoint" parent="Gates" instance=ExtResource("7_57csd")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 51.3455, 15.5557, 1)
 
-[node name="GateCheckpoint2" parent="Gates" instance=ExtResource("9_2bf8e")]
+[node name="GateCheckpoint2" parent="Gates" instance=ExtResource("7_57csd")]
 transform = Transform3D(-0.999987, 0, 0.00502685, 0, 1, 0, -0.00502685, 0, -0.999987, 65.148, 25.1171, 30.5267)
 
-[node name="GateCheckpoint3" parent="Gates" instance=ExtResource("9_2bf8e")]
+[node name="GateCheckpoint3" parent="Gates" instance=ExtResource("7_57csd")]
 transform = Transform3D(-0.639828, 0, 0.768518, 0, 1, 0, -0.768518, 0, -0.639828, 45.226, 25.1171, 65.935)
 
-[node name="GateCheckpoint4" parent="Gates" instance=ExtResource("9_2bf8e")]
+[node name="GateCheckpoint4" parent="Gates" instance=ExtResource("7_57csd")]
 transform = Transform3D(-0.0729772, 0, 0.997334, 0, 1, 0, -0.997334, 0, -0.0729772, -15.9618, 25.1171, 74.361)
 
-[node name="GateCheckpoint5" parent="Gates" instance=ExtResource("9_2bf8e")]
+[node name="GateCheckpoint5" parent="Gates" instance=ExtResource("7_57csd")]
 transform = Transform3D(0.755385, 0, 0.655281, 0, 1, 0, -0.655281, 0, 0.755385, -71.997, 25.1171, 67.726)
 
-[node name="GateCheckpoint6" parent="Gates" instance=ExtResource("9_2bf8e")]
+[node name="GateCheckpoint6" parent="Gates" instance=ExtResource("7_57csd")]
 transform = Transform3D(0.967161, 0, -0.254163, 0, 1, 0, 0.254163, 0, 0.967161, -86.94, 19.1171, 34.8144)
 
-[node name="GateCheckpoint7" parent="Gates" instance=ExtResource("9_2bf8e")]
+[node name="GateCheckpoint7" parent="Gates" instance=ExtResource("7_57csd")]
 transform = Transform3D(0.482166, 0, -0.876079, 0, 1, 0, 0.876079, 0, 0.482166, -72.3888, 12.7952, 5.266)
 
 [node name="UI" type="Control" parent="."]
@@ -101,7 +101,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("8_8lvy2")
+script = ExtResource("9_shgos")
 
 [node name="HUD" type="Control" parent="UI"]
 layout_mode = 1
@@ -123,7 +123,7 @@ offset_top = 29.0
 offset_right = -38.0
 offset_bottom = 106.0
 grow_horizontal = 0
-texture = ExtResource("11_b0nkq")
+texture = ExtResource("10_grq0o")
 expand_mode = 1
 
 [node name="Speedindicator" type="ColorRect" parent="UI/HUD/TextureRect"]
@@ -146,7 +146,7 @@ offset_top = 36.0
 offset_right = -52.0
 offset_bottom = 65.0
 grow_horizontal = 0
-theme = ExtResource("11_3yveq")
+theme = ExtResource("11_cdsjs")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 23
 text = "0:23"
@@ -162,7 +162,7 @@ offset_top = 74.0
 offset_right = -76.0
 offset_bottom = 105.0
 grow_horizontal = 0
-theme = ExtResource("11_3yveq")
+theme = ExtResource("11_cdsjs")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 23
 text = "00434"
@@ -178,7 +178,7 @@ offset_top = 79.0
 offset_right = -49.0
 offset_bottom = 101.0
 grow_horizontal = 0
-theme = ExtResource("11_3yveq")
+theme = ExtResource("11_cdsjs")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 18
 text = "FT"
@@ -194,7 +194,7 @@ offset_top = 72.0
 offset_right = -289.0
 offset_bottom = 101.0
 grow_horizontal = 0
-theme = ExtResource("11_3yveq")
+theme = ExtResource("11_cdsjs")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 23
 text = "200"
@@ -210,7 +210,7 @@ offset_top = 78.0
 offset_right = -255.0
 offset_bottom = 103.0
 grow_horizontal = 0
-theme = ExtResource("11_3yveq")
+theme = ExtResource("11_cdsjs")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 16
 text = "MPH"
@@ -230,7 +230,7 @@ layout_mode = 2
 
 [node name="Ui-crashed" type="Sprite2D" parent="UI/PlayerCrashedOverlay/VBoxContainer"]
 scale = Vector2(0.438596, 0.438596)
-texture = ExtResource("12_sgfqp")
+texture = ExtResource("12_83on8")
 
 [node name="TrainingCompleteOverlay" type="CenterContainer" parent="UI"]
 visible = false
@@ -246,7 +246,7 @@ layout_mode = 2
 
 [node name="Mission-complete-8-16-2024" type="Sprite2D" parent="UI/TrainingCompleteOverlay/VBoxContainer"]
 scale = Vector2(0.614537, 0.614537)
-texture = ExtResource("12_r7l58")
+texture = ExtResource("13_uv7nv")
 
 [node name="CheckpointsPassedOverlay" type="CenterContainer" parent="UI"]
 visible = false
@@ -263,16 +263,16 @@ layout_mode = 2
 [node name="Ui-objective-complete" type="Sprite2D" parent="UI/CheckpointsPassedOverlay/VBoxContainer"]
 position = Vector2(89, -33)
 scale = Vector2(0.693878, 0.693878)
-texture = ExtResource("14_m2qvt")
+texture = ExtResource("14_h33io")
 
 [node name="Label2" type="Label" parent="UI/CheckpointsPassedOverlay/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("11_3yveq")
+theme = ExtResource("11_cdsjs")
 theme_type_variation = &"HeaderLarge"
 theme_override_font_sizes/font_size = 30
 text = "land to complete"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="Sky" parent="." instance=ExtResource("11_o2xs3")]
+[node name="Sky" parent="." instance=ExtResource("15_nf1oj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.014, 5.99028, 0.6255)

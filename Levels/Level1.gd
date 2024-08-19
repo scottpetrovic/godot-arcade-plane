@@ -19,7 +19,7 @@ var gates_completed_message_shown: bool = false
 
 var elapsed_time: float = 0.0
 
-var splash: PackedScene = load("res://World/Ocean/SplashParticles.tscn")
+var splash: PackedScene = load("res://Ocean/SplashParticles.tscn")
 
 func is_mission_complete() -> bool:
 	# all gates are passed
@@ -90,7 +90,6 @@ func goal_completed():
 		airplane.turn_engine_off()
 		training_complete_overlay.visible = true
 		await get_tree().create_timer(4.0).timeout
-		# TODO: queue music for success
 		SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
 		# TODO: Controls for controller
 		# TODO: export to HTML5
@@ -107,14 +106,17 @@ func player_crashed():
 	airplane.crashed() # tell plane it crashed so it stops moving
 	player_crashed_overlay.visible = true
 	
+	$UI/HUD.visible = false # hide plane instruments at top
+
 	# create particle effect of splashing
 	# VERY important to add splash_object to scene tree before
 	# setting global position. 
 	var splash_object: GPUParticles3D = splash.instantiate()
 	add_child(splash_object)
 	splash_object.global_position = airplane.global_position
+	
 	$Camera/ScreenShake.camera_shake(1.3, 0.4)
 	
 	# restart the level after 4 seconds
 	await get_tree().create_timer(9.0).timeout # waits for 1 second
-	SceneTransition.change_scene("res://World/World.tscn")
+	SceneTransition.change_scene("res://Levels/Level1.tscn")

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://01ufkwrjwdkw"
-path="res://.godot/imported/gate-passed.wav-630dca7caf10fa842489a736b5e2aaf5.sample"
+path="res://.godot/imported/gate-passed.wav-516092f2a58e04b8b4e3a4ed0ded3563.sample"
 
 [deps]
 
-source_file="res://Assets/gate-passed.wav"
-dest_files=["res://.godot/imported/gate-passed.wav-630dca7caf10fa842489a736b5e2aaf5.sample"]
+source_file="res://Assets/SoundFX/gate-passed.wav"
+dest_files=["res://.godot/imported/gate-passed.wav-516092f2a58e04b8b4e3a4ed0ded3563.sample"]
 
 [params]
 

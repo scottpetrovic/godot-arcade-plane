@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bc7flfj4e2c14" path="res://AircraftCarrier/aircraft_carrier_mesh.tscn" id="1_6s1ql"]
 [ext_resource type="Script" path="res://AircraftCarrier/AircraftCarrier.gd" id="1_avm4l"]
-[ext_resource type="AudioStream" uid="uid://di6ad1x7gnbna" path="res://Assets/landing-squeal.mp3" id="3_pwav3"]
+[ext_resource type="AudioStream" uid="uid://di6ad1x7gnbna" path="res://Assets/SoundFX/landing-squeal.mp3" id="3_pwav3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_518md"]
 size = Vector3(38.0914, 13.8756, 113.814)

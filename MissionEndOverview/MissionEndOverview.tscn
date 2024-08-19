@@ -5,7 +5,7 @@
 [ext_resource type="Shader" path="res://MissionEndOverview/MissionEndOverview.gdshader" id="2_5gcm8"]
 [ext_resource type="Texture2D" uid="uid://stpxkenrfd85" path="res://MissionEndOverview/background-tiled.png" id="2_86wni"]
 [ext_resource type="Texture2D" uid="uid://dvfcbjkl8bvuo" path="res://MissionEndOverview/flight-instructor.jpeg" id="2_jd0li"]
-[ext_resource type="Texture2D" uid="uid://co4bls0sy8o31" path="res://MissionEndOverview/MISSION-COMPLETE-8-16-2024.png" id="4_61lxk"]
+[ext_resource type="Texture2D" uid="uid://co4bls0sy8o31" path="res://Assets/UI/MISSION-COMPLETE-8-16-2024.png" id="4_61lxk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kmomd"]
 shader = ExtResource("2_5gcm8")

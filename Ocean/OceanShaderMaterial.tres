@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://du7r8ihpapvr0"]
 
-[ext_resource type="Shader" path="res://World/Ocean/OceanShader.gdshader" id="1_xcadl"]
+[ext_resource type="Shader" path="res://Ocean/OceanShader.gdshader" id="1_xcadl"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_kl7go"]
 noise_type = 3

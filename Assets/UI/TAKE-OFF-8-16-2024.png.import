@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://co4bls0sy8o31"
-path="res://.godot/imported/MISSION-COMPLETE-8-16-2024.png-cd2bb54a149b32e1592e8950979439cd.ctex"
+uid="uid://c67q4xuh2de08"
+path="res://.godot/imported/TAKE-OFF-8-16-2024.png-fe3e4460032eaaa99ffa0a59922bbef5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MissionEndOverview/MISSION-COMPLETE-8-16-2024.png"
-dest_files=["res://.godot/imported/MISSION-COMPLETE-8-16-2024.png-cd2bb54a149b32e1592e8950979439cd.ctex"]
+source_file="res://Assets/UI/TAKE-OFF-8-16-2024.png"
+dest_files=["res://.godot/imported/TAKE-OFF-8-16-2024.png-fe3e4460032eaaa99ffa0a59922bbef5.ctex"]
 
 [params]
 

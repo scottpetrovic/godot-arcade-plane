@@ -12,4 +12,4 @@ func _input(event: InputEvent) -> void:
 
 	# go to in-game when anything is pressed
 	if event is InputEventMouseButton or event is InputEventKey:
-		SceneTransition.change_scene("res://World/World.tscn")
+		SceneTransition.change_scene("res://Levels/Level1.tscn")

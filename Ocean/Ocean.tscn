@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://f5q3lvkkp6et"]
 
-[ext_resource type="Script" path="res://World/Ocean/Water.gd" id="1_msbox"]
-[ext_resource type="Material" uid="uid://du7r8ihpapvr0" path="res://World/Ocean/OceanShaderMaterial.tres" id="2_ydh0k"]
+[ext_resource type="Script" path="res://Ocean/Water.gd" id="1_msbox"]
+[ext_resource type="Material" uid="uid://du7r8ihpapvr0" path="res://Ocean/OceanShaderMaterial.tres" id="2_ydh0k"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3g13u"]
 material = ExtResource("2_ydh0k")
