@@ -1,0 +1,139 @@
+[gd_scene load_steps=13 format=3 uid="uid://c7tsxmwjuwd41"]
+
+[ext_resource type="PackedScene" uid="uid://cg3m5qnyxjev4" path="res://sky/examples/sky.tscn" id="1_luuph"]
+[ext_resource type="Script" path="res://Levels/level_2.gd" id="1_lxcf3"]
+[ext_resource type="PackedScene" uid="uid://f5q3lvkkp6et" path="res://Ocean/Ocean.tscn" id="2_6rxsv"]
+[ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://AircraftCarrier/Aircraft_Carrier.tscn" id="3_lwi7s"]
+[ext_resource type="Script" path="res://Effects/CameraFollow.gd" id="4_4qgg5"]
+[ext_resource type="Script" path="res://Skydiver/PlayerSkydiver.gd" id="4_qwwb3"]
+[ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://GateCheckpoint/GateCheckpoint.tscn" id="6_4d0og"]
+[ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="7_gqlpn"]
+[ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="8_eq75j"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tgvlr"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xnkik"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tp4jf"]
+
+[node name="Level2" type="Node3D"]
+script = ExtResource("1_lxcf3")
+
+[node name="Sky" parent="." instance=ExtResource("1_luuph")]
+
+[node name="Ocean" parent="." instance=ExtResource("2_6rxsv")]
+
+[node name="AircraftCarrier" parent="." instance=ExtResource("3_lwi7s")]
+
+[node name="PlayerSkydiver" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
+script = ExtResource("4_qwwb3")
+
+[node name="SkydiverMesh" type="MeshInstance3D" parent="PlayerSkydiver"]
+mesh = SubResource("BoxMesh_tgvlr")
+skeleton = NodePath("../..")
+
+[node name="ParachuteMesh" type="MeshInstance3D" parent="PlayerSkydiver"]
+transform = Transform3D(-6.55671e-08, 1.6, 4.37114e-08, 0, -6.99382e-08, 1, 1.5, 6.99382e-08, 1.91069e-15, 0, 3, 0)
+visible = false
+mesh = SubResource("CylinderMesh_xnkik")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerSkydiver"]
+shape = SubResource("BoxShape3D_tp4jf")
+
+[node name="CameraTarget" type="Node3D" parent="PlayerSkydiver"]
+transform = Transform3D(1, 0, 0, 0, 0.102792, 0.994703, 0, -0.994703, 0.102792, 0, 8.42993, 1.0141)
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.671772, 0.740758, 0, -0.740758, 0.671772, 1.812, 305, 3)
+current = true
+script = ExtResource("4_4qgg5")
+target = NodePath("../PlayerSkydiver/CameraTarget")
+
+[node name="Gates" type="Node" parent="."]
+
+[node name="GateCheckpoint" parent="Gates" instance=ExtResource("6_4d0og")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 750, 0)
+
+[node name="GateCheckpoint2" parent="Gates" instance=ExtResource("6_4d0og")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 500, 0)
+
+[node name="GateCheckpoint3" parent="Gates" instance=ExtResource("6_4d0og")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 250, 0)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HUD" type="Control" parent="UI"]
+layout_mode = 1
+anchor_right = 25.563
+anchor_bottom = 19.15
+offset_right = 6.47992
+offset_bottom = 5.99994
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -370.0
+offset_top = 29.0
+offset_right = -38.0
+offset_bottom = 106.0
+grow_horizontal = 0
+texture = ExtResource("7_gqlpn")
+expand_mode = 1
+
+[node name="TimeLabel" type="Label" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -121.0
+offset_top = 36.0
+offset_right = -52.0
+offset_bottom = 65.0
+grow_horizontal = 0
+theme = ExtResource("8_eq75j")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 23
+text = "0:23"
+horizontal_alignment = 1
+
+[node name="AltitudeLabel" type="Label" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -133.0
+offset_top = 74.0
+offset_right = -76.0
+offset_bottom = 105.0
+grow_horizontal = 0
+theme = ExtResource("8_eq75j")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 23
+text = "00434"
+horizontal_alignment = 2
+
+[node name="AltitudeUnitLabel" type="Label" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_top = 79.0
+offset_right = -49.0
+offset_bottom = 101.0
+grow_horizontal = 0
+theme = ExtResource("8_eq75j")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "FT"
+horizontal_alignment = 1
