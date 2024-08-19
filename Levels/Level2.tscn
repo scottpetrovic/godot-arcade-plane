@@ -4,13 +4,12 @@
 [ext_resource type="Script" path="res://Levels/level_2.gd" id="1_lxcf3"]
 [ext_resource type="PackedScene" uid="uid://f5q3lvkkp6et" path="res://Ocean/Ocean.tscn" id="2_6rxsv"]
 [ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://AircraftCarrier/Aircraft_Carrier.tscn" id="3_lwi7s"]
-[ext_resource type="Script" path="res://Effects/CameraFollow.gd" id="4_4qgg5"]
 [ext_resource type="Script" path="res://Skydiver/PlayerSkydiver.gd" id="4_qwwb3"]
+[ext_resource type="PackedScene" uid="uid://d1hlig8yrnk2a" path="res://Skydiver/Skydiver_mesh.tscn" id="6_3dwwa"]
 [ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://GateCheckpoint/GateCheckpoint.tscn" id="6_4d0og"]
 [ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="7_gqlpn"]
 [ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="8_eq75j"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_tgvlr"]
+[ext_resource type="Script" path="res://Effects/TopDownCameraFollow.gd" id="10_6d510"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xnkik"]
 
@@ -29,27 +28,17 @@ script = ExtResource("1_lxcf3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
 script = ExtResource("4_qwwb3")
 
-[node name="SkydiverMesh" type="MeshInstance3D" parent="PlayerSkydiver"]
-mesh = SubResource("BoxMesh_tgvlr")
-skeleton = NodePath("../..")
+[node name="Skydiver" parent="PlayerSkydiver" instance=ExtResource("6_3dwwa")]
+transform = Transform3D(-0.1, 0, 8.74228e-09, 0, 0.1, 0, -8.74228e-09, 0, -0.1, 0, 0, 0)
 
 [node name="ParachuteMesh" type="MeshInstance3D" parent="PlayerSkydiver"]
-transform = Transform3D(-6.55671e-08, 1.6, 4.37114e-08, 0, -6.99382e-08, 1, 1.5, 6.99382e-08, 1.91069e-15, 0, 3, 0)
+transform = Transform3D(-2.8343e-08, 0.72499, 8.27262e-09, 0, -3.16903e-08, 0.189255, 0.648412, 3.16903e-08, 3.61609e-16, 0, 1.32419, 0)
 visible = false
 mesh = SubResource("CylinderMesh_xnkik")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerSkydiver"]
 shape = SubResource("BoxShape3D_tp4jf")
-
-[node name="CameraTarget" type="Node3D" parent="PlayerSkydiver"]
-transform = Transform3D(1, 0, 0, 0, 0.102792, 0.994703, 0, -0.994703, 0.102792, 0, 8.42993, 1.0141)
-
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 0.671772, 0.740758, 0, -0.740758, 0.671772, 1.812, 305, 3)
-current = true
-script = ExtResource("4_4qgg5")
-target = NodePath("../PlayerSkydiver/CameraTarget")
 
 [node name="Gates" type="Node" parent="."]
 
@@ -137,3 +126,9 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 18
 text = "FT"
 horizontal_alignment = 1
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 302.905, 0)
+current = true
+script = ExtResource("10_6d510")
+player = NodePath("../PlayerSkydiver")

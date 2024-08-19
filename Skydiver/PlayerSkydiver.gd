@@ -1,12 +1,18 @@
 extends CharacterBody3D
 
-const SPEED: float = 5.0
+const SPEED: float = 8.0
 const ROTATION_SPEED: float = 90.0  # Degrees per second
 const FALL_SPEED: float = -10.0  # Constant fall speed
 const PARACHUTE_FALL_SPEED: float = -3.0  # Reduced fall speed when parachute is active
 const PARACHUTE_FORWARD_SPEED: float = 2.0  # Additional forward speed when parachute is active
 
 @onready var parachute_mesh: MeshInstance3D = $ParachuteMesh
+@onready var skydiver: Node3D = $Skydiver
+
+
+func _ready():
+	var animation_player: AnimationPlayer = skydiver.get_node("AnimationPlayer")
+	animation_player.play("FreeFalling")
 
 var has_crashed: bool = false
 
@@ -34,10 +40,10 @@ func _physics_process(delta: float) -> void:
 	# Handle rotation and movement.
 	if Input.is_action_pressed("ui_up"):
 		rotation_degrees.x -= ROTATION_SPEED * delta
-		velocity += transform.basis.z * SPEED * delta
+		velocity -= transform.basis.z * SPEED * delta
 	elif Input.is_action_pressed("ui_down"):
 		rotation_degrees.x += ROTATION_SPEED * delta
-		velocity -= transform.basis.z * SPEED * delta
+		velocity += transform.basis.z * SPEED * delta
 
 	if Input.is_action_pressed("ui_right"):
 		rotation_degrees.y -= ROTATION_SPEED * delta
