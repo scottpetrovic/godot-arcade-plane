@@ -1,11 +1,12 @@
 extends Node3D
 
 # HUD display items to always show
-@onready var speed_label: Label = $UI/HUD/SpeedLabel
 @onready var altitude_label: Label = $UI/HUD/AltitudeLabel
 @onready var time_label: Label = $UI/HUD/TimeLabel
 
 @onready var training_complete_overlay: CenterContainer = $UI/TrainingCompleteOverlay
+@onready var player_crashed_overlay: CenterContainer = $UI/PlayerCrashedOverlay
+
 
 
 @onready var player_skydiver: CharacterBody3D = $PlayerSkydiver
@@ -61,6 +62,9 @@ func goal_completed():
 func player_crashed(crashed_in_water: bool = true):
 	player_skydiver.crashed() # tell plane it crashed so it stops moving
 	$UI/HUD.visible = false # hide plane instruments at top
+	player_crashed_overlay.visible = true
+	
+	$Camera3D/ScreenShake.camera_shake(1.0, 1.4)
 	
 	if crashed_in_water:
 		# create particle effect of splashing

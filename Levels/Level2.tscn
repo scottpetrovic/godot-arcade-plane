@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c7tsxmwjuwd41"]
+[gd_scene load_steps=16 format=3 uid="uid://c7tsxmwjuwd41"]
 
 [ext_resource type="PackedScene" uid="uid://cg3m5qnyxjev4" path="res://sky/examples/sky.tscn" id="1_luuph"]
 [ext_resource type="Script" path="res://Levels/level_2.gd" id="1_lxcf3"]
@@ -8,11 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://d1hlig8yrnk2a" path="res://Skydiver/Skydiver_mesh.tscn" id="6_3dwwa"]
 [ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://GateCheckpoint/GateCheckpoint.tscn" id="6_4d0og"]
 [ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="7_gqlpn"]
+[ext_resource type="PackedScene" uid="uid://vtochg4irhio" path="res://Skydiver/parachute.glb" id="7_oc6vh"]
 [ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="8_eq75j"]
 [ext_resource type="Script" path="res://Effects/TopDownCameraFollow.gd" id="10_6d510"]
 [ext_resource type="Texture2D" uid="uid://co4bls0sy8o31" path="res://Assets/UI/MISSION-COMPLETE-8-16-2024.png" id="10_mhvm5"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_xnkik"]
+[ext_resource type="Texture2D" uid="uid://b3oljv8lyncny" path="res://Assets/UI/UI-crashed.png" id="12_k6cuc"]
+[ext_resource type="Script" path="res://Plane/ScreenShake.gd" id="14_wv506"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tp4jf"]
 
@@ -26,20 +27,18 @@ script = ExtResource("1_lxcf3")
 [node name="AircraftCarrier" parent="." instance=ExtResource("3_lwi7s")]
 
 [node name="PlayerSkydiver" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
 script = ExtResource("4_qwwb3")
 
 [node name="Skydiver" parent="PlayerSkydiver" instance=ExtResource("6_3dwwa")]
 transform = Transform3D(-0.1, 0, 8.74228e-09, 0, 0.1, 0, -8.74228e-09, 0, -0.1, 0, 0, 0)
 
-[node name="ParachuteMesh" type="MeshInstance3D" parent="PlayerSkydiver"]
-transform = Transform3D(-2.8343e-08, 0.72499, 8.27262e-09, 0, -3.16903e-08, 0.189255, 0.648412, 3.16903e-08, 3.61609e-16, 0, 1.32419, 0)
-visible = false
-mesh = SubResource("CylinderMesh_xnkik")
-skeleton = NodePath("../..")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerSkydiver"]
 shape = SubResource("BoxShape3D_tp4jf")
+
+[node name="ParachuteMesh" parent="PlayerSkydiver" instance=ExtResource("7_oc6vh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.289368, 0)
+visible = false
 
 [node name="Gates" type="Node" parent="."]
 
@@ -145,8 +144,28 @@ layout_mode = 2
 scale = Vector2(0.614537, 0.614537)
 texture = ExtResource("10_mhvm5")
 
+[node name="PlayerCrashedOverlay" type="CenterContainer" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PlayerCrashedOverlay"]
+layout_mode = 2
+
+[node name="Ui-crashed" type="Sprite2D" parent="UI/PlayerCrashedOverlay/VBoxContainer"]
+scale = Vector2(0.438596, 0.438596)
+texture = ExtResource("12_k6cuc")
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 302.905, 0)
 current = true
 script = ExtResource("10_6d510")
 player = NodePath("../PlayerSkydiver")
+
+[node name="ScreenShake" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 0, 0, 1, -0.698183, 0.79687, 6.15439)
+script = ExtResource("14_wv506")

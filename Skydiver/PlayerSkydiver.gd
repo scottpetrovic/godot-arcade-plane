@@ -6,7 +6,7 @@ const FALL_SPEED: float = -10.0  # Constant fall speed
 const PARACHUTE_FALL_SPEED: float = -3.0  # Reduced fall speed when parachute is active
 const PARACHUTE_FORWARD_SPEED: float = 2.0  # Additional forward speed when parachute is active
 
-@onready var parachute_mesh: MeshInstance3D = $ParachuteMesh
+@onready var parachute_mesh: Node3D = $ParachuteMesh
 @onready var skydiver: Node3D = $Skydiver
 
 var is_landed: bool = false
@@ -14,6 +14,8 @@ var has_crashed: bool = false
 var is_parachute_activated: bool = false
 
 func _ready():
+	
+	# free falling animation
 	var animation_player: AnimationPlayer = skydiver.get_node("AnimationPlayer")
 	animation_player.play("FreeFalling")
 
@@ -33,6 +35,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_parachute") && is_parachute_activated == false:
 		is_parachute_activated = true
 		parachute_mesh.visible = true
+		
+		var animation_player: AnimationPlayer = skydiver.get_node("AnimationPlayer")
+		animation_player.play("Assembly")
 
 	# Ensure the player is always falling at the appropriate rate.
 	if is_parachute_activated:
@@ -58,4 +63,4 @@ func _physics_process(delta: float) -> void:
 
 func crashed():
 	has_crashed = true
-	visible = false # hide object
+	# we have crashed in the ground, so don't hide the player

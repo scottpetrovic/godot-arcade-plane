@@ -16,6 +16,10 @@ func _process(_delta: float) -> void:
 	var player_node = get_node(player)
 	if player_node == null:
 		return
+		
+	# stop following position if we crashed or landed
+	if player_node.is_landed || player_node.has_crashed:
+		return
 
 	# Follow the player's position with height offset
 	var new_position = player_node.global_transform.origin
