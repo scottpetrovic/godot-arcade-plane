@@ -14,6 +14,11 @@ func _ready() -> void:
 	area_landing_strip.body_exited.connect(_body_exited)
 
 func _body_entered(body: Node3D):
+	
+	# our level knows one we are skydiving and hit the aircraft carrier we are done
+	if body.name == "PlayerSkydiver":
+		is_player_on_landing_strip = true
+	
 	if body.name == 'Airplane':
 		is_player_on_landing_strip = true
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c7tsxmwjuwd41"]
+[gd_scene load_steps=14 format=3 uid="uid://c7tsxmwjuwd41"]
 
 [ext_resource type="PackedScene" uid="uid://cg3m5qnyxjev4" path="res://sky/examples/sky.tscn" id="1_luuph"]
 [ext_resource type="Script" path="res://Levels/level_2.gd" id="1_lxcf3"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="7_gqlpn"]
 [ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="8_eq75j"]
 [ext_resource type="Script" path="res://Effects/TopDownCameraFollow.gd" id="10_6d510"]
+[ext_resource type="Texture2D" uid="uid://co4bls0sy8o31" path="res://Assets/UI/MISSION-COMPLETE-8-16-2024.png" id="10_mhvm5"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xnkik"]
 
@@ -53,18 +54,19 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 250
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.003
+offset_right = -1.0
+offset_bottom = -0.304016
 
 [node name="HUD" type="Control" parent="UI"]
 layout_mode = 1
-anchor_right = 25.563
-anchor_bottom = 19.15
-offset_right = 6.47992
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -6.47992
 offset_bottom = 5.99994
-grow_horizontal = 2
-grow_vertical = 2
+grow_horizontal = 0
 
 [node name="TextureRect" type="TextureRect" parent="UI/HUD"]
 layout_mode = 1
@@ -126,6 +128,22 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 18
 text = "FT"
 horizontal_alignment = 1
+
+[node name="TrainingCompleteOverlay" type="CenterContainer" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/TrainingCompleteOverlay"]
+layout_mode = 2
+
+[node name="Mission-complete-8-16-2024" type="Sprite2D" parent="UI/TrainingCompleteOverlay/VBoxContainer"]
+scale = Vector2(0.614537, 0.614537)
+texture = ExtResource("10_mhvm5")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 302.905, 0)

@@ -9,29 +9,33 @@ const PARACHUTE_FORWARD_SPEED: float = 2.0  # Additional forward speed when para
 @onready var parachute_mesh: MeshInstance3D = $ParachuteMesh
 @onready var skydiver: Node3D = $Skydiver
 
+var is_landed: bool = false
+var has_crashed: bool = false
+var is_parachute_activated: bool = false
 
 func _ready():
 	var animation_player: AnimationPlayer = skydiver.get_node("AnimationPlayer")
 	animation_player.play("FreeFalling")
 
-var has_crashed: bool = false
 
-var parachute_active: bool = false
+
+func landed():
+	is_landed = true
 
 func _physics_process(delta: float) -> void:
 	
 	# stop from falling or inputs
-	if has_crashed:
+	if has_crashed || is_landed:
 		return
 
 	# Check for parachute activation.
 	# once it is active, cannot undo it
-	if Input.is_action_just_pressed("ui_parachute") && parachute_active == false:
-		parachute_active = !parachute_active
+	if Input.is_action_just_pressed("ui_parachute") && is_parachute_activated == false:
+		is_parachute_activated = true
 		parachute_mesh.visible = true
 
 	# Ensure the player is always falling at the appropriate rate.
-	if parachute_active:
+	if is_parachute_activated:
 		velocity.y = PARACHUTE_FALL_SPEED
 		velocity -= transform.basis.z * PARACHUTE_FORWARD_SPEED * delta
 	else:
