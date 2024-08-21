@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://Plane/ScreenShake.gd" id="14_wv506"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tp4jf"]
+size = Vector3(0.238892, 0.323914, 0.298157)
 
 [node name="Level2" type="Node3D"]
 script = ExtResource("1_lxcf3")
@@ -27,18 +28,22 @@ script = ExtResource("1_lxcf3")
 [node name="AircraftCarrier" parent="." instance=ExtResource("3_lwi7s")]
 
 [node name="PlayerSkydiver" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+transform = Transform3D(1, 0, 0, 0, 0.969445, 0.245307, 0, -0.245307, 0.969445, 0, 100, 0)
 script = ExtResource("4_qwwb3")
 
 [node name="Skydiver" parent="PlayerSkydiver" instance=ExtResource("6_3dwwa")]
 transform = Transform3D(-0.1, 0, 8.74228e-09, 0, 0.1, 0, -8.74228e-09, 0, -0.1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerSkydiver"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00469971, 0.175812, -0.0232239)
 shape = SubResource("BoxShape3D_tp4jf")
 
 [node name="ParachuteMesh" parent="PlayerSkydiver" instance=ExtResource("7_oc6vh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.289368, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.180969, 0)
 visible = false
+
+[node name="CameraFollowTarget" type="Node3D" parent="PlayerSkydiver"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 5.96046e-07, 0.0746841, 0.147371)
 
 [node name="Gates" type="Node" parent="."]
 
@@ -161,10 +166,11 @@ scale = Vector2(0.438596, 0.438596)
 texture = ExtResource("12_k6cuc")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 302.905, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 101, 0)
 current = true
 script = ExtResource("10_6d510")
-player = NodePath("../PlayerSkydiver")
+target = NodePath("../PlayerSkydiver")
+offset = Vector3(0, 3, 0)
 
 [node name="ScreenShake" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 0, 0, 1, -0.698183, 0.79687, 6.15439)

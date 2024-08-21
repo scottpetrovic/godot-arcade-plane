@@ -12,9 +12,9 @@ extends Camera3D
 ## Can optionally be a Camera3D to support smooth FOV and Z near/far plane distance changes.
 @export var target: Node3D
 
+@export var should_look_at_target: bool = false
 
 func _process(delta: float) -> void:
-
 	if not target is Node3D:
 		return
 
@@ -29,3 +29,6 @@ func _process(delta: float) -> void:
 	local_transform_only_origin = local_transform_only_origin.interpolate_with(target_xform, translate_factor)
 	local_transform_only_basis = local_transform_only_basis.interpolate_with(target_xform, rotate_factor)
 	set_global_transform(Transform3D(local_transform_only_basis.basis, local_transform_only_origin.origin))
+
+	if should_look_at_target:
+		look_at(target.global_transform.origin, Vector3(0, 1, 0))

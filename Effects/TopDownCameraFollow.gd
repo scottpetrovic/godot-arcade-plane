@@ -1,34 +1,39 @@
 extends Camera3D
 
-@export var player: NodePath
-@export var height_offset: float = 3.0
+# The target the camera will follow
+@export var target: NodePath
+# The offset distance above the target
+@export var offset: Vector3 = Vector3(0, 10, 0)
+
+# The rotation speed for the camera
+var rotation_speed: float = 90.0
+
+# change camera position slightly when parachute launched
+@onready var player_skydiver: CharacterBody3D = $"../PlayerSkydiver"
 
 func _ready():
-	# Ensure the player node is set
-	if player == null:
-		print("Player node is not set for FollowCamera.")
+	# Ensure the target is valid
+	if not target:
+		print("Target not set for camera follow script.")
 		return
 
-func _process(_delta: float) -> void:
-	if player == null:
+func _process(delta: float) -> void:
+	if not target:
 		return
 
-	var player_node = get_node(player)
-	if player_node == null:
-		return
-		
-	# stop following position if we crashed or landed
-	if player_node.is_landed || player_node.has_crashed:
-		return
+	# Get the target node
+	var target_node: Node3D = get_node(target)
+	if target_node:
+		# Calculate the new camera position
+		var target_position = target_node.global_transform.origin
+		var new_camera_position = target_position + offset
 
-	# Follow the player's position with height offset
-	var new_position = player_node.global_transform.origin
-	new_position.y += height_offset
-	global_transform.origin = new_position
+		# Update the camera's position
+		global_transform.origin = new_camera_position
 
-	# Match the player's Y-axis rotation
-	var player_rotation = player_node.rotation_degrees
-	rotation_degrees.y = player_rotation.y
-
-	# Ensure the camera looks towards the ground
-	look_at(Vector3(global_transform.origin.x, 0, global_transform.origin.z), Vector3.UP)
+		# Handle camera rotation based on input
+		# if player_skydiver.is_parachute_activated:
+		if Input.is_action_pressed("ui_left"):
+			rotate_y(deg_to_rad(rotation_speed * delta))
+		elif Input.is_action_pressed("ui_right"):
+			rotate_y(deg_to_rad(-rotation_speed * delta))

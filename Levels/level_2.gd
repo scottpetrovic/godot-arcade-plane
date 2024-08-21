@@ -3,19 +3,37 @@ extends Node3D
 # HUD display items to always show
 @onready var altitude_label: Label = $UI/HUD/AltitudeLabel
 @onready var time_label: Label = $UI/HUD/TimeLabel
-
 @onready var training_complete_overlay: CenterContainer = $UI/TrainingCompleteOverlay
 @onready var player_crashed_overlay: CenterContainer = $UI/PlayerCrashedOverlay
 
-
-
 @onready var player_skydiver: CharacterBody3D = $PlayerSkydiver
+@onready var player_skydiver_camera_target: Node3D = $PlayerSkydiver/CameraFollowTarget
+
+@onready var camera_3d: Camera3D = $Camera3D
+@onready var aircraft_carrier: Node3D = $AircraftCarrier
+
 var elapsed_time: float = 0.0
 
 var splash: PackedScene = load("res://Ocean/SplashParticles.tscn")
-@onready var aircraft_carrier: Node3D = $AircraftCarrier
+
+
 
 var is_level_complete: bool = false
+
+func _ready():
+	# Connect the parachute_deployed signal to the _on_parachute_deployed function
+	player_skydiver.parachute_deployed.connect(_on_parachute_deployed)
+
+func _on_parachute_deployed():
+	print("Parachute has been deployed from level!")
+	# Change the script attached to the Camera3D object to follow player
+	var camera_script = load("res://Effects/CameraFollow.gd")
+	camera_3d.set_script(camera_script)
+	camera_3d.target = player_skydiver_camera_target
+	camera_3d.should_look_at_target = true
+	
+	print(camera_3d.get_script().resource_path)
+
 
 func update_hud(delta: float):
 

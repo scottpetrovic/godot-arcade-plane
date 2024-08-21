@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED: float = 8.0
+const SPEED: float = 10.0
 const ROTATION_SPEED: float = 90.0  # Degrees per second
 const FALL_SPEED: float = -10.0  # Constant fall speed
 const PARACHUTE_FALL_SPEED: float = -3.0  # Reduced fall speed when parachute is active
@@ -11,14 +11,16 @@ const PARACHUTE_FORWARD_SPEED: float = 3.0  # Additional forward speed when para
 
 var is_landed: bool = false
 var has_crashed: bool = false
+
+
 var is_parachute_activated: bool = false
+signal parachute_deployed
 
 func _ready():
 	
 	# free falling animation
 	var animation_player: AnimationPlayer = skydiver.get_node("AnimationPlayer")
 	animation_player.play("FreeFalling")
-
 
 
 func landed():
@@ -55,7 +57,9 @@ func _physics_process(delta: float) -> void:
 			rotation_degrees.y -= ROTATION_SPEED * delta
 		elif Input.is_action_pressed("ui_left"):
 			rotation_degrees.y += ROTATION_SPEED * delta
-
+	
+	# different controls when parachute is activated
+	# mostly can turn left and right
 	if is_parachute_activated:
 		# Lock rotation to face down
 		rotation_degrees.x = 0
@@ -64,8 +68,6 @@ func _physics_process(delta: float) -> void:
 			rotation_degrees.y -= ROTATION_SPEED * delta
 		elif Input.is_action_pressed("ui_left"):
 			rotation_degrees.y += ROTATION_SPEED * delta
-
-	print(velocity)
 
 	move_and_slide()
 
@@ -80,3 +82,5 @@ func deploy_parachute():
 	
 	var animation_player: AnimationPlayer = skydiver.get_node("AnimationPlayer")
 	animation_player.play("Assembly")
+
+	emit_signal("parachute_deployed")
