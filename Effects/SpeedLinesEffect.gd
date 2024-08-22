@@ -8,7 +8,7 @@ extends ColorRect
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	if airplane and airplane.has_crashed:
 		material.set_shader_parameter("line_density", 0.0)

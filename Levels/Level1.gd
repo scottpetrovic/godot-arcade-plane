@@ -58,12 +58,20 @@ func update_speed_indicator():
 	var conversion_ratio: float = (airplane.max_flight_speed * speed_indicator_multiplier) / total_angle_values
 	speed_indicator.rotation_degrees = min_angle_for_indicator + (airplane.forward_speed*speed_indicator_multiplier*conversion_ratio)
 
-
 # move this to a utility function
 func format_elapsed_time(elapsed: float) -> String:
 	var minutes = int(elapsed) / 60
 	var seconds = int(elapsed) % 60
 	return str(minutes) + ":" + str(seconds).pad_zeros(2)
+
+
+func plane_camera_screenshake():
+	
+	# if plane is going 90% speed or more, do a constant screen shake to show speed
+	if (airplane.forward_speed / airplane.max_flight_speed) > .9:
+		$Camera/ScreenShake.start_constant_shake(0.02)
+	else:
+		$Camera/ScreenShake.stop_constant_shake()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -72,6 +80,8 @@ func _process(delta: float) -> void:
 	# this also upates time mission is taking
 	if is_mission_complete() == false:
 		update_hud(delta)
+		
+	plane_camera_screenshake()
 	
 	# maybe show this on the UI somewhere?
 	if are_all_gates_passed() && gates_completed_message_shown == false:
@@ -115,7 +125,7 @@ func player_crashed():
 	add_child(splash_object)
 	splash_object.global_position = airplane.global_position
 	
-	$Camera/ScreenShake.camera_shake(1.3, 0.4)
+	$Camera/ScreenShake.camera_shake_impulse(1.3, 0.4)
 	
 	# restart the level after 4 seconds
 	await get_tree().create_timer(9.0).timeout # waits for 1 second

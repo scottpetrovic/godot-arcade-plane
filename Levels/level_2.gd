@@ -23,16 +23,21 @@ var is_level_complete: bool = false
 func _ready():
 	# Connect the parachute_deployed signal to the _on_parachute_deployed function
 	player_skydiver.parachute_deployed.connect(_on_parachute_deployed)
+	
+	# turn screen shake on while the player is skydiving
+	if camera_3d:
+		print($Camera3D)
+		$Camera3D/ScreenShake.start_constant_shake(0.006)
+	
 
 func _on_parachute_deployed():
-	print("Parachute has been deployed from level!")
 	# Change the script attached to the Camera3D object to follow player
 	var camera_script = load("res://Effects/CameraFollow.gd")
 	camera_3d.set_script(camera_script)
 	camera_3d.target = player_skydiver_camera_target
 	camera_3d.should_look_at_target = true
 	
-	print(camera_3d.get_script().resource_path)
+	$Camera3D/ScreenShake.stop_constant_shake()
 
 
 func update_hud(delta: float):
@@ -48,8 +53,8 @@ func update_hud(delta: float):
 
 # move this to a utility function
 func format_elapsed_time(elapsed: float) -> String:
-	var minutes = int(elapsed) / 60
-	var seconds = int(elapsed) % 60
+	var minutes: int = int(elapsed) / 60
+	var seconds: int = int(elapsed) % 60
 	return str(minutes) + ":" + str(seconds).pad_zeros(2)
 
 func _process(delta: float) -> void:
@@ -82,7 +87,7 @@ func player_crashed(crashed_in_water: bool = true):
 	$UI/HUD.visible = false # hide plane instruments at top
 	player_crashed_overlay.visible = true
 	
-	$Camera3D/ScreenShake.camera_shake(1.0, 1.4)
+	$Camera3D/ScreenShake.camera_shake_impulse(1.0, 1.4)
 	
 	if crashed_in_water:
 		# create particle effect of splashing

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://f5q3lvkkp6et" path="res://Ocean/Ocean.tscn" id="2_lfnpl"]
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="3_yry5l"]
 [ext_resource type="Script" path="res://Effects/CameraFollow.gd" id="4_lu1gi"]
-[ext_resource type="Script" path="res://Plane/ScreenShake.gd" id="5_cajsq"]
+[ext_resource type="Script" path="res://Effects/FX_ScreenShake.gd" id="5_cajsq"]
 [ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://AircraftCarrier/Aircraft_Carrier.tscn" id="6_m7lfe"]
 [ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://GateCheckpoint/GateCheckpoint.tscn" id="7_57csd"]
 [ext_resource type="Shader" path="res://Effects/SpeedLines.gdshader" id="8_uvmg4"]

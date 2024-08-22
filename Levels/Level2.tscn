@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://Effects/TopDownCameraFollow.gd" id="10_6d510"]
 [ext_resource type="Texture2D" uid="uid://co4bls0sy8o31" path="res://Assets/UI/MISSION-COMPLETE-8-16-2024.png" id="10_mhvm5"]
 [ext_resource type="Texture2D" uid="uid://b3oljv8lyncny" path="res://Assets/UI/UI-crashed.png" id="12_k6cuc"]
-[ext_resource type="Script" path="res://Plane/ScreenShake.gd" id="14_wv506"]
+[ext_resource type="PackedScene" uid="uid://byciq4nuwsumf" path="res://Effects/FX_ScreenShake.tscn" id="14_e3g5j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tp4jf"]
 size = Vector3(0.238892, 0.323914, 0.298157)
@@ -172,6 +172,4 @@ script = ExtResource("10_6d510")
 target = NodePath("../PlayerSkydiver")
 offset = Vector3(0, 3, 0)
 
-[node name="ScreenShake" type="Node3D" parent="Camera3D"]
-transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 0, 0, 1, -0.698183, 0.79687, 6.15439)
-script = ExtResource("14_wv506")
+[node name="ScreenShake" parent="Camera3D" instance=ExtResource("14_e3g5j")]
