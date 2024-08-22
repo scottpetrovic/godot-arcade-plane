@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0fcnooujkgip"]
+
+[ext_resource type="Script" path="res://Environment/GroundPlane.gd" id="1_rr5mp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bn20u"]
+albedo_color = Color(0.65999, 0.5659, 0.356277, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dqfe6"]
+material = SubResource("StandardMaterial3D_bn20u")
+size = Vector2(10000, 10000)
+subdivide_width = 10
+subdivide_depth = 10
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r034g"]
+margin = 0.2
+size = Vector3(1000, 1.47949, 1000)
+
+[node name="GroundPlane" type="StaticBody3D"]
+script = ExtResource("1_rr5mp")
+
+[node name="Ground3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.195698, 0)
+mesh = SubResource("PlaneMesh_dqfe6")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.153, -0.760254, 5.409)
+shape = SubResource("BoxShape3D_r034g")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.153, -0.760254, 5.409)
+shape = SubResource("BoxShape3D_r034g")

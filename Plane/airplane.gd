@@ -62,7 +62,11 @@ func _process(delta: float) -> void:
 	air_particles_2.emitting = is_going_max_speed
 	
 	update_active_turn_speed()
-	
+
+func set_throttle(throttle_percentage: float):
+	target_speed =  throttle_percentage * max_flight_speed
+	forward_speed =  throttle_percentage * max_flight_speed
+
 func update_active_turn_speed():
 	
 	# we need some reason to not be full speed, so reduce mobility of turning
