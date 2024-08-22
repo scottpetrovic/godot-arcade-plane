@@ -3,16 +3,21 @@ extends AudioStreamPlayer2D
 @onready var airplane: CharacterBody3D = $".."
 var base_audio_pitch = 0.8 # engine is barely on
 
-func _process(delta: float) -> void:
-	
-	if airplane && airplane.forward_speed > 0.01:
+func _process(_delta: float) -> void:
+
+	if airplane:
 		# calculate pitch
 		var power_percentage = airplane.forward_speed / airplane.max_flight_speed
 		
 		# kind of like turning the sound off
-		if power_percentage < 0.01:
+		if power_percentage < 0.03:
+			self.playing = false
 			self.pitch_scale = 0.01
 			return
+
+		# turn sound on. without this if statement, the sound will constantly restart
+		if self.playing == false:
+			self.playing = true
 		
 		# going faster gives higher pitch
 		self.pitch_scale = base_audio_pitch + power_percentage

@@ -16,11 +16,11 @@ var elapsed_time: float = 0.0
 
 var splash: PackedScene = load("res://Ocean/SplashParticles.tscn")
 
-
-
 var is_level_complete: bool = false
 
 func _ready():
+	GameManager.current_level_number = 2
+
 	# Connect the parachute_deployed signal to the _on_parachute_deployed function
 	player_skydiver.parachute_deployed.connect(_on_parachute_deployed)
 	
@@ -48,14 +48,8 @@ func update_hud(delta: float):
 	altitude_label.text = altitude_string.pad_zeros(5)
 	
 	elapsed_time += delta
-	time_label.text = format_elapsed_time(elapsed_time)
+	time_label.text = GameManager.format_elapsed_time(elapsed_time)
 
-
-# move this to a utility function
-func format_elapsed_time(elapsed: float) -> String:
-	var minutes: int = int(elapsed) / 60
-	var seconds: int = int(elapsed) % 60
-	return str(minutes) + ":" + str(seconds).pad_zeros(2)
 
 func _process(delta: float) -> void:
 	
@@ -70,7 +64,8 @@ func _process(delta: float) -> void:
 		goal_completed()
 		return
 	
-	update_hud(delta)
+	if is_level_complete == false:
+		update_hud(delta)
 
 func goal_completed():
 	player_skydiver.landed()
@@ -80,6 +75,8 @@ func goal_completed():
 	
 	training_complete_overlay.visible = true
 	await get_tree().create_timer(4.0).timeout
+	GameManager.current_level_success_status = true
+	GameManager.current_level_time = elapsed_time
 	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
 
 func player_crashed(crashed_in_water: bool = true):
@@ -97,8 +94,10 @@ func player_crashed(crashed_in_water: bool = true):
 		add_child(splash_object)
 		splash_object.global_position = player_skydiver.global_position
 		
-	# restart the level after 4 seconds
-	await get_tree().create_timer(9.0).timeout # waits for 1 second
-	SceneTransition.change_scene("res://Levels/Level2.tscn")
+	# restart the level after X seconds
+	await get_tree().create_timer(9.0).timeout # waits for X second
+	GameManager.current_level_success_status = false
+	GameManager.current_level_time = elapsed_time
+	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
 	
 	
