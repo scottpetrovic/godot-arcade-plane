@@ -43,11 +43,11 @@ shape = SubResource("BoxShape3D_b5d5f")
 [node name="Sky" parent="." instance=ExtResource("2_k17kc")]
 
 [node name="Airplane" parent="." instance=ExtResource("3_dyria")]
-transform = Transform3D(0.997889, 0, -0.0649333, 0, 1, 0, 0.0649333, 0, 0.997889, 6.653, 37.6368, 310.751)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.653, 37.6368, 310.751)
 slide_on_ceiling = false
 
 [node name="CameraTarget" type="Node3D" parent="Airplane"]
-transform = Transform3D(1, 0, 1.63913e-07, 0, 1, 0, -1.63913e-07, 0, 1, 0.261444, 1.31569, 3.67056)
+transform = Transform3D(1, 0, 1.56462e-07, 0, 1, 0, -1.56462e-07, 0, 1, 0.251358, 1.31569, 3.6712)
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(0.99789, 0, -0.0649332, 0, 1, 0, 0.0649332, 0, 0.99789, 6.653, 38.9376, 316.895)

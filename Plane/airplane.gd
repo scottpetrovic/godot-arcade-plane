@@ -100,6 +100,7 @@ func _physics_process(delta: float) -> void:
 	# "banking" (rotating) motion to make turning look more realistic
 	if is_on_floor():
 		plane_mesh.rotation.z = 0 # straighten out and don't do banking
+		plane_mesh.rotation.x = 0 # straightens out pitch up/down when on ground
 	else:
 		plane_mesh.rotation.z = lerp(plane_mesh.rotation.z, -turn_input, level_speed * delta)
 	
