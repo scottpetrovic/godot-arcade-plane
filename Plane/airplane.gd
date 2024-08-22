@@ -3,6 +3,7 @@ extends CharacterBody3D
 var takeoff_speed: int = 7 # Can't fly below this speed
 var max_flight_speed: int = 12 # Maximum airspeed
 var turn_speed: float = 0.75 # Turn rate
+var active_turn_speed: float = turn_speed # turning rate will decrease faster plane is going
 var pitch_speed: float = 0.5 # Climb/dive rate
 var level_speed: float = 3.0 # Wings "autolevel" speed
 var throttle_delta: int = 15 # Throttle change speed
@@ -29,7 +30,6 @@ func _ready() -> void:
 	self.velocity = Vector3.ZERO
 	airplane_original_scale = plane_mesh.scale.y # TODO: clean this up
 	create_air_particles() 
-
 
 ## particles come from wings with max speed
 ## dynamically created since they are attached to mesh
@@ -60,6 +60,17 @@ func _process(delta: float) -> void:
 	var is_going_max_speed =  target_speed == max_flight_speed
 	air_particles.emitting = is_going_max_speed
 	air_particles_2.emitting = is_going_max_speed
+	
+	update_active_turn_speed()
+	
+func update_active_turn_speed():
+	
+	# we need some reason to not be full speed, so reduce mobility of turning
+	var start_limiting_turn_speed = (forward_speed / max_flight_speed) > 0.8
+	if start_limiting_turn_speed:
+		active_turn_speed = 0.4
+	else:
+		active_turn_speed = turn_speed
 
 func turn_engine_off():
 	is_engine_on = false
@@ -80,7 +91,7 @@ func _physics_process(delta: float) -> void:
 	transform.basis = transform.basis.rotated(transform.basis.x, pitch_input * pitch_speed * delta)
 
 	# turn logic
-	transform.basis = transform.basis.rotated(Vector3.UP, turn_input * turn_speed * delta)
+	transform.basis = transform.basis.rotated(Vector3.UP, turn_input * active_turn_speed * delta)
 
 	# "banking" (rotating) motion to make turning look more realistic
 	if is_on_floor():
