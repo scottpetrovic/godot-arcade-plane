@@ -1,24 +1,26 @@
-[gd_scene load_steps=13 format=3 uid="uid://bg5fgtcxdb0f5"]
+[gd_scene load_steps=15 format=3 uid="uid://bg5fgtcxdb0f5"]
 
 [ext_resource type="Script" path="res://Levels/Level3.gd" id="1_bb3bl"]
 [ext_resource type="Texture2D" uid="uid://bngxxsr08k1ti" path="res://Assets/Art References/PilotwingsMapLesson01.png" id="1_mp25m"]
 [ext_resource type="PackedScene" uid="uid://b7id7l5m62a5" path="res://sky/examples/SkyLevel3.tscn" id="2_k17kc"]
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="3_dyria"]
 [ext_resource type="PackedScene" uid="uid://d0fcnooujkgip" path="res://Environment/GroundPlane.tscn" id="3_ipf8y"]
+[ext_resource type="PackedScene" uid="uid://uxya2x0uw64m" path="res://Environment/Map1/Map1.glb" id="3_s104d"]
 [ext_resource type="Script" path="res://Effects/CameraFollow.gd" id="4_5un3s"]
 [ext_resource type="Script" path="res://Effects/FX_ScreenShake.gd" id="5_i0u8l"]
 [ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://GateCheckpoint/GateCheckpoint.tscn" id="6_osbfy"]
+[ext_resource type="Script" path="res://GateCheckpoint/GateManager.gd" id="8_km4je"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cj7eb"]
 albedo_texture = ExtResource("1_mp25m")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7te0e"]
-size = Vector2(60, 60)
+size = Vector2(60, 75)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cenlb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b5d5f"]
-size = Vector3(60, 0.93457, 60)
+size = Vector3(60, 0.935, 75)
 
 [node name="Level3" type="Node3D"]
 script = ExtResource("1_bb3bl")
@@ -28,7 +30,7 @@ script = ExtResource("1_bb3bl")
 [node name="StaticBody3D" type="StaticBody3D" parent="Airport"]
 
 [node name="EnvironmentReference" type="MeshInstance3D" parent="Airport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.366868, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 material_override = SubResource("StandardMaterial3D_cj7eb")
 mesh = SubResource("PlaneMesh_7te0e")
 skeleton = NodePath("../../..")
@@ -37,6 +39,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_cenlb")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Airport/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0327148, 0)
 shape = SubResource("BoxShape3D_b5d5f")
+
+[node name="Map1" parent="Airport" instance=ExtResource("3_s104d")]
+transform = Transform3D(0.215, 0, 0, 0, 0.215, 0, 0, 0, 0.215, 0, 0, 0)
 
 [node name="GroundPlane" parent="." instance=ExtResource("3_ipf8y")]
 
@@ -62,19 +67,20 @@ metadata/_edit_group_ = true
 transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("5_i0u8l")
 
-[node name="Gates" type="Node" parent="."]
+[node name="GateManager" type="Node" parent="."]
+script = ExtResource("8_km4je")
 
-[node name="GateCheckpoint" parent="Gates" instance=ExtResource("6_osbfy")]
+[node name="GateCheckpoint" parent="GateManager" instance=ExtResource("6_osbfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.21932, 5.94977, 65.0542)
 
-[node name="GateCheckpoint2" parent="Gates" instance=ExtResource("6_osbfy")]
+[node name="GateCheckpoint2" parent="GateManager" instance=ExtResource("6_osbfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.21932, 8.75206, 85.9565)
 
-[node name="GateCheckpoint3" parent="Gates" instance=ExtResource("6_osbfy")]
+[node name="GateCheckpoint3" parent="GateManager" instance=ExtResource("6_osbfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.21932, 11.4621, 117.62)
 
-[node name="GateCheckpoint4" parent="Gates" instance=ExtResource("6_osbfy")]
+[node name="GateCheckpoint4" parent="GateManager" instance=ExtResource("6_osbfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.21932, 15.3529, 148.044)
 
-[node name="GateCheckpoint5" parent="Gates" instance=ExtResource("6_osbfy")]
+[node name="GateCheckpoint5" parent="GateManager" instance=ExtResource("6_osbfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.21932, 18.8821, 181.107)

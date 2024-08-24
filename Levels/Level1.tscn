@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dk0av4tlip45w"]
+[gd_scene load_steps=20 format=3 uid="uid://dk0av4tlip45w"]
 
 [ext_resource type="Script" path="res://Levels/Level1.gd" id="1_hbooc"]
 [ext_resource type="PackedScene" uid="uid://f5q3lvkkp6et" path="res://Ocean/Ocean.tscn" id="2_lfnpl"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Effects/FX_ScreenShake.gd" id="5_cajsq"]
 [ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://AircraftCarrier/Aircraft_Carrier.tscn" id="6_m7lfe"]
 [ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://GateCheckpoint/GateCheckpoint.tscn" id="7_57csd"]
+[ext_resource type="Script" path="res://GateCheckpoint/GateManager.gd" id="7_vi3eb"]
 [ext_resource type="Shader" path="res://Effects/SpeedLines.gdshader" id="8_uvmg4"]
 [ext_resource type="Script" path="res://Effects/SpeedLinesEffect.gd" id="9_shgos"]
 [ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="10_grq0o"]
@@ -63,27 +64,28 @@ script = ExtResource("5_cajsq")
 [node name="AircraftCarrier" parent="." instance=ExtResource("6_m7lfe")]
 transform = Transform3D(2.62268e-08, 0, -0.2, 0, 0.2, 0, 0.2, 0, 2.62268e-08, -11.3819, 0.379997, 0)
 
-[node name="Gates" type="Node" parent="."]
+[node name="GateManager" type="Node" parent="."]
+script = ExtResource("7_vi3eb")
 
-[node name="GateCheckpoint" parent="Gates" instance=ExtResource("7_57csd")]
+[node name="GateCheckpoint" parent="GateManager" instance=ExtResource("7_57csd")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 51.3455, 15.5557, 1)
 
-[node name="GateCheckpoint2" parent="Gates" instance=ExtResource("7_57csd")]
+[node name="GateCheckpoint2" parent="GateManager" instance=ExtResource("7_57csd")]
 transform = Transform3D(-0.999987, 0, 0.00502685, 0, 1, 0, -0.00502685, 0, -0.999987, 65.148, 25.1171, 30.5267)
 
-[node name="GateCheckpoint3" parent="Gates" instance=ExtResource("7_57csd")]
+[node name="GateCheckpoint3" parent="GateManager" instance=ExtResource("7_57csd")]
 transform = Transform3D(-0.639828, 0, 0.768518, 0, 1, 0, -0.768518, 0, -0.639828, 45.226, 25.1171, 65.935)
 
-[node name="GateCheckpoint4" parent="Gates" instance=ExtResource("7_57csd")]
+[node name="GateCheckpoint4" parent="GateManager" instance=ExtResource("7_57csd")]
 transform = Transform3D(-0.0729772, 0, 0.997334, 0, 1, 0, -0.997334, 0, -0.0729772, -15.9618, 25.1171, 74.361)
 
-[node name="GateCheckpoint5" parent="Gates" instance=ExtResource("7_57csd")]
+[node name="GateCheckpoint5" parent="GateManager" instance=ExtResource("7_57csd")]
 transform = Transform3D(0.755385, 0, 0.655281, 0, 1, 0, -0.655281, 0, 0.755385, -71.997, 25.1171, 67.726)
 
-[node name="GateCheckpoint6" parent="Gates" instance=ExtResource("7_57csd")]
+[node name="GateCheckpoint6" parent="GateManager" instance=ExtResource("7_57csd")]
 transform = Transform3D(0.967161, 0, -0.254163, 0, 1, 0, 0.254163, 0, 0.967161, -86.94, 19.1171, 34.8144)
 
-[node name="GateCheckpoint7" parent="Gates" instance=ExtResource("7_57csd")]
+[node name="GateCheckpoint7" parent="GateManager" instance=ExtResource("7_57csd")]
 transform = Transform3D(0.482166, 0, -0.876079, 0, 1, 0, 0.876079, 0, 0.482166, -72.3888, 12.7952, 5.266)
 
 [node name="UI" type="Control" parent="."]

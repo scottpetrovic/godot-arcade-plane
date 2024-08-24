@@ -16,6 +16,7 @@ var gates_completed_message_shown: bool = false
 @onready var time_label: Label = $UI/HUD/TimeLabel
 @onready var speed_indicator: ColorRect = $UI/HUD/TextureRect/Speedindicator
 
+@onready var gate_manager: Node = $GateManager
 
 var elapsed_time: float = 0.0
 
@@ -24,12 +25,11 @@ var splash: PackedScene = load("res://Ocean/SplashParticles.tscn")
 func _ready():
 	GameManager.current_level_number = 1
 
-
 func is_mission_complete() -> bool:
 	# all gates are passed
 	# airplane is currently on landing strip
 	# airplane has come to a stop
-	if aircraft_carrier.is_player_on_landing_strip && are_all_gates_passed():
+	if aircraft_carrier.is_player_on_landing_strip && gate_manager.are_all_gates_passed():
 		if airplane.forward_speed < 0.01:
 			return true
 	return false
@@ -61,7 +61,7 @@ func update_speed_indicator():
 	var conversion_ratio: float = (airplane.max_flight_speed * speed_indicator_multiplier) / total_angle_values
 	speed_indicator.rotation_degrees = min_angle_for_indicator + (airplane.forward_speed*speed_indicator_multiplier*conversion_ratio)
 
-func plane_camera_screenshake():
+func camera_screenshake():
 	
 	# if plane is going 90% speed or more, do a constant screen shake to show speed
 	if (airplane.forward_speed / airplane.max_flight_speed) > .9:
@@ -77,10 +77,10 @@ func _process(delta: float) -> void:
 	if is_mission_complete() == false:
 		update_hud(delta)
 		
-	plane_camera_screenshake()
+	camera_screenshake()
 	
 	# maybe show this on the UI somewhere?
-	if are_all_gates_passed() && gates_completed_message_shown == false:
+	if gate_manager.are_all_gates_passed() && gates_completed_message_shown == false:
 		gates_completed_message_shown = true
 		# show the UI to land for a couple seconds
 		checkpoints_passed_overlay.visible = true
@@ -103,11 +103,6 @@ func goal_completed():
 		# TODO: export to HTML5
 		# TODO: pause screen
 		# TODO: controls if on mobile
-
-func are_all_gates_passed():
-	var unchecked_children = gates.get_children().filter(func(x): return not x.is_checked)
-	# print("Gates left: ", unchecked_children.size())
-	return unchecked_children.size() == 0
 
 func player_crashed():
 	airplane.turn_engine_off()
