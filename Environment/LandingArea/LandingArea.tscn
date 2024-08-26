@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://befp76w4mmgmd"]
+
+[ext_resource type="Script" path="res://Environment/LandingArea/LandingArea.gd" id="1_35eck"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r2f64"]
+size = Vector3(43.6727, 1, 155.664)
+
+[node name="AreaLandingStrip" type="Area3D"]
+monitorable = false
+script = ExtResource("1_35eck")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.18918)
+shape = SubResource("BoxShape3D_r2f64")

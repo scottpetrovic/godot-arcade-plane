@@ -1,48 +1,58 @@
 [gd_scene load_steps=12 format=3 uid="uid://bg5fgtcxdb0f5"]
 
 [ext_resource type="Script" path="res://Environment/MapAirport/MapAirport.gd" id="1_bb3bl"]
-[ext_resource type="Texture2D" uid="uid://bngxxsr08k1ti" path="res://Assets/Art References/PilotwingsMapLesson01.png" id="1_mp25m"]
-[ext_resource type="PackedScene" uid="uid://b7id7l5m62a5" path="res://Environment/Sky/examples/SkyLevel3.tscn" id="2_k17kc"]
+[ext_resource type="Script" path="res://Environment/LandingArea/LandingArea.gd" id="3_7dyxi"]
 [ext_resource type="PackedScene" uid="uid://d0fcnooujkgip" path="res://Environment/GroundPlane.tscn" id="3_ipf8y"]
 [ext_resource type="PackedScene" uid="uid://uxya2x0uw64m" path="res://Environment/Map1/Map1.glb" id="3_s104d"]
 [ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://GateCheckpoint/GateCheckpoint.tscn" id="6_osbfy"]
+[ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://Environment/Sky/examples/day_sky.tres" id="7_sr7rc"]
 [ext_resource type="Script" path="res://GateCheckpoint/GateManager.gd" id="8_km4je"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cj7eb"]
-albedo_texture = ExtResource("1_mp25m")
+[sub_resource type="BoxShape3D" id="BoxShape3D_x1sbe"]
+size = Vector3(9.90454, 0.741791, 59.7122)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_7te0e"]
-size = Vector2(60, 75)
+[sub_resource type="BoxShape3D" id="BoxShape3D_r2f64"]
+size = Vector3(10.6475, 1, 60.6924)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cenlb"]
+[sub_resource type="Sky" id="Sky_ieg05"]
+sky_material = ExtResource("7_sr7rc")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_b5d5f"]
-size = Vector3(60, 0.935, 75)
+[sub_resource type="Environment" id="Environment_1eoep"]
+background_mode = 2
+background_color = Color(0.434155, 0.453861, 0.508999, 1)
+sky = SubResource("Sky_ieg05")
+ambient_light_source = 2
+ambient_light_color = Color(0.24905, 0.577417, 0.791645, 1)
+ambient_light_energy = 0.3
+tonemap_mode = 2
+glow_enabled = true
+glow_bloom = 0.2
 
 [node name="Environment" type="Node3D"]
 script = ExtResource("1_bb3bl")
 
 [node name="Airport" type="Node3D" parent="."]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Airport"]
-
-[node name="EnvironmentReference" type="MeshInstance3D" parent="Airport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
-material_override = SubResource("StandardMaterial3D_cj7eb")
-mesh = SubResource("PlaneMesh_7te0e")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_cenlb")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Airport/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0327148, 0)
-shape = SubResource("BoxShape3D_b5d5f")
-
-[node name="Map1" parent="Airport" instance=ExtResource("3_s104d")]
+[node name="3DModel" parent="Airport" instance=ExtResource("3_s104d")]
 transform = Transform3D(0.215, 0, 0, 0, 0.215, 0, 0, 0, 0.215, 0, 0, 0)
 
-[node name="GroundPlane" parent="." instance=ExtResource("3_ipf8y")]
+[node name="LandingStripBody" type="StaticBody3D" parent="Airport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 4)
 
-[node name="Sky" parent="." instance=ExtResource("2_k17kc")]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Airport/LandingStripBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.129105, 2.64954)
+shape = SubResource("BoxShape3D_x1sbe")
+
+[node name="AreaLandingStrip" type="Area3D" parent="Airport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.19501, 0, 0)
+monitorable = false
+script = ExtResource("3_7dyxi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Airport/AreaLandingStrip"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.243164, -0.234049, 6.23245)
+shape = SubResource("BoxShape3D_r2f64")
+
+[node name="GroundPlane" parent="." instance=ExtResource("3_ipf8y")]
 
 [node name="PlaneGateManager" type="Node3D" parent="."]
 script = ExtResource("8_km4je")
@@ -78,3 +88,10 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -17.88
 
 [node name="Plane1" type="Node3D" parent="StartPositions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.21932, 19.6855, 233.118)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1eoep")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.984196, 0.113116, -0.136249, 0, 0.7694, 0.638767, 0.177085, -0.628672, 0.75724, 0, 0, 0)
+shadow_enabled = true

@@ -52,8 +52,7 @@ func update_hud(delta: float):
 
 
 func _process(delta: float) -> void:
-	
-	
+		
 	if aircraft_carrier.is_player_on_landing_strip && is_level_complete == false:
 		is_level_complete = true
 		

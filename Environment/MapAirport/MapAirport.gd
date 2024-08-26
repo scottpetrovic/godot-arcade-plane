@@ -1,7 +1,5 @@
 extends Node3D
 
-@onready var airplane: CharacterBody3D = $Airplane
-
 @onready var plane_gate_manager: Node3D = $PlaneGateManager
 @onready var sky_diving_gate_manager: Node3D = $SkyDivingGateManager
 
@@ -11,7 +9,7 @@ func level_set():
 		plane_gate_manager.visible = true
 
 func is_player_on_landing_pad(): 
-	return false # TODO: add logic
+	return $Airport/AreaLandingStrip.is_player_on_landing_strip
 
 func get_plane_starting_transform_1() -> Node3D:
 	return $StartPositions/Plane1

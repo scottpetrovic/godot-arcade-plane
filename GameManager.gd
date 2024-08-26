@@ -49,8 +49,9 @@ func go_to_next_level():
 		GameManager.set_current_level(1, "Plane", "AircraftCarrier")
 		SceneTransition.change_scene("res://Levels/PlaneLevel.tscn")
 	else:
-		GameManager.set_current_level(2, "Skydiving", "AircraftCarrier")
-		SceneTransition.change_scene("res://Levels/Level2.tscn")
+		GameManager.set_current_level(2, "Plane", "Airport")
+		SceneTransition.change_scene("res://Levels/PlaneLevel.tscn")
+		# SceneTransition.change_scene("res://Levels/Level2.tscn")
 
 
 func format_elapsed_time(elapsed: float) -> String:

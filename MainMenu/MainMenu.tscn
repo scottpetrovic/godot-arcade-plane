@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://MainMenu/MainMenu.gd" id="1_hxtm5"]
 [ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://AircraftCarrier/Aircraft_Carrier.tscn" id="1_qfpby"]
 [ext_resource type="PackedScene" uid="uid://f5q3lvkkp6et" path="res://Environment/Ocean/Ocean.tscn" id="2_bqd8t"]
-[ext_resource type="PackedScene" uid="uid://cg3m5qnyxjev4" path="res://Environment/Sky/examples/sky.tscn" id="3_xmrd7"]
+[ext_resource type="PackedScene" uid="uid://cg3m5qnyxjev4" path="res://Environment/Sky/examples/Sky.tscn" id="3_xmrd7"]
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="4_ta1sr"]
 [ext_resource type="Script" path="res://MainMenu/CameraMovement.gd" id="6_yuge5"]
 [ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="6_ywkv5"]

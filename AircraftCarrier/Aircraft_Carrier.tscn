@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cl861nerpvmo8"]
+[gd_scene load_steps=7 format=3 uid="uid://cl861nerpvmo8"]
 
 [ext_resource type="PackedScene" uid="uid://bc7flfj4e2c14" path="res://AircraftCarrier/aircraft_carrier_mesh.tscn" id="1_6s1ql"]
-[ext_resource type="Script" path="res://AircraftCarrier/AircraftCarrier.gd" id="1_avm4l"]
-[ext_resource type="AudioStream" uid="uid://di6ad1x7gnbna" path="res://Assets/SoundFX/landing-squeal.mp3" id="3_pwav3"]
+[ext_resource type="Script" path="res://Environment/LandingArea/LandingArea.gd" id="2_n1y8k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_518md"]
 size = Vector3(38.0914, 13.8756, 113.814)
@@ -17,7 +16,6 @@ size = Vector3(8.91533, 18.8159, 17.4218)
 size = Vector3(43.6727, 1, 155.664)
 
 [node name="AircraftCarrier" type="Node3D"]
-script = ExtResource("1_avm4l")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -36,14 +34,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8417, 17.8418, 42.6023)
 shape = SubResource("BoxShape3D_bdlhb")
 
 [node name="AreaLandingStrip" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.01185, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.87324, 0)
 monitorable = false
+script = ExtResource("2_n1y8k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AreaLandingStrip"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.18918)
 shape = SubResource("BoxShape3D_r2f64")
-
-[node name="PlaneLandingSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_pwav3")
-volume_db = -11.555
-pitch_scale = 1.11

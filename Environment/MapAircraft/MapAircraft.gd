@@ -28,4 +28,4 @@ func are_all_gates_passed():
 	return unchecked_children.size() == 0
 
 func is_player_on_landing_pad():
-	return $AircraftCarrier.is_player_on_landing_strip
+	return $AircraftCarrier/AreaLandingStrip.is_player_on_landing_strip
