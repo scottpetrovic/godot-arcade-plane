@@ -3,7 +3,6 @@ extends Node3D
 @onready var plane_gate_manager: Node3D = $PlaneGateManager
 @onready var sky_diving_gate_manager: Node3D = $SkyDivingGateManager
 
-
 func _ready():
 	GameManager.level_changed.connect(level_set)
 
@@ -11,9 +10,6 @@ func level_set():
 	if GameManager.current_vehicle == 'Plane':
 		sky_diving_gate_manager.visible = false
 		plane_gate_manager.visible = true
-	
-	print('Level changed in map')
-
 
 func are_all_gates_passed():
 	
@@ -30,3 +26,6 @@ func are_all_gates_passed():
 
 	# print("Gates left: ", unchecked_children.size())
 	return unchecked_children.size() == 0
+
+func is_player_on_landing_pad():
+	return $AircraftCarrier.is_player_on_landing_strip

@@ -1,6 +1,5 @@
 extends Node3D
 
-@onready var aircraft_carrier: Node3D = $Environment/AircraftCarrier
 @onready var airplane: CharacterBody3D = $Airplane
 
 var gates_completed_message_shown: bool = false
@@ -15,22 +14,36 @@ var gates_completed_message_shown: bool = false
 @onready var time_label: Label = $UI/HUD/TimeLabel
 @onready var speed_indicator: ColorRect = $UI/HUD/TextureRect/Speedindicator
 
-@onready var envionment: Node = $Environment
+var environment: Node3D # dynamicall added from Game manager config
 
 var elapsed_time: float = 0.0
 
 var splash: PackedScene = load("res://Environment/Ocean/SplashParticles.tscn")
 
-func _ready():
-	# Setup. depending on level, maybe need to move plane around, turn off gates
-	envionment.level_set()
+var map_aircraft_carrier: PackedScene = load("res://Environment/MapAircraft/MapAircraft.tscn")
 
+func _ready():
+	setup_level()
+	setup_plane()
+
+func setup_plane():
+	# todo: some levels we need to start the plane in the air 
+	pass
+
+func setup_level():
+	# load map depending on what our current map is
+	if GameManager.current_map == 'AircraftCarrier':
+		environment = map_aircraft_carrier.instantiate()
+		add_child(environment)
+	
+	# Setup. depending on level, maybe need to move plane around, turn off gates
+	environment.level_set()
 
 func is_mission_complete() -> bool:
 	# all gates are passed
 	# airplane is currently on landing strip
 	# airplane has come to a stop
-	if aircraft_carrier.is_player_on_landing_strip && envionment.are_all_gates_passed():
+	if environment.is_player_on_landing_pad() && environment.are_all_gates_passed():
 		if airplane.forward_speed < 0.01:
 			return true
 	return false
@@ -81,7 +94,7 @@ func _process(delta: float) -> void:
 	camera_screenshake()
 	
 	# maybe show this on the UI somewhere?
-	if envionment.are_all_gates_passed() && gates_completed_message_shown == false:
+	if environment.are_all_gates_passed() && gates_completed_message_shown == false:
 		gates_completed_message_shown = true
 		# show the UI to land for a couple seconds
 		checkpoints_passed_overlay.visible = true
