@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://c4fotm8hd2pa3"]
 
-[ext_resource type="Script" path="res://Ocean/splash_particles.gd" id="1_3smvi"]
+[ext_resource type="Script" path="res://Environment/Ocean/splash_particles.gd" id="1_3smvi"]
 
 [sub_resource type="Gradient" id="Gradient_xe2t5"]
 offsets = PackedFloat32Array(0.391304, 1)

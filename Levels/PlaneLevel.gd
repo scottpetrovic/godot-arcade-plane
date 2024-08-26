@@ -1,7 +1,6 @@
 extends Node3D
 
-@onready var gates: Node = $Gates
-@onready var aircraft_carrier: Node3D = $AircraftCarrier
+@onready var aircraft_carrier: Node3D = $Environment/AircraftCarrier
 @onready var airplane: CharacterBody3D = $Airplane
 
 var gates_completed_message_shown: bool = false
@@ -16,20 +15,22 @@ var gates_completed_message_shown: bool = false
 @onready var time_label: Label = $UI/HUD/TimeLabel
 @onready var speed_indicator: ColorRect = $UI/HUD/TextureRect/Speedindicator
 
-@onready var gate_manager: Node = $GateManager
+@onready var envionment: Node = $Environment
 
 var elapsed_time: float = 0.0
 
-var splash: PackedScene = load("res://Ocean/SplashParticles.tscn")
+var splash: PackedScene = load("res://Environment/Ocean/SplashParticles.tscn")
 
 func _ready():
-	GameManager.current_level_number = 1
+	# Setup. depending on level, maybe need to move plane around, turn off gates
+	envionment.level_set()
+
 
 func is_mission_complete() -> bool:
 	# all gates are passed
 	# airplane is currently on landing strip
 	# airplane has come to a stop
-	if aircraft_carrier.is_player_on_landing_strip && gate_manager.are_all_gates_passed():
+	if aircraft_carrier.is_player_on_landing_strip && envionment.are_all_gates_passed():
 		if airplane.forward_speed < 0.01:
 			return true
 	return false
@@ -80,7 +81,7 @@ func _process(delta: float) -> void:
 	camera_screenshake()
 	
 	# maybe show this on the UI somewhere?
-	if gate_manager.are_all_gates_passed() && gates_completed_message_shown == false:
+	if envionment.are_all_gates_passed() && gates_completed_message_shown == false:
 		gates_completed_message_shown = true
 		# show the UI to land for a couple seconds
 		checkpoints_passed_overlay.visible = true

@@ -12,4 +12,7 @@ func _input(event: InputEvent) -> void:
 
 	# go to in-game when anything is pressed
 	if event is InputEventMouseButton or event is InputEventKey:
-		SceneTransition.change_scene("res://Levels/Level1.tscn")
+		
+		# first level will be a  plane level at the air craft carrier for now
+		GameManager.set_current_level(1, "Plane", "AircraftCarrier")
+		SceneTransition.change_scene("res://Levels/PlaneLevel.tscn")

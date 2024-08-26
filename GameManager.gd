@@ -1,9 +1,13 @@
 extends Node
 
 # keep track of global things that need to persist between scenes
-var current_level_number: int = 1
 var current_level_time: float = 0.0 # store in seconds
 var current_level_success_status: bool = false
+
+
+var current_level_number: int = 1
+var current_vehicle: String = "" # Plane or Skydiving
+var current_map: String = "" # AircraftCarrier or Airport
 
 var is_level_1_finished: bool = false
 var level_1_best_time: float = 0.0 #  0 == not beat
@@ -11,6 +15,13 @@ var level_1_best_time: float = 0.0 #  0 == not beat
 var is_level_2_finished: bool = false
 var level_2_best_time: float = 0.0 #  0 == not beat
 
+signal level_changed
+
+func set_current_level(lvl_number: int, cur_vehicle: String, cur_map: String): 
+	current_level_number = lvl_number
+	current_vehicle = cur_vehicle
+	current_map = cur_map
+	emit_signal("level_changed")
 
 func set_level_complete(level_number: int, level_time: float):
 
@@ -35,8 +46,10 @@ func go_to_next_level():
 	GlobalAudio.start_music_theme()
 
 	if is_level_1_finished == false:
-		SceneTransition.change_scene("res://Levels/Level1.tscn")
+		GameManager.set_current_level(1, "Plane", "AircraftCarrier")
+		SceneTransition.change_scene("res://Levels/PlaneLevel.tscn")
 	else:
+		GameManager.set_current_level(2, "Skydiving", "AircraftCarrier")
 		SceneTransition.change_scene("res://Levels/Level2.tscn")
 
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Levels/Level3.gd" id="1_bb3bl"]
 [ext_resource type="Texture2D" uid="uid://bngxxsr08k1ti" path="res://Assets/Art References/PilotwingsMapLesson01.png" id="1_mp25m"]
-[ext_resource type="PackedScene" uid="uid://b7id7l5m62a5" path="res://sky/examples/SkyLevel3.tscn" id="2_k17kc"]
+[ext_resource type="PackedScene" uid="uid://b7id7l5m62a5" path="res://Environment/Sky/examples/SkyLevel3.tscn" id="2_k17kc"]
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="3_dyria"]
 [ext_resource type="PackedScene" uid="uid://d0fcnooujkgip" path="res://Environment/GroundPlane.tscn" id="3_ipf8y"]
 [ext_resource type="PackedScene" uid="uid://uxya2x0uw64m" path="res://Environment/Map1/Map1.glb" id="3_s104d"]
