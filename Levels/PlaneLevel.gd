@@ -14,6 +14,9 @@ var gates_completed_message_shown: bool = false
 @onready var time_label: Label = $UI/HUD/TimeLabel
 @onready var speed_indicator: ColorRect = $UI/HUD/TextureRect/Speedindicator
 
+@onready var main_camera: Camera3D = $Camera
+
+
 var environment: Node3D # dynamicall added from Game manager config
 
 var elapsed_time: float = 0.0
@@ -21,22 +24,34 @@ var elapsed_time: float = 0.0
 var splash: PackedScene = load("res://Environment/Ocean/SplashParticles.tscn")
 
 var map_aircraft_carrier: PackedScene = load("res://Environment/MapAircraft/MapAircraft.tscn")
+var map_airport: PackedScene = load("res://Environment/MapAirport/MapAirport.tscn")
 
 func _ready():
 	setup_level()
-	setup_plane()
+	setup_plane() # make sure this is after the setup level
 
 func setup_plane():
 	# todo: some levels we need to start the plane in the air 
-	pass
+	if GameManager.current_map == 'Airport':
+		var plane_starting_pos: Node3D = environment.get_plane_starting_transform_1()
+		airplane.global_position = plane_starting_pos.global_position
+		airplane.rotation_degrees = plane_starting_pos.rotation_degrees
+		airplane.set_throttle(0.7) # 70% full throttle 
+		
+		# move camera too to position and rotation
+		main_camera.global_position = plane_starting_pos.global_position
+		main_camera.rotation_degrees = plane_starting_pos.rotation_degrees
+
 
 func setup_level():
 	# load map depending on what our current map is
 	if GameManager.current_map == 'AircraftCarrier':
-		environment = map_aircraft_carrier.instantiate()
-		add_child(environment)
+		environment = map_aircraft_carrier.instantiate()		
+	elif GameManager.current_map == 'Airport':
+		environment = map_airport.instantiate()
 	
 	# Setup. depending on level, maybe need to move plane around, turn off gates
+	add_child(environment)
 	environment.level_set()
 
 func is_mission_complete() -> bool:

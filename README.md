@@ -8,8 +8,3 @@ Level 3
 ------ create dust particles 
 ------ slow the plane down over time 
 ------ when plane comes to a stop mission over
-- create UI
--- obectives complete
--- mission complete
--- mission failed (crashed)
--- send to 

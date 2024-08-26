@@ -1,13 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bg5fgtcxdb0f5"]
+[gd_scene load_steps=12 format=3 uid="uid://bg5fgtcxdb0f5"]
 
-[ext_resource type="Script" path="res://Levels/Level3.gd" id="1_bb3bl"]
+[ext_resource type="Script" path="res://Environment/MapAirport/MapAirport.gd" id="1_bb3bl"]
 [ext_resource type="Texture2D" uid="uid://bngxxsr08k1ti" path="res://Assets/Art References/PilotwingsMapLesson01.png" id="1_mp25m"]
 [ext_resource type="PackedScene" uid="uid://b7id7l5m62a5" path="res://Environment/Sky/examples/SkyLevel3.tscn" id="2_k17kc"]
-[ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="3_dyria"]
 [ext_resource type="PackedScene" uid="uid://d0fcnooujkgip" path="res://Environment/GroundPlane.tscn" id="3_ipf8y"]
 [ext_resource type="PackedScene" uid="uid://uxya2x0uw64m" path="res://Environment/Map1/Map1.glb" id="3_s104d"]
-[ext_resource type="Script" path="res://Effects/CameraFollow.gd" id="4_5un3s"]
-[ext_resource type="Script" path="res://Effects/FX_ScreenShake.gd" id="5_i0u8l"]
 [ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://GateCheckpoint/GateCheckpoint.tscn" id="6_osbfy"]
 [ext_resource type="Script" path="res://GateCheckpoint/GateManager.gd" id="8_km4je"]
 
@@ -22,7 +19,7 @@ size = Vector2(60, 75)
 [sub_resource type="BoxShape3D" id="BoxShape3D_b5d5f"]
 size = Vector3(60, 0.935, 75)
 
-[node name="Level3" type="Node3D"]
+[node name="Environment" type="Node3D"]
 script = ExtResource("1_bb3bl")
 
 [node name="Airport" type="Node3D" parent="."]
@@ -47,40 +44,37 @@ transform = Transform3D(0.215, 0, 0, 0, 0.215, 0, 0, 0, 0.215, 0, 0, 0)
 
 [node name="Sky" parent="." instance=ExtResource("2_k17kc")]
 
-[node name="Airplane" parent="." instance=ExtResource("3_dyria")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.653, 37.6368, 310.751)
-slide_on_ceiling = false
-
-[node name="CameraTarget" type="Node3D" parent="Airplane"]
-transform = Transform3D(1, 0, 1.56462e-07, 0, 1, 0, -1.56462e-07, 0, 1, 0.251358, 1.31569, 3.6712)
-
-[node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(0.99789, 0, -0.0649332, 0, 1, 0, 0.0649332, 0, 0.99789, 6.653, 38.9376, 316.895)
-current = true
-fov = 66.6
-far = 1000.0
-script = ExtResource("4_5un3s")
-target = NodePath("../Airplane/CameraTarget")
-metadata/_edit_group_ = true
-
-[node name="ScreenShake" type="Node3D" parent="Camera"]
-transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-script = ExtResource("5_i0u8l")
-
-[node name="GateManager" type="Node" parent="."]
+[node name="PlaneGateManager" type="Node3D" parent="."]
 script = ExtResource("8_km4je")
 
-[node name="GateCheckpoint" parent="GateManager" instance=ExtResource("6_osbfy")]
+[node name="GateCheckpoint" parent="PlaneGateManager" instance=ExtResource("6_osbfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.21932, 5.94977, 65.0542)
 
-[node name="GateCheckpoint2" parent="GateManager" instance=ExtResource("6_osbfy")]
+[node name="GateCheckpoint2" parent="PlaneGateManager" instance=ExtResource("6_osbfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.21932, 8.75206, 85.9565)
 
-[node name="GateCheckpoint3" parent="GateManager" instance=ExtResource("6_osbfy")]
+[node name="GateCheckpoint3" parent="PlaneGateManager" instance=ExtResource("6_osbfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.21932, 11.4621, 117.62)
 
-[node name="GateCheckpoint4" parent="GateManager" instance=ExtResource("6_osbfy")]
+[node name="GateCheckpoint4" parent="PlaneGateManager" instance=ExtResource("6_osbfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.21932, 15.3529, 148.044)
 
-[node name="GateCheckpoint5" parent="GateManager" instance=ExtResource("6_osbfy")]
+[node name="GateCheckpoint5" parent="PlaneGateManager" instance=ExtResource("6_osbfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.21932, 18.8821, 181.107)
+
+[node name="SkyDivingGateManager" type="Node3D" parent="."]
+script = ExtResource("8_km4je")
+
+[node name="GateCheckpoint" parent="SkyDivingGateManager" instance=ExtResource("6_osbfy")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -17.8861, 89.6972, -1.53959)
+
+[node name="GateCheckpoint2" parent="SkyDivingGateManager" instance=ExtResource("6_osbfy")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -17.8861, 216.797, -1.53959)
+
+[node name="GateCheckpoint3" parent="SkyDivingGateManager" instance=ExtResource("6_osbfy")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -17.8861, 395.757, -1.53959)
+
+[node name="StartPositions" type="Node3D" parent="."]
+
+[node name="Plane1" type="Node3D" parent="StartPositions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.21932, 19.6855, 233.118)
