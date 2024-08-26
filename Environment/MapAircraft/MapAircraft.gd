@@ -3,8 +3,11 @@ extends Node3D
 @onready var plane_gate_manager: Node3D = $PlaneGateManager
 @onready var sky_diving_gate_manager: Node3D = $SkyDivingGateManager
 
+var world_sky: PackedScene = load("res://Environment/Sky/examples/Sky.tscn")
+
 func _ready():
 	GameManager.level_changed.connect(level_set)
+	add_child(world_sky.instantiate())
 
 func level_set():
 	if GameManager.current_vehicle == 'Plane':

@@ -46,11 +46,12 @@ func go_to_next_level():
 	GlobalAudio.start_music_theme()
 
 	if is_level_1_finished == false:
-		GameManager.set_current_level(1, "Plane", "AircraftCarrier")
+		GameManager.set_current_level(1, "Plane", "Airport")
 		SceneTransition.change_scene("res://Levels/PlaneLevel.tscn")
 	else:
-		GameManager.set_current_level(2, "Plane", "Airport")
+		GameManager.set_current_level(1, "Plane", "AircraftCarrier")
 		SceneTransition.change_scene("res://Levels/PlaneLevel.tscn")
+
 		# SceneTransition.change_scene("res://Levels/Level2.tscn")
 
 
@@ -58,3 +59,10 @@ func format_elapsed_time(elapsed: float) -> String:
 	var minutes = int(elapsed/ 60.0)
 	var seconds = int(elapsed) % 60
 	return str(minutes) + ":" + str(seconds).pad_zeros(2)
+
+func find_base_node() -> Node3D:
+	var root = get_tree().root
+	for child in root.get_children():
+		if child is Node3D:
+			return child
+	return null

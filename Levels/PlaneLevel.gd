@@ -133,6 +133,20 @@ func goal_completed():
 		# TODO: pause screen
 		# TODO: controls if on mobile
 
+func player_crashed_into_ground():
+	airplane.turn_engine_off()
+	airplane.crashed_into_ground()
+	player_crashed_overlay.visible = true
+	$UI/HUD.visible = false # hide plane instruments at top
+	$Camera/ScreenShake.camera_shake_impulse(1.3, 0.4)
+	
+	# restart the level after 4 seconds
+	await get_tree().create_timer(8.0).timeout # waits for X second
+	GameManager.current_level_time = elapsed_time
+	GameManager.current_level_success_status = false
+	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
+
+
 func player_crashed():
 	airplane.turn_engine_off()
 	airplane.crashed() # tell plane it crashed so it stops moving

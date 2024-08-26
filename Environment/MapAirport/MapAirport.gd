@@ -2,6 +2,17 @@ extends Node3D
 
 @onready var plane_gate_manager: Node3D = $PlaneGateManager
 @onready var sky_diving_gate_manager: Node3D = $SkyDivingGateManager
+@onready var ground_plane: StaticBody3D = $GroundPlane
+
+var world_sky_hack: PackedScene = load("res://Environment/Sky/examples/Sky.tscn")
+
+func _ready():
+	# hack to prevent weird C++ leak that happens when changing scene
+	# the world environment breaks if I just put it on the scene
+	add_child(world_sky_hack.instantiate())
+
+func has_player_crashed_into_ground():
+	return $GroundPlane.has_crashed_on_ground
 
 func level_set():
 	if GameManager.current_vehicle == 'Plane':

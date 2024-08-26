@@ -20,7 +20,8 @@ var air_particles_2: GPUParticles3D
 
 var air_particles_scene: PackedScene = load("res://Plane/PlaneParticleTrail.tscn")
 
-var has_crashed = false # only water will make us crash
+var has_crashed_into_water = false # only water will make us crash
+var has_crashed_into_ground: bool = false
 var is_engine_on = true # turn off when we complete mission
 var airplane_original_scale: float
 
@@ -50,18 +51,19 @@ func create_air_particles():
 	plane_mesh.add_child(air_particles_2)
 
 func _process(delta: float) -> void:
-	
-	# rotate propellor based off forward speed
-	var propellor_speed_multiplier: float = 3.0
-	var rotate_amount = delta * forward_speed * propellor_speed_multiplier
-	plane_mesh.get_node("Propellor").rotate( Vector3.FORWARD, rotate_amount)
-	
+		
+	if is_engine_on:
+		# rotate propellor based off forward speed
+		var propellor_speed_multiplier: float = 3.0
+		var rotate_amount = delta * forward_speed * propellor_speed_multiplier
+		plane_mesh.get_node("Propellor").rotate( Vector3.FORWARD, rotate_amount)
+		update_active_turn_speed()
+		
 	# turn on air particle trail on wings when we are going max speed!
 	var is_going_max_speed =  target_speed == max_flight_speed
 	air_particles.emitting = is_going_max_speed
 	air_particles_2.emitting = is_going_max_speed
-	
-	update_active_turn_speed()
+
 
 func set_throttle(throttle_percentage: float):
 	target_speed =  throttle_percentage * max_flight_speed
@@ -81,9 +83,19 @@ func turn_engine_off():
 
 func _physics_process(delta: float) -> void:
 	
-	if has_crashed || is_engine_on == false:
+	# crashed into the ground, slow down and turn off inputs
+	if has_crashed_into_ground:
+		target_speed = 0.0
+		forward_speed = lerp(forward_speed, forward_speed*0.1, delta) # slow down
+		velocity = -transform.basis.z * forward_speed # Movement is always forward
+		move_and_slide()
 		return
 	
+	# crashed into the water
+	if has_crashed_into_water:
+		return
+
+
 	get_input(delta)
 
 	# change pitch. If we are on the ground, we cannot make our pitch negative to look underground
@@ -157,6 +169,9 @@ func get_input(delta: float) -> void:
 	pitch_input -= Input.get_action_strength("pitch_down")
 
 # Water will call this if there is an impact
-func crashed():
-	has_crashed = true
+func crashed_into_water():
+	has_crashed_into_water = true
 	visible = false
+
+func crashed_into_ground():
+	has_crashed_into_ground = true

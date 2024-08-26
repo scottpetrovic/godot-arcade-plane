@@ -5,12 +5,12 @@ var base_audio_pitch = 0.8 # engine is barely on
 
 func _process(_delta: float) -> void:
 
-	if airplane:
+	if airplane.is_engine_on:
 		# calculate pitch
 		var power_percentage = airplane.forward_speed / airplane.max_flight_speed
 		
 		# kind of like turning the sound off
-		if power_percentage < 0.03:
+		if power_percentage < 0.01:
 			self.playing = false
 			self.pitch_scale = 0.01
 			return
@@ -21,4 +21,5 @@ func _process(_delta: float) -> void:
 		
 		# going faster gives higher pitch
 		self.pitch_scale = base_audio_pitch + power_percentage
-		
+	else:
+		self.playing = false
