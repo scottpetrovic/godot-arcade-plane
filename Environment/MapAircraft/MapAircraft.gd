@@ -8,12 +8,12 @@ var world_sky: PackedScene = load("res://Environment/Sky/examples/Sky.tscn")
 func _ready():
 	add_child(world_sky.instantiate())
 	
-	if GameManager.current_vehicle == "Plane":
+	if GameManager.current_vehicle == Constants.VEHICLE.AIRPLANE:
 		sky_diving_gate_manager.visible = false
 		plane_gate_manager.visible = true
 		return
 
-	if GameManager.current_vehicle == "Skydiving":
+	if GameManager.current_vehicle == Constants.VEHICLE.SKYDIVER:
 		sky_diving_gate_manager.visible = true
 		plane_gate_manager.visible = false
 		return

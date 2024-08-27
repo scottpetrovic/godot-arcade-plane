@@ -9,9 +9,9 @@ func _ready() -> void:
 	aircraft_carrier_level_button.pressed.connect(aircraft_carrier_level_click)
 
 func airport_level_click():
-		GameManager.set_current_map("Airport")
+		GameManager.set_current_map(Constants.MAP.AIRPORT)
 		GameManager.go_to_vehicle_selection_screen()
 
 func aircraft_carrier_level_click():
-		GameManager.set_current_map("AircraftCarrier")
+		GameManager.set_current_map(Constants.MAP.AIRCRAFTCARRIER)
 		GameManager.go_to_vehicle_selection_screen()

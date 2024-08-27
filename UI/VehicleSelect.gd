@@ -11,11 +11,11 @@ func _ready() -> void:
 	skydiving_button.pressed.connect(skydiving_vehicle_selected)
 
 func airplane_vehicle_selected():
-	GameManager.set_current_vehicle("Plane")
+	GameManager.set_current_vehicle(Constants.VEHICLE.AIRPLANE)
 	GameManager.go_to_next_level()
 
 func skydiving_vehicle_selected():
-	GameManager.set_current_vehicle("Skydiving")
+	GameManager.set_current_vehicle(Constants.VEHICLE.SKYDIVER)
 	GameManager.go_to_next_level()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -33,7 +33,7 @@ func _ready():
 
 func setup_plane():
 	# todo: some levels we need to start the plane in the air 
-	if GameManager.current_map == 'Airport':
+	if GameManager.current_map == Constants.MAP.AIRPORT:
 		var plane_starting_pos: Node3D = environment.get_plane_starting_transform_1()
 		airplane.global_position = plane_starting_pos.global_position
 		airplane.rotation_degrees = plane_starting_pos.rotation_degrees
@@ -46,9 +46,9 @@ func setup_plane():
 
 func setup_level():
 	# load map depending on what our current map is
-	if GameManager.current_map == 'AircraftCarrier':
+	if GameManager.current_map == Constants.MAP.AIRCRAFTCARRIER:
 		environment = map_aircraft_carrier.instantiate()		
-	elif GameManager.current_map == 'Airport':
+	elif GameManager.current_map == Constants.MAP.AIRPORT:
 		environment = map_airport.instantiate()
 	
 	# Setup. depending on level, maybe need to move plane around, turn off gates

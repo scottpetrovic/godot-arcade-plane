@@ -28,9 +28,9 @@ func _ready():
 
 func setup_level():
 	# load map depending on what our current map is
-	if GameManager.current_map == 'AircraftCarrier':
+	if GameManager.current_map == Constants.MAP.AIRCRAFTCARRIER:
 		environment = map_aircraft_carrier.instantiate()		
-	elif GameManager.current_map == 'Airport':
+	elif GameManager.current_map == Constants.MAP.AIRPORT:
 		environment = map_airport.instantiate()
 	
 	# Setup. depending on level, maybe need to move plane around, turn off gates

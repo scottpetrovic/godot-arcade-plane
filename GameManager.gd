@@ -15,12 +15,6 @@ var level_1_best_time: float = 0.0 #  0 == not beat
 var is_level_2_finished: bool = false
 var level_2_best_time: float = 0.0 #  0 == not beat
 
-func set_current_level(lvl_number: int, cur_vehicle: String, cur_map: String): 
-	current_level_number = lvl_number
-	current_vehicle = cur_vehicle
-	current_map = cur_map
-	emit_signal("level_changed")
-
 func set_current_map(cur_map: String):
 	current_map = cur_map
 
@@ -53,10 +47,10 @@ func go_to_next_level():
 	
 	current_level_success_status = false # reset current level success
 
-	if current_vehicle == "Plane":
+	if current_vehicle == Constants.VEHICLE.AIRPLANE:
 		SceneTransition.change_scene("res://Levels/PlaneLevel.tscn")
 	
-	if current_vehicle == "Skydiving":
+	if current_vehicle == Constants.VEHICLE.SKYDIVER:
 		SceneTransition.change_scene("res://Levels/SkydivingLevel.tscn")
 
 	GlobalAudio.start_music_theme()
