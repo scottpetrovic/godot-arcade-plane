@@ -15,8 +15,6 @@ var level_1_best_time: float = 0.0 #  0 == not beat
 var is_level_2_finished: bool = false
 var level_2_best_time: float = 0.0 #  0 == not beat
 
-signal level_changed
-
 func set_current_level(lvl_number: int, cur_vehicle: String, cur_map: String): 
 	current_level_number = lvl_number
 	current_vehicle = cur_vehicle

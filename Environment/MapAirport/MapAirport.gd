@@ -10,14 +10,19 @@ func _ready():
 	# hack to prevent weird C++ leak that happens when changing scene
 	# the world environment breaks if I just put it on the scene
 	add_child(world_sky_hack.instantiate())
-
-func has_player_crashed_into_ground():
-	return $GroundPlane.has_crashed_on_ground
-
-func level_set():
+	
 	if GameManager.current_vehicle == 'Plane':
 		sky_diving_gate_manager.visible = false
 		plane_gate_manager.visible = true
+		return
+	
+	if GameManager.current_vehicle == "Skydiving":
+		sky_diving_gate_manager.visible = true
+		plane_gate_manager.visible = false
+		return
+
+func has_player_crashed_into_ground():
+	return $GroundPlane.has_crashed_on_ground
 
 func is_player_on_landing_pad(): 
 	return $Airport/AreaLandingStrip.is_player_on_landing_strip

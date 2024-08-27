@@ -74,7 +74,8 @@ func _physics_process(delta: float) -> void:
 
 func crashed():
 	has_crashed = true
-	# we have crashed in the ground, so don't hide the player
+	# we have crashed into the ground or water. let the 
+	# level decide on what to do dependinon where the person is at
 
 func deploy_parachute():
 	is_parachute_activated = true

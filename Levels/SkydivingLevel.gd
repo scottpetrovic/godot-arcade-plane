@@ -10,25 +10,36 @@ extends Node3D
 @onready var player_skydiver_camera_target: Node3D = $PlayerSkydiver/CameraFollowTarget
 
 @onready var camera_3d: Camera3D = $Camera3D
-@onready var aircraft_carrier: Node3D = $AircraftCarrier
 
 var elapsed_time: float = 0.0
 
-var splash: PackedScene = load("res://Ocean/SplashParticles.tscn")
+var splash: PackedScene = load("res://Effects/Particles/SplashParticles.tscn")
+
+var environment: Node3D # dynamicall added from Game manager config
+
+var map_aircraft_carrier: PackedScene = load("res://Environment/MapAircraft/MapAircraft.tscn")
+var map_airport: PackedScene = load("res://Environment/MapAirport/MapAirport.tscn")
 
 var is_level_complete: bool = false
 
 func _ready():
-	GameManager.current_level_number = 2
+	setup_level()
+	setup_player()
 
+func setup_level():
+	# load map depending on what our current map is
+	if GameManager.current_map == 'AircraftCarrier':
+		environment = map_aircraft_carrier.instantiate()		
+	elif GameManager.current_map == 'Airport':
+		environment = map_airport.instantiate()
+	
+	# Setup. depending on level, maybe need to move plane around, turn off gates
+	add_child(environment)
+	
+func setup_player():
 	# Connect the parachute_deployed signal to the _on_parachute_deployed function
 	player_skydiver.parachute_deployed.connect(_on_parachute_deployed)
-	
-	# turn screen shake on while the player is skydiving
-	if camera_3d:
-		print($Camera3D)
-		$Camera3D/ScreenShake.start_constant_shake(0.006)
-	
+	$Camera3D/ScreenShake.start_constant_shake(0.006) # always have slight screen shake
 
 func _on_parachute_deployed():
 	# Change the script attached to the Camera3D object to follow player
@@ -52,13 +63,15 @@ func update_hud(delta: float):
 
 
 func _process(delta: float) -> void:
-		
-	if aircraft_carrier.is_player_on_landing_strip && is_level_complete == false:
+
+	# add is_level_complete == false to make sure this only runs one time
+	if environment.is_player_on_landing_pad() && is_level_complete == false:
 		is_level_complete = true
 		
+		# if mission is finished and we haven't deployed parachute, that means
+		# we ran into the ground going full speed
 		if player_skydiver.is_parachute_activated == false:
-			player_crashed(false)
-			return
+			player_crashed_into_ground()
 		
 		goal_completed()
 		return
@@ -78,20 +91,32 @@ func goal_completed():
 	GameManager.current_level_time = elapsed_time
 	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
 
-func player_crashed(crashed_in_water: bool = true):
+func player_crashed_into_ground():
+	print('player crashed into ground ', randf())
 	player_skydiver.crashed() # tell plane it crashed so it stops moving
+	$UI/HUD.visible = false # hide plane instruments at top
+	player_crashed_overlay.visible = true
+	$Camera3D/ScreenShake.camera_shake_impulse(1.0, 1.4)
+	
+	# restart the level after X seconds
+	await get_tree().create_timer(9.0).timeout # waits for X second
+	GameManager.current_level_success_status = false
+	GameManager.current_level_time = elapsed_time
+	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
+
+func player_crashed_into_water():
+	player_skydiver.crashed() # tell skydiver it crashed so it stops moving
 	$UI/HUD.visible = false # hide plane instruments at top
 	player_crashed_overlay.visible = true
 	
 	$Camera3D/ScreenShake.camera_shake_impulse(1.0, 1.4)
-	
-	if crashed_in_water:
-		# create particle effect of splashing
-		# VERY important to add splash_object to scene tree before
-		# setting global position. 
-		var splash_object: GPUParticles3D = splash.instantiate()
-		add_child(splash_object)
-		splash_object.global_position = player_skydiver.global_position
+
+	# create particle effect of splashing
+	# VERY important to add splash_object to scene tree before
+	# setting global position. 
+	var splash_object: GPUParticles3D = splash.instantiate()
+	add_child(splash_object)
+	splash_object.global_position = player_skydiver.global_position
 		
 	# restart the level after X seconds
 	await get_tree().create_timer(9.0).timeout # waits for X second

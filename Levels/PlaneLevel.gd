@@ -53,7 +53,6 @@ func setup_level():
 	
 	# Setup. depending on level, maybe need to move plane around, turn off gates
 	add_child(environment)
-	environment.level_set()
 
 func is_mission_complete() -> bool:
 	# all gates are passed

@@ -17,7 +17,6 @@ func change_audio_stream(new_audio_file_path: String):
 	else:
 		print("Failed to load audio stream from path: ", new_audio_file_path)
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
 	GlobalAudio.start_music_mission_debrief()

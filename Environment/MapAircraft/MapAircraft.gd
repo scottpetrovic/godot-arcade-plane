@@ -6,13 +6,17 @@ extends Node3D
 var world_sky: PackedScene = load("res://Environment/Sky/examples/Sky.tscn")
 
 func _ready():
-	GameManager.level_changed.connect(level_set)
 	add_child(world_sky.instantiate())
-
-func level_set():
-	if GameManager.current_vehicle == 'Plane':
+	
+	if GameManager.current_vehicle == "Plane":
 		sky_diving_gate_manager.visible = false
 		plane_gate_manager.visible = true
+		return
+
+	if GameManager.current_vehicle == "Skydiving":
+		sky_diving_gate_manager.visible = true
+		plane_gate_manager.visible = false
+		return
 
 func are_all_gates_passed():
 	
