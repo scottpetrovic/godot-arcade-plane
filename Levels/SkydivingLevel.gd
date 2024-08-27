@@ -26,16 +26,18 @@ func _ready():
 	setup_level()
 	setup_player()
 
+
 func setup_level():
 	# load map depending on what our current map is
 	if GameManager.current_map == Constants.MAP.AIRCRAFTCARRIER:
-		environment = map_aircraft_carrier.instantiate()		
+		environment = map_aircraft_carrier.instantiate()
 	elif GameManager.current_map == Constants.MAP.AIRPORT:
 		environment = map_airport.instantiate()
 	
 	# Setup. depending on level, maybe need to move plane around, turn off gates
 	add_child(environment)
-	
+
+
 func setup_player():
 	# Connect the parachute_deployed signal to the _on_parachute_deployed function
 	player_skydiver.parachute_deployed.connect(_on_parachute_deployed)
@@ -92,36 +94,27 @@ func goal_completed():
 	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
 
 func player_crashed_into_ground():
-	print('player crashed into ground ', randf())
-	player_skydiver.crashed() # tell plane it crashed so it stops moving
-	$UI/HUD.visible = false # hide plane instruments at top
-	player_crashed_overlay.visible = true
-	$Camera3D/ScreenShake.camera_shake_impulse(1.0, 1.4)
-	
-	# restart the level after X seconds
-	await get_tree().create_timer(9.0).timeout # waits for X second
-	GameManager.current_level_success_status = false
-	GameManager.current_level_time = elapsed_time
-	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
+	crash_logic()
 
 func player_crashed_into_water():
-	player_skydiver.crashed() # tell skydiver it crashed so it stops moving
-	$UI/HUD.visible = false # hide plane instruments at top
-	player_crashed_overlay.visible = true
-	
-	$Camera3D/ScreenShake.camera_shake_impulse(1.0, 1.4)
-
 	# create particle effect of splashing
 	# VERY important to add splash_object to scene tree before
 	# setting global position. 
 	var splash_object: GPUParticles3D = splash.instantiate()
 	add_child(splash_object)
 	splash_object.global_position = player_skydiver.global_position
-		
+	
+	crash_logic()
+
+
+func crash_logic():
+	player_skydiver.crashed() # tell plane it crashed so it stops moving
+	$UI/HUD.visible = false # hide plane instruments at top
+	player_crashed_overlay.visible = true
+	$Camera3D/ScreenShake.camera_shake_impulse(1.0, 1.4)
+
 	# restart the level after X seconds
 	await get_tree().create_timer(9.0).timeout # waits for X second
 	GameManager.current_level_success_status = false
 	GameManager.current_level_time = elapsed_time
 	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
-	
-	
