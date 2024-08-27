@@ -21,7 +21,8 @@ var environment: Node3D # dynamicall added from Game manager config
 
 var elapsed_time: float = 0.0
 
-var splash: PackedScene = load("res://Environment/Ocean/SplashParticles.tscn")
+var splash: PackedScene = load("res://Effects/Particles/SplashParticles.tscn")
+var ground_debris: PackedScene = load("res://Effects/Particles/GroundCrashParticles.tscn")
 
 var map_aircraft_carrier: PackedScene = load("res://Environment/MapAircraft/MapAircraft.tscn")
 var map_airport: PackedScene = load("res://Environment/MapAirport/MapAirport.tscn")
@@ -140,6 +141,10 @@ func player_crashed_into_ground():
 	$UI/HUD.visible = false # hide plane instruments at top
 	$Camera/ScreenShake.camera_shake_impulse(1.3, 0.4)
 	
+	# create particle effects and attach to plane
+	var explosion_effects: Node3D = ground_debris.instantiate()
+	airplane.add_child(explosion_effects)
+	
 	# restart the level after 4 seconds
 	await get_tree().create_timer(8.0).timeout # waits for X second
 	GameManager.current_level_time = elapsed_time
@@ -147,9 +152,9 @@ func player_crashed_into_ground():
 	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
 
 
-func player_crashed():
+func player_crashed_into_water():
 	airplane.turn_engine_off()
-	airplane.crashed() # tell plane it crashed so it stops moving
+	airplane.crashed_into_water() # tell plane it crashed so it stops moving
 	player_crashed_overlay.visible = true
 	
 	$UI/HUD.visible = false # hide plane instruments at top

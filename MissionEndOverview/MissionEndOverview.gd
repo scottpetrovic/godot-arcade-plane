@@ -36,7 +36,7 @@ func _ready() -> void:
 	await get_tree().create_timer(2.0).timeout
 	start_showing_text = true
 	await get_tree().create_timer(10.0).timeout
-	GameManager.go_to_next_level()
+	GameManager.go_to_map_selection()
 
 func _process(delta: float) -> void:
 	if start_showing_text:

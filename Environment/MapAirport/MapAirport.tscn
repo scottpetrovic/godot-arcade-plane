@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bg5fgtcxdb0f5"]
 
 [ext_resource type="Script" path="res://Environment/MapAirport/MapAirport.gd" id="1_bb3bl"]
-[ext_resource type="Script" path="res://Environment/LandingArea/LandingArea.gd" id="3_7dyxi"]
+[ext_resource type="Script" path="res://Environment/LandingArea.gd" id="3_7dyxi"]
 [ext_resource type="PackedScene" uid="uid://d0fcnooujkgip" path="res://Environment/GroundPlane.tscn" id="3_ipf8y"]
 [ext_resource type="PackedScene" uid="uid://uxya2x0uw64m" path="res://Environment/Map1/Map1.glb" id="3_s104d"]
 [ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://GateCheckpoint/GateCheckpoint.tscn" id="6_osbfy"]

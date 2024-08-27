@@ -6,4 +6,4 @@ func _ready() -> void:
 func body_entered_event(body: Node3D):
 	if body.name == "Airplane" || body.name == "PlayerSkydiver":
 		print('airplane crashed...in the water class')
-		GameManager.find_base_node().player_crashed()
+		GameManager.find_base_node().player_crashed_into_water()

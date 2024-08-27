@@ -1,8 +1,30 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b6n1yoly1eyhl"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b6n1yoly1eyhl"]
 
 [ext_resource type="FontFile" uid="uid://dag26oxpo2ms2" path="res://Theme/NewAmsterdam-Regular.ttf" id="1_htikd"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txoum"]
+content_margin_left = 40.0
+content_margin_top = 20.0
+content_margin_right = 40.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0.33782, 0.604087, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.164946, 0.510078, 0.735435, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 3
+
 [resource]
 default_font = ExtResource("1_htikd")
+Button/font_sizes/font_size = 50
+Button/styles/normal = SubResource("StyleBoxFlat_txoum")
+GridContainer/constants/h_separation = 20
+GridContainer/constants/v_separation = 20
 Label/font_sizes/font_size = 16
 Label/fonts/DefaultFont = ExtResource("1_htikd")
+VBoxContainer/constants/separation = 20

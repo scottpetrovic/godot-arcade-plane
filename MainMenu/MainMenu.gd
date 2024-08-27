@@ -12,8 +12,4 @@ func _input(event: InputEvent) -> void:
 
 	# go to in-game when anything is pressed
 	if event is InputEventMouseButton or event is InputEventKey:
-		
-		# first level will be a  plane level at the air craft carrier for now
-		# GameManager.set_current_level(1, "Plane", "AircraftCarrier")
-		GameManager.set_current_level(1, "Plane", "Airport")
-		GameManager.go_to_next_level()
+		GameManager.go_to_map_selection()

@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3juw384kn50j"]
+
+[sub_resource type="Gradient" id="Gradient_xe2t5"]
+offsets = PackedFloat32Array(0, 0.768489, 1)
+colors = PackedColorArray(0.819608, 0.615686, 0.384314, 0.556863, 0.584314, 0.447059, 0.235294, 0.392157, 0.501961, 0.392157, 0.184314, 0.00784314)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t3cpp"]
+gradient = SubResource("Gradient_xe2t5")
+
+[sub_resource type="Curve" id="Curve_3fhqh"]
+_data = [Vector2(0, 0.14588), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.72383, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mmfvs"]
+curve = SubResource("Curve_3fhqh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y1ex4"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 1, 0)
+spread = 45.575
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, 0, 0)
+damping_min = 1.0
+damping_max = 1.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_mmfvs")
+color_ramp = SubResource("GradientTexture1D_t3cpp")
+turbulence_noise_strength = 3.64
+turbulence_noise_scale = 8.861
+sub_emitter_mode = 1
+sub_emitter_frequency = 7.69
+sub_emitter_keep_velocity = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qtejl"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_0732j"]
+material = SubResource("StandardMaterial3D_qtejl")
+radius = 1.0
+height = 2.0
+radial_segments = 8
+rings = 8
+
+[node name="GroundCrashParticles" type="Node3D"]
+
+[node name="GroundSmoke" type="GPUParticles3D" parent="."]
+amount = 400
+lifetime = 5.0
+randomness = 0.11
+process_material = SubResource("ParticleProcessMaterial_y1ex4")
+draw_pass_1 = SubResource("SphereMesh_0732j")

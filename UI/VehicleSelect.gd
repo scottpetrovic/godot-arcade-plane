@@ -1,0 +1,23 @@
+extends Node3D
+
+@onready var airplane_button: Button = $Control/CenterContainer/VBoxContainer/GridContainer/AirplaneButton
+@onready var skydiving_button: Button = $Control/CenterContainer/VBoxContainer/GridContainer/SkydivingButton
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	airplane_button.pressed.connect(airplane_vehicle_selected)
+	skydiving_button.pressed.connect(skydiving_vehicle_selected)
+
+func airplane_vehicle_selected():
+	GameManager.set_current_vehicle("Plane")
+	GameManager.go_to_next_level()
+
+func skydiving_vehicle_selected():
+	GameManager.set_current_vehicle("Skydiving")
+	GameManager.go_to_next_level()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass

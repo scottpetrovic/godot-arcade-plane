@@ -23,6 +23,18 @@ func set_current_level(lvl_number: int, cur_vehicle: String, cur_map: String):
 	current_map = cur_map
 	emit_signal("level_changed")
 
+func set_current_map(cur_map: String):
+	current_map = cur_map
+
+func set_current_vehicle(cur_vehicle: String):
+	current_vehicle = cur_vehicle
+
+func go_to_map_selection():
+	SceneTransition.change_scene("res://UI/MapSelect.tscn")
+
+func go_to_vehicle_selection_screen():
+	SceneTransition.change_scene("res://UI/VehicleSelect.tscn")
+
 func set_level_complete(level_number: int, level_time: float):
 
 	current_level_time = level_time
@@ -43,16 +55,13 @@ func go_to_next_level():
 	
 	current_level_success_status = false # reset current level success
 
+	if current_vehicle == "Plane":
+		SceneTransition.change_scene("res://Levels/PlaneLevel.tscn")
+	
+	if current_vehicle == "Skydiving":
+		SceneTransition.change_scene("res://Levels/SkydivingLevel.tscn")
+
 	GlobalAudio.start_music_theme()
-
-	if is_level_1_finished == false:
-		GameManager.set_current_level(1, "Plane", "Airport")
-		SceneTransition.change_scene("res://Levels/PlaneLevel.tscn")
-	else:
-		GameManager.set_current_level(1, "Plane", "AircraftCarrier")
-		SceneTransition.change_scene("res://Levels/PlaneLevel.tscn")
-
-		# SceneTransition.change_scene("res://Levels/Level2.tscn")
 
 
 func format_elapsed_time(elapsed: float) -> String:
