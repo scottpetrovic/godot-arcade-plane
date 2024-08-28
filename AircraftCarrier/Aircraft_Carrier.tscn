@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cl861nerpvmo8"]
 
 [ext_resource type="PackedScene" uid="uid://bc7flfj4e2c14" path="res://AircraftCarrier/aircraft_carrier_mesh.tscn" id="1_6s1ql"]
-[ext_resource type="Script" path="res://Environment/LandingArea.gd" id="2_n1y8k"]
+[ext_resource type="Script" path="res://Environment/Runway/Runway.gd" id="2_n1y8k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_518md"]
 size = Vector3(38.0914, 13.8756, 113.814)
@@ -33,11 +33,13 @@ shape = SubResource("BoxShape3D_6swja")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8417, 17.8418, 42.6023)
 shape = SubResource("BoxShape3D_bdlhb")
 
-[node name="AreaLandingStrip" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.87324, 0)
-monitorable = false
+[node name="Runway" type="Node3D" parent="."]
 script = ExtResource("2_n1y8k")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaLandingStrip"]
+[node name="AreaLandingStrip" type="Area3D" parent="Runway"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.87324, 0)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Runway/AreaLandingStrip"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.18918)
 shape = SubResource("BoxShape3D_r2f64")

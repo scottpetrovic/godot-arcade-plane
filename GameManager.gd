@@ -60,10 +60,3 @@ func format_elapsed_time(elapsed: float) -> String:
 	var minutes = int(elapsed/ 60.0)
 	var seconds = int(elapsed) % 60
 	return str(minutes) + ":" + str(seconds).pad_zeros(2)
-
-func find_base_node() -> Node3D:
-	var root = get_tree().root
-	for child in root.get_children():
-		if child is Node3D:
-			return child
-	return null

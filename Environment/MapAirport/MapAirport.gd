@@ -25,7 +25,7 @@ func has_player_crashed_into_ground():
 	return $GroundPlane.has_crashed_on_ground
 
 func is_player_on_landing_pad(): 
-	return $Airport/AreaLandingStrip.is_player_on_landing_strip
+	return $Runway.is_player_on_landing_strip
 
 func get_plane_starting_transform_1() -> Node3D:
 	return $StartPositions/Plane1
