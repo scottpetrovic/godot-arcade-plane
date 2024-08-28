@@ -8,4 +8,4 @@ func _ready() -> void:
 
 func _body_entered(body: Node3D):
 	if body.name == "Airplane" || body.name == "PlayerSkydiver":
-		GameManager.find_base_node().player_crashed_into_ground()
+		EventBus.emit_signal("player_crashed", "ground")

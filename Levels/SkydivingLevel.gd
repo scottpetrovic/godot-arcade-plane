@@ -28,6 +28,9 @@ func _ready():
 
 
 func setup_level():
+	
+	EventBus.player_crashed.connect(on_player_crash)
+	
 	# load map depending on what our current map is
 	if GameManager.current_map == Constants.MAP.AIRCRAFTCARRIER:
 		environment = map_aircraft_carrier.instantiate()
@@ -66,20 +69,18 @@ func update_hud(delta: float):
 
 func _process(delta: float) -> void:
 
+	# stop processing new things as we are done. we should have already kicked off the 
+	# reset of the process to finish level
+	if is_level_complete:
+		return
+
 	# add is_level_complete == false to make sure this only runs one time
-	if environment.is_player_on_landing_pad() && is_level_complete == false:
+	if environment.is_player_on_landing_pad() &&  player_skydiver.is_parachute_activated:
 		is_level_complete = true
-		
-		# if mission is finished and we haven't deployed parachute, that means
-		# we ran into the ground going full speed
-		if player_skydiver.is_parachute_activated == false:
-			player_crashed_into_ground()
-		
 		goal_completed()
 		return
-	
-	if is_level_complete == false:
-		update_hud(delta)
+
+	update_hud(delta)
 
 func goal_completed():
 	player_skydiver.landed()
@@ -93,25 +94,21 @@ func goal_completed():
 	GameManager.current_level_time = elapsed_time
 	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
 
-func player_crashed_into_ground():
-	crash_logic()
-
-func player_crashed_into_water():
-	# create particle effect of splashing
-	# VERY important to add splash_object to scene tree before
-	# setting global position. 
-	var splash_object: GPUParticles3D = splash.instantiate()
-	add_child(splash_object)
-	splash_object.global_position = player_skydiver.global_position
-	
-	crash_logic()
-
-
-func crash_logic():
-	player_skydiver.crashed() # tell plane it crashed so it stops moving
+func on_player_crash(location: String):
+	player_skydiver.crashed() # tell skydiver it crashed so it stops moving
 	$UI/HUD.visible = false # hide plane instruments at top
 	player_crashed_overlay.visible = true
-	$Camera3D/ScreenShake.camera_shake_impulse(1.0, 1.4)
+	
+	if location == 'ground':
+		# only do screen shake if we didn't open our parachute on ground
+		if player_skydiver.is_parachute_activated == false:
+			$Camera3D/ScreenShake.camera_shake_impulse(1.0, 1.4)
+	
+	if location == 'water':
+		var splash_object: GPUParticles3D = splash.instantiate()
+		add_child(splash_object)
+		splash_object.global_position = player_skydiver.global_position
+		$Camera3D/ScreenShake.camera_shake_impulse(1.0, 1.4)
 
 	# restart the level after X seconds
 	await get_tree().create_timer(9.0).timeout # waits for X second

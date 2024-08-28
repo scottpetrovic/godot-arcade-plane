@@ -20,6 +20,7 @@ SceneTransition="*res://SceneTransition/SceneTransition.tscn"
 GlobalAudio="*res://Global/GlobalAudio.tscn"
 GameManager="*res://GameManager.gd"
 Constants="*res://Constants.gd"
+EventBus="*res://EventBus.gd"
 
 [display]
 

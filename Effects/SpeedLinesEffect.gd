@@ -10,7 +10,7 @@ extends ColorRect
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 		
-	if airplane && airplane.crashed_into_water:
+	if airplane && airplane.has_crashed:
 		material.set_shader_parameter("line_density", 0.0)
 		return
 	

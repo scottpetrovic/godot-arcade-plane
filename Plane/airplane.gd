@@ -20,8 +20,7 @@ var air_particles_2: GPUParticles3D
 
 var air_particles_scene: PackedScene = load("res://Plane/PlaneParticleTrail.tscn")
 
-var has_crashed_into_water = false # only water will make us crash
-var has_crashed_into_ground: bool = false
+var has_crashed = false # only water will make us crash
 var is_engine_on = true # turn off when we complete mission
 var airplane_original_scale: float
 
@@ -83,18 +82,9 @@ func turn_engine_off():
 
 func _physics_process(delta: float) -> void:
 	
-	# crashed into the ground, slow down and turn off inputs
-	if has_crashed_into_ground:
-		target_speed = 0.0
-		forward_speed = lerp(forward_speed, forward_speed*0.1, delta) # slow down
-		velocity = -transform.basis.z * forward_speed # Movement is always forward
-		move_and_slide()
-		return
-	
 	# crashed into the water
-	if has_crashed_into_water:
+	if has_crashed:
 		return
-
 
 	get_input(delta)
 
@@ -170,10 +160,5 @@ func get_input(delta: float) -> void:
 	pitch_input += Input.get_action_strength("pitch_up")
 	pitch_input -= Input.get_action_strength("pitch_down")
 
-# Water will call this if there is an impact
-func crashed_into_water():
-	has_crashed_into_water = true
-	visible = false
-
-func crashed_into_ground():
-	has_crashed_into_ground = true
+func crashed():
+	has_crashed = true

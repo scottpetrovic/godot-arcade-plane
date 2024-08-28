@@ -45,6 +45,9 @@ func setup_plane():
 
 
 func setup_level():
+	
+	EventBus.player_crashed.connect(on_player_crash)
+	
 	# load map depending on what our current map is
 	if GameManager.current_map == Constants.MAP.AIRCRAFTCARRIER:
 		environment = map_aircraft_carrier.instantiate()		
@@ -133,39 +136,21 @@ func goal_completed():
 		# TODO: pause screen
 		# TODO: controls if on mobile
 
-func player_crashed_into_ground():
+func on_player_crash(location: String):
 	airplane.turn_engine_off()
-	airplane.crashed_into_ground()
 	player_crashed_overlay.visible = true
 	$UI/HUD.visible = false # hide plane instruments at top
 	$Camera/ScreenShake.camera_shake_impulse(1.3, 0.4)
-	
-	# create particle effects and attach to plane
-	var explosion_effects: Node3D = ground_debris.instantiate()
-	airplane.add_child(explosion_effects)
-	
-	# restart the level after 4 seconds
-	await get_tree().create_timer(8.0).timeout # waits for X second
-	GameManager.current_level_time = elapsed_time
-	GameManager.current_level_success_status = false
-	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
+	airplane.crashed()
 
-
-func player_crashed_into_water():
-	airplane.turn_engine_off()
-	airplane.crashed_into_water() # tell plane it crashed so it stops moving
-	player_crashed_overlay.visible = true
-	
-	$UI/HUD.visible = false # hide plane instruments at top
-
-	# create particle effect of splashing
-	# VERY important to add splash_object to scene tree before
-	# setting global position. 
-	var splash_object: GPUParticles3D = splash.instantiate()
-	add_child(splash_object)
-	splash_object.global_position = airplane.global_position
-	
-	$Camera/ScreenShake.camera_shake_impulse(1.3, 0.4)
+	if location == 'ground':
+		var explosion_effects: Node3D = ground_debris.instantiate()
+		airplane.add_child(explosion_effects)
+		
+	if location == 'water':
+		var splash_object: GPUParticles3D = splash.instantiate()
+		add_child(splash_object)
+		splash_object.global_position = airplane.global_position
 	
 	# restart the level after 4 seconds
 	await get_tree().create_timer(8.0).timeout # waits for X second

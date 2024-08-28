@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bg5fgtcxdb0f5"]
+[gd_scene load_steps=13 format=3 uid="uid://bg5fgtcxdb0f5"]
 
 [ext_resource type="Script" path="res://Environment/MapAirport/MapAirport.gd" id="1_bb3bl"]
 [ext_resource type="Script" path="res://Environment/LandingArea.gd" id="3_7dyxi"]
-[ext_resource type="PackedScene" uid="uid://d0fcnooujkgip" path="res://Environment/GroundPlane.tscn" id="3_ipf8y"]
 [ext_resource type="PackedScene" uid="uid://uxya2x0uw64m" path="res://Environment/Map1/Map1.glb" id="3_s104d"]
+[ext_resource type="Script" path="res://Environment/GroundPlane.gd" id="5_cnlel"]
 [ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://GateCheckpoint/GateCheckpoint.tscn" id="6_osbfy"]
 [ext_resource type="Script" path="res://GateCheckpoint/GateManager.gd" id="8_km4je"]
 
@@ -12,6 +12,20 @@ size = Vector3(9.90454, 0.741791, 59.7122)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r2f64"]
 size = Vector3(10.6475, 1, 60.6924)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bn20u"]
+albedo_color = Color(0.65999, 0.5659, 0.356277, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dqfe6"]
+material = SubResource("StandardMaterial3D_bn20u")
+size = Vector2(10000, 10000)
+subdivide_width = 500
+subdivide_depth = 500
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_aplvy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r034g"]
+size = Vector3(1000, 1, 1000)
 
 [node name="Environment" type="Node3D"]
 script = ExtResource("1_bb3bl")
@@ -37,7 +51,21 @@ script = ExtResource("3_7dyxi")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.243164, -0.234049, 6.23245)
 shape = SubResource("BoxShape3D_r2f64")
 
-[node name="GroundPlane" parent="." instance=ExtResource("3_ipf8y")]
+[node name="GroundPlane" type="StaticBody3D" parent="."]
+script = ExtResource("5_cnlel")
+
+[node name="Ground3D" type="MeshInstance3D" parent="GroundPlane"]
+mesh = SubResource("PlaneMesh_dqfe6")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundPlane"]
+shape = SubResource("WorldBoundaryShape3D_aplvy")
+
+[node name="Area3D" type="Area3D" parent="GroundPlane"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundPlane/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.445581, 0)
+shape = SubResource("BoxShape3D_r034g")
 
 [node name="PlaneGateManager" type="Node3D" parent="."]
 script = ExtResource("8_km4je")
