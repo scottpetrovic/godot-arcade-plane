@@ -13,7 +13,8 @@ func _ready():
 	if GameManager.current_vehicle == Constants.VEHICLE.AIRPLANE:
 		sky_diving_gate_manager.visible = false
 		plane_gate_manager.visible = true
-		sky_diving_landing_target.visible = false
+		# hides it. visible = false doesn't disable colliders, so this works
+		sky_diving_landing_target.global_position = Vector3(0,-100,0) 
 		return
 
 	if GameManager.current_vehicle == Constants.VEHICLE.SKYDIVER:
