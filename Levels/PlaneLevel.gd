@@ -27,7 +27,13 @@ var ground_debris: PackedScene = load("res://Effects/Particles/GroundCrashPartic
 var map_aircraft_carrier: PackedScene = load("res://Environment/MapAircraft/MapAircraft.tscn")
 var map_airport: PackedScene = load("res://Environment/MapAirport/MapAirport.tscn")
 
+var is_testing: bool = false
+
 func _ready():
+	if is_testing:
+		GameManager.current_map = Constants.MAP.AIRCRAFTCARRIER
+		GameManager.current_vehicle = Constants.VEHICLE.AIRPLANE
+	
 	setup_level()
 	setup_plane() # make sure this is after the setup level
 
