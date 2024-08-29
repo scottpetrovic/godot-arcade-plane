@@ -22,6 +22,9 @@ var has_passed_through_all_checkpoints: bool = false
 var map_aircraft_carrier: PackedScene = load("res://Environment/MapAircraft/MapAircraft.tscn")
 var map_airport: PackedScene = load("res://Environment/MapAirport/MapAirport.tscn")
 
+var is_testing: bool = true
+
+
 func _ready():
 	setup_level()
 	setup_player()
@@ -32,6 +35,9 @@ func setup_level():
 	EventBus.player_crashed.connect(on_player_crash)
 	EventBus.skydiver_landed_on_target.connect(on_skydiver_hit_target)
 	EventBus.skydiver_landed_off_target.connect(on_skydiver_missed_target)
+	
+	if is_testing:
+		GameManager.current_map = Constants.MAP.AIRCRAFTCARRIER
 	
 	# load map depending on what our current map is
 	if GameManager.current_map == Constants.MAP.AIRCRAFTCARRIER:

@@ -37,39 +37,42 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_parachute") && is_parachute_activated == false:
 		deploy_parachute()
 
-	# Ensure the player is always falling at the appropriate rate.
-	if is_parachute_activated:
-		velocity = transform.basis.z * -PARACHUTE_FORWARD_SPEED
-		velocity.y = PARACHUTE_FALL_SPEED
-	else:
-		velocity.y = FALL_SPEED
-
 	# Handle rotation and movement.
 	if is_parachute_activated == false:
-		if Input.is_action_pressed("ui_up"):
-			rotation_degrees.x -= ROTATION_SPEED * delta
-			velocity -= transform.basis.z * SPEED * delta
-		elif Input.is_action_pressed("ui_down"):
-			rotation_degrees.x += ROTATION_SPEED * delta
-			velocity += transform.basis.z * SPEED * delta
-
-		if Input.is_action_pressed("ui_right"):
-			rotation_degrees.y -= ROTATION_SPEED * delta
-		elif Input.is_action_pressed("ui_left"):
-			rotation_degrees.y += ROTATION_SPEED * delta
-	
-	# different controls when parachute is activated
-	# mostly can turn left and right
-	if is_parachute_activated:
-		# Lock rotation to face down
-		rotation_degrees.x = 0
-
-		if Input.is_action_pressed("ui_right"):
-			rotation_degrees.y -= ROTATION_SPEED * delta
-		elif Input.is_action_pressed("ui_left"):
-			rotation_degrees.y += ROTATION_SPEED * delta
+		skydiving_movement(delta)
+	else:
+		parachuting_movement(delta)
 
 	move_and_slide()
+
+func parachuting_movement(delta: float) -> void:
+	# Ensure the player is always falling at the appropriate rate.
+	velocity = transform.basis.z * -PARACHUTE_FORWARD_SPEED
+	velocity.y = PARACHUTE_FALL_SPEED
+
+	# Lock rotation to face down
+	rotation_degrees.x = 0
+
+	if Input.is_action_pressed("ui_right"):
+		rotation_degrees.y -= ROTATION_SPEED * delta
+	elif Input.is_action_pressed("ui_left"):
+		rotation_degrees.y += ROTATION_SPEED * delta
+
+func skydiving_movement(delta: float) -> void:
+	velocity.y = FALL_SPEED
+
+	if Input.is_action_pressed("ui_up"):
+		rotation_degrees.x -= ROTATION_SPEED * delta
+		velocity -= transform.basis.z * SPEED * delta
+	elif Input.is_action_pressed("ui_down"):
+		rotation_degrees.x += ROTATION_SPEED * delta
+		velocity += transform.basis.z * SPEED * delta
+
+	if Input.is_action_pressed("ui_right"):
+		rotation_degrees.y -= ROTATION_SPEED * delta
+	elif Input.is_action_pressed("ui_left"):
+		rotation_degrees.y += ROTATION_SPEED * delta
+
 
 func deploy_parachute():
 	is_parachute_activated = true
