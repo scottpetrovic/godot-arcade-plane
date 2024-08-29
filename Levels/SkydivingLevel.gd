@@ -122,6 +122,7 @@ func on_skydiver_hit_target(points: float):
 		on_player_crash("ground")
 		return
 
+	GameManager.current_level_parachute_landing_score = points
 	GameManager.current_level_success_status = true
 	player_skydiver.landed()
 	goal_completed()

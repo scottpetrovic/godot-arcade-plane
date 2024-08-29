@@ -4,6 +4,7 @@ extends Control
 @onready var instructor_message: Label = $InstructorMessage
 @onready var level_label: Label = $VBoxContainer/LevelLabel
 @onready var time_score: Label = $VBoxContainer/TimeScore
+@onready var landing_score: Label = $VBoxContainer/LandingScore
 
 
 var start_showing_text: bool = false
@@ -21,8 +22,11 @@ func _ready() -> void:
 	
 	GlobalAudio.start_music_mission_debrief()
 	
-	level_label.text = "Level " + str(GameManager.current_level_number)
+	level_label.text = "Level " + str( GameManager.current_level_number)
 	time_score.text = "Time: " + GameManager.format_elapsed_time(GameManager.current_level_time)
+	
+	if GameManager.current_vehicle == Constants.VEHICLE.SKYDIVER:
+		landing_score.text = "Landing: " + str( "%.2f" % GameManager.current_level_parachute_landing_score) + " PTS"
 
 	# eventually find out what type of scores will mean we are passed
 	# if we fail, we will not se the level to complete
