@@ -7,5 +7,6 @@ const VEHICLE = {
 
 const MAP = {
 	AIRPORT = "Airport",
-	AIRCRAFTCARRIER = "AircraftCarrier"
+	AIRCRAFTCARRIER = "AircraftCarrier",
+	ISLAND = "Island"
 }

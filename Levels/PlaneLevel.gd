@@ -26,13 +26,16 @@ var ground_debris: PackedScene = load("res://Effects/Particles/GroundCrashPartic
 
 var map_aircraft_carrier: PackedScene = load("res://Environment/MapAircraft/MapAircraft.tscn")
 var map_airport: PackedScene = load("res://Environment/MapAirport/MapAirport.tscn")
+var map_island: PackedScene = load("res://Environment/MapIsland/MapIsland.tscn")
 
 var is_testing: bool = false
 
 func _ready():
 	if is_testing:
-		GameManager.current_map = Constants.MAP.AIRCRAFTCARRIER
+		GameManager.current_map = Constants.MAP.ISLAND
 		GameManager.current_vehicle = Constants.VEHICLE.AIRPLANE
+		airplane.global_position = Vector3(0,70,0)
+		airplane.set_throttle(0.7) # 70% full throttle 
 	
 	setup_level()
 	setup_plane() # make sure this is after the setup level
@@ -59,7 +62,10 @@ func setup_level():
 		environment = map_aircraft_carrier.instantiate()		
 	elif GameManager.current_map == Constants.MAP.AIRPORT:
 		environment = map_airport.instantiate()
+	elif GameManager.current_map == Constants.MAP.ISLAND:
+		environment = map_island.instantiate()
 	
+	print(environment)
 	# Setup. depending on level, maybe need to move plane around, turn off gates
 	add_child(environment)
 

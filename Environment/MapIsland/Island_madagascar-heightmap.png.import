@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w0isknjs0vbb"
-path.s3tc="res://.godot/imported/aircraft-carrier_color-palette.png-d0866875e2cd2f8d13dd19f2bc8667d8.s3tc.ctex"
+uid="uid://cfx5lt8ccjalx"
+path.s3tc="res://.godot/imported/Island_madagascar-heightmap.png-30cff0ebbf2bf08a9c1159760c564568.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "6f40c9682c4b0a1c226ccc1bb7135cde"
+"md5": "681ac733b6df08718a3660c40a571fde"
 }
 
 [deps]
 
-source_file="res://AircraftCarrier/aircraft-carrier_color-palette.png"
-dest_files=["res://.godot/imported/aircraft-carrier_color-palette.png-d0866875e2cd2f8d13dd19f2bc8667d8.s3tc.ctex"]
+source_file="res://Environment/MapIsland/Island_madagascar-heightmap.png"
+dest_files=["res://.godot/imported/Island_madagascar-heightmap.png-30cff0ebbf2bf08a9c1159760c564568.s3tc.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

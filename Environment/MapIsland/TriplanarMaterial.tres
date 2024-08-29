@@ -1,0 +1,39 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://e512gbjga431"]
+
+[ext_resource type="Shader" path="res://Environment/MapIsland/Triplanar.gdshader" id="1_b2fma"]
+[ext_resource type="Texture2D" uid="uid://c62rglqqy3icg" path="res://Plane/plane_color-palette.png" id="2_jdkhp"]
+[ext_resource type="Texture2D" uid="uid://cyet261j7dn4" path="res://Assets/Art References/PilotwingsMapLesson02.png" id="3_aakj5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qr7f3"]
+noise_type = 3
+frequency = 0.4681
+fractal_gain = 1.0
+fractal_weighted_strength = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cllwi"]
+noise = SubResource("FastNoiseLite_qr7f3")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_b2fma")
+shader_parameter/base_blend_normal_scale = 5.0
+shader_parameter/roughness = 1.0
+shader_parameter/metal = 0.0
+shader_parameter/ao_light_effect = 0.0
+shader_parameter/tri_blend_factor = 5.0
+shader_parameter/base_and_secondary_maps_blend = 0.4
+shader_parameter/blend_softness = 0.25
+shader_parameter/invert_mask = false
+shader_parameter/use_xz_mask = false
+shader_parameter/use_additional_mask_texture = false
+shader_parameter/uv_base_offset = Vector3(0, 0, 0)
+shader_parameter/uv_blend_offset = Vector3(0, 0, 0)
+shader_parameter/uv_additional_mask_scale = Vector3(1, 1, 1)
+shader_parameter/albedo = ExtResource("2_jdkhp")
+shader_parameter/normal = SubResource("NoiseTexture2D_cllwi")
+shader_parameter/blend_albedo = ExtResource("3_aakj5")
+shader_parameter/use_UV_map = false
+shader_parameter/use_detail_normal = false
+shader_parameter/uv_detail_scale = Vector3(1, 1, 1)
+shader_parameter/detail_normal_scale = 0.5
+shader_parameter/uv_detail_offset = Vector3(0, 0, 0)
