@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1h8k6rif81bk"
-path.s3tc="res://.godot/imported/Map1_PilotwingsMapLesson01.png-f007b6c8db79df7a1831abca49c20151.s3tc.ctex"
+uid="uid://1fqp143fp0e3"
+path.s3tc="res://.godot/imported/LandingTarget_color-palette.png-2cbb7fd4fee63dbad353fac0bc21446b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "72d57859a13613c83983b97cd7b1f8ce"
+"md5": "6f40c9682c4b0a1c226ccc1bb7135cde"
 }
 
 [deps]
 
-source_file="res://Environment/Map1/Map1_PilotwingsMapLesson01.png"
-dest_files=["res://.godot/imported/Map1_PilotwingsMapLesson01.png-f007b6c8db79df7a1831abca49c20151.s3tc.ctex"]
+source_file="res://Environment/LandingTarget/LandingTarget_color-palette.png"
+dest_files=["res://.godot/imported/LandingTarget_color-palette.png-2cbb7fd4fee63dbad353fac0bc21446b.s3tc.ctex"]
 
 [params]
 
@@ -25,7 +25,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

@@ -54,6 +54,4 @@ transform = Transform3D(0.984196, 0.113116, -0.136249, 0, 0.7694, 0.638767, 0.17
 shadow_enabled = true
 
 [node name="SkydivingLandingTarget" parent="." instance=ExtResource("5_q3ax4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.16118, 1.53471, 13.7235)
-
-[editable path="AircraftCarrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6942, 2.44603, -0.131649)
