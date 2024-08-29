@@ -2,10 +2,10 @@ extends CharacterBody3D
 
 var takeoff_speed: int = 7 # Can't fly below this speed
 var max_flight_speed: int = 12 # Maximum airspeed
-var turn_speed: float = 0.75 # Turn rate
+var turn_speed: float = 0.35 # Turn rate when going at lower speeds
 var active_turn_speed: float = turn_speed # turning rate will decrease faster plane is going
 var pitch_speed: float = 0.5 # Climb/dive rate
-var level_speed: float = 3.0 # Wings "autolevel" speed
+var lerp_speed_modifier: float = 3.0 # another turn speed
 var throttle_delta: int = 15 # Throttle change speed
 var acceleration: float = 5.0 # Acceleration/deceleration
 var forward_speed: float = 0.0 # Current speed
@@ -88,38 +88,25 @@ func _physics_process(delta: float) -> void:
 
 	get_input(delta)
 
-	# change pitch. If we are on the ground, we cannot make our pitch negative to look underground
-	if is_on_floor():
-		pitch_input = maxf(pitch_input, 0.0) # cannot look down if we are grounded
-		if forward_speed < takeoff_speed:
-			pitch_input = 0.0 # cannot pitch up if going below mininum flight speed
-
-	transform.basis = transform.basis.rotated(transform.basis.x, pitch_input * pitch_speed * delta)
-
-	# turn logic
-	transform.basis = transform.basis.rotated(Vector3.UP, turn_input * active_turn_speed * delta)
-
 	# "banking" (rotating) motion to make turning look more realistic
 	# if we are on the floor, straight out
 	if is_on_floor():		
 		plane_mesh.rotation.z = lerp(plane_mesh.rotation.z, 0.0, delta*2)
 		rotation.x =  lerp(rotation.x, 0.0, delta*2)
 		rotation.z = lerp(rotation.z, 0.0, delta*2)
+
+		# change pitch. If we are on the ground, we cannot make our pitch negative to look underground
+		pitch_input = maxf(pitch_input, 0.0) # cannot look down if we are grounded
+		if forward_speed < takeoff_speed:
+			pitch_input = 0.0 # cannot pitch up if going below mininum flight speed
+		
+		# can turn left and right when on ground
+		transform.basis = transform.basis.rotated(Vector3.UP, turn_input * active_turn_speed * delta)
 	else:
-		plane_mesh.rotation.z = lerp(plane_mesh.rotation.z, -turn_input, level_speed * delta)
+		transform.basis = transform.basis.rotated(transform.basis.x, pitch_input * pitch_speed * delta)
+		rotation.z = lerp(rotation.z, rotation.z + turn_input, lerp_speed_modifier * delta)
 	
-	# a bit of squash and stretch when pitching in the air
-	if is_on_floor() == false:
-		var scale_pitch_amount_y = airplane_original_scale
-		var scale_pitch_amount_x = airplane_original_scale
-		if pitch_input != 0.0:
-			scale_pitch_amount_y = airplane_original_scale * 0.95
-			scale_pitch_amount_x = airplane_original_scale * 1.4
-		plane_mesh.scale.y = lerp(plane_mesh.scale.y, scale_pitch_amount_y, level_speed * delta)
-		plane_mesh.scale.x = lerp(plane_mesh.scale.x, scale_pitch_amount_x, level_speed * delta)
-	else:
-		plane_mesh.scale.y = airplane_original_scale
-		plane_mesh.scale.x = airplane_original_scale
+	squash_and_stretch(delta)
 	
 	# accelerate/decelerate
 	forward_speed = lerp(forward_speed, target_speed, acceleration * delta)
@@ -129,6 +116,19 @@ func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
 	move_and_slide()
 
+func squash_and_stretch(delta: float) -> void:
+	# a bit of squash and stretch when pitching in the air
+	if is_on_floor() == false:
+		var scale_pitch_amount_y = airplane_original_scale
+		var scale_pitch_amount_x = airplane_original_scale
+		if pitch_input != 0.0:
+			scale_pitch_amount_y = airplane_original_scale * 0.95
+			scale_pitch_amount_x = airplane_original_scale * 1.4
+		plane_mesh.scale.y = lerp(plane_mesh.scale.y, scale_pitch_amount_y, lerp_speed_modifier * delta)
+		plane_mesh.scale.x = lerp(plane_mesh.scale.x, scale_pitch_amount_x, lerp_speed_modifier * delta)
+	else:
+		plane_mesh.scale.y = airplane_original_scale
+		plane_mesh.scale.x = airplane_original_scale
 
 func apply_gravity(delta):
 	# if we are going below minimum flight speed, slowly descend to help with collisions
