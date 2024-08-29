@@ -4,6 +4,7 @@ extends Node
 var current_level_time: float = 0.0 # store in seconds
 var current_level_success_status: bool = false
 var current_level_parachute_landing_score: float = 0
+var current_level_objectives_score: int = 0
 
 var current_level_number: int = 1
 var current_vehicle: String = "" # Plane or Skydiving
@@ -49,6 +50,7 @@ func go_to_next_level():
 	current_level_success_status = false # reset current level success
 	current_level_parachute_landing_score = 0
 	current_level_time = 0
+	current_level_objectives_score = 0
 
 	if current_vehicle == Constants.VEHICLE.AIRPLANE:
 		SceneTransition.change_scene("res://Levels/PlaneLevel.tscn")

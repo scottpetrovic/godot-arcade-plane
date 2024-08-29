@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c7tsxmwjuwd41"]
+[gd_scene load_steps=13 format=3 uid="uid://c7tsxmwjuwd41"]
 
 [ext_resource type="Script" path="res://Levels/SkydivingLevel.gd" id="1_m2dhv"]
 [ext_resource type="Script" path="res://Skydiver/PlayerSkydiver.gd" id="5_37043"]
 [ext_resource type="PackedScene" uid="uid://d1hlig8yrnk2a" path="res://Skydiver/Skydiver_mesh.tscn" id="6_ntr7i"]
 [ext_resource type="PackedScene" uid="uid://vtochg4irhio" path="res://Skydiver/parachute.glb" id="7_8p2wn"]
 [ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="9_it1cn"]
+[ext_resource type="Texture2D" uid="uid://bufhyxm73wqho" path="res://Assets/UI/UI-objective-complete.png" id="9_naavn"]
 [ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="10_dbu5a"]
 [ext_resource type="Texture2D" uid="uid://co4bls0sy8o31" path="res://Assets/UI/MISSION-COMPLETE-8-16-2024.png" id="11_4xynx"]
 [ext_resource type="Texture2D" uid="uid://b3oljv8lyncny" path="res://Assets/UI/UI-crashed.png" id="12_v1tdu"]
@@ -18,7 +19,7 @@ size = Vector3(0.238892, 0.323914, 0.298157)
 script = ExtResource("1_m2dhv")
 
 [node name="PlayerSkydiver" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.969445, 0.245307, 0, -0.245307, 0.969445, 0, 100, 0)
+transform = Transform3D(1, 0, 0, 0, 0.969445, 0.245307, 0, -0.245307, 0.969445, 0, 500, 0)
 script = ExtResource("5_37043")
 
 [node name="Skydiver" parent="PlayerSkydiver" instance=ExtResource("6_ntr7i")]
@@ -143,6 +144,32 @@ layout_mode = 2
 [node name="Ui-crashed" type="Sprite2D" parent="UI/PlayerCrashedOverlay/VBoxContainer"]
 scale = Vector2(0.438596, 0.438596)
 texture = ExtResource("12_v1tdu")
+
+[node name="CheckpointsPassedOverlay" type="CenterContainer" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CheckpointsPassedOverlay"]
+layout_mode = 2
+
+[node name="Ui-objective-complete" type="Sprite2D" parent="UI/CheckpointsPassedOverlay/VBoxContainer"]
+position = Vector2(89, -33)
+scale = Vector2(0.693878, 0.693878)
+texture = ExtResource("9_naavn")
+
+[node name="Label2" type="Label" parent="UI/CheckpointsPassedOverlay/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("10_dbu5a")
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 30
+text = "land to complete"
+horizontal_alignment = 1
+uppercase = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 101, 0)

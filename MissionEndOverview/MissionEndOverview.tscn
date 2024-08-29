@@ -83,7 +83,7 @@ theme = ExtResource("1_aifyh")
 theme_override_font_sizes/font_size = 50
 text = "Time . . . . . .100 pts"
 
-[node name="AccuracyScore" type="Label" parent="VBoxContainer"]
+[node name="ObjectivesScore" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_aifyh")
 theme_override_font_sizes/font_size = 50
@@ -99,7 +99,7 @@ text = "Landing . . . 100 pts"
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_51skd")
 
-[node name="LandingScore2" type="Label" parent="VBoxContainer"]
+[node name="TotalScore" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_aifyh")
 theme_override_font_sizes/font_size = 50

@@ -65,7 +65,6 @@ func setup_level():
 	elif GameManager.current_map == Constants.MAP.ISLAND:
 		environment = map_island.instantiate()
 	
-	print(environment)
 	# Setup. depending on level, maybe need to move plane around, turn off gates
 	add_child(environment)
 
@@ -142,6 +141,7 @@ func goal_completed():
 		await get_tree().create_timer(4.0).timeout
 		GameManager.current_level_success_status = true
 		GameManager.current_level_time = elapsed_time
+		GameManager.current_level_objectives_score = environment.percentage_of_all_gates_passed() * 100
 		SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
 		# TODO: Controls for controller
 		# TODO: export to HTML5

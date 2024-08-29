@@ -6,6 +6,9 @@ extends Node3D
 
 var world_sky_hack: PackedScene = load("res://Environment/Sky/examples/Sky.tscn")
 
+func skydiver_starting_position() -> Vector3:
+	return $SkydiverStartingPosition.global_position
+
 func _ready():
 	# hack to prevent weird C++ leak that happens when changing scene
 	# the world environment breaks if I just put it on the scene
@@ -43,5 +46,18 @@ func are_all_gates_passed():
 	elif sky_diving_gate_manager.visible:
 		unchecked_children = sky_diving_gate_manager.get_children().filter(func(x): return not x.is_checked)
 
-	# print("Gates left: ", unchecked_children.size())
+
 	return unchecked_children.size() == 0
+
+func percentage_of_all_gates_passed() -> float:
+	var total_gates: int = 0
+	var gates_complete: int = 0 
+	
+	if plane_gate_manager.visible:
+		total_gates = plane_gate_manager.get_children().size()
+		gates_complete = plane_gate_manager.get_children().filter(func(x): return x.is_checked).size()
+	elif sky_diving_gate_manager.visible:
+		total_gates = sky_diving_gate_manager.get_children().size()
+		gates_complete = sky_diving_gate_manager.get_children().filter(func(x): return x.is_checked).size()
+
+	return float(gates_complete) / float(total_gates)

@@ -5,6 +5,8 @@ extends Control
 @onready var level_label: Label = $VBoxContainer/LevelLabel
 @onready var time_score: Label = $VBoxContainer/TimeScore
 @onready var landing_score: Label = $VBoxContainer/LandingScore
+@onready var objectives_score: Label = $VBoxContainer/ObjectivesScore
+@onready var total_score: Label = $VBoxContainer/TotalScore
 
 
 var start_showing_text: bool = false
@@ -22,11 +24,23 @@ func _ready() -> void:
 	
 	GlobalAudio.start_music_mission_debrief()
 	
+	# 2 minutes or more will get a score of 0 (120)
+	var time_points = int(max(120 - GameManager.current_level_time, 0))
+	
 	level_label.text = "Level " + str( GameManager.current_level_number)
-	time_score.text = "Time: " + GameManager.format_elapsed_time(GameManager.current_level_time)
+	time_score.text = "Time: " + GameManager.format_elapsed_time(GameManager.current_level_time) 
+	time_score.text += " (" + str(time_points) + ") PTS"
+	objectives_score.text = "Objectives: " + str(GameManager.current_level_objectives_score) + " PTS"
+	
 	
 	if GameManager.current_vehicle == Constants.VEHICLE.SKYDIVER:
-		landing_score.text = "Landing: " + str( "%.2f" % GameManager.current_level_parachute_landing_score) + " PTS"
+		landing_score.text = "Landing: " + str( int(GameManager.current_level_parachute_landing_score)) + " PTS"
+
+
+	total_score.text = "Total: "
+	total_score.text += str(int(GameManager.current_level_objectives_score + GameManager.current_level_parachute_landing_score + time_points)) 
+	total_score.text += " PTS"
+
 
 	# eventually find out what type of scores will mean we are passed
 	# if we fail, we will not se the level to complete

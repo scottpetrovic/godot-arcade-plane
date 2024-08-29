@@ -8,6 +8,7 @@ extends Node3D
 
 @onready var player_skydiver: CharacterBody3D = $PlayerSkydiver
 @onready var player_skydiver_camera_target: Node3D = $PlayerSkydiver/CameraFollowTarget
+@onready var checkpoints_passed_overlay: CenterContainer = $UI/CheckpointsPassedOverlay
 
 @onready var camera_3d: Camera3D = $Camera3D
 
@@ -16,6 +17,7 @@ var elapsed_time: float = 0.0
 var splash: PackedScene = load("res://Effects/Particles/SplashParticles.tscn")
 
 var environment: Node3D # dynamicall added from Game manager config
+var has_passed_through_all_checkpoints: bool = false
 
 var map_aircraft_carrier: PackedScene = load("res://Environment/MapAircraft/MapAircraft.tscn")
 var map_airport: PackedScene = load("res://Environment/MapAirport/MapAirport.tscn")
@@ -39,12 +41,14 @@ func setup_level():
 	
 	# Setup. depending on level, maybe need to move plane around, turn off gates
 	add_child(environment)
+	player_skydiver.global_position = environment.skydiver_starting_position()
 
 
 func setup_player():
 	# Connect the parachute_deployed signal to the _on_parachute_deployed function
 	player_skydiver.parachute_deployed.connect(_on_parachute_deployed)
 	$Camera3D/ScreenShake.start_constant_shake(0.006) # always have slight screen shake
+
 
 func _on_parachute_deployed():
 	# Change the script attached to the Camera3D object to follow player
@@ -73,12 +77,21 @@ func _process(delta: float) -> void:
 	# reset of the process to finish level
 	if player_skydiver.get_landed() == false:
 		update_hud(delta)
+		
+	# show message when all gates are passed
+	if environment.are_all_gates_passed() && has_passed_through_all_checkpoints == false:
+		has_passed_through_all_checkpoints = true
+		# show the UI to land for a couple seconds
+		checkpoints_passed_overlay.visible = true
+		await get_tree().create_timer(2.0).timeout
+		checkpoints_passed_overlay.visible = false
 
 
 func goal_completed():
 	training_complete_overlay.visible = true
 	await get_tree().create_timer(4.0).timeout
 	GameManager.current_level_time = elapsed_time
+	GameManager.current_level_objectives_score = environment.percentage_of_all_gates_passed() * 100
 	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
 
 func on_player_crash(location: String):

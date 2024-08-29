@@ -16,6 +16,7 @@ transform = Transform3D(0.999998, -0.00167487, 0.000804524, 0.0016722, 0.999993,
 transform = Transform3D(2.62268e-08, 0, -0.2, 0, 0.2, 0, 0.2, 0, 2.62268e-08, -11.3819, 0.379997, 0)
 
 [node name="PlaneGateManager" type="Node3D" parent="."]
+visible = false
 
 [node name="GateCheckpoint" parent="PlaneGateManager" instance=ExtResource("5_xsqg6")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 51.3455, 15.5557, 1)
@@ -41,13 +42,13 @@ transform = Transform3D(0.482166, 0, -0.876079, 0, 1, 0, 0.876079, 0, 0.482166, 
 [node name="SkyDivingGateManager" type="Node3D" parent="."]
 
 [node name="GateCheckpoint" parent="SkyDivingGateManager" instance=ExtResource("5_xsqg6")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 750, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 200, 0)
+
+[node name="GateCheckpoint1" parent="SkyDivingGateManager" instance=ExtResource("5_xsqg6")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 150, 0)
 
 [node name="GateCheckpoint2" parent="SkyDivingGateManager" instance=ExtResource("5_xsqg6")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 500, 0)
-
-[node name="GateCheckpoint3" parent="SkyDivingGateManager" instance=ExtResource("5_xsqg6")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 250, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.984196, 0.113116, -0.136249, 0, 0.7694, 0.638767, 0.177085, -0.628672, 0.75724, -27.014, 5.99028, 0.6255)
@@ -55,3 +56,6 @@ shadow_enabled = true
 
 [node name="SkydivingLandingTarget" parent="." instance=ExtResource("5_q3ax4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6942, 2.44603, -0.131649)
+
+[node name="SkydiverStartingPosition" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0)
