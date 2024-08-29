@@ -10,18 +10,17 @@ const PARACHUTE_FORWARD_SPEED: float = 3.0  # Additional forward speed when para
 @onready var skydiver: Node3D = $Skydiver
 
 var is_landed: bool = false
-var has_crashed: bool = false
-
 
 var is_parachute_activated: bool = false
 signal parachute_deployed
 
 func _ready():
-	
 	# free falling animation
 	var animation_player: AnimationPlayer = skydiver.get_node("AnimationPlayer")
 	animation_player.play("FreeFalling")
 
+func get_landed() -> bool:
+	return is_landed
 
 func landed():
 	is_landed = true
@@ -29,7 +28,8 @@ func landed():
 func _physics_process(delta: float) -> void:
 	
 	# stop from falling or inputs
-	if has_crashed || is_landed:
+	# skydiver could have crashed, but we are treating it all the same
+	if is_landed:
 		return
 
 	# Check for parachute activation.
@@ -70,12 +70,6 @@ func _physics_process(delta: float) -> void:
 			rotation_degrees.y += ROTATION_SPEED * delta
 
 	move_and_slide()
-
-
-func crashed():
-	has_crashed = true
-	# we have crashed into the ground or water. let the 
-	# level decide on what to do dependinon where the person is at
 
 func deploy_parachute():
 	is_parachute_activated = true

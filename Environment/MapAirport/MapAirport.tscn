@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bg5fgtcxdb0f5"]
+[gd_scene load_steps=11 format=3 uid="uid://bg5fgtcxdb0f5"]
 
 [ext_resource type="Script" path="res://Environment/MapAirport/MapAirport.gd" id="1_bb3bl"]
 [ext_resource type="Script" path="res://Environment/GroundPlane.gd" id="5_cnlel"]
 [ext_resource type="PackedScene" uid="uid://4bb04dfravfq" path="res://Environment/Runway/Runway.tscn" id="5_jw87g"]
+[ext_resource type="PackedScene" uid="uid://bin24lcxi48bf" path="res://Environment/LandingTarget/LandingTarget.tscn" id="6_a3dqu"]
 [ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://GateCheckpoint/GateCheckpoint.tscn" id="6_osbfy"]
 [ext_resource type="Script" path="res://GateCheckpoint/GateManager.gd" id="8_km4je"]
 
@@ -18,7 +19,7 @@ subdivide_depth = 500
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_aplvy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r034g"]
-size = Vector3(1000, 1, 1000)
+size = Vector3(1000, 2.16757, 1000)
 
 [node name="Environment" type="Node3D"]
 script = ExtResource("1_bb3bl")
@@ -34,9 +35,10 @@ skeleton = NodePath("../..")
 shape = SubResource("WorldBoundaryShape3D_aplvy")
 
 [node name="Area3D" type="Area3D" parent="GroundPlane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11242, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GroundPlane/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.445581, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.05189, 0)
 shape = SubResource("BoxShape3D_r034g")
 
 [node name="PlaneGateManager" type="Node3D" parent="."]
@@ -79,4 +81,7 @@ transform = Transform3D(0.984196, 0.113116, -0.136249, 0, 0.7694, 0.638767, 0.17
 shadow_enabled = true
 
 [node name="Runway" parent="." instance=ExtResource("5_jw87g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0.134127, 0)
+
+[node name="LandingTarget" parent="." instance=ExtResource("6_a3dqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.181226, 0)

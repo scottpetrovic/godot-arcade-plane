@@ -20,8 +20,6 @@ var environment: Node3D # dynamicall added from Game manager config
 var map_aircraft_carrier: PackedScene = load("res://Environment/MapAircraft/MapAircraft.tscn")
 var map_airport: PackedScene = load("res://Environment/MapAirport/MapAirport.tscn")
 
-var is_level_complete: bool = false
-
 func _ready():
 	setup_level()
 	setup_player()
@@ -30,6 +28,8 @@ func _ready():
 func setup_level():
 	
 	EventBus.player_crashed.connect(on_player_crash)
+	EventBus.skydiver_landed_on_target.connect(on_skydiver_hit_target)
+	EventBus.skydiver_landed_off_target.connect(on_skydiver_missed_target)
 	
 	# load map depending on what our current map is
 	if GameManager.current_map == Constants.MAP.AIRCRAFTCARRIER:
@@ -71,31 +71,18 @@ func _process(delta: float) -> void:
 
 	# stop processing new things as we are done. we should have already kicked off the 
 	# reset of the process to finish level
-	if is_level_complete:
-		return
+	if player_skydiver.get_landed() == false:
+		update_hud(delta)
 
-	# add is_level_complete == false to make sure this only runs one time
-	if environment.is_player_on_landing_pad() &&  player_skydiver.is_parachute_activated:
-		is_level_complete = true
-		goal_completed()
-		return
-
-	update_hud(delta)
 
 func goal_completed():
-	player_skydiver.landed()
-	
-	if player_skydiver.is_parachute_activated == false:
-		return
-	
 	training_complete_overlay.visible = true
 	await get_tree().create_timer(4.0).timeout
-	GameManager.current_level_success_status = true
 	GameManager.current_level_time = elapsed_time
 	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
 
 func on_player_crash(location: String):
-	player_skydiver.crashed() # tell skydiver it crashed so it stops moving
+	player_skydiver.landed() 
 	$UI/HUD.visible = false # hide plane instruments at top
 	player_crashed_overlay.visible = true
 	
@@ -115,3 +102,26 @@ func on_player_crash(location: String):
 	GameManager.current_level_success_status = false
 	GameManager.current_level_time = elapsed_time
 	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
+
+func on_skydiver_missed_target():
+
+	if player_skydiver.is_parachute_activated == false:
+		on_player_crash("ground")
+		print('sky diver missed target and crashed')
+		return
+
+	print('sky diver missed target and landed')
+	GameManager.current_level_success_status = false
+	player_skydiver.landed()
+	goal_completed()
+
+func on_skydiver_hit_target(points: float):
+	
+	# add is_level_complete == false to make sure this only runs one time
+	if player_skydiver.is_parachute_activated == false:
+		on_player_crash("ground")
+		return
+
+	GameManager.current_level_success_status = true
+	player_skydiver.landed()
+	goal_completed()

@@ -2,8 +2,10 @@ extends Node3D
 
 @onready var plane_gate_manager: Node3D = $PlaneGateManager
 @onready var sky_diving_gate_manager: Node3D = $SkyDivingGateManager
+@onready var sky_diving_landing_target: Node3D = $SkydivingLandingTarget
 
 var world_sky: PackedScene = load("res://Environment/Sky/examples/Sky.tscn")
+
 
 func _ready():
 	add_child(world_sky.instantiate())
@@ -11,11 +13,13 @@ func _ready():
 	if GameManager.current_vehicle == Constants.VEHICLE.AIRPLANE:
 		sky_diving_gate_manager.visible = false
 		plane_gate_manager.visible = true
+		sky_diving_landing_target.visible = false
 		return
 
 	if GameManager.current_vehicle == Constants.VEHICLE.SKYDIVER:
 		sky_diving_gate_manager.visible = true
 		plane_gate_manager.visible = false
+		sky_diving_landing_target.visible = true
 		return
 
 func are_all_gates_passed():
@@ -35,4 +39,4 @@ func are_all_gates_passed():
 	return unchecked_children.size() == 0
 
 func is_player_on_landing_pad():
-	return $AircraftCarrier/AreaLandingStrip.is_player_on_landing_strip
+	return $AircraftCarrier/Runway.is_player_on_landing_strip

@@ -26,6 +26,10 @@ func _body_entered(body: Node3D):
 			body.add_child(landing_impact)
 			landing_impact.global_position = body.global_position
 			plane_landing_sound.play() # play sound effect
+	
+	if body.name == "PlayerSkydiver":
+		EventBus.emit_signal("skydiver_landed_off_target")
+		return
 
 func _body_exited(body: Node3D):
 	if body.name == 'Airplane':

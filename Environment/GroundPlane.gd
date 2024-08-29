@@ -7,5 +7,10 @@ func _ready() -> void:
 	area_3d.body_entered.connect(_body_entered)
 
 func _body_entered(body: Node3D):
-	if body.name == "Airplane" || body.name == "PlayerSkydiver":
+	if body.name == "Airplane" :
 		EventBus.emit_signal("player_crashed", "ground")
+		return
+	
+	if body.name == "PlayerSkydiver":
+		EventBus.emit_signal("skydiver_landed_off_target")
+		return

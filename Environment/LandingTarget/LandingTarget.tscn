@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bin24lcxi48bf"]
+
+[ext_resource type="PackedScene" uid="uid://b76qpma2p3cvr" path="res://Environment/LandingTarget/LandingTarget.glb" id="1_te1gu"]
+[ext_resource type="Script" path="res://Environment/LandingTarget/LandingTarget.gd" id="2_hvfgl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j7cn3"]
+size = Vector3(19.1738, 0.24646, 12.9812)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3guoa"]
+size = Vector3(19.3062, 0.0576391, 13.0986)
+
+[node name="LandingTarget" instance=ExtResource("1_te1gu")]
+script = ExtResource("2_hvfgl")
+
+[node name="Reference" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.506255, 0, 0.277623)
+visible = false
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026123, -0.0708313, 0.701537)
+shape = SubResource("BoxShape3D_j7cn3")
+
+[node name="Area3D" type="Area3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.928089, 0, 0.652445)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.918701, 0.0679088, 0)
+shape = SubResource("BoxShape3D_3guoa")
