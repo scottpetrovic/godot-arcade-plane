@@ -60,12 +60,14 @@ func parachuting_movement(delta: float) -> void:
 	# Lock rotation to face down
 	rotation_degrees.x = 0
 
+	# reset model's rotation to 0 if we were using up/down
+	skydiver.rotation = Vector3.ZERO
+	skydiver.rotation_degrees.y = 180 # this was original rotation
+
 	if Input.is_action_pressed("ui_right"):
 		rotation_degrees.y -= PARACHUTE_ROTATION_SPEED * delta
 	elif Input.is_action_pressed("ui_left"):
 		rotation_degrees.y += PARACHUTE_ROTATION_SPEED * delta
-
-	print(rotation_degrees)
 
 
 func skydiving_movement(delta: float) -> void:

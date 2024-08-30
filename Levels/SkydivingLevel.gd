@@ -22,7 +22,7 @@ var has_passed_through_all_checkpoints: bool = false
 var map_aircraft_carrier: PackedScene = load("res://Environment/MapAircraft/MapAircraft.tscn")
 var map_airport: PackedScene = load("res://Environment/MapAirport/MapAirport.tscn")
 
-var is_testing: bool = true
+var is_testing: bool = false
 
 
 func _ready():
@@ -120,16 +120,16 @@ func on_player_crash(location: String):
 	await get_tree().create_timer(9.0).timeout # waits for X second
 	GameManager.current_level_success_status = false
 	GameManager.current_level_time = elapsed_time
+	GameManager.current_level_parachute_landing_score = 0
 	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
 
 func on_skydiver_missed_target():
 
 	if player_skydiver.is_parachute_activated == false:
 		on_player_crash("ground")
-		print('sky diver missed target and crashed')
 		return
 
-	print('sky diver missed target and landed')
+	GameManager.current_level_parachute_landing_score = 0
 	GameManager.current_level_success_status = false
 	player_skydiver.landed()
 	goal_completed()
