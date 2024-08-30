@@ -1,10 +1,12 @@
 extends CharacterBody3D
 
 const SPEED: float = 10.0
-const ROTATION_SPEED: float = 90.0  # Degrees per second
+const ROTATION_SPEED: float = 2.0  # Degrees per second
 const FALL_SPEED: float = -10.0  # Constant fall speed
 const PARACHUTE_FALL_SPEED: float = -3.0  # Reduced fall speed when parachute is active
 const PARACHUTE_FORWARD_SPEED: float = 3.0  # Additional forward speed when parachute is active
+const PARACHUTE_ROTATION_SPEED: float = 90.0  # Degrees per second when parachute is active
+
 
 @onready var parachute_mesh: Node3D = $ParachuteMesh
 @onready var skydiver: Node3D = $Skydiver
@@ -14,10 +16,15 @@ var is_landed: bool = false
 var is_parachute_activated: bool = false
 signal parachute_deployed
 
+var current_rotation_quaternion = Quaternion.IDENTITY
+
 func _ready():
 	# free falling animation
 	var animation_player: AnimationPlayer = skydiver.get_node("AnimationPlayer")
 	animation_player.play("FreeFalling")
+	
+	# get starting rotation in quaternion to apply rotation to later from input
+	current_rotation_quaternion = Quaternion.from_euler(rotation)
 
 func get_landed() -> bool:
 	return is_landed
@@ -54,24 +61,37 @@ func parachuting_movement(delta: float) -> void:
 	rotation_degrees.x = 0
 
 	if Input.is_action_pressed("ui_right"):
-		rotation_degrees.y -= ROTATION_SPEED * delta
+		rotation_degrees.y -= PARACHUTE_ROTATION_SPEED * delta
 	elif Input.is_action_pressed("ui_left"):
-		rotation_degrees.y += ROTATION_SPEED * delta
+		rotation_degrees.y += PARACHUTE_ROTATION_SPEED * delta
+
+	print(rotation_degrees)
+
 
 func skydiving_movement(delta: float) -> void:
 	velocity.y = FALL_SPEED
 
+	var rotation_change = Vector3.ZERO
+
 	if Input.is_action_pressed("ui_up"):
-		rotation_degrees.x -= ROTATION_SPEED * delta
+		skydiver.rotation.x += ROTATION_SPEED * delta
 		velocity -= transform.basis.z * SPEED * delta
 	elif Input.is_action_pressed("ui_down"):
-		rotation_degrees.x += ROTATION_SPEED * delta
+		skydiver.rotation.x -= ROTATION_SPEED * delta
 		velocity += transform.basis.z * SPEED * delta
 
 	if Input.is_action_pressed("ui_right"):
-		rotation_degrees.y -= ROTATION_SPEED * delta
+		rotation_change.y -= ROTATION_SPEED * delta
 	elif Input.is_action_pressed("ui_left"):
-		rotation_degrees.y += ROTATION_SPEED * delta
+		rotation_change.y += ROTATION_SPEED * delta
+
+	# Apply rotation changes using quaternions
+	var change_quaternion = Quaternion.from_euler(rotation_change)
+	current_rotation_quaternion = change_quaternion * current_rotation_quaternion
+	current_rotation_quaternion = current_rotation_quaternion.normalized()
+
+	# Apply the quaternion rotation to the node
+	transform.basis = Basis(current_rotation_quaternion)
 
 
 func deploy_parachute():
