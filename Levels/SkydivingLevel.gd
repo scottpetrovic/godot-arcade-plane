@@ -1,16 +1,16 @@
 extends Node3D
 
-# HUD display items to always show
+# UI elements display items to always show
 @onready var altitude_label: Label = $UI/HUD/AltitudeLabel
 @onready var time_label: Label = $UI/HUD/TimeLabel
 @onready var training_complete_overlay: CenterContainer = $UI/TrainingCompleteOverlay
 @onready var player_crashed_overlay: CenterContainer = $UI/PlayerCrashedOverlay
+@onready var checkpoints_passed_overlay: CenterContainer = $UI/CheckpointsPassedOverlay
 
 @onready var player_skydiver: CharacterBody3D = $PlayerSkydiver
 @onready var player_skydiver_camera_target: Node3D = $PlayerSkydiver/CameraFollowTarget
-@onready var checkpoints_passed_overlay: CenterContainer = $UI/CheckpointsPassedOverlay
 
-@onready var speed_lines_camera_effect: ColorRect = $UI/SpeedLinesCameraEffect
+@onready var ui_controls: Control = $UI
 
 @onready var camera_3d: Camera3D = $Camera3D
 
@@ -38,6 +38,8 @@ func setup_level():
 	EventBus.skydiver_landed_on_target.connect(on_skydiver_hit_target)
 	EventBus.skydiver_landed_off_target.connect(on_skydiver_missed_target)
 	
+	ui_controls.show_speedometer(false) # don't show speed we are falling
+	
 	if is_testing:
 		GameManager.current_map = Constants.MAP.AIRCRAFTCARRIER
 	
@@ -51,7 +53,7 @@ func setup_level():
 	add_child(environment)
 	player_skydiver.global_position = environment.skydiver_starting_position()
 	
-	speed_lines_camera_effect.visible = true
+	ui_controls.turn_on_speed_lines()
 
 
 func setup_player():
@@ -62,7 +64,7 @@ func setup_player():
 
 func _on_parachute_deployed():
 	change_camera_to_follow()
-	speed_lines_camera_effect.visible = false
+	ui_controls.turn_off_speed_lines()
 	
 	$Camera3D/ScreenShake.stop_constant_shake()
 
