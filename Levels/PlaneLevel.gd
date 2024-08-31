@@ -127,6 +127,7 @@ func _process(delta: float) -> void:
 		gates_completed_message_shown = true
 		# show the UI to land for a couple seconds
 		checkpoints_passed_overlay.visible = true
+		GlobalAudio.play_objectives_complete_sfx()
 		await get_tree().create_timer(2.0).timeout
 		checkpoints_passed_overlay.visible = false
 
@@ -138,11 +139,12 @@ func goal_completed():
 	if training_complete_overlay.visible == false:
 		airplane.turn_engine_off()
 		training_complete_overlay.visible = true
+		GlobalAudio.start_level_complete()
 		await get_tree().create_timer(4.0).timeout
 		GameManager.current_level_success_status = true
 		GameManager.current_level_time = elapsed_time
 		GameManager.current_level_objectives_score = environment.percentage_of_all_gates_passed() * 100
-		SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
+		SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn", true)
 		# TODO: Controls for controller
 		# TODO: export to HTML5
 		# TODO: pause screen
@@ -151,6 +153,7 @@ func goal_completed():
 func on_player_crash(location: String):
 	airplane.turn_engine_off()
 	player_crashed_overlay.visible = true
+	GlobalAudio.play_explosion_sfx()	
 	$UI/HUD.visible = false # hide plane instruments at top
 	$Camera/ScreenShake.camera_shake_impulse(1.3, 0.4)
 	airplane.crashed()

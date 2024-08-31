@@ -1,7 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwcgwgy5qovfn"]
+[gd_scene load_steps=8 format=3 uid="uid://bwcgwgy5qovfn"]
 
 [ext_resource type="AudioStream" uid="uid://bl3tqboqwdop7" path="res://Assets/Music/Theme-song.mp3" id="1_vu3g7"]
 [ext_resource type="Script" path="res://Global/GlobalAudio.gd" id="1_wcenl"]
+[ext_resource type="AudioStream" uid="uid://bn7f1rbopiady" path="res://Assets/SoundFX/objectives-complete.wav" id="3_rflqr"]
+[ext_resource type="AudioStream" uid="uid://cjh424c0x0yvw" path="res://Assets/SoundFX/explosion.mp3" id="4_bv6sf"]
+
+[sub_resource type="Animation" id="Animation_vqhrm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MusicPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-19.854]
+}
+
+[sub_resource type="Animation" id="Animation_3rpij"]
+resource_name = "fade_music"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MusicPlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-19.854, -80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_phw0f"]
+_data = {
+"RESET": SubResource("Animation_vqhrm"),
+"fade_music": SubResource("Animation_3rpij")
+}
 
 [node name="GlobalAudio" type="Node2D"]
 script = ExtResource("1_wcenl")
@@ -9,3 +47,18 @@ script = ExtResource("1_wcenl")
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_vu3g7")
 volume_db = -19.854
+
+[node name="ObjectivesCompleteSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_rflqr")
+volume_db = -14.733
+pitch_scale = 0.64
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_bv6sf")
+volume_db = -11.119
+pitch_scale = 2.23
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_phw0f")
+}

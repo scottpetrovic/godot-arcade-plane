@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c7tsxmwjuwd41"]
+[gd_scene load_steps=17 format=3 uid="uid://c7tsxmwjuwd41"]
 
 [ext_resource type="Script" path="res://Levels/SkydivingLevel.gd" id="1_m2dhv"]
 [ext_resource type="Script" path="res://Skydiver/PlayerSkydiver.gd" id="5_37043"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://vtochg4irhio" path="res://Skydiver/parachute.glb" id="7_8p2wn"]
 [ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="9_it1cn"]
 [ext_resource type="Texture2D" uid="uid://bufhyxm73wqho" path="res://Assets/UI/UI-objective-complete.png" id="9_naavn"]
+[ext_resource type="Shader" path="res://Effects/SpeedLines.gdshader" id="10_0gt1k"]
 [ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="10_dbu5a"]
 [ext_resource type="Texture2D" uid="uid://co4bls0sy8o31" path="res://Assets/UI/MISSION-COMPLETE-8-16-2024.png" id="11_4xynx"]
 [ext_resource type="Texture2D" uid="uid://b3oljv8lyncny" path="res://Assets/UI/UI-crashed.png" id="12_v1tdu"]
@@ -15,6 +16,25 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_tp4jf"]
 size = Vector3(0.238892, 0.323914, 0.298157)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cqglo"]
+noise_type = 5
+frequency = 0.2
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d4qar"]
+noise = SubResource("FastNoiseLite_cqglo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0h6s6"]
+shader = ExtResource("10_0gt1k")
+shader_parameter/line_color = Color(1, 1, 1, 0.45098)
+shader_parameter/line_count = 1.15
+shader_parameter/line_density = 0.224
+shader_parameter/line_faloff = 0.567
+shader_parameter/mask_size = 0.13
+shader_parameter/mask_edge = 0.68
+shader_parameter/animation_speed = 15.413
+shader_parameter/noise = SubResource("NoiseTexture2D_d4qar")
+
 [node name="SkyDivingLevel" type="Node3D"]
 script = ExtResource("1_m2dhv")
 
@@ -23,7 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 0.969445, 0.245307, 0, -0.245307, 0.969445, 
 script = ExtResource("5_37043")
 
 [node name="Skydiver" parent="PlayerSkydiver" instance=ExtResource("6_ntr7i")]
-transform = Transform3D(-0.1, 0, 8.74228e-09, 0, 0.1, 0, -8.74228e-09, 0, -0.1, 0, 0, 0)
+transform = Transform3D(-0.1, 0, 1.50996e-08, 0, 0.1, 0, -1.50996e-08, 0, -0.1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerSkydiver"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00469971, 0.175812, -0.0232239)
@@ -170,6 +190,15 @@ theme_override_font_sizes/font_size = 30
 text = "land to complete"
 horizontal_alignment = 1
 uppercase = true
+
+[node name="SpeedLinesCameraEffect" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_0h6s6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 101, 0)

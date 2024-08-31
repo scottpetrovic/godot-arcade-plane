@@ -53,10 +53,10 @@ func go_to_next_level():
 	current_level_objectives_score = 0
 
 	if current_vehicle == Constants.VEHICLE.AIRPLANE:
-		SceneTransition.change_scene("res://Levels/PlaneLevel.tscn")
+		SceneTransition.change_scene("res://Levels/PlaneLevel.tscn", true)
 	
 	if current_vehicle == Constants.VEHICLE.SKYDIVER:
-		SceneTransition.change_scene("res://Levels/SkydivingLevel.tscn")
+		SceneTransition.change_scene("res://Levels/SkydivingLevel.tscn", true)
 
 	GlobalAudio.start_music_theme()
 

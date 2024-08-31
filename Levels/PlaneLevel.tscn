@@ -17,7 +17,7 @@ noise_type = 5
 frequency = 0.2
 fractal_type = 0
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d4qar"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0gvof"]
 noise = SubResource("FastNoiseLite_ko185")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uiy3f"]
@@ -29,7 +29,7 @@ shader_parameter/line_faloff = 0.567
 shader_parameter/mask_size = 0.13
 shader_parameter/mask_edge = 0.68
 shader_parameter/animation_speed = 15.413
-shader_parameter/noise = SubResource("NoiseTexture2D_d4qar")
+shader_parameter/noise = SubResource("NoiseTexture2D_0gvof")
 
 [node name="PlaneLevel" type="Node3D"]
 script = ExtResource("1_2pumm")

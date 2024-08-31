@@ -10,6 +10,8 @@ extends Node3D
 @onready var player_skydiver_camera_target: Node3D = $PlayerSkydiver/CameraFollowTarget
 @onready var checkpoints_passed_overlay: CenterContainer = $UI/CheckpointsPassedOverlay
 
+@onready var speed_lines_camera_effect: ColorRect = $UI/SpeedLinesCameraEffect
+
 @onready var camera_3d: Camera3D = $Camera3D
 
 var elapsed_time: float = 0.0
@@ -48,6 +50,8 @@ func setup_level():
 	# Setup. depending on level, maybe need to move plane around, turn off gates
 	add_child(environment)
 	player_skydiver.global_position = environment.skydiver_starting_position()
+	
+	speed_lines_camera_effect.visible = true
 
 
 func setup_player():
@@ -62,6 +66,7 @@ func _on_parachute_deployed():
 	camera_3d.set_script(camera_script)
 	camera_3d.target = player_skydiver_camera_target
 	camera_3d.should_look_at_target = true
+	speed_lines_camera_effect.visible = false
 	
 	$Camera3D/ScreenShake.stop_constant_shake()
 
@@ -89,16 +94,19 @@ func _process(delta: float) -> void:
 		has_passed_through_all_checkpoints = true
 		# show the UI to land for a couple seconds
 		checkpoints_passed_overlay.visible = true
+		GlobalAudio.play_objectives_complete_sfx()
 		await get_tree().create_timer(2.0).timeout
 		checkpoints_passed_overlay.visible = false
 
 
 func goal_completed():
 	training_complete_overlay.visible = true
+	GlobalAudio.start_level_complete()
 	await get_tree().create_timer(4.0).timeout
 	GameManager.current_level_time = elapsed_time
 	GameManager.current_level_objectives_score = environment.percentage_of_all_gates_passed() * 100
-	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
+	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn", true)
+
 
 func on_player_crash(location: String):
 	player_skydiver.landed() 
