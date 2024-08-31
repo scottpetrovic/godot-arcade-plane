@@ -9,13 +9,12 @@ var gates_completed_message_shown: bool = false
 @onready var player_crashed_overlay: CenterContainer = $UI/PlayerCrashedOverlay
 
 # HUD display items to always show
-@onready var speed_label: Label = $UI/HUD/SpeedLabel
+@onready var speed_label: Label = $UI/HUD/SpeedometerBackground/SpeedLabel
 @onready var altitude_label: Label = $UI/HUD/AltitudeLabel
 @onready var time_label: Label = $UI/HUD/TimeLabel
-@onready var speed_indicator: ColorRect = $UI/HUD/TextureRect/Speedindicator
+@onready var speed_indicator: ColorRect = $UI/HUD/SpeedometerBackground/Speedindicator
 
 @onready var main_camera: Camera3D = $Camera
-
 
 var environment: Node3D # dynamicall added from Game manager config
 
@@ -39,6 +38,7 @@ func _ready():
 	
 	setup_level()
 	setup_plane() # make sure this is after the setup level
+
 
 func setup_plane():
 	# todo: some levels we need to start the plane in the air 
@@ -68,6 +68,7 @@ func setup_level():
 	# Setup. depending on level, maybe need to move plane around, turn off gates
 	add_child(environment)
 
+
 func is_mission_complete() -> bool:
 	# all gates are passed
 	# airplane is currently on landing strip
@@ -76,6 +77,7 @@ func is_mission_complete() -> bool:
 		if airplane.forward_speed < 0.01:
 			return true
 	return false
+
 
 func update_hud(delta: float):
 
@@ -90,7 +92,17 @@ func update_hud(delta: float):
 	time_label.text = GameManager.format_elapsed_time(elapsed_time)
 
 	update_speed_indicator()
-	
+	apply_speed_lines()
+
+func apply_speed_lines():
+	# if going more than 85% speed, turn on speed lines to help indicate speed
+	var plane_speed_percentage = airplane.forward_speed / airplane.max_flight_speed
+	if plane_speed_percentage > 0.85:
+		$UI.turn_on_speed_lines()
+	else:
+		$UI.turn_off_speed_lines()
+
+
 func update_speed_indicator():
 	
 	# find out min and max for speed indicator
@@ -104,6 +116,7 @@ func update_speed_indicator():
 	var conversion_ratio: float = (airplane.max_flight_speed * speed_indicator_multiplier) / total_angle_values
 	speed_indicator.rotation_degrees = min_angle_for_indicator + (airplane.forward_speed*speed_indicator_multiplier*conversion_ratio)
 
+
 func camera_screenshake():
 	
 	# if plane is going 90% speed or more, do a constant screen shake to show speed
@@ -112,7 +125,7 @@ func camera_screenshake():
 	else:
 		$Camera/ScreenShake.stop_constant_shake()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	
 	# stop updating UI when we are complete
@@ -134,6 +147,7 @@ func _process(delta: float) -> void:
 	if is_mission_complete():
 		goal_completed()
 
+
 func goal_completed():
 	# make sure to only call this one time
 	if training_complete_overlay.visible == false:
@@ -150,6 +164,7 @@ func goal_completed():
 		# TODO: export to HTML5
 		# TODO: pause screen
 		# TODO: controls if on mobile
+
 
 func change_camera_to_orbit():
 	var camera_script = load("res://Effects/CameraOrbit.gd")

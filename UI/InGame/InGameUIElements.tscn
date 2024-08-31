@@ -1,0 +1,221 @@
+[gd_scene load_steps=12 format=3 uid="uid://bm15sseqvqdwl"]
+
+[ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="1_2e51c"]
+[ext_resource type="Script" path="res://UI/InGame/InGameUI.gd" id="1_sy6e0"]
+[ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="2_8h33r"]
+[ext_resource type="Texture2D" uid="uid://d3a2dybcpubj8" path="res://Assets/UI/altitude-indicator.png" id="3_6psgb"]
+[ext_resource type="Shader" path="res://Effects/SpeedLines.gdshader" id="4_1oqhq"]
+[ext_resource type="Texture2D" uid="uid://b3oljv8lyncny" path="res://Assets/UI/UI-crashed.png" id="6_hjpcx"]
+[ext_resource type="Texture2D" uid="uid://co4bls0sy8o31" path="res://Assets/UI/MISSION-COMPLETE-8-16-2024.png" id="7_7scy5"]
+[ext_resource type="Texture2D" uid="uid://bufhyxm73wqho" path="res://Assets/UI/UI-objective-complete.png" id="8_dpvdv"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ko185"]
+noise_type = 5
+frequency = 0.2
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0gvof"]
+noise = SubResource("FastNoiseLite_ko185")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uiy3f"]
+shader = ExtResource("4_1oqhq")
+shader_parameter/line_color = Color(1, 1, 1, 0.45098)
+shader_parameter/line_count = 1.15
+shader_parameter/line_density = 0.224
+shader_parameter/line_faloff = 0.567
+shader_parameter/mask_size = 0.13
+shader_parameter/mask_edge = 0.68
+shader_parameter/animation_speed = 15.413
+shader_parameter/noise = SubResource("NoiseTexture2D_0gvof")
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchor_right = 1.001
+anchor_bottom = 1.003
+offset_right = -0.1521
+offset_bottom = 0.0559692
+script = ExtResource("1_sy6e0")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpeedometerBackground" type="TextureRect" parent="HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -369.872
+offset_top = 32.0
+offset_right = -209.872
+offset_bottom = 106.0
+grow_horizontal = 0
+texture = ExtResource("1_2e51c")
+expand_mode = 1
+
+[node name="Speedindicator" type="ColorRect" parent="HUD/SpeedometerBackground"]
+layout_mode = 1
+offset_left = 74.0
+offset_top = 10.0
+offset_right = 80.0
+offset_bottom = 30.0
+rotation = -1.45486
+pivot_offset = Vector2(3, 61)
+color = Color(0.889661, 0, 0.0871828, 1)
+
+[node name="SpeedLabel" type="Label" parent="HUD/SpeedometerBackground"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.128
+offset_top = 40.0
+offset_right = -79.1281
+offset_bottom = 69.0
+grow_horizontal = 0
+theme = ExtResource("2_8h33r")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 23
+text = "200"
+horizontal_alignment = 2
+
+[node name="SpeedUnitLabel" type="Label" parent="HUD/SpeedometerBackground"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -78.1281
+offset_top = 46.0
+offset_right = -45.1281
+offset_bottom = 71.0
+grow_horizontal = 0
+theme = ExtResource("2_8h33r")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "MPH"
+horizontal_alignment = 1
+
+[node name="Altitude Texture" type="TextureRect" parent="HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -201.872
+offset_top = 30.0
+offset_right = -38.8719
+offset_bottom = 106.0
+grow_horizontal = 0
+texture = ExtResource("3_6psgb")
+expand_mode = 1
+
+[node name="TimeLabel" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -121.0
+offset_top = 36.0
+offset_right = -52.0
+offset_bottom = 65.0
+grow_horizontal = 0
+theme = ExtResource("2_8h33r")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 23
+text = "0:23"
+horizontal_alignment = 1
+
+[node name="AltitudeLabel" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -133.0
+offset_top = 74.0
+offset_right = -76.0
+offset_bottom = 105.0
+grow_horizontal = 0
+theme = ExtResource("2_8h33r")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 23
+text = "00434"
+horizontal_alignment = 2
+
+[node name="AltitudeUnitLabel" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_top = 79.0
+offset_right = -49.0
+offset_bottom = 101.0
+grow_horizontal = 0
+theme = ExtResource("2_8h33r")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "FT"
+horizontal_alignment = 1
+
+[node name="SpeedLinesCameraEffect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_uiy3f")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerCrashedOverlay" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerCrashedOverlay"]
+layout_mode = 2
+
+[node name="Ui-crashed" type="Sprite2D" parent="PlayerCrashedOverlay/VBoxContainer"]
+position = Vector2(0, -100)
+scale = Vector2(0.438596, 0.438596)
+texture = ExtResource("6_hjpcx")
+
+[node name="TrainingCompleteOverlay" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TrainingCompleteOverlay"]
+layout_mode = 2
+
+[node name="Mission-complete-8-16-2024" type="Sprite2D" parent="TrainingCompleteOverlay/VBoxContainer"]
+position = Vector2(0, -100)
+scale = Vector2(0.614537, 0.614537)
+texture = ExtResource("7_7scy5")
+
+[node name="CheckpointsPassedOverlay" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CheckpointsPassedOverlay"]
+layout_mode = 2
+
+[node name="Ui-objective-complete" type="Sprite2D" parent="CheckpointsPassedOverlay/VBoxContainer"]
+position = Vector2(0, -100)
+scale = Vector2(0.693878, 0.693878)
+texture = ExtResource("8_dpvdv")
