@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://xulxfupki51m"]
 
 [ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="1_aifyh"]
-[ext_resource type="Script" path="res://MissionEndOverview/MissionEndOverview.gd" id="1_n6hbo"]
-[ext_resource type="Shader" path="res://MissionEndOverview/MissionEndOverview.gdshader" id="2_5gcm8"]
-[ext_resource type="Texture2D" uid="uid://stpxkenrfd85" path="res://MissionEndOverview/background-tiled.png" id="2_86wni"]
-[ext_resource type="Texture2D" uid="uid://dvfcbjkl8bvuo" path="res://MissionEndOverview/flight-instructor.jpeg" id="2_jd0li"]
+[ext_resource type="Script" path="res://UI/MissionEndOverview/MissionEndOverview.gd" id="1_n6hbo"]
+[ext_resource type="Shader" path="res://UI/MissionEndOverview/MissionEndOverview.gdshader" id="2_5gcm8"]
+[ext_resource type="Texture2D" uid="uid://stpxkenrfd85" path="res://UI/MissionEndOverview/background-tiled.png" id="2_86wni"]
+[ext_resource type="Texture2D" uid="uid://dvfcbjkl8bvuo" path="res://UI/MissionEndOverview/flight-instructor.jpeg" id="2_jd0li"]
 [ext_resource type="Texture2D" uid="uid://co4bls0sy8o31" path="res://Assets/UI/MISSION-COMPLETE-8-16-2024.png" id="4_61lxk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kmomd"]

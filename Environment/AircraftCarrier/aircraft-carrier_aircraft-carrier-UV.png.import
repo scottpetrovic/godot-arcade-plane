@@ -2,30 +2,30 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w0isknjs0vbb"
-path.s3tc="res://.godot/imported/aircraft-carrier_color-palette.png-d0866875e2cd2f8d13dd19f2bc8667d8.s3tc.ctex"
+uid="uid://bxkhf2aexbevc"
+path.bptc="res://.godot/imported/aircraft-carrier_aircraft-carrier-UV.png-72bf62540a9e32e4f0f3693c374f4ecb.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "6f40c9682c4b0a1c226ccc1bb7135cde"
+"md5": "30ed992337861259a63166368aaf39b8"
 }
 
 [deps]
 
-source_file="res://AircraftCarrier/aircraft-carrier_color-palette.png"
-dest_files=["res://.godot/imported/aircraft-carrier_color-palette.png-d0866875e2cd2f8d13dd19f2bc8667d8.s3tc.ctex"]
+source_file="res://Environment/AircraftCarrier/aircraft-carrier_aircraft-carrier-UV.png"
+dest_files=["res://.godot/imported/aircraft-carrier_aircraft-carrier-UV.png-72bf62540a9e32e4f0f3693c374f4ecb.bptc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=2
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

@@ -11,16 +11,16 @@ config_version=5
 [application]
 
 config/name="Arcade Airplane"
-run/main_scene="res://MainMenu/MainMenu.tscn"
+run/main_scene="res://UI/MainMenu/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
 SceneTransition="*res://SceneTransition/SceneTransition.tscn"
 GlobalAudio="*res://Global/GlobalAudio.tscn"
-GameManager="*res://GameManager.gd"
-Constants="*res://Constants.gd"
-EventBus="*res://EventBus.gd"
+GameManager="*res://Global/GameManager.gd"
+Constants="*res://Global/Constants.gd"
+EventBus="*res://Global/EventBus.gd"
 
 [display]
 

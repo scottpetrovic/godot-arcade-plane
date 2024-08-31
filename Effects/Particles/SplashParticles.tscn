@@ -1,6 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://c4fotm8hd2pa3"]
 
 [ext_resource type="Script" path="res://Effects/Particles/splash_particles.gd" id="1_3smvi"]
+[ext_resource type="ArrayMesh" uid="uid://cyi7lbm10x0rp" path="res://Effects/Particles/cloud-puff.obj" id="1_d5i6k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7y3pi"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
 
 [sub_resource type="Gradient" id="Gradient_xe2t5"]
 offsets = PackedFloat32Array(0.391304, 1)
@@ -27,15 +32,6 @@ scale_curve = SubResource("CurveTexture_mmfvs")
 color_ramp = SubResource("GradientTexture1D_6w1xv")
 turbulence_noise_strength = 3.64
 turbulence_noise_scale = 8.861
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wutx"]
-shading_mode = 0
-vertex_color_use_as_albedo = true
-
-[sub_resource type="SphereMesh" id="SphereMesh_0mr0n"]
-material = SubResource("StandardMaterial3D_0wutx")
-radial_segments = 8
-rings = 8
 
 [sub_resource type="Gradient" id="Gradient_6c32q"]
 offsets = PackedFloat32Array(0.652174, 1)
@@ -72,12 +68,15 @@ rings = 9
 ring_segments = 5
 
 [node name="GPUParticles3D" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_7y3pi")
 emitting = false
-amount = 400
+amount = 600
+lifetime = 2.26
 one_shot = true
-explosiveness = 0.24
+explosiveness = 0.41
+randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_5kfj8")
-draw_pass_1 = SubResource("SphereMesh_0mr0n")
+draw_pass_1 = ExtResource("1_d5i6k")
 script = ExtResource("1_3smvi")
 
 [node name="WaterRingsParticles" type="GPUParticles3D" parent="."]

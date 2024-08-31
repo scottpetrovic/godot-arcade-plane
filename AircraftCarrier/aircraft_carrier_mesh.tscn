@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bc7flfj4e2c14"]
-
-[ext_resource type="PackedScene" uid="uid://dv1wa0ocvnxcm" path="res://AircraftCarrier/aircraft-carrier.glb" id="1_qk0i5"]
-
-[node name="aircraft-carrier_mesh" instance=ExtResource("1_qk0i5")]

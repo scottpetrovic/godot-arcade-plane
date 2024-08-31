@@ -27,9 +27,12 @@ func _ready() -> void:
 	# 2 minutes or more will get a score of 0 (120)
 	var time_points = int(max(120 - GameManager.current_level_time, 0))
 	
+	if GameManager.current_level_success_status == false:
+		time_points = 0 # don't give any points to time if we failed
+	
 	level_label.text = "Level " + str( GameManager.current_level_number)
 	time_score.text = "Time: " + GameManager.format_elapsed_time(GameManager.current_level_time) 
-	time_score.text += " (" + str(time_points) + ") PTS"
+	# time_score.text += " (" + str(time_points) + ") PTS"
 	objectives_score.text = "Objectives: " + str(GameManager.current_level_objectives_score) + " PTS"
 	
 	

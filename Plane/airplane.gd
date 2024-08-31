@@ -94,25 +94,23 @@ func _physics_process(delta: float) -> void:
 		plane_mesh.rotation.z = lerp(plane_mesh.rotation.z, 0.0, delta*2)
 		rotation.x =  lerp(rotation.x, 0.0, delta*2)
 		rotation.z = lerp(rotation.z, 0.0, delta*2)
-
-		# change pitch. If we are on the ground, we cannot make our pitch negative to look underground
-		pitch_input = maxf(pitch_input, 0.0) # cannot look down if we are grounded
-		if forward_speed < takeoff_speed:
-			pitch_input = 0.0 # cannot pitch up if going below mininum flight speed
 		
+		# can start pitching up once we get fast enough
+		if forward_speed > takeoff_speed && pitch_input > 0.0:
+			transform.basis = transform.basis.rotated(transform.basis.x, pitch_input * pitch_speed * delta)
+
 		# can turn left and right when on ground
 		transform.basis = transform.basis.rotated(Vector3.UP, turn_input * active_turn_speed * delta)
 	else:
 		transform.basis = transform.basis.rotated(transform.basis.x, pitch_input * pitch_speed * delta)
 		rotation.z = lerp(rotation.z, rotation.z + turn_input, lerp_speed_modifier * delta)
-	
-	squash_and_stretch(delta)
+
 	
 	# accelerate/decelerate
 	forward_speed = lerp(forward_speed, target_speed, acceleration * delta)
-	
 	velocity = -transform.basis.z * forward_speed # Movement is always forward
 	
+	squash_and_stretch(delta)
 	apply_gravity(delta)
 	move_and_slide()
 

@@ -23,10 +23,13 @@ func set_current_vehicle(cur_vehicle: String):
 	current_vehicle = cur_vehicle
 
 func go_to_map_selection():
-	SceneTransition.change_scene("res://UI/MapSelect.tscn")
+	SceneTransition.change_scene("res://UI/MapSelect/MapSelect.tscn")
 
 func go_to_vehicle_selection_screen():
-	SceneTransition.change_scene("res://UI/VehicleSelect.tscn")
+	SceneTransition.change_scene("res://UI/VehicleSelect/VehicleSelect.tscn")
+
+func go_to_mission_overview(fade_music: bool = false):
+	SceneTransition.change_scene("res://UI/MissionEndOverview/MissionEndOverview.tscn", fade_music)
 
 func set_level_complete(level_number: int, level_time: float):
 

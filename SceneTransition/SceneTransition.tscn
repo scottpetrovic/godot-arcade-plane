@@ -20,7 +20,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_767f0"]
 resource_name = "dissolve"
-length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -28,7 +27,7 @@ tracks/0/path = NodePath("dissolve_rect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, -2),
 "update": 0,
 "values": [Color(0.237747, 0.266454, 0.436022, 0), Color(0.0456923, 0.160025, 0.249282, 1)]

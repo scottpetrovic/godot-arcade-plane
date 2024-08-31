@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://befsooyoi5ib3"]
 
-[ext_resource type="Script" path="res://GateCheckpoint/gate_checkpoint.gd" id="1_ll65n"]
-[ext_resource type="PackedScene" uid="uid://dlwq32a6vy4t2" path="res://GateCheckpoint/gate_checkpoint_mesh.tscn" id="2_0qgag"]
+[ext_resource type="Script" path="res://Environment/GateCheckpoint/gate_checkpoint.gd" id="1_ll65n"]
+[ext_resource type="PackedScene" uid="uid://dlwq32a6vy4t2" path="res://Environment/GateCheckpoint/gate_checkpoint_mesh.tscn" id="2_0qgag"]
 [ext_resource type="PackedScene" uid="uid://bq0ccx2rvgthf" path="res://Effects/FX_ScaleUpDown.tscn" id="3_meh3s"]
 [ext_resource type="PackedScene" uid="uid://8na2e6k42my3" path="res://Effects/FX_Rotate.tscn" id="4_m5s3t"]
 [ext_resource type="AudioStream" uid="uid://01ufkwrjwdkw" path="res://Assets/SoundFX/gate-passed.wav" id="5_8uydu"]

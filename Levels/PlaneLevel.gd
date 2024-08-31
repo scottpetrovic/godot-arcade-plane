@@ -159,7 +159,7 @@ func goal_completed():
 		GameManager.current_level_success_status = true
 		GameManager.current_level_time = elapsed_time
 		GameManager.current_level_objectives_score = environment.percentage_of_all_gates_passed() * 100
-		SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn", true)
+		GameManager.go_to_mission_overview(true)
 		# TODO: Controls for controller
 		# TODO: export to HTML5
 		# TODO: pause screen
@@ -174,6 +174,7 @@ func change_camera_to_orbit():
 func on_player_crash(location: String):
 	airplane.turn_engine_off()
 	player_crashed_overlay.visible = true
+	GlobalAudio.start_crashed_music()
 	GlobalAudio.play_explosion_sfx()
 	change_camera_to_orbit()
 	$UI/HUD.visible = false # hide plane instruments at top
@@ -193,4 +194,4 @@ func on_player_crash(location: String):
 	await get_tree().create_timer(Constants.WAITTIME.MISSION_COMPELTE).timeout # waits for X second
 	GameManager.current_level_time = elapsed_time
 	GameManager.current_level_success_status = false
-	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
+	GameManager.go_to_mission_overview()

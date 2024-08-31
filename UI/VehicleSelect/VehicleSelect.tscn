@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bvhbnejnrghkc"]
 
 [ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="1_epti6"]
-[ext_resource type="Script" path="res://UI/VehicleSelect.gd" id="1_xndlf"]
+[ext_resource type="Script" path="res://UI/VehicleSelect/VehicleSelect.gd" id="1_xndlf"]
 
 [node name="VehicleSelect" type="Node3D"]
 script = ExtResource("1_xndlf")

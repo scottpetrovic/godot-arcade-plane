@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://stpxkenrfd85"
-path="res://.godot/imported/background-tiled.png-ad1235792d753b586bffd98301514f90.ctex"
+path="res://.godot/imported/background-tiled.png-b1b01694e2f472c4e0241c1b8cf20cbf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MissionEndOverview/background-tiled.png"
-dest_files=["res://.godot/imported/background-tiled.png-ad1235792d753b586bffd98301514f90.ctex"]
+source_file="res://UI/MissionEndOverview/background-tiled.png"
+dest_files=["res://.godot/imported/background-tiled.png-b1b01694e2f472c4e0241c1b8cf20cbf.ctex"]
 
 [params]
 

@@ -2,30 +2,30 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxkhf2aexbevc"
-path.bptc="res://.godot/imported/aircraft-carrier_aircraft-carrier-UV.png-2fe381e414fa705001f5512b67480193.bptc.ctex"
+uid="uid://cha6l0hneyffc"
+path.s3tc="res://.godot/imported/gate-checkpoint_color-palette.png-b26215bcdfa76a7c0c5efbb1791bb210.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "30ed992337861259a63166368aaf39b8"
+"md5": "6f40c9682c4b0a1c226ccc1bb7135cde"
 }
 
 [deps]
 
-source_file="res://AircraftCarrier/aircraft-carrier_aircraft-carrier-UV.png"
-dest_files=["res://.godot/imported/aircraft-carrier_aircraft-carrier-UV.png-2fe381e414fa705001f5512b67480193.bptc.ctex"]
+source_file="res://Environment/GateCheckpoint/gate-checkpoint_color-palette.png"
+dest_files=["res://.godot/imported/gate-checkpoint_color-palette.png-b26215bcdfa76a7c0c5efbb1791bb210.s3tc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=true
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=2
+compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

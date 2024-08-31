@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cha6l0hneyffc"
-path.s3tc="res://.godot/imported/gate-checkpoint_color-palette.png-2ae4fe3dcd4b0806ee64673e67005947.s3tc.ctex"
+uid="uid://w0isknjs0vbb"
+path.s3tc="res://.godot/imported/aircraft-carrier_color-palette.png-d761bf99a847afaa6c763630e7436f3f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://GateCheckpoint/gate-checkpoint_color-palette.png"
-dest_files=["res://.godot/imported/gate-checkpoint_color-palette.png-2ae4fe3dcd4b0806ee64673e67005947.s3tc.ctex"]
+source_file="res://Environment/AircraftCarrier/aircraft-carrier_color-palette.png"
+dest_files=["res://.godot/imported/aircraft-carrier_color-palette.png-d761bf99a847afaa6c763630e7436f3f.s3tc.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

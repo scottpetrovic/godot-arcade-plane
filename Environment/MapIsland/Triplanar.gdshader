@@ -51,7 +51,7 @@ uniform vec3 uv_detail_offset = vec3(0.0);
 
 vec3 applyTexture(sampler2D tex, vec3 p, vec3 n, float k) {
      p = 0.5+0.5*p;
-	
+
  // x, y, z axis
 vec3 zy = texture(tex, -p.zy).rgb;
 vec3 xz = texture(tex, -p.xz).rgb;
@@ -77,7 +77,7 @@ return samp = zy*n.x + xz * n.y + xy*n.z;
 
 
 
-void vertex() 
+void vertex()
 {
 my_pos = VERTEX * uv_base_scale + uv_base_offset;
 my_pos *= vec3(-1.0,-1.0, 1.0);
@@ -170,7 +170,7 @@ if(use_detail_normal){
 	NORMAL_MAP = NORMAL_MAP * 0.5 +0.5;
 	}
 
-//ORM 
+//ORM
 
 // ALEBDO MAPS
 vec3 base_albedo_tex = applyTexture(albedo, my_pos, my_normal, tri_blend_factor);

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cl861nerpvmo8"]
 
-[ext_resource type="PackedScene" uid="uid://bc7flfj4e2c14" path="res://AircraftCarrier/aircraft_carrier_mesh.tscn" id="1_6s1ql"]
+[ext_resource type="PackedScene" uid="uid://bc7flfj4e2c14" path="res://Environment/AircraftCarrier/aircraft_carrier_mesh.tscn" id="1_6s1ql"]
 [ext_resource type="Script" path="res://Environment/Runway/Runway.gd" id="2_n1y8k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_518md"]

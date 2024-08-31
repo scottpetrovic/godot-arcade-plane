@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Environment/MapAircraft/MapAircraft.gd" id="1_gu8js"]
 [ext_resource type="PackedScene" uid="uid://f5q3lvkkp6et" path="res://Environment/Ocean/Ocean.tscn" id="1_y4nq7"]
-[ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://AircraftCarrier/Aircraft_Carrier.tscn" id="2_jj14q"]
+[ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://Environment/AircraftCarrier/Aircraft_Carrier.tscn" id="2_jj14q"]
 [ext_resource type="PackedScene" uid="uid://bin24lcxi48bf" path="res://Environment/LandingTarget/LandingTarget.tscn" id="5_q3ax4"]
-[ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://GateCheckpoint/GateCheckpoint.tscn" id="5_xsqg6"]
+[ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://Environment/GateCheckpoint/GateCheckpoint.tscn" id="5_xsqg6"]
 
 [node name="Environment" type="Node3D"]
 script = ExtResource("1_gu8js")

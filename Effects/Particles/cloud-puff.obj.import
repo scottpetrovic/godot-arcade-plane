@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cyi7lbm10x0rp"
+path="res://.godot/imported/cloud-puff.obj-b370947c56d1f4607876ec781c5bcd58.mesh"
+
+[deps]
+
+files=["res://.godot/imported/cloud-puff.obj-b370947c56d1f4607876ec781c5bcd58.mesh"]
+
+source_file="res://Effects/Particles/cloud-puff.obj"
+dest_files=["res://.godot/imported/cloud-puff.obj-b370947c56d1f4607876ec781c5bcd58.mesh", "res://.godot/imported/cloud-puff.obj-b370947c56d1f4607876ec781c5bcd58.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

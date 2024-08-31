@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bm0plgyyk7jkk"
-path="res://.godot/imported/gate-checkpoint.glb-b32abca0fbe56615b0762748238bffb9.scn"
+path="res://.godot/imported/gate-checkpoint.glb-6107699cc14c4e45c1f216cb87f2143a.scn"
 
 [deps]
 
-source_file="res://GateCheckpoint/gate-checkpoint.glb"
-dest_files=["res://.godot/imported/gate-checkpoint.glb-b32abca0fbe56615b0762748238bffb9.scn"]
+source_file="res://Environment/GateCheckpoint/gate-checkpoint.glb"
+dest_files=["res://.godot/imported/gate-checkpoint.glb-6107699cc14c4e45c1f216cb87f2143a.scn"]
 
 [params]
 
@@ -32,8 +32,5 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-fbx/importer=1
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
 gltf/naming_version=1
 gltf/embedded_image_handling=1

@@ -116,10 +116,11 @@ func goal_completed():
 	await get_tree().create_timer(Constants.WAITTIME.MISSION_COMPELTE).timeout
 	GameManager.current_level_time = elapsed_time
 	GameManager.current_level_objectives_score = environment.percentage_of_all_gates_passed() * 100
-	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn", true)
+	GameManager.go_to_mission_overview(true)
 
 func on_player_crash(location: String):
 	player_skydiver.landed() 
+	GlobalAudio.start_crashed_music()
 	$UI/HUD.visible = false # hide plane instruments at top
 	player_crashed_overlay.visible = true
 	change_camera_to_orbit()
@@ -140,7 +141,7 @@ func on_player_crash(location: String):
 	GameManager.current_level_success_status = false
 	GameManager.current_level_time = elapsed_time
 	GameManager.current_level_parachute_landing_score = 0
-	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")
+	GameManager.go_to_mission_overview()
 
 func on_skydiver_missed_target():
 
