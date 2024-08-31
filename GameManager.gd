@@ -64,4 +64,5 @@ func go_to_next_level():
 func format_elapsed_time(elapsed: float) -> String:
 	var minutes = int(elapsed/ 60.0)
 	var seconds = int(elapsed) % 60
-	return str(minutes) + ":" + str(seconds).pad_zeros(2)
+	var milliseconds = int((elapsed - int(elapsed)) * 1000)
+	return str(minutes) + ":" + str(seconds).pad_zeros(2) + "." + str(milliseconds).pad_zeros(3)

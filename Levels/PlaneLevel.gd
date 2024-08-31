@@ -128,7 +128,7 @@ func _process(delta: float) -> void:
 		# show the UI to land for a couple seconds
 		checkpoints_passed_overlay.visible = true
 		GlobalAudio.play_objectives_complete_sfx()
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(Constants.WAITTIME.OBJECTIVES_PASSED).timeout
 		checkpoints_passed_overlay.visible = false
 
 	if is_mission_complete():
@@ -140,7 +140,8 @@ func goal_completed():
 		airplane.turn_engine_off()
 		training_complete_overlay.visible = true
 		GlobalAudio.start_level_complete()
-		await get_tree().create_timer(4.0).timeout
+		change_camera_to_orbit()
+		await get_tree().create_timer(Constants.WAITTIME.MISSION_COMPELTE).timeout
 		GameManager.current_level_success_status = true
 		GameManager.current_level_time = elapsed_time
 		GameManager.current_level_objectives_score = environment.percentage_of_all_gates_passed() * 100
@@ -150,10 +151,16 @@ func goal_completed():
 		# TODO: pause screen
 		# TODO: controls if on mobile
 
+func change_camera_to_orbit():
+	var camera_script = load("res://Effects/CameraOrbit.gd")
+	main_camera.set_script(camera_script)
+	main_camera.target = airplane
+
 func on_player_crash(location: String):
 	airplane.turn_engine_off()
 	player_crashed_overlay.visible = true
-	GlobalAudio.play_explosion_sfx()	
+	GlobalAudio.play_explosion_sfx()
+	change_camera_to_orbit()
 	$UI/HUD.visible = false # hide plane instruments at top
 	$Camera/ScreenShake.camera_shake_impulse(1.3, 0.4)
 	airplane.crashed()
@@ -167,8 +174,8 @@ func on_player_crash(location: String):
 		add_child(splash_object)
 		splash_object.global_position = airplane.global_position
 	
-	# restart the level after 4 seconds
-	await get_tree().create_timer(8.0).timeout # waits for X second
+	# restart the level after X seconds
+	await get_tree().create_timer(Constants.WAITTIME.MISSION_COMPELTE).timeout # waits for X second
 	GameManager.current_level_time = elapsed_time
 	GameManager.current_level_success_status = false
 	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn")

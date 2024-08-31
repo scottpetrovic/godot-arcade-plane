@@ -61,15 +61,23 @@ func setup_player():
 
 
 func _on_parachute_deployed():
+	change_camera_to_follow()
+	speed_lines_camera_effect.visible = false
+	
+	$Camera3D/ScreenShake.stop_constant_shake()
+
+func change_camera_to_follow():
 	# Change the script attached to the Camera3D object to follow player
 	var camera_script = load("res://Effects/CameraFollow.gd")
 	camera_3d.set_script(camera_script)
 	camera_3d.target = player_skydiver_camera_target
 	camera_3d.should_look_at_target = true
-	speed_lines_camera_effect.visible = false
 	
-	$Camera3D/ScreenShake.stop_constant_shake()
 
+func change_camera_to_orbit():
+	var camera_script = load("res://Effects/CameraOrbit.gd")
+	camera_3d.set_script(camera_script)
+	camera_3d.target = player_skydiver_camera_target
 
 func update_hud(delta: float):
 
@@ -95,23 +103,24 @@ func _process(delta: float) -> void:
 		# show the UI to land for a couple seconds
 		checkpoints_passed_overlay.visible = true
 		GlobalAudio.play_objectives_complete_sfx()
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(Constants.WAITTIME.OBJECTIVES_PASSED).timeout
 		checkpoints_passed_overlay.visible = false
 
 
 func goal_completed():
 	training_complete_overlay.visible = true
 	GlobalAudio.start_level_complete()
-	await get_tree().create_timer(4.0).timeout
+	change_camera_to_orbit()
+	await get_tree().create_timer(Constants.WAITTIME.MISSION_COMPELTE).timeout
 	GameManager.current_level_time = elapsed_time
 	GameManager.current_level_objectives_score = environment.percentage_of_all_gates_passed() * 100
 	SceneTransition.change_scene("res://MissionEndOverview/MissionEndOverview.tscn", true)
-
 
 func on_player_crash(location: String):
 	player_skydiver.landed() 
 	$UI/HUD.visible = false # hide plane instruments at top
 	player_crashed_overlay.visible = true
+	change_camera_to_orbit()
 	
 	if location == 'ground':
 		# only do screen shake if we didn't open our parachute on ground
@@ -125,7 +134,7 @@ func on_player_crash(location: String):
 		$Camera3D/ScreenShake.camera_shake_impulse(1.0, 1.4)
 
 	# restart the level after X seconds
-	await get_tree().create_timer(9.0).timeout # waits for X second
+	await get_tree().create_timer(Constants.WAITTIME.MISSION_COMPELTE).timeout # waits for X second
 	GameManager.current_level_success_status = false
 	GameManager.current_level_time = elapsed_time
 	GameManager.current_level_parachute_landing_score = 0

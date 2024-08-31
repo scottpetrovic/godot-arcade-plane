@@ -60,23 +60,11 @@ anchor_bottom = 1.003
 offset_right = -0.1521
 offset_bottom = 0.0559692
 
-[node name="SpeedLinesCameraEffect" type="ColorRect" parent="UI"]
-material = SubResource("ShaderMaterial_uiy3f")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_orup4")
-
 [node name="HUD" type="Control" parent="UI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 0.128052
-offset_bottom = -574.36
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -183,6 +171,16 @@ theme_override_font_sizes/font_size = 16
 text = "MPH"
 horizontal_alignment = 1
 
+[node name="SpeedLinesCameraEffect" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_uiy3f")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_orup4")
+
 [node name="PlayerCrashedOverlay" type="CenterContainer" parent="UI"]
 visible = false
 layout_mode = 1
@@ -196,6 +194,7 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="Ui-crashed" type="Sprite2D" parent="UI/PlayerCrashedOverlay/VBoxContainer"]
+position = Vector2(0, -100)
 scale = Vector2(0.438596, 0.438596)
 texture = ExtResource("9_gcrn8")
 
@@ -212,6 +211,7 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="Mission-complete-8-16-2024" type="Sprite2D" parent="UI/TrainingCompleteOverlay/VBoxContainer"]
+position = Vector2(0, -100)
 scale = Vector2(0.614537, 0.614537)
 texture = ExtResource("10_40fsr")
 
@@ -228,15 +228,6 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="Ui-objective-complete" type="Sprite2D" parent="UI/CheckpointsPassedOverlay/VBoxContainer"]
-position = Vector2(89, -33)
+position = Vector2(0, -100)
 scale = Vector2(0.693878, 0.693878)
 texture = ExtResource("11_xbtig")
-
-[node name="Label2" type="Label" parent="UI/CheckpointsPassedOverlay/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("8_6ygpm")
-theme_type_variation = &"HeaderLarge"
-theme_override_font_sizes/font_size = 30
-text = "land to complete"
-horizontal_alignment = 1
-uppercase = true
