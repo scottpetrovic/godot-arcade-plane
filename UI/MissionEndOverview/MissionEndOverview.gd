@@ -22,8 +22,6 @@ func change_audio_stream(new_audio_file_path: String):
 
 func _ready() -> void:
 	
-	GlobalAudio.start_music_mission_debrief()
-	
 	# 2 minutes or more will get a score of 0 (120)
 	var time_points = int(max(120 - GameManager.current_level_time, 0))
 	

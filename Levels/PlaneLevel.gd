@@ -159,7 +159,7 @@ func goal_completed():
 		GameManager.current_level_success_status = true
 		GameManager.current_level_time = elapsed_time
 		GameManager.current_level_objectives_score = environment.percentage_of_all_gates_passed() * 100
-		GameManager.go_to_mission_overview(true)
+		GameManager.go_to_mission_overview(false)
 		# TODO: Controls for controller
 		# TODO: export to HTML5
 		# TODO: pause screen

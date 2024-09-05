@@ -116,7 +116,7 @@ func goal_completed():
 	await get_tree().create_timer(Constants.WAITTIME.MISSION_COMPELTE).timeout
 	GameManager.current_level_time = elapsed_time
 	GameManager.current_level_objectives_score = environment.percentage_of_all_gates_passed() * 100
-	GameManager.go_to_mission_overview(true)
+	GameManager.go_to_mission_overview(false)
 
 func on_player_crash(location: String):
 	player_skydiver.landed() 
