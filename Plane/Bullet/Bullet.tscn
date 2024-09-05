@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://02q5hpuktdff"]
+
+[ext_resource type="Script" path="res://Plane/Bullet/Bullet.gd" id="1_afsak"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kru0d"]
+radius = 0.104084
+
+[sub_resource type="SphereMesh" id="SphereMesh_c52su"]
+radius = 0.1
+height = 0.2
+
+[node name="Bullet" type="Area3D"]
+script = ExtResource("1_afsak")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_kru0d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("SphereMesh_c52su")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true

@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3ovo2it7nbnh"]
+[gd_scene load_steps=8 format=3 uid="uid://d3ovo2it7nbnh"]
 
 [ext_resource type="Script" path="res://Plane/airplane.gd" id="1_wihbf"]
 [ext_resource type="PackedScene" uid="uid://d3qn3es4bmao8" path="res://Plane/Airplane_Mesh.tscn" id="2_j34yd"]
 [ext_resource type="AudioStream" uid="uid://c5bmui870wk38" path="res://Plane/plane-engine.mp3" id="3_610pa"]
 [ext_resource type="Script" path="res://Plane/EngineSound.gd" id="4_874ub"]
+[ext_resource type="Script" path="res://Plane/BulletShooter.gd" id="5_3arig"]
+[ext_resource type="AudioStream" uid="uid://cirq4m35rg34q" path="res://Assets/SoundFX/bubble-pop.mp3" id="6_0fbid"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsjsx"]
 radius = 0.259621
@@ -25,3 +27,17 @@ volume_db = -17.802
 pitch_scale = 0.82
 parameters/looping = true
 script = ExtResource("4_874ub")
+
+[node name="BulletShooter" type="Node3D" parent="."]
+script = ExtResource("5_3arig")
+
+[node name="MuzzleLeft" type="Node3D" parent="BulletShooter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.424638, 0.214821, 0)
+
+[node name="MuzzleRight" type="Node3D" parent="BulletShooter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.378129, 0.17388, 0)
+
+[node name="ShootTimer" type="Timer" parent="BulletShooter"]
+
+[node name="BulletSound" type="AudioStreamPlayer2D" parent="BulletShooter"]
+stream = ExtResource("6_0fbid")
