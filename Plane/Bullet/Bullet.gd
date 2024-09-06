@@ -15,6 +15,9 @@ func _physics_process(delta):
 func _on_area_entered(area: Area3D):
 	if area.name == "Ocean":
 		create_impact_effect()
+		
+	if area.has_method("hit"):
+		area.hit()
 
 func _on_body_entered(body):
 	create_impact_effect()
