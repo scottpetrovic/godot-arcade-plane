@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bm15sseqvqdwl"]
+[gd_scene load_steps=14 format=3 uid="uid://bm15sseqvqdwl"]
 
 [ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="1_2e51c"]
 [ext_resource type="Script" path="res://UI/InGame/InGameUI.gd" id="1_sy6e0"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://Effects/Camera/SpeedLines.gdshader" id="4_1oqhq"]
 [ext_resource type="FontFile" uid="uid://b0dag8tcxhsrg" path="res://Theme/OverpassMono-SemiBold.ttf" id="5_f1862"]
 [ext_resource type="Texture2D" uid="uid://b3oljv8lyncny" path="res://Assets/UI/UI-crashed.png" id="6_hjpcx"]
+[ext_resource type="Script" path="res://UI/Radar/RadarUI.gd" id="6_uldm6"]
 [ext_resource type="Texture2D" uid="uid://co4bls0sy8o31" path="res://Assets/UI/MISSION-COMPLETE-8-16-2024.png" id="7_7scy5"]
 [ext_resource type="Texture2D" uid="uid://bufhyxm73wqho" path="res://Assets/UI/UI-objective-complete.png" id="8_dpvdv"]
 
@@ -163,6 +164,14 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 18
 text = "FT"
 horizontal_alignment = 1
+
+[node name="Radar" type="Control" parent="HUD"]
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 60.0
+script = ExtResource("6_uldm6")
 
 [node name="SpeedLinesCameraEffect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_uiy3f")

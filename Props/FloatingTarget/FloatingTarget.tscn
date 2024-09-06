@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxo5ikrfddrqy"]
+[gd_scene load_steps=6 format=3 uid="uid://bxo5ikrfddrqy"]
 
 [ext_resource type="Script" path="res://Props/FloatingTarget/FloatingTarget.gd" id="1_target"]
+[ext_resource type="PackedScene" uid="uid://djul70tgi2txo" path="res://UI/Radar/RadarTarget.tscn" id="2_4dbcb"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1"]
 radius = 1.0
@@ -21,3 +22,5 @@ shape = SubResource("SphereShape3D_1")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_1")
 surface_material_override/0 = SubResource("StandardMaterial3D_1")
+
+[node name="RadarTarget" parent="." instance=ExtResource("2_4dbcb")]
