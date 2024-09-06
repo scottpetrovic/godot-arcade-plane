@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://d1hlig8yrnk2a" path="res://Skydiver/Skydiver_mesh.tscn" id="6_ntr7i"]
 [ext_resource type="PackedScene" uid="uid://bm15sseqvqdwl" path="res://UI/InGame/InGameUIElements.tscn" id="7_4vg4j"]
 [ext_resource type="PackedScene" uid="uid://vtochg4irhio" path="res://Skydiver/parachute.glb" id="7_8p2wn"]
-[ext_resource type="Script" path="res://Effects/TopDownCameraFollow.gd" id="13_rlteu"]
-[ext_resource type="PackedScene" uid="uid://byciq4nuwsumf" path="res://Effects/FX_ScreenShake.tscn" id="14_pis3b"]
+[ext_resource type="Script" path="res://Effects/Camera/TopDownCameraFollow.gd" id="13_rlteu"]
+[ext_resource type="PackedScene" uid="uid://byciq4nuwsumf" path="res://Effects/Camera/FX_ScreenShake.tscn" id="14_pis3b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tp4jf"]
 size = Vector3(0.238892, 0.323914, 0.298157)

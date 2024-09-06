@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
-SceneTransition="*res://SceneTransition/SceneTransition.tscn"
+SceneTransition="*res://UI/SceneTransition/SceneTransition.tscn"
 GlobalAudio="*res://Global/GlobalAudio.tscn"
 GameManager="*res://Global/GameManager.gd"
 Constants="*res://Global/Constants.gd"

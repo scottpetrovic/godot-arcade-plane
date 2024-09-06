@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Levels/PlaneLevel.gd" id="1_2pumm"]
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="2_rh33o"]
-[ext_resource type="Script" path="res://Effects/CameraFollow.gd" id="3_acngr"]
-[ext_resource type="Script" path="res://Effects/FX_ScreenShake.gd" id="4_kr0vk"]
+[ext_resource type="Script" path="res://Effects/Camera/CameraFollow.gd" id="3_acngr"]
+[ext_resource type="Script" path="res://Effects/Camera/FX_ScreenShake.gd" id="4_kr0vk"]
 [ext_resource type="PackedScene" uid="uid://bm15sseqvqdwl" path="res://UI/InGame/InGameUIElements.tscn" id="5_711ci"]
 
 [node name="PlaneLevel" type="Node3D"]

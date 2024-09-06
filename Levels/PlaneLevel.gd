@@ -167,7 +167,7 @@ func goal_completed():
 
 
 func change_camera_to_orbit():
-	var camera_script = load("res://Effects/CameraOrbit.gd")
+	var camera_script = load("res://Effects/Camera/CameraOrbit.gd")
 	main_camera.set_script(camera_script)
 	main_camera.target = airplane
 

@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlwq32a6vy4t2"]
-
-[ext_resource type="PackedScene" uid="uid://bm0plgyyk7jkk" path="res://Environment/GateCheckpoint/gate-checkpoint.glb" id="1_wi0lf"]
-
-[node name="gate-checkpoint" instance=ExtResource("1_wi0lf")]

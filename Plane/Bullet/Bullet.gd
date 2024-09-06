@@ -1,7 +1,7 @@
 extends Area3D
 @onready var timer: Timer = $Timer
 var speed = 60.0
-var LandingParticles = preload("res://Plane/LandingParticles.tscn")
+var LandingParticles = preload("res://Effects/Particles/LandingSmoke/LandingParticles.tscn")
 
 func _ready():
 	timer.wait_time = 4.0 # bullet dies after 4 seconds

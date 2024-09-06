@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bin24lcxi48bf"]
+
+[ext_resource type="PackedScene" uid="uid://b76qpma2p3cvr" path="res://Props/LandingTarget/LandingTarget.glb" id="1_te1gu"]
+[ext_resource type="Script" path="res://Props/LandingTarget/LandingTarget.gd" id="2_hvfgl"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_p072k"]
+height = 0.371489
+radius = 5.0615
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2bf7c"]
+height = 0.172298
+radius = 5.04169
+
+[node name="LandingTarget" instance=ExtResource("1_te1gu")]
+script = ExtResource("2_hvfgl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+shape = SubResource("CylinderShape3D_p072k")
+
+[node name="Area3D" type="Area3D" parent="." index="2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.267436, 0)
+shape = SubResource("CylinderShape3D_2bf7c")

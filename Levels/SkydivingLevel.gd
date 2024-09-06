@@ -70,14 +70,14 @@ func _on_parachute_deployed():
 
 func change_camera_to_follow():
 	# Change the script attached to the Camera3D object to follow player
-	var camera_script = load("res://Effects/CameraFollow.gd")
+	var camera_script = load("res://Effects/Camera/CameraFollow.gd")
 	camera_3d.set_script(camera_script)
 	camera_3d.target = player_skydiver_camera_target
 	camera_3d.should_look_at_target = true
 	
 
 func change_camera_to_orbit():
-	var camera_script = load("res://Effects/CameraOrbit.gd")
+	var camera_script = load("res://Effects/Camera/CameraOrbit.gd")
 	camera_3d.set_script(camera_script)
 	camera_3d.target = player_skydiver_camera_target
 

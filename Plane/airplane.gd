@@ -18,7 +18,7 @@ var pitch_input: float = 0.0
 var air_particles: GPUParticles3D
 var air_particles_2: GPUParticles3D
 
-var air_particles_scene: PackedScene = load("res://Plane/PlaneParticleTrail.tscn")
+var air_particles_scene: PackedScene = load("res://Effects/Particles/PlaneParticleTrail.tscn")
 
 var has_crashed = false # only water will make us crash
 var is_engine_on = true # turn off when we complete mission
