@@ -40,9 +40,18 @@ func draw_background_circle():
 	draw_arc(center, radar_radius, start_angle, end_angle, 64, stroke_color, stroke_width)
 
 func draw_north_indicator():
+	var text_content = "N"
+	var font_size = 16
 	var north_angle = player.rotation.y
-	var north_pos = Vector2(0, -radar_radius + 15).rotated(north_angle) + Vector2(radar_radius, radar_radius)
-	draw_string(font, north_pos, "N", HORIZONTAL_ALIGNMENT_CENTER, -1, 16, Color.WHITE)
+	var dist_offset = 3
+	var north_pos: Vector2 = Vector2(0, radar_radius+dist_offset).rotated(north_angle) + Vector2(radar_radius, radar_radius)
+	north_pos += Vector2(-font_size*0.5, font_size*0.5)
+	
+		# draw string outline for visibility
+	draw_string_outline(font, north_pos, text_content, HORIZONTAL_ALIGNMENT_CENTER, 16, font_size,12,Color.BLACK )
+	
+	draw_string(font, north_pos, text_content, HORIZONTAL_ALIGNMENT_CENTER, 16, font_size, Color.WHITE)
+
 
 func draw_forward_direction_line():
 	# Draw a line indicating the forward direction
@@ -59,7 +68,6 @@ func _draw():
 		return
 
 	draw_background_circle()
-	draw_forward_direction_line()
 	draw_north_indicator()
 	draw_player_dot()
 
@@ -84,7 +92,7 @@ func _draw():
 			var outside_indicator_dist = radar_radius * 1.2 # a bit outside radar circle
 			var centered = Vector2(radar_radius, radar_radius)
 			var edge_pos = dir.normalized() * outside_indicator_dist + centered
-			draw_arrow(edge_pos, angle, Color.ORANGE)
+			draw_arrow(edge_pos, angle, Color.RED)
 
 func draw_arrow(pos: Vector2, angle: float, color: Color):
 	var triangle_size = 8.0  # Size of the triangle
