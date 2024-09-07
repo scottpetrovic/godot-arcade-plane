@@ -1,15 +1,16 @@
 extends Node3D
 
 @onready var shoot_timer: Timer = $ShootTimer
-var Bullet = preload("res://Plane/Bullet/Bullet.tscn")
 @onready var bullet_sound: AudioStreamPlayer2D = $BulletSound
+@onready var muzzle_left = $MuzzleLeft
+@onready var muzzle_right = $MuzzleRight
+
+var MuzzleFlash = preload("res://Plane/MuzzleFlash/MuzzleFlash.tscn")
+var BulletCasing = preload("res://Plane/BulletCasing/BulletCasing.tscn")
+var Bullet = preload("res://Plane/Bullet/Bullet.tscn")
 
 var can_shoot = true
 var shoot_delay = 0.3
-
-var MuzzleFlash = preload("res://Plane/MuzzleFlash/MuzzleFlash.tscn")
-@onready var muzzle_left = $MuzzleLeft
-@onready var muzzle_right = $MuzzleRight
 
 func _ready():
 	shoot_timer.wait_time = shoot_delay
@@ -38,6 +39,20 @@ func shoot():
 
 	create_muzzle_flash(muzzle_left)
 	create_muzzle_flash(muzzle_right)
+	
+	eject_casing(muzzle_left)
+	eject_casing(muzzle_right)
+
+func eject_casing(muzzle):
+	var casing = BulletCasing.instantiate()
+	get_tree().root.add_child(casing)
+	casing.global_transform = muzzle.global_transform
+	casing.global_transform.origin += muzzle.global_transform.basis.x * 0.2  # Offset to the side
+
+	# Apply an impulse to eject the casing
+	var ejection_dir = muzzle.global_transform.basis.x + muzzle.global_transform.basis.y * 0.5
+	casing.apply_impulse(ejection_dir.normalized() * 2)
+
 
 func create_muzzle_flash(muzzle):
 	var flash = MuzzleFlash.instantiate()

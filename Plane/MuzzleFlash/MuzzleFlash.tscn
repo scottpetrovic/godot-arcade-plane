@@ -1,39 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbhkpjme0ex4y"]
+[gd_scene load_steps=5 format=3 uid="uid://dbhkpjme0ex4y"]
 
 [ext_resource type="Script" path="res://Plane/MuzzleFlash/MuzzleFlash.gd" id="1_muzzle"]
 
-[sub_resource type="Curve" id="Curve_1"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_1"]
-curve = SubResource("Curve_1")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_irwf4"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1"]
-lifetime_randomness = 0.3
 emission_shape = 1
-emission_sphere_radius = 0.2
-direction = Vector3(0, 0, -1)
-spread = 15.0
-initial_velocity_min = 2.0
-initial_velocity_max = 5.0
+emission_sphere_radius = 0.1
+direction = Vector3(0, 0, 0)
+spread = 0.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.3
-scale_max = 0.8
-scale_curve = SubResource("CurveTexture_1")
+color = Color(1, 0.953191, 0.650438, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_1"]
+[sub_resource type="SphereMesh" id="SphereMesh_1ndj6"]
 radius = 0.1
 height = 0.2
-radial_segments = 16
+radial_segments = 8
 rings = 8
 
 [node name="MuzzleFlash" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_irwf4")
 emitting = false
-amount = 20
-lifetime = 0.2
+amount = 10
+lifetime = 0.1
 one_shot = true
 explosiveness = 1.0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_1")
-draw_pass_1 = SubResource("SphereMesh_1")
+draw_pass_1 = SubResource("SphereMesh_1ndj6")
 script = ExtResource("1_muzzle")

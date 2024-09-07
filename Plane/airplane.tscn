@@ -9,7 +9,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsjsx"]
 radius = 0.259621
-height = 1.17604
+height = 1.07402
 
 [node name="Airplane" type="CharacterBody3D"]
 script = ExtResource("1_wihbf")
@@ -19,7 +19,7 @@ transform = Transform3D(1.91068e-15, 4.37114e-08, 1, 1, -4.37114e-08, 2.12779e-2
 shape = SubResource("CapsuleShape3D_gsjsx")
 
 [node name="Plane_Mesh" parent="." instance=ExtResource("2_j34yd")]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, -0.0835133)
 
 [node name="EngineSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_610pa")
@@ -32,10 +32,10 @@ script = ExtResource("4_874ub")
 script = ExtResource("5_3arig")
 
 [node name="MuzzleLeft" type="Node3D" parent="BulletShooter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.424638, 0.214821, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.424638, 0.197004, -0.264707)
 
 [node name="MuzzleRight" type="Node3D" parent="BulletShooter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.378129, 0.17388, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.394647, 0.178619, -0.264707)
 
 [node name="ShootTimer" type="Timer" parent="BulletShooter"]
 

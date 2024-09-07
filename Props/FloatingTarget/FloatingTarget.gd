@@ -19,6 +19,7 @@ func complete_target():
 	$MeshInstance3D.material_override.albedo_color = Color(0, 1, 0)  # Change color to green
 	
 	$QuickPulse.pulse()
+	$TargetHitSound.play()
 	
 	emit_signal("target_completed")
 	# Optional: play a sound or particle effect here
