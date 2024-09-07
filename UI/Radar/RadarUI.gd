@@ -75,6 +75,7 @@ func _draw():
 		
 		# only show target if it is not completed
 		if target.has_method("is_completed") && target.is_completed():
+			# our target has been finished, don't show on radar
 			continue
 		
 		var target_pos_2d: Vector2 = Vector2(target.global_position.x, target.global_position.z)

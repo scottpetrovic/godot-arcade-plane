@@ -5,7 +5,6 @@ var is_checked: bool = false
 @onready var gate_passed_sound: AudioStreamPlayer2D = $GatePassedSound
 
 
-
 func _ready() -> void:
 	self.body_entered.connect(body_enter)
 	
@@ -22,5 +21,8 @@ func body_enter(body: Node3D) -> void:
 		
 		# play sound effect
 		gate_passed_sound.play()
+		
+		# do quick pulse animation for more feedback
+		$QuickPulse.pulse()
 		
 		

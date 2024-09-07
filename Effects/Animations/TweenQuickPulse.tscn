@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dniiuhn8xtjw6"]
+
+[ext_resource type="Script" path="res://Effects/Animations/TweenQuickPulse.gd" id="1_2f6da"]
+
+[node name="QuickPulse" type="Node"]
+script = ExtResource("1_2f6da")
