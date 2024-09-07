@@ -7,6 +7,10 @@ var Bullet = preload("res://Plane/Bullet/Bullet.tscn")
 var can_shoot = true
 var shoot_delay = 0.3
 
+var MuzzleFlash = preload("res://Plane/MuzzleFlash/MuzzleFlash.tscn")
+@onready var muzzle_left = $MuzzleLeft
+@onready var muzzle_right = $MuzzleRight
+
 func _ready():
 	shoot_timer.wait_time = shoot_delay
 	shoot_timer.timeout.connect(reset_can_shoot)
@@ -29,8 +33,16 @@ func shoot():
 	get_tree().root.add_child(bullet_left)
 	get_tree().root.add_child(bullet_right)
 
-	bullet_left.global_transform = $MuzzleLeft.global_transform
-	bullet_right.global_transform = $MuzzleRight.global_transform
+	bullet_left.global_transform = muzzle_left.global_transform
+	bullet_right.global_transform = muzzle_right.global_transform
+
+	create_muzzle_flash(muzzle_left)
+	create_muzzle_flash(muzzle_right)
+
+func create_muzzle_flash(muzzle):
+	var flash = MuzzleFlash.instantiate()
+	muzzle.add_child(flash)
+	flash.global_transform.origin = muzzle.global_transform.origin
 
 func reset_can_shoot():
 	can_shoot = true
