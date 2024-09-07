@@ -72,6 +72,11 @@ func _draw():
 	draw_player_dot()
 
 	for target in targets:
+		
+		# only show target if it is not completed
+		if target.has_method("is_completed") && target.is_completed():
+			continue
+		
 		var target_pos_2d: Vector2 = Vector2(target.global_position.x, target.global_position.z)
 		var player_pos_2d: Vector2 = Vector2(player.global_position.x, player.global_position.z)
 		

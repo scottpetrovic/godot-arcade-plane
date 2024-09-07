@@ -2,7 +2,7 @@ extends Area3D
 
 signal target_completed
 
-var is_completed = false
+var _is_completed = false
 var material: StandardMaterial3D
 
 func _ready():
@@ -11,13 +11,16 @@ func _ready():
 	material.albedo_color = Color(1, 0, 0)  # Initial color (red)
 	$MeshInstance3D.material_override = material
 
+func is_completed() -> bool:
+	return _is_completed
+
 func complete_target():
-	is_completed = true
+	_is_completed = true
 	$MeshInstance3D.material_override.albedo_color = Color(0, 1, 0)  # Change color to green
 	emit_signal("target_completed")
 	# Optional: play a sound or particle effect here
 
 func hit():
 	# This function is called by the bullet
-	if not is_completed:
+	if not _is_completed:
 		complete_target()
