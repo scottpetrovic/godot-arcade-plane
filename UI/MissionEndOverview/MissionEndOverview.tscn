@@ -71,39 +71,74 @@ offset_right = 466.0
 offset_bottom = 533.0
 theme_override_constants/separation = 10
 
-[node name="LevelLabel" type="Label" parent="VBoxContainer"]
+[node name="TimeLayout" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_aifyh")
-theme_override_font_sizes/font_size = 50
-text = "Level 0"
 
-[node name="TimeScore" type="Label" parent="VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="VBoxContainer/TimeLayout"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme = ExtResource("1_aifyh")
 theme_override_font_sizes/font_size = 50
-text = "Time . . . . . .100 pts"
+text = "Time:"
 
-[node name="ObjectivesScore" type="Label" parent="VBoxContainer"]
+[node name="ValueLabel" type="Label" parent="VBoxContainer/TimeLayout"]
 layout_mode = 2
+size_flags_horizontal = 10
 theme = ExtResource("1_aifyh")
 theme_override_font_sizes/font_size = 50
-text = "Objective. . .100 pts"
+text = "100 pts"
 
-[node name="LandingScore" type="Label" parent="VBoxContainer"]
+[node name="ObjectiveLayout" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/ObjectiveLayout"]
 layout_mode = 2
 theme = ExtResource("1_aifyh")
 theme_override_font_sizes/font_size = 50
-text = "Landing . . . 100 pts"
+text = "Objective:"
+
+[node name="ValueLabel" type="Label" parent="VBoxContainer/ObjectiveLayout"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("1_aifyh")
+theme_override_font_sizes/font_size = 50
+text = "100 PTS"
+
+[node name="LandingLayout" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/LandingLayout"]
+layout_mode = 2
+theme = ExtResource("1_aifyh")
+theme_override_font_sizes/font_size = 50
+text = "Landing:"
+
+[node name="ValueLabel" type="Label" parent="VBoxContainer/LandingLayout"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("1_aifyh")
+theme_override_font_sizes/font_size = 50
+text = "100 PTS"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_51skd")
 
-[node name="TotalScore" type="Label" parent="VBoxContainer"]
+[node name="TotalScoreLayout" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/TotalScoreLayout"]
 layout_mode = 2
 theme = ExtResource("1_aifyh")
 theme_override_font_sizes/font_size = 50
-text = "Total . . . . . 300 pts"
+text = "Total :"
+
+[node name="ValueLabel" type="Label" parent="VBoxContainer/TotalScoreLayout"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("1_aifyh")
+theme_override_font_sizes/font_size = 50
+text = "300 PTS"
 
 [node name="Message background" type="ColorRect" parent="."]
 layout_mode = 0

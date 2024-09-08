@@ -2,11 +2,10 @@ extends Control
 
 @onready var repeat_texture: TextureRect = $RepeatTexture
 @onready var instructor_message: Label = $InstructorMessage
-@onready var level_label: Label = $VBoxContainer/LevelLabel
-@onready var time_score: Label = $VBoxContainer/TimeScore
-@onready var landing_score: Label = $VBoxContainer/LandingScore
-@onready var objectives_score: Label = $VBoxContainer/ObjectivesScore
-@onready var total_score: Label = $VBoxContainer/TotalScore
+@onready var time_score: Label = $VBoxContainer/TimeLayout/ValueLabel
+@onready var landing_score: Label =  $VBoxContainer/LandingLayout/ValueLabel
+@onready var objectives_score: Label = $VBoxContainer/ObjectiveLayout/ValueLabel
+@onready var total_score: Label = $VBoxContainer/TotalScoreLayout/ValueLabel
 
 
 var start_showing_text: bool = false
@@ -28,18 +27,16 @@ func _ready() -> void:
 	if GameManager.current_level_success_status == false:
 		time_points = 0 # don't give any points to time if we failed
 	
-	level_label.text = "Level " + str( GameManager.current_level_number)
-	time_score.text = "Time: " + GameManager.format_elapsed_time(GameManager.current_level_time) 
+	time_score.text = GameManager.format_elapsed_time(GameManager.current_level_time) 
 	# time_score.text += " (" + str(time_points) + ") PTS"
-	objectives_score.text = "Objectives: " + str(GameManager.current_level_objectives_score) + " PTS"
+	objectives_score.text = str(GameManager.current_level_objectives_score) + " PTS"
 	
 	
 	if GameManager.current_vehicle == Constants.VEHICLE.SKYDIVER:
-		landing_score.text = "Landing: " + str( int(GameManager.current_level_parachute_landing_score)) + " PTS"
+		landing_score.text = str( int(GameManager.current_level_parachute_landing_score)) + " PTS"
 
 
-	total_score.text = "Total: "
-	total_score.text += str(int(GameManager.current_level_objectives_score + GameManager.current_level_parachute_landing_score + time_points)) 
+	total_score.text = str(int(GameManager.current_level_objectives_score + GameManager.current_level_parachute_landing_score + time_points)) 
 	total_score.text += " PTS"
 
 

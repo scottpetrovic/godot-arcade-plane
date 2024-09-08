@@ -126,6 +126,7 @@ func update_speed_indicator():
 func camera_screenshake():
 	
 	# if plane is going 90% speed or more, do a constant screen shake to show speed
+	# TODO: airplane needs to send a signal when reaching this treshold
 	if (airplane.forward_speed / airplane.max_flight_speed) > .9:
 		$Camera/ScreenShake.start_constant_shake(0.02)
 	else:
