@@ -7,7 +7,7 @@ var plane_landing_sound: AudioStreamPlayer2D
 func _ready() -> void:
 	$AreaLandingStrip.body_entered.connect(_body_entered)
 	$AreaLandingStrip.body_exited.connect(_body_exited)
-
+	
 	# create new node with AudioStreamPlayer2D
 	plane_landing_sound = AudioStreamPlayer2D.new()
 	plane_landing_sound.stream = load("res://Assets/SoundFX/landing-squeal.mp3")
@@ -21,6 +21,13 @@ func _body_entered(body: Node3D):
 		is_player_on_landing_strip = true
 		var plane_current_speed: float = body.forward_speed
 		
+		var plane_landing_angle = body.get_landing_angle()
+		
+		# if we landed and we are at over a 90 degree angle, we crashed
+		# cannot land upside or at a 90 degreee angle
+		if plane_landing_angle > 45:
+			EventBus.emit_signal("player_crashed", "ground")
+		
 		if plane_current_speed > 1.4:
 			var landing_impact: Node3D = wheel_impact_particles.instantiate()
 			body.add_child(landing_impact)
@@ -29,8 +36,8 @@ func _body_entered(body: Node3D):
 			
 			# landing angle used for scoring with how straight we are
 			# if we are under 3 degrees from perfect. just give player a perfect score
-			var landing_score = 100 - (body.get_landing_angle() * 2)
-			if body.get_landing_angle() < 3:
+			var landing_score = 100 - (plane_landing_angle * 2)
+			if plane_landing_angle < 3:
 				landing_score = 11
 			GameManager.current_level_landing_score = landing_score
 
