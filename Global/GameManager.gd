@@ -3,7 +3,7 @@ extends Node
 # keep track of global things that need to persist between scenes
 var current_level_time: float = 0.0 # store in seconds
 var current_level_success_status: bool = false
-var current_level_parachute_landing_score: float = 0
+var current_level_landing_score: float = 0
 var current_level_objectives_score: int = 0
 
 var current_level_number: int = 1
@@ -51,7 +51,7 @@ func go_to_next_level():
 	
 	# reset current level related scores since we are starting over
 	current_level_success_status = false # reset current level success
-	current_level_parachute_landing_score = 0
+	current_level_landing_score = 0
 	current_level_time = 0
 	current_level_objectives_score = 0
 

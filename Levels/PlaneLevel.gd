@@ -100,6 +100,7 @@ func update_hud(delta: float):
 	update_speed_indicator()
 	apply_speed_lines()
 
+
 func apply_speed_lines():
 	# if going more than 85% speed, turn on speed lines to help indicate speed
 	var plane_speed_percentage = airplane.forward_speed / airplane.max_flight_speed
@@ -177,6 +178,7 @@ func change_camera_to_orbit():
 	var camera_script = load("res://Effects/Camera/CameraOrbit.gd")
 	main_camera.set_script(camera_script)
 	main_camera.target = airplane
+
 
 func on_player_crash(location: String):
 	player_crashed_overlay.visible = true

@@ -9,8 +9,6 @@ var airspeed: float = 0.0
 
 func update() -> void:
 	if airplane:
-		calculate_level_angle()
-		calculate_pitch()
 		calculate_altitude()
 		calculate_airspeed()
 
@@ -26,8 +24,8 @@ func calculate_pitch() -> float:
 		
 	return pitch_angle # negative value means we are pitching to go up
 
-func calculate_level_angle() -> float:
-	var level_angle = rad_to_deg(airplane.rotation.z)
+func calculate_level_angle() -> int:
+	var level_angle: int = int(rad_to_deg(airplane.rotation.z))
 	
 	# -45 to 45 degrees is acceptable angles to land
 	#  if hitting landing strip outside of that...crash
@@ -36,7 +34,6 @@ func calculate_level_angle() -> float:
 	
 	# 100 - abs(level_angle*2) can be scoring criteria.
 	# if abs(level_angle) is less than 3, mark as 100 (close enough)
-	
 	return abs(level_angle) # in degrees
 
 
@@ -46,10 +43,6 @@ func calculate_altitude() -> void:
 func calculate_airspeed() -> void:
 	# Assuming the airplane script has a 'forward_speed' property
 	airspeed = airplane.forward_speed
-
-# Getter functions
-func get_level_angle() -> float:
-	return level_angle
 
 func get_pitch_angle() -> float:
 	return pitch_angle

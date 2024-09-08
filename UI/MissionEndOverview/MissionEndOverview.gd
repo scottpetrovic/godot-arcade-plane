@@ -26,17 +26,20 @@ func _ready() -> void:
 	
 	if GameManager.current_level_success_status == false:
 		time_points = 0 # don't give any points to time if we failed
+		GameManager.current_level_landing_score = 0 # we crashed. happens if touching runway and going off
 	
 	time_score.text = GameManager.format_elapsed_time(GameManager.current_level_time) 
 	# time_score.text += " (" + str(time_points) + ") PTS"
 	objectives_score.text = str(GameManager.current_level_objectives_score) + " PTS"
 	
-	
+	print('current vehcile: ', GameManager.current_vehicle, ' ', GameManager.current_level_landing_score)
 	if GameManager.current_vehicle == Constants.VEHICLE.SKYDIVER:
-		landing_score.text = str( int(GameManager.current_level_parachute_landing_score)) + " PTS"
+		landing_score.text = str( int(GameManager.current_level_landing_score)) + " PTS"
+	elif GameManager.current_vehicle == Constants.VEHICLE.AIRPLANE:
+		landing_score.text = str( int(GameManager.current_level_landing_score)) + " PTS"
+	
 
-
-	total_score.text = str(int(GameManager.current_level_objectives_score + GameManager.current_level_parachute_landing_score + time_points)) 
+	total_score.text = str(int(GameManager.current_level_objectives_score + GameManager.current_level_landing_score + time_points)) 
 	total_score.text += " PTS"
 
 

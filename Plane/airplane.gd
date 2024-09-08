@@ -142,3 +142,6 @@ func get_altitude() -> float:
 
 func get_airspeed() -> float:
 	return flight_instruments.get_airspeed()
+	
+func get_landing_angle() -> int:
+	return flight_instruments.calculate_level_angle()

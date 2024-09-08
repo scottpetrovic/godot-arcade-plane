@@ -140,7 +140,7 @@ func on_player_crash(location: String):
 	await get_tree().create_timer(Constants.WAITTIME.MISSION_COMPELTE).timeout # waits for X second
 	GameManager.current_level_success_status = false
 	GameManager.current_level_time = elapsed_time
-	GameManager.current_level_parachute_landing_score = 0
+	GameManager.current_level_landing_score = 0
 	GameManager.go_to_mission_overview()
 
 func on_skydiver_missed_target():
@@ -149,7 +149,7 @@ func on_skydiver_missed_target():
 		on_player_crash("ground")
 		return
 
-	GameManager.current_level_parachute_landing_score = 0
+	GameManager.current_level_landing_score = 0
 	GameManager.current_level_success_status = false
 	player_skydiver.landed()
 	goal_completed()
@@ -161,7 +161,7 @@ func on_skydiver_hit_target(points: float):
 		on_player_crash("ground")
 		return
 
-	GameManager.current_level_parachute_landing_score = points
+	GameManager.current_level_landing_score = points
 	GameManager.current_level_success_status = true
 	player_skydiver.landed()
 	goal_completed()
