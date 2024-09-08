@@ -24,9 +24,6 @@ func _ready():
 		plane_gate_manager.visible = false
 		return
 
-func has_player_crashed_into_ground():
-	return $GroundPlane.has_crashed_on_ground
-
 func is_player_on_landing_pad(): 
 	return $Runway.is_player_on_landing_strip
 

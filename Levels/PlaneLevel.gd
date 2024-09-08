@@ -158,7 +158,7 @@ func _process(delta: float) -> void:
 func goal_completed():
 	# make sure to only call this one time
 	if training_complete_overlay.visible == false:
-		airplane.turn_engine_off()
+		airplane.set_allow_movement(false)
 		training_complete_overlay.visible = true
 		GlobalAudio.start_level_complete()
 		change_camera_to_orbit()
@@ -179,14 +179,13 @@ func change_camera_to_orbit():
 	main_camera.target = airplane
 
 func on_player_crash(location: String):
-	airplane.turn_engine_off()
 	player_crashed_overlay.visible = true
 	GlobalAudio.start_crashed_music()
 	GlobalAudio.play_explosion_sfx()
 	change_camera_to_orbit()
 	$UI/HUD.visible = false # hide plane instruments at top
 	$Camera/ScreenShake.camera_shake_impulse(1.3, 0.4)
-	airplane.crashed()
+	airplane.set_allow_movement(false)
 
 	if location == 'ground':
 		var explosion_effects: Node3D = ground_debris.instantiate()

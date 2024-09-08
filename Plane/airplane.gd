@@ -14,14 +14,7 @@ var target_speed: float = 0 # Throttle input speed
 var turn_input: float = 0.0
 var pitch_input: float = 0.0
 
-# trail particles once our plane starts going faster
-var air_particles: GPUParticles3D
-var air_particles_2: GPUParticles3D
-
-var air_particles_scene: PackedScene = load("res://Effects/Particles/PlaneParticleTrail.tscn")
-
-var has_crashed = false # only water will make us crash
-var is_process_input = true # turn off when we complete mission
+var enable_movement = true # turn off when we complete mission
 var airplane_original_scale: float
 
 @onready var plane_mesh: Node3D = $Plane_Mesh
@@ -32,42 +25,17 @@ func is_engine_on() -> bool:
 func _ready() -> void:
 	self.velocity = Vector3.ZERO
 	airplane_original_scale = plane_mesh.scale.y
-	create_air_particles() 
 
-## particles come from wings with max speed
-## dynamically created since they are attached to mesh
-func create_air_particles():
-	# position manually done. probably better way to do this
-	air_particles = air_particles_scene.instantiate()
-	air_particles.position.y = 0.2
-	air_particles.position.z = 0.0
-	air_particles.position.x = -0.7
-	air_particles.emitting = false
-	plane_mesh.add_child(air_particles)
-	
-	air_particles_2 = air_particles_scene.instantiate()
-	air_particles_2.position.y = 0.2
-	air_particles_2.position.z = 0.0
-	air_particles_2.position.x = 0.7
-	air_particles_2.emitting = false
-	plane_mesh.add_child(air_particles_2)
+func rotate_propellor(delta: float) -> void:
+	# rotate propellor based off forward speed
+	var propellor_speed_multiplier: float = 3.0
+	var rotate_amount = delta * forward_speed * propellor_speed_multiplier
+	plane_mesh.get_node("Propellor").rotate( Vector3.FORWARD, rotate_amount)
 
 func _process(delta: float) -> void:
-		
-	if is_process_input:
-		# rotate propellor based off forward speed
-		var propellor_speed_multiplier: float = 3.0
-		var rotate_amount = delta * forward_speed * propellor_speed_multiplier
-		plane_mesh.get_node("Propellor").rotate( Vector3.FORWARD, rotate_amount)
-		update_active_turn_speed()
-	else:
-		target_speed = 0
-		forward_speed = 0
-		
-	# turn on air particle trail on wings when we are going max speed!
-	var is_going_max_speed =  target_speed == max_flight_speed
-	air_particles.emitting = is_going_max_speed
-	air_particles_2.emitting = is_going_max_speed
+	rotate_propellor(delta)
+	update_active_turn_speed()
+
 
 func set_throttle(throttle_percentage: float):
 	target_speed =  throttle_percentage * max_flight_speed
@@ -82,13 +50,12 @@ func update_active_turn_speed():
 	else:
 		active_turn_speed = turn_speed
 
-func turn_engine_off():
-	is_process_input = false
-
 func _physics_process(delta: float) -> void:
 	
 	# crashed into the water
-	if has_crashed || is_process_input == false:
+	if enable_movement == false:
+		target_speed = 0
+		forward_speed = 0
 		return
 
 	get_input(delta)
@@ -140,7 +107,6 @@ func apply_gravity(delta):
 		var magic_gravity_number := 20.0 
 		velocity.y += get_gravity().y * delta * magic_gravity_number
 
-
 func get_input(delta: float) -> void:
 	if Input.is_action_pressed("throttle_up"):
 		target_speed = min(forward_speed + throttle_delta * delta, max_flight_speed)
@@ -163,5 +129,8 @@ func get_input(delta: float) -> void:
 	pitch_input += Input.get_action_strength("pitch_up")
 	pitch_input -= Input.get_action_strength("pitch_down")
 
-func crashed():
-	has_crashed = true
+func set_allow_movement(enable: bool):
+	enable_movement = enable
+	
+func allow_movement() -> bool:
+	return enable_movement
