@@ -22,6 +22,7 @@ var elapsed_time: float = 0.0
 
 var splash: PackedScene = load("res://Effects/Particles/SplashParticles.tscn")
 var ground_debris: PackedScene = load("res://Effects/Particles/GroundCrashParticles.tscn")
+var explosion_effects: Node3D = null
 
 var map_aircraft_carrier: PackedScene = load("res://Environment/MapAircraft/MapAircraft.tscn")
 var map_airport: PackedScene = load("res://Environment/MapAirport/MapAirport.tscn")
@@ -136,6 +137,12 @@ func camera_screenshake():
 
 func _process(delta: float) -> void:
 	
+	# if our plane is crashed, we will have effects
+	# have the particle system follow the plane's position
+	# this is important in case when plane might rotate
+	if player_crashed_overlay.visible && explosion_effects:
+		explosion_effects.global_position = airplane.global_position
+	
 	# stop updating UI when we are complete
 	# this also upates time mission is taking
 	if is_mission_complete() == false:
@@ -190,8 +197,8 @@ func on_player_crash(location: String):
 	airplane.set_allow_movement(false)
 
 	if location == 'ground':
-		var explosion_effects: Node3D = ground_debris.instantiate()
-		airplane.add_child(explosion_effects)
+		explosion_effects = ground_debris.instantiate()
+		add_child(explosion_effects)
 		
 	if location == 'water':
 		var splash_object: GPUParticles3D = splash.instantiate()
