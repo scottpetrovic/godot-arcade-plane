@@ -17,6 +17,7 @@ var pitch_input: float = 0.0
 var enable_movement = true # turn off when we complete mission
 var airplane_original_scale: float
 
+@onready var flight_instruments: Node = $FlightInstruments
 @onready var plane_mesh: Node3D = $Plane_Mesh
 
 func is_engine_on() -> bool:
@@ -35,6 +36,7 @@ func rotate_propellor(delta: float) -> void:
 func _process(delta: float) -> void:
 	rotate_propellor(delta)
 	update_active_turn_speed()
+	flight_instruments.update()
 
 
 func set_throttle(throttle_percentage: float):
@@ -134,3 +136,9 @@ func set_allow_movement(enable: bool):
 	
 func allow_movement() -> bool:
 	return enable_movement
+	
+func get_altitude() -> float:
+	return flight_instruments.get_altitude()
+
+func get_airspeed() -> float:
+	return flight_instruments.get_airspeed()

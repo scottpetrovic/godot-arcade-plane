@@ -91,7 +91,7 @@ func update_hud(delta: float):
 	var speed_multiplier = 20.0 # magic number that looks better on UI
 	speed_label.text = str(int(airplane.forward_speed * speed_multiplier))
 
-	var altitude_string = str(int(airplane.global_transform.origin.y * altitude_multiplier))
+	var altitude_string = str(int(airplane.get_altitude() * altitude_multiplier))
 	altitude_label.text = altitude_string.pad_zeros(5)
 		
 	elapsed_time += delta
