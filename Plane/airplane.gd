@@ -21,14 +21,17 @@ var air_particles_2: GPUParticles3D
 var air_particles_scene: PackedScene = load("res://Effects/Particles/PlaneParticleTrail.tscn")
 
 var has_crashed = false # only water will make us crash
-var is_engine_on = true # turn off when we complete mission
+var is_process_input = true # turn off when we complete mission
 var airplane_original_scale: float
 
 @onready var plane_mesh: Node3D = $Plane_Mesh
 
+func is_engine_on() -> bool:
+	return (forward_speed / max_flight_speed) > 0.01
+
 func _ready() -> void:
 	self.velocity = Vector3.ZERO
-	airplane_original_scale = plane_mesh.scale.y # TODO: clean this up
+	airplane_original_scale = plane_mesh.scale.y
 	create_air_particles() 
 
 ## particles come from wings with max speed
@@ -51,18 +54,20 @@ func create_air_particles():
 
 func _process(delta: float) -> void:
 		
-	if is_engine_on:
+	if is_process_input:
 		# rotate propellor based off forward speed
 		var propellor_speed_multiplier: float = 3.0
 		var rotate_amount = delta * forward_speed * propellor_speed_multiplier
 		plane_mesh.get_node("Propellor").rotate( Vector3.FORWARD, rotate_amount)
 		update_active_turn_speed()
+	else:
+		target_speed = 0
+		forward_speed = 0
 		
 	# turn on air particle trail on wings when we are going max speed!
 	var is_going_max_speed =  target_speed == max_flight_speed
 	air_particles.emitting = is_going_max_speed
 	air_particles_2.emitting = is_going_max_speed
-
 
 func set_throttle(throttle_percentage: float):
 	target_speed =  throttle_percentage * max_flight_speed
@@ -78,12 +83,12 @@ func update_active_turn_speed():
 		active_turn_speed = turn_speed
 
 func turn_engine_off():
-	is_engine_on = false
+	is_process_input = false
 
 func _physics_process(delta: float) -> void:
 	
 	# crashed into the water
-	if has_crashed:
+	if has_crashed || is_process_input == false:
 		return
 
 	get_input(delta)
