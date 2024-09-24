@@ -1,16 +1,30 @@
 extends Area3D
+
 @onready var timer: Timer = $Timer
 var speed = 60.0
 var LandingParticles = preload("res://Effects/Particles/LandingSmoke/LandingParticles.tscn")
+@onready var bullet_impact_sound: AudioStreamPlayer3D = $BulletImpactSound
+
+# Add these variables for randomness
+var random_deviation = 0.03  # Adjust this value to increase/decrease randomness
+var random_direction = Vector3.ZERO
 
 func _ready():
 	timer.wait_time = 4.0 # bullet dies after 4 seconds
 	$Timer.timeout.connect(queue_free)
 	body_entered.connect(_on_body_entered)
 	area_entered.connect(_on_area_entered)
+	
+	# Initialize random direction
+	random_direction = Vector3(
+		randf_range(-1, 1),
+		randf_range(-1, 1),
+		randf_range(-1, 1)
+	).normalized() * random_deviation
 
 func _physics_process(delta):
-	position += -transform.basis.z * speed * delta
+	# Add random direction to the bullet's trajectory
+	position += (-transform.basis.z + random_direction) * speed * delta
 
 func _on_area_entered(area: Area3D):
 	if area.name == "Ocean":
@@ -21,10 +35,16 @@ func _on_area_entered(area: Area3D):
 
 func _on_body_entered(body):
 	create_impact_effect()
+
 	
 	# affect the body if it has the correct method
 	if body.has_method("hit"):
 		body.hit()
+	
+	# play SFX of bullet collision and wait until it is done
+	bullet_impact_sound.play()
+	await bullet_impact_sound.finished
+	
 	queue_free()
 
 func create_impact_effect():

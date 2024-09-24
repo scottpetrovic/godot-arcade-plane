@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://02q5hpuktdff"]
+[gd_scene load_steps=6 format=3 uid="uid://02q5hpuktdff"]
 
 [ext_resource type="Script" path="res://Plane/Bullet/Bullet.gd" id="1_afsak"]
+[ext_resource type="AudioStream" uid="uid://bmqlffoljsuuj" path="res://Assets/SoundFX/firecracker-explosion.mp3" id="2_hv76x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kru0d"]
 radius = 0.104084
@@ -33,3 +34,7 @@ mesh = SubResource("SphereMesh_c52su")
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[node name="BulletImpactSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_hv76x")
+max_db = 0.198
