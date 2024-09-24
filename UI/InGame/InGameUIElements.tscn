@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bm15sseqvqdwl"]
+[gd_scene load_steps=18 format=3 uid="uid://bm15sseqvqdwl"]
 
 [ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="1_2e51c"]
 [ext_resource type="Script" path="res://UI/InGame/InGameUI.gd" id="1_sy6e0"]
@@ -10,6 +10,10 @@
 [ext_resource type="Script" path="res://UI/Radar/RadarUI.gd" id="6_uldm6"]
 [ext_resource type="Texture2D" uid="uid://co4bls0sy8o31" path="res://Assets/UI/MISSION-COMPLETE-8-16-2024.png" id="7_7scy5"]
 [ext_resource type="Texture2D" uid="uid://bufhyxm73wqho" path="res://Assets/UI/UI-objective-complete.png" id="8_dpvdv"]
+[ext_resource type="Texture2D" uid="uid://lqf5ek4ip7rk" path="res://Assets/Icons/arrowUp.png" id="11_idqmm"]
+[ext_resource type="Texture2D" uid="uid://c8nraqicntkel" path="res://Assets/Icons/arrowDown.png" id="12_6r38i"]
+[ext_resource type="Texture2D" uid="uid://djb8ebtx2m7rf" path="res://Assets/Icons/arrowLeft.png" id="13_sggd8"]
+[ext_resource type="Texture2D" uid="uid://dw25pr6qxcb25" path="res://Assets/Icons/arrowRight.png" id="14_0w13k"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ko185"]
 noise_type = 5
@@ -233,3 +237,80 @@ layout_mode = 2
 position = Vector2(0, -100)
 scale = Vector2(0.693878, 0.693878)
 texture = ExtResource("8_dpvdv")
+
+[node name="PlayControlsLayout" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -154.245
+offset_right = 154.0
+offset_bottom = -23.245
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayControlsLayout"]
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="PlayControlsLayout/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("11_idqmm")
+
+[node name="Button4" type="Button" parent="PlayControlsLayout/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("12_6r38i")
+
+[node name="Label" type="Label" parent="PlayControlsLayout/HBoxContainer"]
+layout_mode = 2
+text = "Pitch"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PlayControlsLayout"]
+layout_mode = 2
+
+[node name="Button5" type="Button" parent="PlayControlsLayout/HBoxContainer2"]
+layout_mode = 2
+icon = ExtResource("13_sggd8")
+
+[node name="Button4" type="Button" parent="PlayControlsLayout/HBoxContainer2"]
+layout_mode = 2
+icon = ExtResource("14_0w13k")
+
+[node name="Label" type="Label" parent="PlayControlsLayout/HBoxContainer2"]
+layout_mode = 2
+text = "Roll"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PlayControlsLayout"]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="PlayControlsLayout/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "A"
+
+[node name="Label" type="Label" parent="PlayControlsLayout/HBoxContainer3"]
+layout_mode = 2
+text = "Throttle Up"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="PlayControlsLayout"]
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="PlayControlsLayout/HBoxContainer4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Z"
+
+[node name="Label" type="Label" parent="PlayControlsLayout/HBoxContainer4"]
+layout_mode = 2
+text = "Throttle Down"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="PlayControlsLayout"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="PlayControlsLayout/HBoxContainer5"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "C"
+
+[node name="Label" type="Label" parent="PlayControlsLayout/HBoxContainer5"]
+layout_mode = 2
+text = "Fire Bullets"
