@@ -192,12 +192,12 @@ ALBEDO = mix(base_albedo_tex.rgb, blend_albedo_tex.rgb, mask*blend_albedo_tex.a)
 vec3 orm_texture = applyTexture(orm, my_pos, my_normal, tri_blend_factor).rgb;
 vec3 blend_orm_texture = applyTexture(blend_orm, my_pos, my_normal, tri_blend_factor).rgb;
 vec3 blended_orm = mix(orm_texture.rgb,blend_orm_texture.rgb, mask*blend_albedo_tex.a);
-ROUGHNESS = blended_orm.g;
-ROUGHNESS *= roughness;
-METALLIC = blended_orm.b;
-METALLIC *= metal;
-AO = blended_orm.r;
-AO_LIGHT_AFFECT = ao_light_effect;
+//ROUGHNESS = blended_orm.g;
+//ROUGHNESS *= roughness;
+//METALLIC = blended_orm.b;
+//METALLIC *= metal;
+//AO = blended_orm.r;
+//AO_LIGHT_AFFECT = ao_light_effect;
 
 
 //for testing what the normals look like uncomment the next line

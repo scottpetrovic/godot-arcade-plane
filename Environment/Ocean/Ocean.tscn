@@ -1,37 +1,31 @@
-[gd_scene load_steps=7 format=3 uid="uid://f5q3lvkkp6et"]
+[gd_scene load_steps=6 format=3 uid="uid://f5q3lvkkp6et"]
 
 [ext_resource type="Script" path="res://Environment/Ocean/Water.gd" id="1_msbox"]
-[ext_resource type="Material" uid="uid://du7r8ihpapvr0" path="res://Environment/Ocean/OceanShaderMaterial.tres" id="2_ydh0k"]
+[ext_resource type="Material" uid="uid://dnsn25s6jnvqd" path="res://Environment/Ocean/WaterPlaneMaterial.tres" id="2_bhg5h"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_3g13u"]
-material = ExtResource("2_ydh0k")
-size = Vector2(2000, 2000)
+[sub_resource type="QuadMesh" id="QuadMesh_kn6pj"]
+size = Vector2(4000, 4000)
 subdivide_width = 100
-subdivide_depth = 300
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ukltq"]
-shading_mode = 2
-albedo_color = Color(0.128482, 0.246943, 0.829826, 1)
-
-[sub_resource type="QuadMesh" id="QuadMesh_18jg5"]
-material = SubResource("StandardMaterial3D_ukltq")
-size = Vector2(2000, 2000)
+subdivide_depth = 100
 orientation = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wiqa6"]
 size = Vector3(2000, 0.2, 2000)
 
+[sub_resource type="SphereMesh" id="SphereMesh_ek7ns"]
+
 [node name="Ocean" type="Area3D"]
 script = ExtResource("1_msbox")
 
-[node name="MeshWireframe" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.457132, 0)
-mesh = SubResource("PlaneMesh_3g13u")
-skeleton = NodePath("../..")
-
 [node name="MeshSolid" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.362134, 0)
-mesh = SubResource("QuadMesh_18jg5")
+transform = Transform3D(1, 0, 0, 0, 0.999913, 0.0132292, 0, -0.0132292, 0.999913, 0, 0, 0)
+mesh = SubResource("QuadMesh_kn6pj")
+surface_material_override/0 = ExtResource("2_bhg5h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_wiqa6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(12.9927, 0, 0, 0, 2.15058, 0, 0, 0, 14.4502, 0, -0.561447, 0)
+visible = false
+mesh = SubResource("SphereMesh_ek7ns")
