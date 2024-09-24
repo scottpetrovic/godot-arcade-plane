@@ -12,9 +12,6 @@ data = PackedVector3Array(-485.012, -12.354, 747.439, -486.486, -11.6046, 745.22
 [node name="Environment" instance=ExtResource("1_g62vm")]
 script = ExtResource("2_jkim4")
 
-[node name="Ocean" parent="." index="0"]
-visible = false
-
 [node name="Island" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.60976, 0)
 material_override = ExtResource("3_82ttl")
@@ -26,5 +23,5 @@ material_override = ExtResource("3_82ttl")
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="4"]
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.60976, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -23.6098, -11)
 shape = SubResource("ConcavePolygonShape3D_uvafw")
