@@ -5,7 +5,7 @@ extends Node3D
 @onready var muzzle_left = $MuzzleLeft
 @onready var muzzle_right = $MuzzleRight
 
-var MuzzleFlash = preload("res://Plane/MuzzleFlash/MuzzleFlash.tscn")
+var MuzzleFlash = preload("res://Effects/Particles/MuzzleFlash/MuzzleFlash.tscn")
 var BulletCasing = preload("res://Plane/BulletCasing/BulletCasing.tscn")
 var Bullet = preload("res://Plane/Bullet/Bullet.tscn")
 

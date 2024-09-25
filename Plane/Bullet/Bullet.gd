@@ -2,7 +2,10 @@ extends Area3D
 
 @onready var timer: Timer = $Timer
 var speed = 60.0
-var LandingParticles = preload("res://Effects/Particles/LandingSmoke/LandingParticles.tscn")
+var BulletWaterParticles = preload("res://Effects/Particles/BulletHitWaterParticle/BulletHitWaterParticle.tscn")
+var BulletObjectHitParticle = preload("res://Effects/Particles/BulletObjectHitParticle/BulletObjectHitParticle.tscn")
+
+
 @onready var bullet_impact_sound: AudioStreamPlayer3D = $BulletImpactSound
 
 # Add these variables for randomness
@@ -28,8 +31,8 @@ func _physics_process(delta):
 
 func _on_area_entered(area: Area3D):
 	if area.name == "Ocean":
-		create_impact_effect()
-		
+		create_water_impact_effect()
+
 	if area.has_method("hit"):
 		area.hit()
 
@@ -47,7 +50,13 @@ func _on_body_entered(body):
 	
 	queue_free()
 
+func create_water_impact_effect():
+	var particles = BulletWaterParticles.instantiate()
+	get_tree().root.add_child(particles)
+	particles.global_transform.origin = global_transform.origin
+
+
 func create_impact_effect():
-	var particles = LandingParticles.instantiate()
+	var particles = BulletObjectHitParticle.instantiate()
 	get_tree().root.add_child(particles)
 	particles.global_transform.origin = global_transform.origin

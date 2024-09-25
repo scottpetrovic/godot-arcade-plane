@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://chqp3w42robbh"]
+
+[ext_resource type="Script" path="res://Effects/Particles/BasicParticleLifecycle.gd" id="1_60n6c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_irwf4"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Curve" id="Curve_f7eb5"]
+_data = [Vector2(0, 0.571429), 0.0, 0.0, 0, 0, Vector2(0.222672, 1), 0.0, 0.0, 0, 0, Vector2(0.736842, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.252747), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_elhav"]
+curve = SubResource("Curve_f7eb5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0668k"]
+emission_shape = 1
+emission_sphere_radius = 0.8
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_elhav")
+color = Color(3, 3, 3, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_1ndj6"]
+radius = 0.6
+height = 1.2
+radial_segments = 8
+rings = 8
+
+[node name="BulletObjectHitParticles" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_irwf4")
+emitting = false
+amount = 6
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.45
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_0668k")
+draw_pass_1 = SubResource("SphereMesh_1ndj6")
+script = ExtResource("1_60n6c")

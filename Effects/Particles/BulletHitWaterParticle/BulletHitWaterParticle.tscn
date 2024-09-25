@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://dld8bmu4knpgh"]
+
+[ext_resource type="Script" path="res://Effects/Particles/BasicParticleLifecycle.gd" id="1_2dhmn"]
+
+[sub_resource type="Gradient" id="Gradient_22k8v"]
+colors = PackedColorArray(1, 1, 1, 1, 0.102641, 0.28229, 0.570123, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1xhdy"]
+gradient = SubResource("Gradient_22k8v")
+
+[sub_resource type="Curve" id="Curve_dr5p2"]
+_data = [Vector2(0, 0.237931), 0.0, 0.0, 0, 0, Vector2(0.501706, 0.0765518), -0.0583753, -0.0583753, 0, 0, Vector2(1, 0.184138), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3pctw"]
+curve = SubResource("Curve_dr5p2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fbbjj"]
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 7.0
+initial_velocity_max = 7.0
+scale_curve = SubResource("CurveTexture_3pctw")
+color_ramp = SubResource("GradientTexture1D_1xhdy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1com"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cly5y"]
+material = SubResource("StandardMaterial3D_r1com")
+
+[node name="BulletHitWaterParticle" type="GPUParticles3D"]
+emitting = false
+amount = 20
+lifetime = 1.2
+one_shot = true
+speed_scale = 1.8
+explosiveness = 0.6
+process_material = SubResource("ParticleProcessMaterial_fbbjj")
+draw_pass_1 = SubResource("CapsuleMesh_cly5y")
+script = ExtResource("1_2dhmn")
