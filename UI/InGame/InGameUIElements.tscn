@@ -180,6 +180,7 @@ offset_bottom = 60.0
 script = ExtResource("6_uldm6")
 
 [node name="FuelGuageContainer" type="ColorRect" parent="HUD"]
+layout_mode = 0
 offset_left = 664.0
 offset_top = 114.0
 offset_right = 986.0
@@ -203,13 +204,13 @@ offset_right = 312.0
 offset_bottom = 24.0
 
 [node name="FuelRemainingBar" type="ColorRect" parent="HUD/FuelGuageContainer/ColorRect"]
-layout_mode = 0
+layout_mode = 1
 offset_left = 3.0
 offset_top = 4.0
-offset_right = 257.23
-offset_bottom = 15.0
-scale = Vector2(1, 0.52)
-color = Color(1.82897e-06, 0.746835, 0.535641, 1)
+offset_right = 257.0
+offset_bottom = 10.0
+pivot_offset = Vector2(0, 3)
+color = Color(0.727124, 0.249555, 0.300447, 1)
 
 [node name="SpeedLinesCameraEffect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_uiy3f")
