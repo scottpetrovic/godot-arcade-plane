@@ -19,6 +19,8 @@ var airplane_original_scale: float
 
 @onready var flight_instruments: Node = $FlightInstruments
 @onready var plane_mesh: Node3D = $Plane_Mesh
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 
 func is_engine_on() -> bool:
 	return (forward_speed / max_flight_speed) > 0.01
@@ -40,9 +42,10 @@ func _process(delta: float) -> void:
 
 
 func open_landing_gears(value: bool) -> void:
-	plane_mesh.get_node("Landing_Gear_Back").visible = value
-	plane_mesh.get_node("Landing_Gear_Left").visible = value
-	plane_mesh.get_node("Landing_Gear_Right").visible = value
+	if value == false:
+		animation_player.play("landing_gear_up")
+	else:
+		animation_player.play_backwards("landing_gear_up")
 
 func set_throttle(throttle_percentage: float):
 	target_speed =  throttle_percentage * max_flight_speed
