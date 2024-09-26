@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bm15sseqvqdwl"]
+[gd_scene load_steps=21 format=3 uid="uid://bm15sseqvqdwl"]
 
 [ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="1_2e51c"]
 [ext_resource type="Script" path="res://UI/InGame/InGameUI.gd" id="1_sy6e0"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://c8nraqicntkel" path="res://Assets/Icons/arrowDown.png" id="12_6r38i"]
 [ext_resource type="Texture2D" uid="uid://djb8ebtx2m7rf" path="res://Assets/Icons/arrowLeft.png" id="13_sggd8"]
 [ext_resource type="Texture2D" uid="uid://dw25pr6qxcb25" path="res://Assets/Icons/arrowRight.png" id="14_0w13k"]
+[ext_resource type="Script" path="res://UI/InGame/character_messages.gd" id="16_dbuwa"]
+[ext_resource type="Texture2D" uid="uid://nxks5gqb1bov" path="res://Assets/UI/instructor-portrait.png" id="16_wssrx"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ko185"]
 noise_type = 5
@@ -50,6 +52,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="SpeedometerBackground" type="TextureRect" parent="HUD"]
 layout_mode = 1
@@ -185,6 +188,7 @@ offset_left = 664.0
 offset_top = 114.0
 offset_right = 986.0
 offset_bottom = 147.0
+pivot_offset = Vector2(787, 46)
 color = Color(0, 0, 0, 1)
 script = ExtResource("7_qv4pg")
 
@@ -349,3 +353,45 @@ text = "C"
 [node name="Label" type="Label" parent="PlayControlsLayout/HBoxContainer5"]
 layout_mode = 2
 text = "Fire Bullets"
+
+[node name="PortraitMessageLayout" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -293.436
+offset_top = -150.36
+offset_right = 290.564
+offset_bottom = -44.36
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("16_dbuwa")
+
+[node name="CharacterPortrait" type="Sprite2D" parent="PortraitMessageLayout"]
+position = Vector2(101, -55)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("16_wssrx")
+
+[node name="ColorRect" type="ColorRect" parent="PortraitMessageLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.525506, 0.504895, 1, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PortraitMessageLayout/ColorRect"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = 18.0
+offset_right = -26.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "It's finally the big day. Enough of the simulator. It is time to fly!"
+shortcut_keys_enabled = false
