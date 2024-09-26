@@ -49,3 +49,5 @@ script = ExtResource("7_p2f2j")
 
 [node name="FlightInstruments" type="Node" parent="."]
 script = ExtResource("8_pncxi")
+
+[editable path="Plane_Mesh"]

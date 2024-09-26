@@ -39,6 +39,11 @@ func _process(delta: float) -> void:
 	flight_instruments.update()
 
 
+func open_landing_gears(value: bool) -> void:
+	plane_mesh.get_node("Landing_Gear_Back").visible = value
+	plane_mesh.get_node("Landing_Gear_Left").visible = value
+	plane_mesh.get_node("Landing_Gear_Right").visible = value
+
 func set_throttle(throttle_percentage: float):
 	target_speed =  throttle_percentage * max_flight_speed
 	forward_speed =  throttle_percentage * max_flight_speed
