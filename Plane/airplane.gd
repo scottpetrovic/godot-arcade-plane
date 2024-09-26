@@ -21,6 +21,8 @@ var airplane_original_scale: float
 @onready var plane_mesh: Node3D = $Plane_Mesh
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+var total_fuel: float = 100.0
+var current_fuel: float = 100.0
 
 func is_engine_on() -> bool:
 	return (forward_speed / max_flight_speed) > 0.01
@@ -38,8 +40,12 @@ func rotate_propellor(delta: float) -> void:
 func _process(delta: float) -> void:
 	rotate_propellor(delta)
 	update_active_turn_speed()
+	calculate_fuel_consumption()
 	flight_instruments.update()
 
+func calculate_fuel_consumption() -> void:
+	if forward_speed > 0.1:
+		current_fuel -= 0.0003 * forward_speed
 
 func open_landing_gears(value: bool) -> void:
 	if value == false:

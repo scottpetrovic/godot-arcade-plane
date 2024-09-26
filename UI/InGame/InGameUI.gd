@@ -14,3 +14,4 @@ func show_speedometer(show: bool) -> void:
 
 func set_player_reference(player: CharacterBody3D) -> void:
 	$HUD/Radar.set_player(player)
+	$HUD/FuelGuageContainer.set_player(player)

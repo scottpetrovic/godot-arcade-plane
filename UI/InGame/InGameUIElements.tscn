@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bm15sseqvqdwl"]
+[gd_scene load_steps=19 format=3 uid="uid://bm15sseqvqdwl"]
 
 [ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="1_2e51c"]
 [ext_resource type="Script" path="res://UI/InGame/InGameUI.gd" id="1_sy6e0"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b3oljv8lyncny" path="res://Assets/UI/UI-crashed.png" id="6_hjpcx"]
 [ext_resource type="Script" path="res://UI/Radar/RadarUI.gd" id="6_uldm6"]
 [ext_resource type="Texture2D" uid="uid://co4bls0sy8o31" path="res://Assets/UI/MISSION-COMPLETE-8-16-2024.png" id="7_7scy5"]
+[ext_resource type="Script" path="res://UI/InGame/fuel_guage_container.gd" id="7_qv4pg"]
 [ext_resource type="Texture2D" uid="uid://bufhyxm73wqho" path="res://Assets/UI/UI-objective-complete.png" id="8_dpvdv"]
 [ext_resource type="Texture2D" uid="uid://lqf5ek4ip7rk" path="res://Assets/Icons/arrowUp.png" id="11_idqmm"]
 [ext_resource type="Texture2D" uid="uid://c8nraqicntkel" path="res://Assets/Icons/arrowDown.png" id="12_6r38i"]
@@ -170,12 +171,45 @@ text = "FT"
 horizontal_alignment = 1
 
 [node name="Radar" type="Control" parent="HUD"]
+layout_mode = 3
 anchors_preset = 0
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 60.0
 offset_bottom = 60.0
 script = ExtResource("6_uldm6")
+
+[node name="FuelGuageContainer" type="ColorRect" parent="HUD"]
+offset_left = 664.0
+offset_top = 114.0
+offset_right = 986.0
+offset_bottom = 147.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("7_qv4pg")
+
+[node name="Label" type="Label" parent="HUD/FuelGuageContainer"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 4.0
+offset_right = 49.0
+offset_bottom = 27.0
+text = "Fuel"
+
+[node name="ColorRect" type="ColorRect" parent="HUD/FuelGuageContainer"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 10.0
+offset_right = 312.0
+offset_bottom = 24.0
+
+[node name="FuelRemainingBar" type="ColorRect" parent="HUD/FuelGuageContainer/ColorRect"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 257.23
+offset_bottom = 15.0
+scale = Vector2(1, 0.52)
+color = Color(1.82897e-06, 0.746835, 0.535641, 1)
 
 [node name="SpeedLinesCameraEffect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_uiy3f")
