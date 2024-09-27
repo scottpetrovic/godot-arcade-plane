@@ -18,7 +18,7 @@ func _ready():
 	font = ThemeDB.fallback_font
 
 func _process(delta):
-	if player == null:
+	if is_instance_valid(player) == false:
 		find_player()
 		return
 		
@@ -77,25 +77,31 @@ func _draw():
 	draw_background_circle()
 	draw_north_indicator()
 	draw_player_dot()
-	
+
 	# collect all enemies(targets) and objectives to show in array
 	var radar_items_to_show: Array = targets.duplicate()
 	radar_items_to_show.append_array(objectives)
 
-	for target: Node3D in radar_items_to_show:
+	for target in radar_items_to_show:
 		
+		# Check if the target is still a valid object in the scene tree
+		# is_instance_valid = check if object exists in memory AND hasn't been freed
+		# is_inside_tree = a node can exist in memory, but not be part of the tree
+		if is_instance_valid(target) == false || target.is_inside_tree() == false:
+			continue  # Skip this target if it's no longer valid
+
 		# only show target if it is not completed
-		if target.has_method("is_completed") && target.is_completed():
+		if target.has_method("is_completed") and target.is_completed():
 			# our target has been finished, don't show on radar
 			continue
 		
 		var target_pos_2d: Vector2 = Vector2(target.global_position.x, target.global_position.z)
 		var player_pos_2d: Vector2 = Vector2(player.global_position.x, player.global_position.z)
-		
+
 		# Rotate the direction vector by the negative of the player's Y rotation
 		var dir: Vector2 = target_pos_2d - player_pos_2d
 		dir = dir.rotated(player.rotation.y)
-		
+
 		var distance: float = dir.length()
 		var angle = dir.angle()
 		var radar_target_pos = dir.normalized() * min(distance, radar_range) / radar_range * radar_radius 
@@ -114,7 +120,7 @@ func _draw():
 			var outside_indicator_dist = radar_radius * 1.2 # a bit outside radar circle
 			var centered = Vector2(radar_radius, radar_radius)
 			var edge_pos = dir.normalized() * outside_indicator_dist + centered
-			
+
 			draw_arrow(edge_pos, angle, color_for_target)
 
 func draw_arrow(pos: Vector2, angle: float, color: Color):

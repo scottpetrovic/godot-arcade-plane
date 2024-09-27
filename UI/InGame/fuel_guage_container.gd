@@ -16,7 +16,7 @@ func set_player(player_node: Node3D):
 
 func _process(delta: float) -> void:
 	
-	if player == null:
+	if is_instance_valid(player) == false:
 		find_player()
 		return	
 	

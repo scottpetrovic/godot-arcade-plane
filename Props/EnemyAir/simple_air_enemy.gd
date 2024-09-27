@@ -5,8 +5,8 @@ enum State {PATROL, PURSUE, RETURN, ATTACK}  # Added ATTACK state for future imp
 
 @export var patrol_speed = 10.0  # Units per second
 @export var pursuit_speed = 5.0  # Units per second
-@export var turn_angle = 60.0  # Degrees
-@export var distance_to_travel = 10.0  # Units
+@export var turn_angle = 30.0  # Degrees
+@export var distance_to_travel = 60.0  # Units
 @export var detection_radius = 50.0  # How close the player needs to be to trigger pursuit
 @export var return_threshold = 100.0  # Distance to return to patrol
 @export var attack_range = 20.0  # How close the enemy needs to be to attack (for future use)
@@ -28,12 +28,11 @@ func hit() -> void:
 
 func die():
 	emit_signal("enemy_died", self)
-	self.hide() # hack until I can fix weird null check in radar
-	# queue_free()  # The enemy removes itself from the scene
+	queue_free()  # The enemy removes itself from the scene
 
 func _ready():
 
-	if player == null:
+	if is_instance_valid(player) == false:
 		player = GameManager.get_player()
 		return
 	
