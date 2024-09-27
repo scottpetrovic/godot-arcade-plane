@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxo5ikrfddrqy"]
+[gd_scene load_steps=7 format=3 uid="uid://bxo5ikrfddrqy"]
 
 [ext_resource type="Script" path="res://Props/FloatingTarget/FloatingTarget.gd" id="1_target"]
-[ext_resource type="PackedScene" uid="uid://djul70tgi2txo" path="res://UI/Radar/RadarTarget.tscn" id="2_4dbcb"]
 [ext_resource type="PackedScene" uid="uid://dniiuhn8xtjw6" path="res://Effects/Animations/TweenQuickPulse.tscn" id="3_it5ju"]
 [ext_resource type="AudioStream" uid="uid://01ufkwrjwdkw" path="res://Assets/SoundFX/gate-passed.wav" id="4_ava3m"]
 
@@ -15,7 +14,7 @@ height = 2.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1"]
 albedo_color = Color(1, 0, 0, 1)
 
-[node name="FloatingTarget" type="Area3D"]
+[node name="FloatingTarget" type="Area3D" groups=["radar_objective"]]
 script = ExtResource("1_target")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -24,8 +23,6 @@ shape = SubResource("SphereShape3D_1")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_1")
 surface_material_override/0 = SubResource("StandardMaterial3D_1")
-
-[node name="RadarTarget" parent="." instance=ExtResource("2_4dbcb")]
 
 [node name="QuickPulse" parent="." instance=ExtResource("3_it5ju")]
 

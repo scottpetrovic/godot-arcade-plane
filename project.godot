@@ -31,6 +31,11 @@ window/size/viewport_height=768
 
 import/blender/enabled=false
 
+[global_group]
+
+radar_target="Enemies to destory"
+radar_objective="Objects to fly through"
+
 [input]
 
 throttle_up={

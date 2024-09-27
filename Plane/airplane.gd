@@ -30,6 +30,7 @@ func is_engine_on() -> bool:
 func _ready() -> void:
 	self.velocity = Vector3.ZERO
 	airplane_original_scale = plane_mesh.scale.y
+	GameManager.set_player(self) # for other objects that need to reference us
 
 func rotate_propellor(delta: float) -> void:
 	# rotate propellor based off forward speed

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://djul70tgi2txo"]
-
-[ext_resource type="Script" path="res://UI/Radar/RadarTarget.gd" id="1_8sh17"]
-
-[node name="RadarTarget" type="Node3D"]
-script = ExtResource("1_8sh17")

@@ -11,7 +11,3 @@ func turn_off_speed_lines():
 func show_speedometer(show: bool) -> void:
 	$HUD/SpeedometerBackground.visible = show
 	
-
-func set_player_reference(player: CharacterBody3D) -> void:
-	$HUD/Radar.set_player(player)
-	$HUD/FuelGuageContainer.set_player(player)

@@ -71,9 +71,7 @@ func setup_level():
 	
 	# Setup. depending on level, maybe need to move plane around, turn off gates
 	add_child(environment)
-	
-	# set up radar by telling UI of player reference
-	ui.set_player_reference(airplane)
+
 
 
 func is_mission_complete() -> bool:

@@ -6,6 +6,7 @@ var radar_radius: float = 50.0  # Radar display radius in pixels
 var player_dot_radius: float = 3.0  # Radius of the player's dot on the radar
 
 var targets: Array = []
+var objectives: Array = []
 var target_check_interval: float = 1.0  # How often to check for new targets (in seconds)
 
 var font: Font
@@ -16,15 +17,21 @@ func _ready():
 	# Load a font for the North indicator
 	font = ThemeDB.fallback_font
 
-func set_player(player_node: Node3D):
-	player = player_node
-
 func _process(delta):
+	if player == null:
+		find_player()
+		return
+		
 	queue_redraw()
+
+	
+func find_player() -> void:
+	player = GameManager.get_player()
 
 func check_for_targets_interval():
 	# periodically refresh targets list for radar
 	targets = get_tree().get_nodes_in_group("radar_target")
+	objectives = get_tree().get_nodes_in_group("radar_objective")
 	get_tree().create_timer(target_check_interval).timeout.connect(check_for_targets_interval)
 
 func draw_background_circle():
@@ -70,8 +77,12 @@ func _draw():
 	draw_background_circle()
 	draw_north_indicator()
 	draw_player_dot()
+	
+	# collect all enemies(targets) and objectives to show in array
+	var radar_items_to_show: Array = targets.duplicate()
+	radar_items_to_show.append_array(objectives)
 
-	for target in targets:
+	for target: Node3D in radar_items_to_show:
 		
 		# only show target if it is not completed
 		if target.has_method("is_completed") && target.is_completed():
@@ -90,15 +101,21 @@ func _draw():
 		var radar_target_pos = dir.normalized() * min(distance, radar_range) / radar_range * radar_radius 
 		radar_target_pos += Vector2(radar_radius, radar_radius)
 
+		# determine color for indicator
+		var color_for_target = Color.GREEN # objectives
+		if target.is_in_group("radar_target"):
+			color_for_target = Color.RED
+
 		if distance <= radar_range:
 			# Draw dot for in-range target
-			draw_circle(radar_target_pos, 3, Color.RED)
+			draw_circle(radar_target_pos, 3, color_for_target)
 		else:
 			# Draw arrow for out-of-range target
 			var outside_indicator_dist = radar_radius * 1.2 # a bit outside radar circle
 			var centered = Vector2(radar_radius, radar_radius)
 			var edge_pos = dir.normalized() * outside_indicator_dist + centered
-			draw_arrow(edge_pos, angle, Color.RED)
+			
+			draw_arrow(edge_pos, angle, color_for_target)
 
 func draw_arrow(pos: Vector2, angle: float, color: Color):
 	var triangle_size = 8.0  # Size of the triangle

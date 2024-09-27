@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://dk0av4tlip45w"]
+[gd_scene load_steps=8 format=3 uid="uid://dk0av4tlip45w"]
 
 [ext_resource type="Script" path="res://Levels/PlaneLevel.gd" id="1_2pumm"]
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="2_rh33o"]
 [ext_resource type="Script" path="res://Effects/Camera/CameraFollow.gd" id="3_acngr"]
 [ext_resource type="Script" path="res://Effects/Camera/FX_ScreenShake.gd" id="4_kr0vk"]
 [ext_resource type="PackedScene" uid="uid://bm15sseqvqdwl" path="res://UI/InGame/InGameUIElements.tscn" id="5_711ci"]
+[ext_resource type="Script" path="res://Levels/enemies_manager.gd" id="6_fbuhu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1rrbf"]
+size = Vector3(297.017, 22.8662, 225.533)
 
 [node name="PlaneLevel" type="Node3D"]
 script = ExtResource("1_2pumm")
@@ -29,3 +33,14 @@ transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 0, 0, 1, -0.698183, 0.79687
 script = ExtResource("4_kr0vk")
 
 [node name="UI" parent="." instance=ExtResource("5_711ci")]
+
+[node name="EnemiesManager" type="Node" parent="."]
+script = ExtResource("6_fbuhu")
+
+[node name="SpawnArea" type="Area3D" parent="EnemiesManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 89.5455, -0.574181)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemiesManager/SpawnArea"]
+shape = SubResource("BoxShape3D_1rrbf")
+
+[node name="EnemiesContainer" type="Node" parent="EnemiesManager"]

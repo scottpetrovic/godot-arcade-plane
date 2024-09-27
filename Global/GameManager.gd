@@ -16,6 +16,15 @@ var level_1_best_time: float = 0.0 #  0 == not beat
 var is_level_2_finished: bool = false
 var level_2_best_time: float = 0.0 #  0 == not beat
 
+# different objects at different levels need to reference this
+var _player_reference: Node3D
+
+func get_player() -> Node3D:
+	return _player_reference
+	
+func set_player(player_object: Node3D) -> void:
+	_player_reference = player_object
+
 func set_current_map(cur_map: String):
 	current_map = cur_map
 

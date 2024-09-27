@@ -25,7 +25,7 @@ height = 0.5
 radial_segments = 20
 rings = 2
 
-[node name="GateCheckpoint" type="Area3D"]
+[node name="GateCheckpoint" type="Area3D" groups=["radar_objective"]]
 script = ExtResource("1_ll65n")
 
 [node name="gate-checkpoint" parent="." instance=ExtResource("2_0qgag")]

@@ -6,7 +6,15 @@ var player: Node3D  # Reference to the player (airplane)
 var full_fuel_size: int # width when fuel bar is full
 
 func _ready() -> void:
+	
+	if player == null:
+		find_player()
+		return
+	
 	full_fuel_size = fuel_remaining_bar.size.x
+
+func find_player() -> void:
+	player = GameManager.get_player()
 
 func set_player(player_node: Node3D):
 	player = player_node
