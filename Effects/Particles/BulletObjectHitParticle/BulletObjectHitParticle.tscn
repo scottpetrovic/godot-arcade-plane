@@ -31,11 +31,13 @@ rings = 8
 [node name="BulletObjectHitParticles" type="GPUParticles3D"]
 material_override = SubResource("StandardMaterial3D_irwf4")
 emitting = false
-amount = 6
-lifetime = 0.3
+amount = 4
+lifetime = 0.5
 one_shot = true
 explosiveness = 0.45
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_0668k")
 draw_pass_1 = SubResource("SphereMesh_1ndj6")
 script = ExtResource("1_60n6c")
+
+[node name="AudioNode" type="AudioStreamPlayer3D" parent="."]

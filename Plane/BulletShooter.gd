@@ -10,7 +10,7 @@ var BulletCasing = preload("res://Plane/BulletCasing/BulletCasing.tscn")
 var Bullet = preload("res://Plane/Bullet/Bullet.tscn")
 
 var can_shoot = true
-var shoot_delay = 0.2
+var shoot_delay = 0.15
 
 func _ready():
 	shoot_timer.wait_time = shoot_delay

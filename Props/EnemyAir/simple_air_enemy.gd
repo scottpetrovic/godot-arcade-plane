@@ -28,7 +28,31 @@ func hit() -> void:
 
 func die():
 	emit_signal("enemy_died", self)
+	create_explosion()
+	# do small screen shake to help with effect
+	var main_camera: Camera3D = get_viewport().get_camera_3d()
+	
+	# strenth, duration
+	main_camera.get_node("ScreenShake").camera_shake_impulse(.1, 1.6)
+	
 	queue_free()  # The enemy removes itself from the scene
+
+func create_explosion() -> void:
+	# create particle effects since we blew up
+	# instanatiate the effects at the root level since we 
+	# are about to delete this object
+	var BulletObjectHitParticle = preload("res://Effects/Particles/BulletObjectHitParticle/BulletObjectHitParticle.tscn")
+	var instance_explosion = BulletObjectHitParticle.instantiate()
+	instance_explosion.lifetime = 1.0
+	get_tree().root.add_child(instance_explosion)
+	instance_explosion.global_position = self.global_position
+	instance_explosion.scale = Vector3(12,12,12)
+
+	# attach sound effect node to explosion instance
+	var audio_player: AudioStreamPlayer3D = instance_explosion.get_node("AudioNode")
+	audio_player.stream = preload("res://Assets/SoundFX/explosion.mp3")
+	audio_player.volume_db = 10.0 # make it louder
+	audio_player.play()
 
 func _ready():
 

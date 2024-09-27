@@ -1,7 +1,7 @@
 extends Area3D
 
 @onready var timer: Timer = $Timer
-var speed = 60.0
+var speed = 160.0
 var BulletWaterParticles = preload("res://Effects/Particles/BulletHitWaterParticle/BulletHitWaterParticle.tscn")
 var BulletObjectHitParticle = preload("res://Effects/Particles/BulletObjectHitParticle/BulletObjectHitParticle.tscn")
 
@@ -13,7 +13,7 @@ var random_deviation = 0.03  # Adjust this value to increase/decrease randomness
 var random_direction = Vector3.ZERO
 
 func _ready():
-	timer.wait_time = 4.0 # bullet dies after 4 seconds
+	timer.wait_time = 3.0 # bullet dies after 4 seconds
 	$Timer.timeout.connect(queue_free)
 	body_entered.connect(_on_body_entered)
 	area_entered.connect(_on_area_entered)
