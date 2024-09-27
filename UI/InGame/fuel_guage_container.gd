@@ -6,11 +6,6 @@ var player: Node3D  # Reference to the player (airplane)
 var full_fuel_size: int # width when fuel bar is full
 
 func _ready() -> void:
-	
-	if player == null:
-		find_player()
-		return
-	
 	full_fuel_size = fuel_remaining_bar.size.x
 
 func find_player() -> void:
@@ -20,17 +15,21 @@ func set_player(player_node: Node3D):
 	player = player_node
 
 func _process(delta: float) -> void:
-	if player:
-		var remaining_fuel_percentage: float = player.current_fuel /  player.total_fuel
-		fuel_remaining_bar.size.x = full_fuel_size * remaining_fuel_percentage
-		
-		# turn fuel bar red when low on fuel
-		if remaining_fuel_percentage < 0.2:
-			oscillate_fuel_bar(true)
-			fuel_remaining_bar.color = 'b9404d' # red
-		else:
-			oscillate_fuel_bar(false)
-			fuel_remaining_bar.color = '00be89' # green
+	
+	if player == null:
+		find_player()
+		return	
+	
+	var remaining_fuel_percentage: float = player.current_fuel /  player.total_fuel
+	fuel_remaining_bar.size.x = full_fuel_size * remaining_fuel_percentage
+	
+	# turn fuel bar red when low on fuel
+	if remaining_fuel_percentage < 0.2:
+		oscillate_fuel_bar(true)
+		fuel_remaining_bar.color = 'b9404d' # red
+	else:
+		oscillate_fuel_bar(false)
+		fuel_remaining_bar.color = '00be89' # green
 
 func oscillate_fuel_bar(oscillate: bool) -> void:
 	if oscillate:
