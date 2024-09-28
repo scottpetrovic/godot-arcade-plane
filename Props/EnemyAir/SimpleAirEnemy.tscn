@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://mvtsty7f7en6"]
+[gd_scene load_steps=8 format=3 uid="uid://mvtsty7f7en6"]
 
 [ext_resource type="PackedScene" uid="uid://c5d1ae6y4sbdv" path="res://Props/EnemyAir/SimpleAirEnemy.glb" id="1_3ilad"]
 [ext_resource type="Script" path="res://Props/EnemyAir/simple_air_enemy.gd" id="1_sgorc"]
@@ -20,7 +20,10 @@ radial_segments = 8
 rings = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g36n3"]
-size = Vector3(8.32056, 2.89258, 1)
+size = Vector3(8.32056, 2.89258, 4.06445)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sf7gk"]
+size = Vector3(46.8252, 41.6885, 53.9863)
 
 [node name="SimpleAirEnemy" type="CharacterBody3D" groups=["radar_target"]]
 script = ExtResource("1_sgorc")
@@ -39,9 +42,20 @@ mesh = SubResource("CylinderMesh_jxf3t")
 skeleton = NodePath("../SimpleAirEnemy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.519531)
 shape = SubResource("BoxShape3D_g36n3")
 
 [node name="SimpleAIShooter" type="Node3D" parent="."]
 script = ExtResource("3_witci")
 
 [node name="ShootTimer" type="Timer" parent="SimpleAIShooter"]
+
+[node name="LineOfSight" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.35275)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfSight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26.6946)
+shape = SubResource("BoxShape3D_sf7gk")
+
+[node name="BulletSpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.33317)

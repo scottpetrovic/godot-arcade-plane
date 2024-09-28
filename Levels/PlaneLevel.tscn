@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Levels/enemies_manager.gd" id="6_fbuhu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1rrbf"]
-size = Vector3(163.855, 22.8662, 205.234)
+size = Vector3(163.855, 18.6895, 205.234)
 
 [node name="PlaneLevel" type="Node3D"]
 script = ExtResource("1_2pumm")
@@ -38,10 +38,11 @@ script = ExtResource("4_kr0vk")
 script = ExtResource("6_fbuhu")
 
 [node name="SpawnArea" type="Area3D" parent="EnemiesManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 81.1969, -0.574181)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 176.378, 18.5162, -5.79805)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemiesManager/SpawnArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.6523, 0)
 shape = SubResource("BoxShape3D_1rrbf")
 
 [node name="EnemiesContainer" type="Node" parent="EnemiesManager"]

@@ -19,16 +19,12 @@ func spawn_enemy():
 	
 	# Get a random position within the spawn area
 	var spawn_position = get_random_position_in_spawn_area()
-
-	# Set a random y-rotation
-	enemy_instance.rotation.y = randf_range(0, 2 * PI)
-	
 	# Add the enemy to the Enemies container
 	enemies_container.add_child(enemy_instance)
-	
-	# Connect the enemy's death signal
 	enemy_instance.connect("enemy_died", Callable(self, "_on_enemy_died"))
-
+	
+	# Set a random y-rotation
+	enemy_instance.rotation.y = randf_range(0, 2 * PI)
 	enemy_instance.global_transform.origin = spawn_position
 
 

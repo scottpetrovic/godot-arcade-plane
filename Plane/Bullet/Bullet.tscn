@@ -27,7 +27,7 @@ script = ExtResource("1_afsak")
 shape = SubResource("SphereShape3D_kru0d")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
-transform = Transform3D(3.4641, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -2.59127)
+transform = Transform3D(3.4641, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -3.77152)
 mesh = SubResource("SphereMesh_c52su")
 
 [node name="Timer" type="Timer" parent="."]
