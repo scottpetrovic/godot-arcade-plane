@@ -10,11 +10,16 @@ enum State {PATROL, PURSUE, RETURN, ATTACK}  # Added ATTACK state for future imp
 @export var detection_radius = 50.0  # How close the player needs to be to trigger pursuit
 @export var return_threshold = 100.0  # Distance to return to patrol
 @export var attack_range = 20.0  # How close the enemy needs to be to attack (for future use)
+@onready var simple_ai_shooter: Node3D = $SimpleAIShooter
+
+
 
 var current_distance = 0.0
 var current_state = State.PATROL
 var player: Node3D = null
 var patrol_starting_position: Vector3 = Vector3.ZERO
+
+
 
 signal enemy_died(enemy)
 
@@ -74,12 +79,17 @@ func _process(delta):
 		State.PURSUE:
 			pursue_player()
 			check_return_to_patrol()  # Check if should transition to RETURN
-			# check_attack_range()  # Future: Check if close enough to attack
+			check_attack_range()  # Future: Check if close enough to attack
 		State.RETURN:
 			return_to_patrol()
-		# State.ATTACK:
-		#     attack_player()  # Future: Implement attack behavior
-		#     check_attack_finished()  # Future: Check if should return to PURSUE
+		State.ATTACK:
+			attack_player()  # Future: Implement attack behavior
+			check_return_to_pursue()
+		
+func check_return_to_pursue() -> void:
+	# we need to wait a bit anyway before we can attack again
+	# so just return to pursue
+	current_state = State.PURSUE
 
 func patrol_movement(delta):
 	# Move in the current direction
@@ -126,19 +136,9 @@ func check_return_to_patrol():
 	if player and global_position.distance_to(player.global_position) > return_threshold:
 		current_state = State.RETURN
 
-# Pseudo-code for future attack behavior:
+func check_attack_range():
+	if player and global_position.distance_to(player.global_position) <= attack_range:
+		current_state = State.ATTACK
 
-# func check_attack_range():
-#     if player and global_position.distance_to(player.global_position) <= attack_range:
-#         current_state = State.ATTACK
-
-# func attack_player():
-#     # Implement attack logic here
-#     # This could involve firing projectiles, charging at the player, etc.
-#     pass
-
-# func check_attack_finished():
-#     # Determine if the attack is complete
-#     # This could be based on a timer, ammo depletion, etc.
-#     # if attack_is_finished:
-#     #     current_state = State.PURSUE
+func attack_player():
+	simple_ai_shooter.shoot()
