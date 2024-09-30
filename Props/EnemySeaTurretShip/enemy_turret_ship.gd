@@ -9,6 +9,7 @@ var _player_reference: Node3D
 var turrent_follow_player: bool = false
 var attack_range = 25.0  # How close the enemy needs to be to attack (for future use)
 var health = 8
+var points_value: int = 5132 # player gets points
 
 # blender uses diferent xyz directions than Godot
 # this is needed when doing look at to point things at right direction
@@ -66,6 +67,7 @@ func hit() -> void:
 
 func die():
 	emit_signal("enemy_died", self)
+	GameManager.add_destruction_points(points_value)
 	GameManager.create_explosion(self.global_position, 30)
 	# do small screen shake to help with effect
 	# strenth, duration

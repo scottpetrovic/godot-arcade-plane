@@ -17,6 +17,7 @@ var player: Node3D = null
 var patrol_starting_position: Vector3 = Vector3.ZERO
 var player_in_line_of_sight: bool = false
 
+var points_value: int = 1000 # player gets points
 
 signal enemy_died(enemy)
 
@@ -30,6 +31,7 @@ func hit() -> void:
 
 func die():
 	emit_signal("enemy_died", self)
+	GameManager.add_destruction_points(points_value)
 	GameManager.create_explosion(self.global_position, 3)
 	# do small screen shake to help with effect
 	var main_camera: Camera3D = get_viewport().get_camera_3d()
