@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://UI/MainMenu/MainMenu.gd" id="1_hxtm5"]
 [ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://Props/AircraftCarrier/Aircraft_Carrier.tscn" id="1_qfpby"]
 [ext_resource type="PackedScene" uid="uid://f5q3lvkkp6et" path="res://Environment/Ocean/Ocean.tscn" id="2_bqd8t"]
-[ext_resource type="PackedScene" uid="uid://cg3m5qnyxjev4" path="res://Environment/Sky/examples/Sky.tscn" id="3_xmrd7"]
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="4_ta1sr"]
 [ext_resource type="Script" path="res://UI/MainMenu/CameraMovement.gd" id="6_yuge5"]
 [ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="6_ywkv5"]
 [ext_resource type="Texture2D" uid="uid://c67q4xuh2de08" path="res://Assets/UI/TAKE-OFF-8-16-2024.png" id="7_tibdh"]
 [ext_resource type="PackedScene" uid="uid://d3qn3es4bmao8" path="res://Plane/Airplane_Mesh.tscn" id="8_d3uqa"]
 [ext_resource type="PackedScene" uid="uid://bq0ccx2rvgthf" path="res://Effects/FX_ScaleUpDown.tscn" id="8_j1553"]
+[ext_resource type="PackedScene" uid="uid://bnhfe25p6jhpc" path="res://Environment/Sky.tscn" id="10_j6bcm"]
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_hxtm5")
@@ -19,9 +19,6 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.853448, 1.19209e-07,
 
 [node name="Ocean" parent="." instance=ExtResource("2_bqd8t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.4794, 0, 3.266)
-
-[node name="Sky" parent="." instance=ExtResource("3_xmrd7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.5047, 18.0404, 2.17298)
 
 [node name="Airplane" parent="." instance=ExtResource("4_ta1sr")]
 transform = Transform3D(0.999292, 0, -0.0376205, 0, 1, 0, 0.0376205, 0, 0.999292, -0.101195, 1.86236, 5.21982)
@@ -87,3 +84,5 @@ transform = Transform3D(0.678301, 0, 0.734784, 0, 1, 0, -0.734784, 0, 0.678301, 
 
 [node name="plane3" parent="." instance=ExtResource("8_d3uqa")]
 transform = Transform3D(0.678301, 0, 0.734784, 0, 1, 0, -0.734784, 0, 0.678301, -3.35896, 1.86566, 3.89178)
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("10_j6bcm")]
