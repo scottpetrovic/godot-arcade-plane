@@ -35,9 +35,6 @@ scale_curve = SubResource("CurveTexture_mmfvs")
 color_ramp = SubResource("GradientTexture1D_t3cpp")
 turbulence_noise_strength = 3.64
 turbulence_noise_scale = 8.861
-sub_emitter_mode = 1
-sub_emitter_frequency = 7.69
-sub_emitter_keep_velocity = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_iagoh"]
 radial_segments = 10
@@ -47,7 +44,7 @@ rings = 8
 
 [node name="GroundSmoke" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_w7egh")
-amount = 30
+amount = 40
 lifetime = 3.0
 preprocess = 1.0
 process_material = SubResource("ParticleProcessMaterial_y1ex4")
