@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://x8283o2aecy8"]
+
+[ext_resource type="PackedScene" uid="uid://4klurw1dwtnh" path="res://Props/EnemySeaTurretShip/EnemySeaTurretShip.glb" id="1_1x4e0"]
+[ext_resource type="Script" path="res://Props/EnemySeaTurretShip/enemy_turret_ship.gd" id="1_yvr4b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i4ksl"]
+size = Vector3(2.89478, 1.15649, 10.7607)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r2bfp"]
+size = Vector3(74.3591, 41.6885, 68.376)
+
+[node name="EnemyTurretShip" type="CharacterBody3D"]
+script = ExtResource("1_yvr4b")
+
+[node name="ShipMesh" parent="." instance=ExtResource("1_1x4e0")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.86941, 0)
+
+[node name="BulletSpawnPoint" type="Marker3D" parent="ShipMesh/Gun" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, -8.53013, -1.6571)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.287209, 0)
+shape = SubResource("BoxShape3D_i4ksl")
+
+[node name="LineOfSight" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.8607, -3.35275)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfSight"]
+shape = SubResource("BoxShape3D_r2bfp")
+
+[editable path="ShipMesh"]

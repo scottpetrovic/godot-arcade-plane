@@ -5,7 +5,6 @@ var speed = 160.0
 var BulletWaterParticles = preload("res://Effects/Particles/BulletHitWaterParticle/BulletHitWaterParticle.tscn")
 var BulletObjectHitParticle = preload("res://Effects/Particles/BulletObjectHitParticle/BulletObjectHitParticle.tscn")
 
-
 @onready var bullet_impact_sound: AudioStreamPlayer3D = $BulletImpactSound
 
 # Add these variables for randomness

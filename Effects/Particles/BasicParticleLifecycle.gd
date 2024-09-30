@@ -4,5 +4,5 @@ func _ready():
 	emitting = true
 	
 	# Wait for particles to finish emitting, then remove the node
-	await get_tree().create_timer(lifetime * 4.0).timeout
+	await get_tree().create_timer(lifetime + 4.0).timeout
 	queue_free()

@@ -30,7 +30,8 @@ func change_audio_stream(new_audio_file_path: String):
 	var new_audio_stream = ResourceLoader.load(new_audio_file_path)
 	if new_audio_stream:
 		$MusicPlayer.stream = new_audio_stream
-		$MusicPlayer.volume_db = -3
 		$MusicPlayer.play()  # Optionally, start playing the new audio stream
+		
+		#The volume is controlled by the animation player which does a fade in and out
 	else:
 		print("Failed to load audio stream from path: ", new_audio_file_path)

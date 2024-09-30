@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dk0av4tlip45w"]
+[gd_scene load_steps=9 format=3 uid="uid://dk0av4tlip45w"]
 
 [ext_resource type="Script" path="res://Levels/PlaneLevel.gd" id="1_2pumm"]
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="2_rh33o"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Effects/Camera/FX_ScreenShake.gd" id="4_kr0vk"]
 [ext_resource type="PackedScene" uid="uid://bm15sseqvqdwl" path="res://UI/InGame/InGameUIElements.tscn" id="5_711ci"]
 [ext_resource type="Script" path="res://Levels/enemies_manager.gd" id="6_fbuhu"]
+[ext_resource type="PackedScene" uid="uid://x8283o2aecy8" path="res://Props/EnemySeaTurretShip/enemy_turret_ship.tscn" id="7_cf74n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1rrbf"]
 size = Vector3(163.855, 18.6895, 205.234)
@@ -46,3 +47,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.6523, 0)
 shape = SubResource("BoxShape3D_1rrbf")
 
 [node name="EnemiesContainer" type="Node" parent="EnemiesManager"]
+
+[node name="EnemyTurretShip" parent="." instance=ExtResource("7_cf74n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.8581, 0, 0)

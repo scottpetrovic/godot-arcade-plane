@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://d7hhneu8n7yu"
+path.s3tc="res://.godot/imported/EnemySeaTurretShip_ZC_Qianting01_D_LOD1.png-3080d73c13e9be5d0aaccf92d5ea8a5c.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "0dc5daccf5460935a7d24f16f9a0483a"
+}
+
+[deps]
+
+source_file="res://Props/EnemySeaTurretShip/EnemySeaTurretShip_ZC_Qianting01_D_LOD1.png"
+dest_files=["res://.godot/imported/EnemySeaTurretShip_ZC_Qianting01_D_LOD1.png-3080d73c13e9be5d0aaccf92d5ea8a5c.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
