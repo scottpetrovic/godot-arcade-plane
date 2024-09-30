@@ -92,15 +92,6 @@ shape = SubResource("CapsuleShape3D_gsjsx")
 [node name="Plane_Mesh" parent="." instance=ExtResource("2_j34yd")]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, -0.0835133)
 
-[node name="Landing_Gear_Back" parent="Plane_Mesh" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00204349, 0.298476, -0.103187)
-
-[node name="Landing_Gear_Left" parent="Plane_Mesh" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00204349, 0.298476, -0.103187)
-
-[node name="Landing_Gear_Right" parent="Plane_Mesh" index="3"]
-transform = Transform3D(-0.139954, -0.990158, -1.50996e-07, -0.990158, 0.139954, -7.47549e-08, 9.51516e-08, 1.39047e-07, -1, -0.251448, 0.208125, 0.0334829)
-
 [node name="EngineSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_610pa")
 volume_db = -17.802
@@ -132,5 +123,3 @@ script = ExtResource("8_pncxi")
 libraries = {
 "": SubResource("AnimationLibrary_u80ly")
 }
-
-[editable path="Plane_Mesh"]

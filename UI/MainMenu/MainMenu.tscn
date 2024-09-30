@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dt0rnx5u22agk"]
+[gd_scene load_steps=10 format=3 uid="uid://dt0rnx5u22agk"]
 
 [ext_resource type="Script" path="res://UI/MainMenu/MainMenu.gd" id="1_hxtm5"]
 [ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://Props/AircraftCarrier/Aircraft_Carrier.tscn" id="1_qfpby"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://UI/MainMenu/CameraMovement.gd" id="6_yuge5"]
 [ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="6_ywkv5"]
 [ext_resource type="Texture2D" uid="uid://c67q4xuh2de08" path="res://Assets/UI/TAKE-OFF-8-16-2024.png" id="7_tibdh"]
-[ext_resource type="PackedScene" uid="uid://d3qn3es4bmao8" path="res://Plane/Airplane_Mesh.tscn" id="8_d3uqa"]
 [ext_resource type="PackedScene" uid="uid://bq0ccx2rvgthf" path="res://Effects/FX_ScaleUpDown.tscn" id="8_j1553"]
 [ext_resource type="PackedScene" uid="uid://bnhfe25p6jhpc" path="res://Environment/Sky.tscn" id="10_j6bcm"]
 
@@ -75,14 +74,5 @@ theme_type_variation = &"HeaderLarge"
 theme_override_font_sizes/font_size = 25
 text = "Press Anywhere"
 horizontal_alignment = 1
-
-[node name="plane" parent="." instance=ExtResource("8_d3uqa")]
-transform = Transform3D(0.678301, 0, 0.734784, 0, 1, 0, -0.734784, 0, 0.678301, -3.79116, 1.86566, 5.3526)
-
-[node name="plane2" parent="." instance=ExtResource("8_d3uqa")]
-transform = Transform3D(0.678301, 0, 0.734784, 0, 1, 0, -0.734784, 0, 0.678301, -2.64982, 1.86566, 4.76321)
-
-[node name="plane3" parent="." instance=ExtResource("8_d3uqa")]
-transform = Transform3D(0.678301, 0, 0.734784, 0, 1, 0, -0.734784, 0, 0.678301, -3.35896, 1.86566, 3.89178)
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("10_j6bcm")]

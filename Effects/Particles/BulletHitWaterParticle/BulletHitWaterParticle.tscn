@@ -3,13 +3,14 @@
 [ext_resource type="Script" path="res://Effects/Particles/BasicParticleLifecycle.gd" id="1_2dhmn"]
 
 [sub_resource type="Gradient" id="Gradient_22k8v"]
-colors = PackedColorArray(1, 1, 1, 1, 0.102641, 0.28229, 0.570123, 1)
+offsets = PackedFloat32Array(0, 0.996337, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.916464, 0.904637, 0.907588, 1, 1, 1, 1, 0.498039)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1xhdy"]
 gradient = SubResource("Gradient_22k8v")
 
 [sub_resource type="Curve" id="Curve_dr5p2"]
-_data = [Vector2(0, 0.237931), 0.0, 0.0, 0, 0, Vector2(0.501706, 0.0765518), -0.0583753, -0.0583753, 0, 0, Vector2(1, 0.184138), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.237931), 0.0, 0.0, 0, 0, Vector2(0.501706, 0.0765518), -0.0583753, -0.0583753, 0, 0, Vector2(1, 0.661549), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_3pctw"]
@@ -33,7 +34,7 @@ material = SubResource("StandardMaterial3D_r1com")
 [node name="BulletHitWaterParticle" type="GPUParticles3D"]
 emitting = false
 amount = 20
-lifetime = 1.2
+lifetime = 1.6
 one_shot = true
 speed_scale = 1.8
 explosiveness = 0.6

@@ -52,6 +52,9 @@ func go_to_vehicle_selection_screen():
 func go_to_mission_overview(fade_music: bool = false):
 	SceneTransition.change_scene("res://UI/MissionEndOverview/MissionEndOverview.tscn", fade_music)
 
+func go_to_main_menu():
+	SceneTransition.change_scene("res://UI/MainMenu/MainMenu.tscn")
+
 func set_level_complete(level_number: int, level_time: float):
 
 	current_level_time = level_time
