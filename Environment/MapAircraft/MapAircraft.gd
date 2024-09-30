@@ -4,13 +4,10 @@ extends Node3D
 @onready var sky_diving_gate_manager: Node3D = $SkyDivingGateManager
 @onready var sky_diving_landing_target: Node3D = $SkydivingLandingTarget
 
-var world_sky: PackedScene = load("res://Environment/Sky/examples/Sky.tscn")
-
 func skydiver_starting_position() -> Vector3:
 	return $SkydiverStartingPosition.global_position
 
 func _ready():
-	add_child(world_sky.instantiate())
 	
 	if GameManager.current_vehicle == Constants.VEHICLE.AIRPLANE:
 		sky_diving_gate_manager.visible = false

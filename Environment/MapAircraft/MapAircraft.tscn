@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0m8kejefkuv0"]
+[gd_scene load_steps=10 format=3 uid="uid://d0m8kejefkuv0"]
 
 [ext_resource type="Script" path="res://Environment/MapAircraft/MapAircraft.gd" id="1_gu8js"]
 [ext_resource type="PackedScene" uid="uid://f5q3lvkkp6et" path="res://Environment/Ocean/Ocean.tscn" id="1_y4nq7"]
@@ -6,6 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://bin24lcxi48bf" path="res://Props/LandingTarget/LandingTarget.tscn" id="5_q3ax4"]
 [ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://Props/GateCheckpoint/GateCheckpoint.tscn" id="5_xsqg6"]
 [ext_resource type="PackedScene" uid="uid://bxo5ikrfddrqy" path="res://Props/FloatingTarget/FloatingTarget.tscn" id="6_3rd16"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3xhrv"]
+sky_top_color = Color(0.757292, 0.801019, 0.862069, 1)
+sky_horizon_color = Color(0.508797, 0.669855, 0.852991, 1)
+ground_bottom_color = Color(0.509804, 0.670588, 0.854902, 1)
+ground_horizon_color = Color(0.509804, 0.670588, 0.854902, 1)
+ground_curve = 1.57586
+
+[sub_resource type="Sky" id="Sky_l02uc"]
+sky_material = SubResource("ProceduralSkyMaterial_3xhrv")
+
+[sub_resource type="Environment" id="Environment_h2hkx"]
+background_mode = 2
+sky = SubResource("Sky_l02uc")
+ambient_light_color = Color(0.877616, 0.877616, 0.877616, 1)
 
 [node name="Environment" type="Node3D"]
 script = ExtResource("1_gu8js")
@@ -52,3 +67,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.0566, 23.1831, 4.17228)
 
 [node name="FloatingTarget2" parent="PlaneTargetManager" instance=ExtResource("6_3rd16")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136.741, 29.0771, 4.17228)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h2hkx")

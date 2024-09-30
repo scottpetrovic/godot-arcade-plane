@@ -183,11 +183,15 @@ offset_bottom = 60.0
 script = ExtResource("6_uldm6")
 
 [node name="FuelGuageContainer" type="ColorRect" parent="HUD"]
-layout_mode = 0
-offset_left = 664.0
-offset_top = 114.0
-offset_right = 986.0
-offset_bottom = 147.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -362.872
+offset_top = 115.0
+offset_right = -40.8719
+offset_bottom = 148.0
+grow_horizontal = 0
 pivot_offset = Vector2(787, 46)
 color = Color(0, 0, 0, 1)
 script = ExtResource("7_qv4pg")

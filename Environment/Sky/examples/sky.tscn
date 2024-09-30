@@ -1,9 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://cg3m5qnyxjev4"]
 
-[ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://Environment/Sky/examples/day_sky.tres" id="1_he4wp"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_biii1"]
 
 [sub_resource type="Sky" id="Sky_ieg05"]
-sky_material = ExtResource("1_he4wp")
+sky_material = SubResource("ProceduralSkyMaterial_biii1")
 
 [sub_resource type="Environment" id="Environment_1eoep"]
 background_mode = 2
