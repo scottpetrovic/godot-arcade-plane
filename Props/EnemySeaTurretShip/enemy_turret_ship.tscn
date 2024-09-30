@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://x8283o2aecy8"]
+[gd_scene load_steps=6 format=3 uid="uid://x8283o2aecy8"]
 
 [ext_resource type="PackedScene" uid="uid://4klurw1dwtnh" path="res://Props/EnemySeaTurretShip/EnemySeaTurretShip.glb" id="1_1x4e0"]
 [ext_resource type="Script" path="res://Props/EnemySeaTurretShip/enemy_turret_ship.gd" id="1_yvr4b"]
+[ext_resource type="Script" path="res://Props/EnemyAir/simple_ai_shooter.gd" id="3_x4h72"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i4ksl"]
 size = Vector3(2.89478, 1.15649, 10.7607)
@@ -27,5 +28,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.8607, -3.35275)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfSight"]
 shape = SubResource("BoxShape3D_r2bfp")
+
+[node name="AIShooter" type="Node" parent="." node_paths=PackedStringArray("bullet_spawn_point")]
+script = ExtResource("3_x4h72")
+bullet_spawn_point = NodePath("../ShipMesh/Gun/BulletSpawnPoint")
+shoot_delay = 2.0
+
+[node name="ShootTimer" type="Timer" parent="AIShooter"]
 
 [editable path="ShipMesh"]

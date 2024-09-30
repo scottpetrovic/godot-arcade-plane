@@ -8,7 +8,7 @@ enum State {PATROL, PURSUE, RETURN, ATTACK}  # Added ATTACK state for future imp
 @export var turn_angle = 30.0  # Degrees
 @export var distance_to_travel = 60.0  # Units
 @export var attack_range = 25.0  # How close the enemy needs to be to attack (for future use)
-@onready var simple_ai_shooter: Node3D = $SimpleAIShooter
+@onready var simple_ai_shooter: Node = $SimpleAIShooter
 @onready var line_of_sight: Area3D = $LineOfSight
 
 var current_distance = 0.0

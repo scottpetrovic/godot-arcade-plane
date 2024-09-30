@@ -132,21 +132,9 @@ void fragment() {
 	if (sum > 0.4 && sum < 0.8) fin = 0.0;
 	if (sum > 0.8) fin = 1.0;
 	
-	// konvertier fin in vec3 um
+	// set final material properties
 	ALBEDO = vec3(fin) + mix(alpha.rgb, gradientcolor.rgb, gradientcolor.a);
-	float depth = texture(DEPTH_TEXTURE, SCREEN_UV).r;
-	vec4 upos = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, depth, 1.0);
-	vec3 pixel_position = upos.xyz / upos.w;
-	    
-	if (VERTEX.z < pixel_position.z + 0.05) {
-	  ALBEDO = vec3(edge_color.rgb);
-	}
-	
-	
-	
 	NORMAL_MAP = texture(normalmap, uv_movement).rgb;
-	
 	METALLIC = metallic;
-
 	ROUGHNESS = roughness;
 }

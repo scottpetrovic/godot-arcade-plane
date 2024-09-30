@@ -45,8 +45,9 @@ skeleton = NodePath("../SimpleAirEnemy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.519531)
 shape = SubResource("BoxShape3D_g36n3")
 
-[node name="SimpleAIShooter" type="Node3D" parent="."]
+[node name="SimpleAIShooter" type="Node" parent="." node_paths=PackedStringArray("bullet_spawn_point")]
 script = ExtResource("3_witci")
+bullet_spawn_point = NodePath("../BulletSpawnPoint")
 
 [node name="ShootTimer" type="Timer" parent="SimpleAIShooter"]
 

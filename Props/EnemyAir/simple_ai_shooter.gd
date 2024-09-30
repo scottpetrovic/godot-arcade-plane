@@ -1,12 +1,12 @@
-extends Node3D
+extends Node
 
 @onready var shoot_timer: Timer = $ShootTimer
-@onready var bullet_spawn_point: Marker3D = $"../BulletSpawnPoint"
+@export var bullet_spawn_point: Marker3D # $"../BulletSpawnPoint"
 
-var Bullet = preload("res://Plane/Bullet/Bullet.tscn")
+@export var Bullet = preload("res://Plane/Bullet/Bullet.tscn")
 
 var can_shoot = true
-var shoot_delay = 0.3
+@export var shoot_delay = 0.3
 
 func _ready():
 	shoot_timer.wait_time = shoot_delay
