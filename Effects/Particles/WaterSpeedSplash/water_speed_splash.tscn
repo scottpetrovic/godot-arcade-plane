@@ -27,7 +27,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 script = ExtResource("1_j6y3a")
 
 [node name="SpriteWhiteFlashOutside" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(1.1252, -0.925126, -0.25941, 0.00473832, 3.01383, -0.657486, 0.417022, 2.46191, 0.707403, 0.198737, -0.0755022, 0.388357)
+transform = Transform3D(1.1252, -1.28891, -0.130207, 0.00473832, 1.53802, -0.923115, 0.417022, 3.46024, 0.361809, 0.268034, -0.0755022, 0.499232)
 centered = false
 sprite_frames = SubResource("SpriteFrames_xp1r2")
 autoplay = "default"
@@ -35,7 +35,7 @@ frame = 2
 frame_progress = 0.976278
 
 [node name="SpriteWhiteFlashOutside2" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(1.08071, -1.20773, 0.312683, 3.64361e-08, 2.87746, 0.694633, -0.521598, -2.50232, 0.647854, 0.119686, -0.0611225, -0.172207)
+transform = Transform3D(1.11739, -1.29672, 0.166892, 2.98023e-08, 1.83088, 0.889097, -0.43754, -3.31155, 0.426209, 0.26521, -0.0611225, -0.435536)
 centered = false
 sprite_frames = SubResource("SpriteFrames_xp1r2")
 autoplay = "default"
@@ -43,21 +43,20 @@ frame = 2
 frame_progress = 0.976278
 
 [node name="SpriteWhiteFlash" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(1.15077, -0.356713, -0.220362, 0, 1.5546, -0.62913, 0.340196, 1.20664, 0.74541, 0.056, -0.05, 0.364)
+transform = Transform3D(1.15077, -0.53011, -0.10058, 0, 0.709561, -0.934949, 0.340196, 1.79318, 0.340226, 0.056, -0.05, 0.364)
 sorting_offset = 1.0
 centered = false
-modulate = Color(0.434867, 0.57006, 0.911171, 1)
+modulate = Color(0.333333, 0.694118, 0.952941, 1)
 sprite_frames = SubResource("SpriteFrames_xp1r2")
 autoplay = "default"
 frame = 2
 frame_progress = 0.976278
 
 [node name="SpriteWhiteFlash2" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(1.09775, 0.640437, -0.246196, 0.00580198, -1.2363, -0.786043, -0.484671, 1.43575, -0.56703, -0.317625, 0.677627, -0.967177)
+transform = Transform3D(1.12944, -0.515828, 0.218202, 1.49012e-08, 1.29176, 0.763435, -0.405401, -1.43709, 0.607909, 0.0713515, 0, -0.313945)
 sorting_offset = 1.0
 centered = false
-flip_v = true
-modulate = Color(0.434867, 0.57006, 0.911171, 1)
+modulate = Color(0.334321, 0.692371, 0.952943, 1)
 sprite_frames = SubResource("SpriteFrames_xp1r2")
 autoplay = "default"
 frame = 2
