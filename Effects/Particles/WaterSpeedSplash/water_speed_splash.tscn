@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1va3jn6i0rm2"]
+
+[ext_resource type="Script" path="res://Effects/Particles/WaterSpeedSplash/water_speed_splash.gd" id="1_j6y3a"]
+[ext_resource type="Texture2D" uid="uid://mkq8tr3q68qx" path="res://Effects/Particles/WaterSpeedSplash/frame0000.png" id="1_kyuns"]
+[ext_resource type="Texture2D" uid="uid://jaqa1kltipj3" path="res://Effects/Particles/WaterSpeedSplash/frame0001.png" id="2_i17ll"]
+[ext_resource type="Texture2D" uid="uid://kjlwu55v2m6q" path="res://Effects/Particles/WaterSpeedSplash/frame0002.png" id="3_2o5gq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xp1r2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kyuns")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_i17ll")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2o5gq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="WaterSpeedSplash" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_j6y3a")
+
+[node name="SpriteWhiteFlashOutside" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1.1252, -0.925126, -0.25941, 0.00473832, 3.01383, -0.657486, 0.417022, 2.46191, 0.707403, 0.198737, -0.0347539, 0.388357)
+centered = false
+sprite_frames = SubResource("SpriteFrames_xp1r2")
+autoplay = "default"
+frame = 2
+frame_progress = 0.976278
+
+[node name="SpriteWhiteFlashOutside2" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1.08071, -1.20773, 0.312683, 3.64361e-08, 2.87746, 0.694633, -0.521598, -2.50232, 0.647854, 0.119686, 0, -0.172207)
+centered = false
+sprite_frames = SubResource("SpriteFrames_xp1r2")
+autoplay = "default"
+frame = 2
+frame_progress = 0.976278
+
+[node name="SpriteWhiteFlash" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1.15077, -0.356713, -0.220362, 0, 1.5546, -0.62913, 0.340196, 1.20664, 0.74541, 0.0563932, -0.0347539, 0.364326)
+sorting_offset = 1.0
+centered = false
+modulate = Color(0.434867, 0.57006, 0.911171, 1)
+sprite_frames = SubResource("SpriteFrames_xp1r2")
+autoplay = "default"
+frame = 2
+frame_progress = 0.976278
+
+[node name="SpriteWhiteFlash2" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1.09775, 0.640437, -0.246196, 0.00580198, -1.2363, -0.786043, -0.484671, 1.43575, -0.56703, -0.317625, 0.713282, -0.967177)
+sorting_offset = 1.0
+centered = false
+flip_v = true
+modulate = Color(0.434867, 0.57006, 0.911171, 1)
+sprite_frames = SubResource("SpriteFrames_xp1r2")
+autoplay = "default"
+frame = 2
+frame_progress = 0.976278
