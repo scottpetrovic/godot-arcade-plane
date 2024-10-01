@@ -1,26 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://f5q3lvkkp6et"]
+[gd_scene load_steps=8 format=3 uid="uid://f5q3lvkkp6et"]
 
 [ext_resource type="Script" path="res://Environment/Ocean/Water.gd" id="1_msbox"]
 [ext_resource type="Material" uid="uid://dnsn25s6jnvqd" path="res://Environment/Ocean/WaterPlaneMaterial.tres" id="2_bhg5h"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_kn6pj"]
-size = Vector2(4000, 4000)
-subdivide_width = 100
-subdivide_depth = 100
-orientation = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wiqa6"]
 size = Vector3(2000, 0.2, 2000)
 
 [sub_resource type="SphereMesh" id="SphereMesh_ek7ns"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fs17k"]
+albedo_color = Color(0.767671, 0.0468326, 0.416555, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7vgwk"]
+material = SubResource("StandardMaterial3D_fs17k")
+size = Vector2(1500, 1500)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_m3k1g"]
+material = ExtResource("2_bhg5h")
+size = Vector2(4000, 4000)
+
 [node name="Ocean" type="Area3D"]
 script = ExtResource("1_msbox")
-
-[node name="MeshSolid" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999913, 0.0132292, 0, -0.0132292, 0.999913, 0, 0, 0)
-mesh = SubResource("QuadMesh_kn6pj")
-surface_material_override/0 = ExtResource("2_bhg5h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_wiqa6")
@@ -29,3 +29,11 @@ shape = SubResource("BoxShape3D_wiqa6")
 transform = Transform3D(12.9927, 0, 0, 0, 2.15058, 0, 0, 0, 14.4502, 0, -0.561447, 0)
 visible = false
 mesh = SubResource("SphereMesh_ek7ns")
+
+[node name="reference plane" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+mesh = SubResource("PlaneMesh_7vgwk")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_m3k1g")

@@ -80,11 +80,6 @@ float calc_depth_fade(float depth, mat4 projection_matrix,
 
 
 void vertex() {
-	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	
-	height = texture(wave, world_pos.xz / noise_scale + TIME * time_scale).r;
-	
-	VERTEX.y += height * height_scale;
 }
 
 void fragment() {
