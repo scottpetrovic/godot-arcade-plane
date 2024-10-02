@@ -1,5 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://b57fe8tahov1o"]
+[gd_scene load_steps=21 format=3 uid="uid://b57fe8tahov1o"]
 
+[ext_resource type="Script" path="res://Effects/Particles/BetterExplosion/better_explosion_particle.gd" id="1_3pxsl"]
 [ext_resource type="Material" uid="uid://dmvjn5i84narn" path="res://Effects/Particles/BetterExplosion/BetterExplosionParticleMaterial.tres" id="1_e330x"]
 [ext_resource type="Shader" uid="uid://c4fbo8hfnyc14" path="res://Effects/Particles/BetterExplosion/ShaderStreaks.tres" id="2_206mr"]
 
@@ -33,8 +34,8 @@ curve = SubResource("Curve_vdgut")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2tj72"]
 emission_shape = 1
 emission_sphere_radius = 0.2
-radial_velocity_min = 6.49998
-radial_velocity_max = 7.49998
+radial_velocity_min = 7.99998
+radial_velocity_max = 13.0
 radial_velocity_curve = SubResource("CurveTexture_wx6tw")
 gravity = Vector3(0, 0, 0)
 scale_min = 1.7
@@ -44,6 +45,10 @@ color_ramp = SubResource("GradientTexture1D_t8y3h")
 alpha_curve = SubResource("CurveTexture_hysw0")
 
 [sub_resource type="SphereMesh" id="SphereMesh_5a7wf"]
+radius = 1.5
+height = 3.0
+radial_segments = 30
+rings = 20
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_evw40"]
 render_priority = 0
@@ -80,24 +85,32 @@ hue_variation_min = -1.0
 hue_variation_max = 1.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_lwkkr"]
-size = Vector2(0.25, 1)
+size = Vector2(1, 7)
 center_offset = Vector3(0, 0.4, 0)
 
 [node name="BetterExplosionParticle" type="Node3D"]
+script = ExtResource("1_3pxsl")
 
 [node name="MainExplosion" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.741361)
 material_override = ExtResource("1_e330x")
-lifetime = 0.6
-explosiveness = 0.81
+emitting = false
+amount = 18
+one_shot = true
+explosiveness = 0.32
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_2tj72")
 draw_pass_1 = SubResource("SphereMesh_5a7wf")
 
 [node name="Sparks" type="GPUParticles3D" parent="."]
 material_override = SubResource("ShaderMaterial_evw40")
+emitting = false
 lifetime = 0.4
+one_shot = true
 explosiveness = 0.88
 randomness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_netpe")
 draw_pass_1 = SubResource("QuadMesh_lwkkr")
+
+[node name="SFX" type="AudioStreamPlayer3D" parent="."]

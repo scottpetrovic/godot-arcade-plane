@@ -32,7 +32,7 @@ func hit() -> void:
 func die():
 	emit_signal("enemy_died", self)
 	GameManager.add_destruction_points(points_value)
-	GameManager.create_explosion(self.global_position, 3)
+	GameManager.create_explosion(self.global_position)
 	# do small screen shake to help with effect
 	var main_camera: Camera3D = get_viewport().get_camera_3d()
 	

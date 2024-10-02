@@ -23,6 +23,8 @@ var _player_reference: Node3D
 
 var BulletObjectHitParticle = preload("res://Effects/Particles/BulletObjectHitParticle/BulletObjectHitParticle.tscn")
 var BulletObjectDebrisParticles = preload("res://Effects/Particles/ExplosionDebrisParticles/ExplosionDebrisParticles.tscn")
+var NicerExplosionParticles = preload("res://Effects/Particles/BetterExplosion/BetterExplosionParticle.tscn")
+
 
 func get_destruction_points() -> int:
 	return _current_level_destruction_points
@@ -95,25 +97,16 @@ func format_elapsed_time(elapsed: float) -> String:
 	return str(minutes) + ":" + str(seconds).pad_zeros(2) + "." + str(milliseconds).pad_zeros(3)
 
 
-func create_explosion(starting_position: Vector3, explosion_size: float) -> void:
+func create_explosion(starting_position: Vector3) -> void:
 	# create particle effects since we blew up
 	# instanatiate the effects at the root level since we 
 	# are about to delete this object
-	var instance_explosion = BulletObjectHitParticle.instantiate()
-	instance_explosion.lifetime = 1.0
+	var instance_explosion = NicerExplosionParticles.instantiate()
 	get_tree().root.add_child(instance_explosion)
 	instance_explosion.global_position = starting_position
-	instance_explosion.scale = Vector3( explosion_size, explosion_size, explosion_size)
-
-
-	# create debris particles with elements of vehicle that was destroyed
-	var instance_debris = BulletObjectDebrisParticles.instantiate()
-	get_tree().root.add_child(instance_debris)
-	instance_debris.global_position = starting_position
-	instance_explosion.scale = Vector3(explosion_size, explosion_size, explosion_size)
 
 	# attach sound effect node to explosion instance
-	var audio_player: AudioStreamPlayer3D = instance_explosion.get_node("AudioNode")
+	var audio_player: AudioStreamPlayer3D = instance_explosion.get_node("SFX")
 	audio_player.stream = preload("res://Assets/SoundFX/explosion.mp3")
-	audio_player.volume_db = 10.0 # make it louder
+	audio_player.volume_db = 6.0 # make it louder
 	audio_player.play()

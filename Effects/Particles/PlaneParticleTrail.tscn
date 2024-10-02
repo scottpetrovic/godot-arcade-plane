@@ -4,7 +4,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awsxb"]
 transparency = 1
-depth_draw_mode = 1
+blend_mode = 4
 shading_mode = 0
 vertex_color_use_as_albedo = true
 
@@ -31,7 +31,7 @@ alpha_curve = SubResource("CurveTexture_ujaov")
 [node name="AirParticles" type="GPUParticles3D"]
 material_override = SubResource("StandardMaterial3D_awsxb")
 cast_shadow = 0
-amount = 50
+amount = 10
 lifetime = 0.5
 visibility_aabb = AABB(-1, -0.98, -2.035, 2, 1.7, 5.135)
 process_material = SubResource("ParticleProcessMaterial_cxmc6")
