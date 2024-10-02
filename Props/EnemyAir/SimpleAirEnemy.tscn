@@ -1,23 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://mvtsty7f7en6"]
+[gd_scene load_steps=9 format=3 uid="uid://mvtsty7f7en6"]
 
 [ext_resource type="PackedScene" uid="uid://c5d1ae6y4sbdv" path="res://Props/EnemyAir/SimpleAirEnemy.glb" id="1_3ilad"]
 [ext_resource type="Script" path="res://Props/EnemyAir/simple_air_enemy.gd" id="1_sgorc"]
+[ext_resource type="Shader" path="res://Props/EnemyAir/SimpleAirEnemy.gdshader" id="3_4yo2o"]
 [ext_resource type="Script" path="res://Props/EnemyAir/simple_ai_shooter.gd" id="3_witci"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lauyq"]
-transparency = 1
-albedo_color = Color(0.969, 0.174, 0.519, 0.184)
-emission_enabled = true
-emission = Color(0.705912, 0.157659, 0.37548, 1)
-emission_energy_multiplier = 4.97
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ulpyw"]
+render_priority = 0
+shader = ExtResource("3_4yo2o")
+shader_parameter/amplitude = 0.167
+shader_parameter/frequency = 0.0
+shader_parameter/speed = 15.0
+shader_parameter/top_color = Color(1, 0, 0, 1)
+shader_parameter/bottom_color = Color(0, 0, 1, 1)
+shader_parameter/alpha = 0.302
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jxf3t"]
-material = SubResource("StandardMaterial3D_lauyq")
+material = SubResource("ShaderMaterial_ulpyw")
 top_radius = 0.3
 bottom_radius = 0.0
 height = 4.913
 radial_segments = 8
-rings = 3
+rings = 8
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g36n3"]
 size = Vector3(8.32056, 2.89258, 4.06445)
@@ -38,6 +42,16 @@ skeleton = NodePath("../SimpleAirEnemy")
 
 [node name="EngineTrailLeft" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -0.443558, 0.661384, 3.21864)
+mesh = SubResource("CylinderMesh_jxf3t")
+skeleton = NodePath("../SimpleAirEnemy")
+
+[node name="EngineTrailRight2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0.351797, -0.666663, 3.21864)
+mesh = SubResource("CylinderMesh_jxf3t")
+skeleton = NodePath("../SimpleAirEnemy")
+
+[node name="EngineTrailLeft2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -0.443558, -0.666663, 3.21864)
 mesh = SubResource("CylinderMesh_jxf3t")
 skeleton = NodePath("../SimpleAirEnemy")
 

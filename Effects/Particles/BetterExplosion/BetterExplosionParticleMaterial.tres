@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dmvjn5i84narn"]
+
+[ext_resource type="Shader" uid="uid://1w724y41m3o0" path="res://Effects/Particles/BetterExplosion/BetterExplosionParticle.tres" id="1_culla"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_culla")
+shader_parameter/Cloud_Speed = Vector2(0, 0.5)
+shader_parameter/CloudIntensity = 0.3
+shader_parameter/Explosion_Color = Color(1, 0.5884, 0.167889, 1)

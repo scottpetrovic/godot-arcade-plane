@@ -12,15 +12,22 @@ sky_material = SubResource("PanoramaSkyMaterial_gbdi5")
 background_mode = 2
 sky = SubResource("Sky_l02uc")
 ambient_light_color = Color(1, 1, 1, 1)
-fog_enabled = true
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.0
 fog_light_color = Color(0.355225, 0.75679, 0.997109, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = SubResource("Environment_h2hkx")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.414804, 0.909911, 0, -0.909911, 0.414804, 0, 2.36033, 0)
+[node name="PrimaryLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.915064, 0.248599, -0.31758, 0.402688, -0.606862, 0.685245, -0.0223758, -0.754929, -0.655425, 0, 2.36033, 0)
 shadow_enabled = true
+shadow_opacity = 0.69
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999916, -0.0129495, 0, 0.0129495, 0.999916, 0, 2.36033, 3.01321)
+[node name="SecondaryLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.617575, -0.582488, 0.528497, 0.635824, 0.765269, 0.100456, -0.462956, 0.273992, 0.842971, 0, 2.36033, 3.01321)
+light_energy = 0.3
+
+[node name="BackLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.0738146, 0.0219792, -0.99703, 0.646024, 0.760579, 0.064595, 0.75974, -0.648873, 0.0419425, 0, 2.36033, 3.01321)
+light_energy = 0.3
