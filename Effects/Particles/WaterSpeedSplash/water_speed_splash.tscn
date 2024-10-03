@@ -27,15 +27,14 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 script = ExtResource("1_j6y3a")
 
 [node name="SpriteWhiteFlashOutside" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(1.1252, -1.28891, -0.130207, 0.00473832, 1.53802, -0.923115, 0.417022, 3.46024, 0.361809, 0.268034, -0.0755022, 0.499232)
+transform = Transform3D(1.1252, -1.28891, -0.130207, 0.00473832, 1.53802, -0.923115, 0.417022, 3.46024, 0.361809, 0.179252, -0.0755022, 0.0849163)
 centered = false
 sprite_frames = SubResource("SpriteFrames_xp1r2")
 autoplay = "default"
-frame = 2
-frame_progress = 0.976278
+frame_progress = 0.479973
 
 [node name="SpriteWhiteFlashOutside2" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(1.11739, -1.29672, 0.166892, 2.98023e-08, 1.83088, 0.889097, -0.43754, -3.31155, 0.426209, 0.26521, -0.0611225, -0.435536)
+transform = Transform3D(1.11739, -1.29672, 0.166892, 2.98023e-08, 1.83088, 0.889097, -0.43754, -3.31155, 0.426209, 0.176428, -0.0611225, -0.272769)
 centered = false
 sprite_frames = SubResource("SpriteFrames_xp1r2")
 autoplay = "default"

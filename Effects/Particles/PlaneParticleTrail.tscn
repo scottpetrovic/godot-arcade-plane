@@ -4,7 +4,6 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awsxb"]
 transparency = 1
-blend_mode = 4
 shading_mode = 0
 vertex_color_use_as_albedo = true
 
