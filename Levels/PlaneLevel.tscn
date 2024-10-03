@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dk0av4tlip45w"]
+[gd_scene load_steps=12 format=3 uid="uid://dk0av4tlip45w"]
 
 [ext_resource type="Script" path="res://Levels/PlaneLevel.gd" id="1_2pumm"]
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="2_rh33o"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://Effects/Camera/FX_ScreenShake.gd" id="4_kr0vk"]
 [ext_resource type="PackedScene" uid="uid://bm15sseqvqdwl" path="res://UI/InGame/InGameUIElements.tscn" id="5_711ci"]
 [ext_resource type="Script" path="res://Levels/enemies_manager.gd" id="6_fbuhu"]
-[ext_resource type="PackedScene" uid="uid://x8283o2aecy8" path="res://Props/EnemySeaTurretShip/enemy_turret_ship.tscn" id="7_cf74n"]
 [ext_resource type="PackedScene" uid="uid://c1va3jn6i0rm2" path="res://Effects/Particles/WaterSpeedSplash/water_speed_splash.tscn" id="8_qooy0"]
 [ext_resource type="Script" path="res://Effects/direction_pointer.gd" id="9_oqi7h"]
 
@@ -59,11 +58,9 @@ shape = SubResource("BoxShape3D_1rrbf")
 
 [node name="EnemiesContainer" type="Node" parent="EnemiesManager"]
 
-[node name="EnemyTurretShip" parent="." instance=ExtResource("7_cf74n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.8581, 0, 0)
-
 [node name="WaterSpeedSplash" parent="." instance=ExtResource("8_qooy0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
 
 [node name="DirectionPointer" type="MeshInstance3D" parent="."]
 visible = false

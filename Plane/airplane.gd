@@ -27,6 +27,11 @@ var current_fuel: float = 100.0
 func is_engine_on() -> bool:
 	return (forward_speed / max_flight_speed) > 0.01
 
+func collided_with_fuel_can() -> void:
+	# try to add 20 units to the fuel. If that makes it
+	# over 100, just use 100 (full)
+	current_fuel = min(current_fuel + 20, 100)
+
 func _ready() -> void:
 	self.velocity = Vector3.ZERO
 	airplane_original_scale = plane_mesh.scale.y

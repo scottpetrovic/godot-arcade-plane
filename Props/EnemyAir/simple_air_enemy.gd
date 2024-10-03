@@ -33,10 +33,14 @@ func die():
 	emit_signal("enemy_died", self)
 	GameManager.add_destruction_points(points_value)
 	GameManager.create_explosion(self.global_position)
-	# do small screen shake to help with effect
-	var main_camera: Camera3D = get_viewport().get_camera_3d()
 	
-	# strenth, duration
+	# 10% chance a fuel can will be dropped
+	if randf() <= 0.10:
+		GameManager.create_fuel_can(self.global_position)
+		
+	# do small screen shake to help with effect
+	# strength, duration
+	var main_camera: Camera3D = get_viewport().get_camera_3d()
 	main_camera.get_node("ScreenShake").camera_shake_impulse(.1, 1.6)
 	
 	queue_free()  # The enemy removes itself from the scene

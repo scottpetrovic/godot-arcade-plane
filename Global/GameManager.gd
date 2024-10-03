@@ -25,6 +25,7 @@ var BulletObjectHitParticle = preload("res://Effects/Particles/BulletObjectHitPa
 var BulletObjectDebrisParticles = preload("res://Effects/Particles/ExplosionDebrisParticles/ExplosionDebrisParticles.tscn")
 var NicerExplosionParticles = preload("res://Effects/Particles/BetterExplosion/BetterExplosionParticle.tscn")
 
+var FuelCanScene = preload("res://Props/FuelCan/FuelCan.tscn")
 
 func get_destruction_points() -> int:
 	return _current_level_destruction_points
@@ -95,6 +96,12 @@ func format_elapsed_time(elapsed: float) -> String:
 	var seconds = int(elapsed) % 60
 	var milliseconds = int((elapsed - int(elapsed)) * 1000)
 	return str(minutes) + ":" + str(seconds).pad_zeros(2) + "." + str(milliseconds).pad_zeros(3)
+
+
+func create_fuel_can(starting_position: Vector3) -> void:
+	var instance_fuelcan = FuelCanScene.instantiate()
+	get_tree().root.add_child(instance_fuelcan)
+	instance_fuelcan.global_position = starting_position
 
 
 func create_explosion(starting_position: Vector3) -> void:
