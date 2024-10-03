@@ -21,6 +21,11 @@ func _process(delta: float) -> void:
 	
 func update_splash_transform() -> void:
 
+	# we probably haven't taken off, so don't show
+	if player.forward_speed < player.takeoff_speed:
+		visible = false
+		return
+
 	if player.global_position.y < start_splash_height:
 		visible = true
 		var target_position = player.global_position

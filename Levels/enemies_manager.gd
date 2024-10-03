@@ -1,7 +1,11 @@
 extends Node
 
-@export var enemy_scene: PackedScene  = load("res://Props/EnemyAir/SimpleAirEnemy.tscn")
-@export var num_enemies: int = 20
+@export var simple_air_enemy: PackedScene  = load("res://Props/EnemyAir/SimpleAirEnemy.tscn")
+@export var num_air_simple_enemies: int = 4
+
+@export var simple_sea_enemy: PackedScene  = load("res://Props/EnemySeaTurretShip/enemy_turret_ship.tscn")
+@export var num_simple_sea_enemies: int = 1
+
 
 @onready var spawn_area: Area3D = $SpawnArea
 @onready var enemies_container: Node = $EnemiesContainer
@@ -11,10 +15,15 @@ func _ready():
 	spawn_initial_enemies()
 
 func spawn_initial_enemies():
-	for i in range(num_enemies):
-		spawn_enemy()
+	for i in range(num_air_simple_enemies):
+		spawn_enemy(simple_air_enemy, false)
+		
+	for i in range(num_simple_sea_enemies):
+		spawn_enemy(simple_sea_enemy, true)
+		
 
-func spawn_enemy():
+
+func spawn_enemy(enemy_scene: PackedScene, place_on_floor: bool):
 	var enemy_instance = enemy_scene.instantiate()
 	
 	# Get a random position within the spawn area
@@ -26,6 +35,9 @@ func spawn_enemy():
 	# Set a random y-rotation
 	enemy_instance.rotation.y = randf_range(0, 2 * PI)
 	enemy_instance.global_transform.origin = spawn_position
+	
+	if place_on_floor:
+		enemy_instance.global_position.y = 0
 
 
 func get_random_position_in_spawn_area() -> Vector3:
@@ -46,7 +58,9 @@ func get_random_position_in_spawn_area() -> Vector3:
 func _on_enemy_died(enemy):
 	# The enemy will remove itself, so we don't need to do it here
 	# Spawn a new enemy to replace the one that died
-	spawn_enemy()
+	#spawn_enemy()
+	if get_enemy_count() == 0:
+		print('defeated all the enemies!! good job')
 
 func get_enemy_count() -> int:
 	return enemies_container.get_child_count()
