@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bm15sseqvqdwl"]
+[gd_scene load_steps=24 format=3 uid="uid://bm15sseqvqdwl"]
 
 [ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="1_2e51c"]
 [ext_resource type="Script" path="res://UI/InGame/InGameUI.gd" id="1_sy6e0"]
@@ -11,12 +11,27 @@
 [ext_resource type="Texture2D" uid="uid://co4bls0sy8o31" path="res://Assets/UI/MISSION-COMPLETE-8-16-2024.png" id="7_7scy5"]
 [ext_resource type="Script" path="res://UI/InGame/fuel_guage_container.gd" id="7_qv4pg"]
 [ext_resource type="Texture2D" uid="uid://bufhyxm73wqho" path="res://Assets/UI/UI-objective-complete.png" id="8_dpvdv"]
+[ext_resource type="Script" path="res://UI/InGame/current_health_container.gd" id="8_r84r5"]
 [ext_resource type="Texture2D" uid="uid://lqf5ek4ip7rk" path="res://Assets/Icons/arrowUp.png" id="11_idqmm"]
 [ext_resource type="Texture2D" uid="uid://c8nraqicntkel" path="res://Assets/Icons/arrowDown.png" id="12_6r38i"]
 [ext_resource type="Texture2D" uid="uid://djb8ebtx2m7rf" path="res://Assets/Icons/arrowLeft.png" id="13_sggd8"]
 [ext_resource type="Texture2D" uid="uid://dw25pr6qxcb25" path="res://Assets/Icons/arrowRight.png" id="14_0w13k"]
 [ext_resource type="Script" path="res://UI/InGame/character_messages.gd" id="16_dbuwa"]
 [ext_resource type="Texture2D" uid="uid://nxks5gqb1bov" path="res://Assets/UI/instructor-portrait.png" id="16_wssrx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elflq"]
+bg_color = Color(0.470076, 0.470076, 0.470076, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x147p"]
+bg_color = Color(0, 0.468307, 0.865009, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ko185"]
 noise_type = 5
@@ -187,29 +202,25 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -362.872
-offset_top = 115.0
-offset_right = -40.8719
-offset_bottom = 148.0
+offset_left = -307.872
+offset_top = 138.0
+offset_right = -41.8719
+offset_bottom = 158.0
 grow_horizontal = 0
 pivot_offset = Vector2(787, 46)
 color = Color(0, 0, 0, 1)
 script = ExtResource("7_qv4pg")
 
-[node name="Label" type="Label" parent="HUD/FuelGuageContainer"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 4.0
-offset_right = 49.0
-offset_bottom = 27.0
-text = "Fuel"
-
 [node name="ColorRect" type="ColorRect" parent="HUD/FuelGuageContainer"]
-layout_mode = 0
-offset_left = 51.0
-offset_top = 10.0
-offset_right = 312.0
-offset_bottom = 24.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -263.0
+offset_top = 3.0
+offset_right = -2.00006
+offset_bottom = 17.0
+grow_horizontal = 0
 
 [node name="FuelRemainingBar" type="ColorRect" parent="HUD/FuelGuageContainer/ColorRect"]
 layout_mode = 1
@@ -226,9 +237,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -193.872
-offset_top = 157.0
+offset_top = 165.0
 offset_right = -40.8719
-offset_bottom = 177.0
+offset_bottom = 191.0
 grow_horizontal = 0
 theme = ExtResource("2_8h33r")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -236,6 +247,33 @@ theme_override_fonts/font = ExtResource("5_f1862")
 theme_override_font_sizes/font_size = 20
 text = "00000000"
 horizontal_alignment = 2
+
+[node name="HealthGuageContainer" type="Panel" parent="HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -273.872
+offset_top = 114.0
+offset_right = -41.8719
+offset_bottom = 128.0
+grow_horizontal = 0
+metadata/_edit_group_ = true
+
+[node name="HealthShell" type="Panel" parent="HUD/HealthGuageContainer"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 229.0
+offset_bottom = 10.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_elflq")
+
+[node name="CurrentHealthContainer" type="Panel" parent="HUD/HealthGuageContainer/HealthShell"]
+layout_mode = 0
+offset_right = 226.0
+offset_bottom = 7.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_x147p")
+script = ExtResource("8_r84r5")
 
 [node name="SpeedLinesCameraEffect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_uiy3f")

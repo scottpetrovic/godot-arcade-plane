@@ -43,7 +43,7 @@ rings = 4
 radius = 1.5
 
 [node name="FuelCan" type="Node3D"]
-transform = Transform3D(-0.983373, 0, -0.181598, 0, 1, 0, 0.181598, 0, -0.983373, 0, 0, 0)
+transform = Transform3D(0.985595, 0, 0.169123, 0, 1, 0, -0.169123, 0, 0.985595, 0, 0, 0)
 script = ExtResource("1_qu8t7")
 
 [node name="fuel can" parent="." instance=ExtResource("1_mtaa2")]

@@ -21,8 +21,20 @@ var airplane_original_scale: float
 @onready var plane_mesh: Node3D = $Plane_Mesh
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+# fuel management
 var total_fuel: float = 100.0
 var current_fuel: float = 100.0
+
+# health
+var total_health: float = 100.0
+var current_health: float = 100.00
+
+func hit() -> void:
+	print('player hit')
+	current_health -= 1.0
+
+func health_percentage() -> float:
+	return current_health / total_health # UI will use this
 
 func is_engine_on() -> bool:
 	return (forward_speed / max_flight_speed) > 0.01
