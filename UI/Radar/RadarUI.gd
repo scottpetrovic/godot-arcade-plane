@@ -64,9 +64,9 @@ func _draw():
 	if not player:
 		return
 
-	draw_background_circle()
+	# draw_background_circle()
 	draw_north_indicator()
-	draw_player_dot()
+	# draw_player_dot() # nice when lining up texture
 
 	# collect all enemies(targets) and objectives to show in array
 	var radar_items_to_show: Array = targets.duplicate()

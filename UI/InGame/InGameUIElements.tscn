@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bm15sseqvqdwl"]
+[gd_scene load_steps=31 format=3 uid="uid://bm15sseqvqdwl"]
 
 [ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="1_2e51c"]
 [ext_resource type="Script" path="res://UI/InGame/InGameUI.gd" id="1_sy6e0"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b3oljv8lyncny" path="res://Assets/UI/UI-crashed.png" id="6_hjpcx"]
 [ext_resource type="Script" path="res://UI/Radar/RadarUI.gd" id="6_uldm6"]
 [ext_resource type="Texture2D" uid="uid://co4bls0sy8o31" path="res://Assets/UI/MISSION-COMPLETE-8-16-2024.png" id="7_7scy5"]
+[ext_resource type="Texture2D" uid="uid://db5oon823i0hw" path="res://Assets/UI/radar-graphic.png" id="7_byfgf"]
 [ext_resource type="Script" path="res://UI/InGame/altitude_label.gd" id="7_ltfgx"]
 [ext_resource type="Script" path="res://UI/InGame/fuel_guage_container.gd" id="7_qv4pg"]
 [ext_resource type="FontFile" uid="uid://ce4wmvm02sw14" path="res://Theme/PointsMono.ttf" id="8_3qvgt"]
@@ -155,12 +156,23 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -160.872
-offset_top = 32.0
-offset_right = -7.87195
-offset_bottom = 160.0
+offset_left = -142.872
+offset_top = 33.0
+offset_right = -29.8719
+offset_bottom = 141.0
 grow_horizontal = 0
 script = ExtResource("6_uldm6")
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Radar"]
+z_index = -1
+layout_mode = 0
+offset_left = -5.0
+offset_top = -6.0
+offset_right = 105.0
+offset_bottom = 104.0
+texture = ExtResource("7_byfgf")
+expand_mode = 1
 
 [node name="PointsLabel" type="Label" parent="HUD"]
 layout_mode = 1
