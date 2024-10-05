@@ -6,16 +6,10 @@ var full_health_size: int # width when fuel bar is full
 func _ready() -> void:
 	full_health_size = size.x
 
-func find_player() -> void:
-	player = GameManager.get_player()
-
-func set_player(player_node: Node3D):
-	player = player_node
-
 func _process(delta: float) -> void:
 	
 	if is_instance_valid(player) == false:
-		find_player()
+		player = GameManager.get_player()
 		return	
 	
 	var player_health_perc: float = player.health_percentage()

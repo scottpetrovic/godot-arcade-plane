@@ -9,8 +9,6 @@ var gates_completed_message_shown: bool = false
 @onready var player_crashed_overlay: CenterContainer = $UI/PlayerCrashedOverlay
 
 # HUD display items to always show
-@onready var speed_label: Label = $UI/HUD/SpeedometerBackground/SpeedLabel
-@onready var altitude_label: Label = $UI/HUD/AltitudeLabel
 @onready var time_label: Label = $UI/HUD/TimeLabel
 @onready var speed_indicator: ColorRect = $UI/HUD/SpeedometerBackground/Speedindicator
 
@@ -85,14 +83,6 @@ func is_mission_complete() -> bool:
 
 
 func update_hud(delta: float):
-
-	var altitude_multiplier = 5.0 # magic number that looks better on UI
-	var speed_multiplier = 20.0 # magic number that looks better on UI
-	speed_label.text = str(int(airplane.forward_speed * speed_multiplier))
-
-	var altitude_string = str(int(airplane.get_altitude() * altitude_multiplier))
-	altitude_label.text = altitude_string.pad_zeros(5)
-		
 	elapsed_time += delta
 	time_label.text = GameManager.format_elapsed_time(elapsed_time)
 

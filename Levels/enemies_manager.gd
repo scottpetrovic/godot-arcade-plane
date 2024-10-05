@@ -1,10 +1,10 @@
 extends Node
 
 @export var simple_air_enemy: PackedScene  = load("res://Props/EnemyAir/SimpleAirEnemy.tscn")
-@export var num_air_simple_enemies: int = 4
+@export var num_air_simple_enemies: int = 20
 
 @export var simple_sea_enemy: PackedScene  = load("res://Props/EnemySeaTurretShip/enemy_turret_ship.tscn")
-@export var num_simple_sea_enemies: int = 1
+@export var num_simple_sea_enemies: int = 10
 
 
 @onready var spawn_area: Area3D = $SpawnArea

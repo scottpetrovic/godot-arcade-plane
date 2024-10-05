@@ -31,38 +31,35 @@ script = ExtResource("6_yuge5")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
-anchor_right = 1.001
-anchor_bottom = 1.005
-offset_right = -0.1521
-offset_bottom = -0.23999
-
-[node name="CenterContainer" type="CenterContainer" parent="UI"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/CenterContainer"]
-layout_mode = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -336.0
+offset_top = -50.0
+offset_right = -166.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 2
 
-[node name="TitleGraphic" type="Sprite2D" parent="UI/CenterContainer/VBoxContainer"]
-position = Vector2(82, -64)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_tibdh")
-
-[node name="FXScaleUpDown" parent="UI/CenterContainer/VBoxContainer/TitleGraphic" instance=ExtResource("8_j1553")]
-scale_amount = 0.05
-starting_scale = 0.5
-
-[node name="ColorRect" type="ColorRect" parent="UI/CenterContainer/VBoxContainer"]
+[node name="ColorRect" type="ColorRect" parent="UI/VBoxContainer"]
 custom_minimum_size = Vector2(170, 35)
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 color = Color(0, 0.440606, 0.740426, 1)
 metadata/_edit_group_ = true
 
-[node name="Instructions" type="Label" parent="UI/CenterContainer/VBoxContainer/ColorRect"]
+[node name="Instructions" type="Label" parent="UI/VBoxContainer/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,7 +69,21 @@ grow_vertical = 2
 theme = ExtResource("6_ywkv5")
 theme_type_variation = &"HeaderLarge"
 theme_override_font_sizes/font_size = 25
-text = "Press Anywhere"
+text = "Start"
 horizontal_alignment = 1
+
+[node name="Title" type="Control" parent="UI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="TitleGraphic" type="Sprite2D" parent="UI/VBoxContainer/Title"]
+position = Vector2(-103, -140)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_tibdh")
+
+[node name="FXScaleUpDown" parent="UI/VBoxContainer/Title/TitleGraphic" instance=ExtResource("8_j1553")]
+scale_amount = 0.05
+starting_scale = 0.5
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("10_j6bcm")]

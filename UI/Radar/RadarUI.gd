@@ -19,14 +19,10 @@ func _ready():
 
 func _process(delta):
 	if is_instance_valid(player) == false:
-		find_player()
+		player = GameManager.get_player()
 		return
 		
 	queue_redraw()
-
-	
-func find_player() -> void:
-	player = GameManager.get_player()
 
 func check_for_targets_interval():
 	# periodically refresh targets list for radar
