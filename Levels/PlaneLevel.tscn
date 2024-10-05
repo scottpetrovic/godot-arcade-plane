@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://Effects/direction_pointer.gd" id="9_oqi7h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1rrbf"]
-size = Vector3(163.855, 18.6895, 205.234)
+size = Vector3(163.855, 65.7424, 205.234)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpshr"]
 albedo_color = Color(1, 0.0559123, 0.305167, 1)
@@ -49,11 +49,9 @@ script = ExtResource("4_kr0vk")
 script = ExtResource("6_fbuhu")
 
 [node name="SpawnArea" type="Area3D" parent="EnemiesManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 176.378, 18.5162, -5.79805)
-metadata/_edit_group_ = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 69.339, 136.202)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemiesManager/SpawnArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.6523, 0)
 shape = SubResource("BoxShape3D_1rrbf")
 
 [node name="EnemiesContainer" type="Node" parent="EnemiesManager"]

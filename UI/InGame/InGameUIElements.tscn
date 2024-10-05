@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bm15sseqvqdwl"]
+[gd_scene load_steps=33 format=3 uid="uid://bm15sseqvqdwl"]
 
 [ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="1_2e51c"]
 [ext_resource type="Script" path="res://UI/InGame/InGameUI.gd" id="1_sy6e0"]
@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://dkk6e5b374wqj" path="res://Assets/Icons/speedometer.png" id="13_adkc8"]
 [ext_resource type="Texture2D" uid="uid://djb8ebtx2m7rf" path="res://Assets/Icons/arrowLeft.png" id="13_sggd8"]
 [ext_resource type="Texture2D" uid="uid://dw25pr6qxcb25" path="res://Assets/Icons/arrowRight.png" id="14_0w13k"]
+[ext_resource type="Script" path="res://UI/InGame/enemies_remaining_counter.gd" id="15_lkc1i"]
+[ext_resource type="Texture2D" uid="uid://rx1v4oi2y0e1" path="res://Assets/Icons/plane-icon.png" id="16_8m2i4"]
 [ext_resource type="Script" path="res://UI/InGame/character_messages.gd" id="16_dbuwa"]
 [ext_resource type="Texture2D" uid="uid://nxks5gqb1bov" path="res://Assets/UI/instructor-portrait.png" id="16_wssrx"]
 
@@ -265,6 +267,36 @@ modulate = Color(0.860932, 0.978021, 0.994704, 0.827)
 position = Vector2(48, 83)
 scale = Vector2(0.034375, 0.034375)
 texture = ExtResource("13_adkc8")
+
+[node name="EnemiesRemainingCounter" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -108.872
+offset_top = 151.0
+offset_right = -35.872
+offset_bottom = 180.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.836545, 0.89153, 0.932312, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_3qvgt")
+theme_override_font_sizes/font_size = 11
+text = "x 18"
+script = ExtResource("15_lkc1i")
+
+[node name="TextureRect" type="TextureRect" parent="HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -147.872
+offset_top = 146.0
+offset_right = -117.872
+offset_bottom = 176.0
+grow_horizontal = 0
+texture = ExtResource("16_8m2i4")
+expand_mode = 1
 
 [node name="SpeedLinesCameraEffect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_uiy3f")

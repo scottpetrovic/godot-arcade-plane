@@ -1,10 +1,10 @@
 extends Node
 
 @export var simple_air_enemy: PackedScene  = load("res://Props/EnemyAir/SimpleAirEnemy.tscn")
-@export var num_air_simple_enemies: int = 20
+@export var num_air_simple_enemies: int = 0
 
 @export var simple_sea_enemy: PackedScene  = load("res://Props/EnemySeaTurretShip/enemy_turret_ship.tscn")
-@export var num_simple_sea_enemies: int = 10
+@export var num_simple_sea_enemies: int = 1
 
 
 @onready var spawn_area: Area3D = $SpawnArea
@@ -13,6 +13,7 @@ extends Node
 
 func _ready():
 	spawn_initial_enemies()
+	GameManager.current_level_remaining_enemies = get_enemy_count()
 
 func spawn_initial_enemies():
 	for i in range(num_air_simple_enemies):
@@ -20,8 +21,7 @@ func spawn_initial_enemies():
 		
 	for i in range(num_simple_sea_enemies):
 		spawn_enemy(simple_sea_enemy, true)
-		
-
+	
 
 func spawn_enemy(enemy_scene: PackedScene, place_on_floor: bool):
 	var enemy_instance = enemy_scene.instantiate()
@@ -59,6 +59,7 @@ func _on_enemy_died(enemy):
 	# The enemy will remove itself, so we don't need to do it here
 	# Spawn a new enemy to replace the one that died
 	#spawn_enemy()
+	GameManager.current_level_remaining_enemies = get_enemy_count()
 	if get_enemy_count() == 0:
 		print('defeated all the enemies!! good job')
 

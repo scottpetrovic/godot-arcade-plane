@@ -8,9 +8,9 @@
 size = Vector3(2.89478, 1.15649, 10.7607)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r2bfp"]
-size = Vector3(74.3591, 41.6885, 68.376)
+size = Vector3(122.605, 41.6885, 147.072)
 
-[node name="EnemyTurretShip" type="CharacterBody3D"]
+[node name="EnemyTurretShip" type="CharacterBody3D" groups=["radar_target"]]
 script = ExtResource("1_yvr4b")
 
 [node name="ShipMesh" parent="." instance=ExtResource("1_1x4e0")]
@@ -32,8 +32,10 @@ shape = SubResource("BoxShape3D_r2bfp")
 [node name="AIShooter" type="Node" parent="." node_paths=PackedStringArray("bullet_spawn_point")]
 script = ExtResource("3_x4h72")
 bullet_spawn_point = NodePath("../ShipMesh/Gun/BulletSpawnPoint")
-shoot_delay = 2.0
+shoot_delay = 0.1
 
 [node name="ShootTimer" type="Timer" parent="AIShooter"]
+wait_time = 0.1
+one_shot = true
 
 [editable path="ShipMesh"]

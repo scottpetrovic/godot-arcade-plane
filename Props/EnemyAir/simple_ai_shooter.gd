@@ -6,6 +6,8 @@ extends Node
 @export var Bullet = preload("res://Plane/Bullet/Bullet.tscn")
 
 var can_shoot = true
+
+# make sure to check inspector in case this was overwritten
 @export var shoot_delay = 0.3
 
 func _ready():

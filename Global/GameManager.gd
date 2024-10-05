@@ -7,6 +7,7 @@ var current_level_landing_score: float = 0
 var current_level_objectives_score: int = 0
 
 var _current_level_destruction_points: int = 0 # for blowing up stuff
+var current_level_remaining_enemies: int = 0 # how many levels for round
 
 var current_level_number: int = 1
 var current_vehicle: String = "" # Plane or Skydiving
@@ -32,7 +33,6 @@ func get_destruction_points() -> int:
 
 func add_destruction_points(points: int)-> void:
 	_current_level_destruction_points += points
-	print(_current_level_destruction_points)
 
 func get_player() -> Node3D:
 	return _player_reference
