@@ -20,7 +20,7 @@ size = Vector3(42.6713, 1, 155.088)
 [sub_resource type="BoxShape3D" id="BoxShape3D_tw5ta"]
 size = Vector3(115.28, 49.6446, 317.002)
 
-[node name="AircraftCarrier" type="Node3D"]
+[node name="AircraftCarrier" type="Node3D" groups=["radar_prominent_point"]]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

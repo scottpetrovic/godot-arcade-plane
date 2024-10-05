@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dk0av4tlip45w"]
+[gd_scene load_steps=13 format=3 uid="uid://dk0av4tlip45w"]
 
 [ext_resource type="Script" path="res://Levels/PlaneLevel.gd" id="1_2pumm"]
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="2_rh33o"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bm15sseqvqdwl" path="res://UI/InGame/InGameUIElements.tscn" id="5_711ci"]
 [ext_resource type="Script" path="res://Levels/enemies_manager.gd" id="6_fbuhu"]
 [ext_resource type="PackedScene" uid="uid://c1va3jn6i0rm2" path="res://Effects/Particles/WaterSpeedSplash/water_speed_splash.tscn" id="8_qooy0"]
+[ext_resource type="PackedScene" uid="uid://bnhfe25p6jhpc" path="res://Environment/Sky.tscn" id="9_g81iq"]
 [ext_resource type="Script" path="res://Effects/direction_pointer.gd" id="9_oqi7h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1rrbf"]
@@ -49,7 +50,7 @@ script = ExtResource("4_kr0vk")
 script = ExtResource("6_fbuhu")
 
 [node name="SpawnArea" type="Area3D" parent="EnemiesManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 400, 69.339, 136.202)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 265.06, 69.339, 21.202)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemiesManager/SpawnArea"]
 shape = SubResource("BoxShape3D_1rrbf")
@@ -64,3 +65,5 @@ visible = false
 visible = false
 mesh = SubResource("CylinderMesh_j6duj")
 script = ExtResource("9_oqi7h")
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("9_g81iq")]

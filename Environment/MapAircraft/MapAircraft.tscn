@@ -1,12 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0m8kejefkuv0"]
+[gd_scene load_steps=4 format=3 uid="uid://d0m8kejefkuv0"]
 
 [ext_resource type="Script" path="res://Environment/MapAircraft/MapAircraft.gd" id="1_gu8js"]
 [ext_resource type="PackedScene" uid="uid://f5q3lvkkp6et" path="res://Environment/Ocean/Ocean.tscn" id="1_y4nq7"]
 [ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://Props/AircraftCarrier/Aircraft_Carrier.tscn" id="2_jj14q"]
-[ext_resource type="PackedScene" uid="uid://bin24lcxi48bf" path="res://Props/LandingTarget/LandingTarget.tscn" id="5_q3ax4"]
-[ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://Props/GateCheckpoint/GateCheckpoint.tscn" id="5_xsqg6"]
-[ext_resource type="PackedScene" uid="uid://bxo5ikrfddrqy" path="res://Props/FloatingTarget/FloatingTarget.tscn" id="6_3rd16"]
-[ext_resource type="PackedScene" uid="uid://bnhfe25p6jhpc" path="res://Environment/Sky.tscn" id="7_rc62u"]
 
 [node name="Environment" type="Node3D"]
 script = ExtResource("1_gu8js")
@@ -16,38 +12,3 @@ transform = Transform3D(0.999998, -0.00167487, 0.000804524, 0.0016722, 0.999993,
 
 [node name="AircraftCarrier" parent="." instance=ExtResource("2_jj14q")]
 transform = Transform3D(2.62268e-08, 0, -0.2, 0, 0.2, 0, 0.2, 0, 2.62268e-08, -11.3819, 0.379997, 0)
-
-[node name="PlaneGateManager" type="Node3D" parent="."]
-
-[node name="GateCheckpoint" parent="PlaneGateManager" instance=ExtResource("5_xsqg6")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 51.3455, 15.5557, 1)
-
-[node name="GateCheckpoint2" parent="PlaneGateManager" instance=ExtResource("5_xsqg6")]
-transform = Transform3D(-0.0682594, 0, -0.997667, 0, 1, 0, 0.997667, 0, -0.0682594, 114.592, 25.1171, 3.99817)
-
-[node name="SkyDivingGateManager" type="Node3D" parent="."]
-
-[node name="GateCheckpoint" parent="SkyDivingGateManager" instance=ExtResource("5_xsqg6")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 200, 0)
-
-[node name="GateCheckpoint1" parent="SkyDivingGateManager" instance=ExtResource("5_xsqg6")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 150, 0)
-
-[node name="GateCheckpoint2" parent="SkyDivingGateManager" instance=ExtResource("5_xsqg6")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100, 0)
-
-[node name="SkydivingLandingTarget" parent="." instance=ExtResource("5_q3ax4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6942, 2.44603, -0.131649)
-
-[node name="SkydiverStartingPosition" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 210, 0)
-
-[node name="PlaneTargetManager" type="Node3D" parent="."]
-
-[node name="FloatingTarget" parent="PlaneTargetManager" instance=ExtResource("6_3rd16")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.0566, 23.1831, 4.17228)
-
-[node name="FloatingTarget2" parent="PlaneTargetManager" instance=ExtResource("6_3rd16")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136.741, 29.0771, 4.17228)
-
-[node name="WorldEnvironment" parent="." instance=ExtResource("7_rc62u")]

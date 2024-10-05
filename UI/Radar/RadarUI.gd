@@ -7,6 +7,9 @@ var player_dot_radius: float = 3.0  # Radius of the player's dot on the radar
 
 var targets: Array = []
 var objectives: Array = []
+var prominent_points: Array = []
+var radar_items_to_show: Array # combined list of all the target types
+
 var target_check_interval: float = 1.0  # How often to check for new targets (in seconds)
 
 var font: Font
@@ -28,6 +31,14 @@ func check_for_targets_interval():
 	# periodically refresh targets list for radar
 	targets = get_tree().get_nodes_in_group("radar_target")
 	objectives = get_tree().get_nodes_in_group("radar_objective")
+	prominent_points = get_tree().get_nodes_in_group("radar_prominent_point")
+	
+	
+	# collect all enemies(targets) and objectives to show in array
+	radar_items_to_show = targets.duplicate()
+	radar_items_to_show.append_array(objectives)
+	radar_items_to_show.append_array(prominent_points)	
+	
 	get_tree().create_timer(target_check_interval).timeout.connect(check_for_targets_interval)
 
 func draw_background_circle():
@@ -68,10 +79,6 @@ func _draw():
 	draw_north_indicator()
 	# draw_player_dot() # nice when lining up texture
 
-	# collect all enemies(targets) and objectives to show in array
-	var radar_items_to_show: Array = targets.duplicate()
-	radar_items_to_show.append_array(objectives)
-
 	for target in radar_items_to_show:
 		
 		# Check if the target is still a valid object in the scene tree
@@ -101,6 +108,8 @@ func _draw():
 		var color_for_target = Color.GREEN # objectives
 		if target.is_in_group("radar_target"):
 			color_for_target = Color.RED
+		elif target.is_in_group("radar_prominent_point"):
+			color_for_target = Color.BLUE
 
 		if distance <= radar_range:
 			# Draw dot for in-range target

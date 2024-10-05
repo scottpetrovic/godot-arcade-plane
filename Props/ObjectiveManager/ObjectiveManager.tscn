@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxpdeyn4rfwqu"]
+
+[ext_resource type="Script" path="res://Props/ObjectiveManager/GateManager.gd" id="1_p4fbn"]
+[ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://Props/GateCheckpoint/GateCheckpoint.tscn" id="2_tht31"]
+[ext_resource type="PackedScene" uid="uid://bxo5ikrfddrqy" path="res://Props/FloatingTarget/FloatingTarget.tscn" id="3_sjsh5"]
+
+[node name="ObjectiveManager" type="Node3D"]
+script = ExtResource("1_p4fbn")
+
+[node name="Gates" type="Node" parent="."]
+
+[node name="GateCheckpoint" parent="Gates" instance=ExtResource("2_tht31")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 51.3455, 15.5557, 1)
+
+[node name="GateCheckpoint2" parent="Gates" instance=ExtResource("2_tht31")]
+transform = Transform3D(-0.0682594, 0, -0.997667, 0, 1, 0, 0.997667, 0, -0.0682594, 114.592, 25.1171, 3.99817)
+
+[node name="Targets" type="Node" parent="."]
+
+[node name="FloatingTarget" parent="Targets" instance=ExtResource("3_sjsh5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.0566, 23.1831, 4.17228)
+
+[node name="FloatingTarget2" parent="Targets" instance=ExtResource("3_sjsh5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 136.741, 29.0771, 4.17228)

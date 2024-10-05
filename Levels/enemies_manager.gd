@@ -10,7 +10,6 @@ extends Node
 @onready var spawn_area: Area3D = $SpawnArea
 @onready var enemies_container: Node = $EnemiesContainer
 
-
 func _ready():
 	spawn_initial_enemies()
 	GameManager.current_level_remaining_enemies = get_enemy_count()
@@ -56,12 +55,18 @@ func get_random_position_in_spawn_area() -> Vector3:
 	return Vector3.ZERO
 
 func _on_enemy_died(enemy):
+	
+	# the enemy count is calculated by looking at the tree
+	# it might take a few process calls before the enemy is 
+	# actually removed from the scene tree
+	await get_tree().create_timer(0.5).timeout
+	
 	# The enemy will remove itself, so we don't need to do it here
 	# Spawn a new enemy to replace the one that died
-	#spawn_enemy()
+	print('less enemies. on_enemy_died fired', get_enemy_count())
 	GameManager.current_level_remaining_enemies = get_enemy_count()
 	if get_enemy_count() == 0:
-		print('defeated all the enemies!! good job')
+		EventBus.emit_signal("all_objectives_complete")
 
 func get_enemy_count() -> int:
 	return enemies_container.get_child_count()

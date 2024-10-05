@@ -35,6 +35,7 @@ import/blender/enabled=false
 
 radar_target="Enemies to destory"
 radar_objective="Objects to fly through"
+radar_prominent_point="Important places to note such as home base"
 
 [input]
 

@@ -2,7 +2,7 @@ extends Node3D
 
 @onready var airplane: CharacterBody3D = $Airplane
 
-var gates_completed_message_shown: bool = false
+var is_mission_objectives_complete: bool = false
 
 @onready var checkpoints_passed_overlay: CenterContainer = $UI/CheckpointsPassedOverlay
 @onready var training_complete_overlay: CenterContainer = $UI/TrainingCompleteOverlay
@@ -23,13 +23,10 @@ var ground_debris: PackedScene = load("res://Effects/Particles/GroundCrashPartic
 var explosion_effects: Node3D = null
 
 var map_aircraft_carrier: PackedScene = load("res://Environment/MapAircraft/MapAircraft.tscn")
-#var map_airport: PackedScene = load("res://Environment/MapAirport/MapAirport.tscn")
-#var map_island: PackedScene = load("res://Environment/MapIsland/MapIsland.tscn")
 
 var is_testing: bool = false
 
 @onready var ui: Control = $UI
-
 
 func _ready():
 	if is_testing:
@@ -58,25 +55,23 @@ func setup_plane():
 func setup_level():
 	
 	EventBus.player_crashed.connect(on_player_crash)
+	EventBus.all_objectives_complete.connect(_on_mission_complete)
 	
 	# load map depending on what our current map is
 	if GameManager.current_map == Constants.MAP.AIRCRAFTCARRIER:
 		environment = map_aircraft_carrier.instantiate()		
-	#elif GameManager.current_map == Constants.MAP.AIRPORT:
-	#	environment = map_airport.instantiate()
-	#elif GameManager.current_map == Constants.MAP.ISLAND:
-	#	environment = map_island.instantiate()
 	
 	# Setup. depending on level, maybe need to move plane around, turn off gates
 	add_child(environment)
 
 
 
-func is_mission_complete() -> bool:
+func is_player_done_landing() -> bool:
+	
 	# all gates are passed
 	# airplane is currently on landing strip
 	# airplane has come to a stop
-	if environment.is_player_on_landing_pad() && environment.are_all_gates_passed():
+	if environment.is_player_on_landing_pad():
 		if airplane.forward_speed < 0.01:
 			return true
 	return false
@@ -131,27 +126,12 @@ func _process(delta: float) -> void:
 	if player_crashed_overlay.visible && explosion_effects:
 		explosion_effects.global_position = airplane.global_position
 	
-	# stop updating UI when we are complete
-	# this also upates time mission is taking
-	if is_mission_complete() == false:
-		update_hud(delta)
-		
-	camera_screenshake()
+	if is_mission_objectives_complete && is_player_done_landing():
+		level_complete()
 	
-	# maybe show this on the UI somewhere?
-	if environment.are_all_gates_passed() && gates_completed_message_shown == false:
-		gates_completed_message_shown = true
-		# show the UI to land for a couple seconds
-		checkpoints_passed_overlay.visible = true
-		GlobalAudio.play_objectives_complete_sfx()
-		await get_tree().create_timer(Constants.WAITTIME.OBJECTIVES_PASSED).timeout
-		checkpoints_passed_overlay.visible = false
+	camera_screenshake()
 
-	if is_mission_complete():
-		goal_completed()
-
-
-func goal_completed():
+func level_complete():
 	# make sure to only call this one time
 	if training_complete_overlay.visible == false:
 		airplane.set_allow_movement(false)
@@ -174,6 +154,13 @@ func change_camera_to_orbit():
 	main_camera.set_script(camera_script)
 	main_camera.target = airplane
 
+func _on_mission_complete(): 
+	is_mission_objectives_complete = true
+	# show the UI to land for a couple seconds
+	checkpoints_passed_overlay.visible = true
+	GlobalAudio.play_objectives_complete_sfx()
+	await get_tree().create_timer(Constants.WAITTIME.OBJECTIVES_PASSED).timeout
+	checkpoints_passed_overlay.visible = false
 
 func on_player_crash(location: String):
 	player_crashed_overlay.visible = true

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://4bb04dfravfq" path="res://Props/Runway/Runway.tscn" id="5_jw87g"]
 [ext_resource type="PackedScene" uid="uid://bin24lcxi48bf" path="res://Props/LandingTarget/LandingTarget.tscn" id="6_a3dqu"]
 [ext_resource type="PackedScene" uid="uid://befsooyoi5ib3" path="res://Props/GateCheckpoint/GateCheckpoint.tscn" id="6_osbfy"]
-[ext_resource type="Script" path="res://Props/GateCheckpoint/GateManager.gd" id="8_km4je"]
+[ext_resource type="Script" path="res://Props/ObjectiveManager/GateManager.gd" id="8_km4je"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bn20u"]
 albedo_color = Color(0.65999, 0.5659, 0.356277, 1)
