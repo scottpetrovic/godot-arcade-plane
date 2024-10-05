@@ -31,16 +31,16 @@ func check_for_targets_interval():
 	get_tree().create_timer(target_check_interval).timeout.connect(check_for_targets_interval)
 
 func draw_background_circle():
-	# Draw radar background
-	draw_circle(Vector2(radar_radius, radar_radius), radar_radius, Color(0, 0.2, 0, 0.5))
+	var use_antialias = true
+	draw_circle(Vector2(radar_radius, radar_radius), radar_radius, Color(0, 0.2, 0, 0.5), true, 3, use_antialias)
 
 	# small stroke for border. Maybe use fancier UI element for this later
 	var stroke_color = Color(1.0, 1.0, 1.0, 1)  # Adjust color as needed
-	var stroke_width = 5.0  # Adjust width as needed
+	var stroke_width = 3.0  # Adjust width as needed
 	var center = Vector2(radar_radius, radar_radius)
 	var start_angle = 0
 	var end_angle = TAU #  PI * 2
-	draw_arc(center, radar_radius, start_angle, end_angle, 64, stroke_color, stroke_width)
+	draw_arc(center, radar_radius, start_angle, end_angle, 64, stroke_color, stroke_width, use_antialias)
 
 func draw_north_indicator():
 	var text_content = "N"
@@ -55,15 +55,9 @@ func draw_north_indicator():
 	
 	draw_string(font, north_pos, text_content, HORIZONTAL_ALIGNMENT_CENTER, 16, font_size, Color.WHITE)
 
-
-func draw_forward_direction_line():
-	# Draw a line indicating the forward direction
-	var forward_line = Vector2(0, -radar_radius).rotated(player.rotation.y)
-	draw_line(Vector2(radar_radius, radar_radius), Vector2(radar_radius, radar_radius) + forward_line, Color.GREEN, 2.0)
-
 func draw_player_dot():
 	var center = Vector2(radar_radius, radar_radius)
-	draw_circle(center, player_dot_radius, Color.WHITE)
+	draw_circle(center, player_dot_radius, Color.WHITE, true, 2, true)
 
 
 func _draw():
@@ -110,16 +104,20 @@ func _draw():
 
 		if distance <= radar_range:
 			# Draw dot for in-range target
-			draw_circle(radar_target_pos, 3, color_for_target)
+			draw_circle(radar_target_pos, 3, color_for_target, true, -1, true)
 		else:
 			# Draw arrow for out-of-range target
 			var outside_indicator_dist = radar_radius * 1.2 # a bit outside radar circle
 			var centered = Vector2(radar_radius, radar_radius)
 			var edge_pos = dir.normalized() * outside_indicator_dist + centered
 
-			draw_arrow(edge_pos, angle, color_for_target)
+			#draw_triangle_arrow(edge_pos, angle, color_for_target)
+			var off_radar_item_size: float = 2.0
+			draw_circle(edge_pos, off_radar_item_size, color_for_target,true, -1, true)
 
-func draw_arrow(pos: Vector2, angle: float, color: Color):
+
+
+func draw_triangle_arrow(pos: Vector2, angle: float, color: Color):
 	var triangle_size = 8.0  # Size of the triangle
 	var half_size = triangle_size * 0.8
 	
@@ -132,3 +130,5 @@ func draw_arrow(pos: Vector2, angle: float, color: Color):
 
 	var points = PackedVector2Array([point1, point2, point3])
 	draw_colored_polygon(points, color)
+	
+	
