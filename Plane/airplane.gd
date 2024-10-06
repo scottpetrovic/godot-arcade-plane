@@ -30,7 +30,6 @@ var total_health: float = 100.0
 var current_health: float = 100.00
 
 func hit() -> void:
-	print('player hit')
 	current_health -= 1.0
 
 func health_percentage() -> float:

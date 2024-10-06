@@ -39,9 +39,11 @@ func die():
 		GameManager.create_fuel_can(self.global_position)
 		
 	# do small screen shake to help with effect
-	# strength, duration
-	var main_camera: Camera3D = get_viewport().get_camera_3d()
-	main_camera.get_node("ScreenShake").camera_shake_impulse(.1, 1.6)
+	# strength, duration	
+	var distance_to_player = global_position.distance_to(player.global_position)
+	if distance_to_player < 25:
+		var main_camera: Camera3D = get_viewport().get_camera_3d()
+		main_camera.get_node("ScreenShake").camera_shake_impulse(.1, 1.6)
 	
 	queue_free()  # The enemy removes itself from the scene
 

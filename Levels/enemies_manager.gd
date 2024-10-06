@@ -63,7 +63,6 @@ func _on_enemy_died(enemy):
 	
 	# The enemy will remove itself, so we don't need to do it here
 	# Spawn a new enemy to replace the one that died
-	print('less enemies. on_enemy_died fired', get_enemy_count())
 	GameManager.current_level_remaining_enemies = get_enemy_count()
 	if get_enemy_count() == 0:
 		EventBus.emit_signal("all_objectives_complete")

@@ -48,9 +48,13 @@ func die():
 	emit_signal("enemy_died", self)
 	GameManager.add_destruction_points(points_value)
 	GameManager.create_explosion(self.global_position)
+
+	# calculate screen shake amount  based on distance to camera
 	# do small screen shake to help with effect
-	# strenth, duration
+	# strength, duration
 	var main_camera: Camera3D = get_viewport().get_camera_3d()
-	main_camera.get_node("ScreenShake").camera_shake_impulse(.1, 1.6)
+	var distance_to_player = global_position.distance_to(_player_reference.global_position)
+	if distance_to_player < 25:
+		main_camera.get_node("ScreenShake").camera_shake_impulse(.1, 1.6)
 	
 	queue_free()  # The enemy removes itself from the scene
