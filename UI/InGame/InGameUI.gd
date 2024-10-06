@@ -10,9 +10,3 @@ func turn_off_speed_lines():
 
 func show_speedometer(show: bool) -> void:
 	$HUD/SpeedometerBackground.visible = show
-
-func _process(delta: float) -> void:
-	update_points_value_display()
-
-func update_points_value_display() -> void:
-	$HUD/PointsLabel.text = str(GameManager.get_destruction_points()).pad_zeros(11)

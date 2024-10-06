@@ -48,6 +48,7 @@ script = ExtResource("4_kr0vk")
 
 [node name="EnemiesManager" type="Node" parent="."]
 script = ExtResource("6_fbuhu")
+num_simple_sea_enemies = 34
 
 [node name="SpawnArea" type="Area3D" parent="EnemiesManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 265.06, 69.339, 21.202)
