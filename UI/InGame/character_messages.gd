@@ -1,7 +1,7 @@
 extends HBoxContainer
 
-@onready var character_portrait: Sprite2D = $CharacterPortrait
 @onready var rich_text_label: RichTextLabel = $ColorRect/RichTextLabel
+var animation_duration: float = 1.0
 
 func _ready() -> void:
 	self.visible = false
@@ -13,13 +13,30 @@ func _ready() -> void:
 	])
 
 func start_messages_async(messages: Array) -> void:
-	self.visible = true  # Show the GUI element once at the beginning
+	
+	await show_gui_element()
+	
 	for message in messages:
 		await show_message(message)
-		
-	# Hide the GUI element after all messages are done
-	self.visible = false
 
+	await hide_gui_element()
+
+func show_gui_element() -> void:
+	scale.y = 0.1
+	visible = true
+	var tween: Tween = create_tween()
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "scale:y", 1.0, animation_duration)
+	await tween.finished
+
+func hide_gui_element() -> void:
+	var tween: Tween = create_tween()
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_IN)
+	tween.tween_property(self, "scale:y", 0.1, animation_duration)
+	await tween.finished
+	visible = false
 
 func show_message(message_text: String) -> void:
 	rich_text_label.visible_ratio = 0.0
@@ -30,8 +47,8 @@ func show_message(message_text: String) -> void:
 		await get_tree().process_frame
 	
 	# Wait for the message to be read
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(4.0).timeout
 
 func _process(delta: float) -> void:
 	if rich_text_label.visible_ratio < 1.0:
-		rich_text_label.visible_ratio += delta * 0.3
+		rich_text_label.visible_ratio += delta * 0.6
