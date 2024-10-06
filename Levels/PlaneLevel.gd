@@ -141,7 +141,11 @@ func level_complete():
 		await get_tree().create_timer(Constants.WAITTIME.MISSION_COMPELTE).timeout
 		GameManager.current_level_success_status = true
 		GameManager.current_level_time = elapsed_time
-		GameManager.current_level_objectives_score = environment.percentage_of_all_gates_passed() * 100
+		
+		# doing shooting game for now, hard-code to 100%
+		# GameManager.current_level_objectives_score = environment.percentage_of_all_gates_passed() * 100
+		GameManager.current_level_objectives_score = 100
+		
 		GameManager.go_to_mission_overview(false)
 		# TODO: Controls for controller
 		# TODO: export to HTML5
@@ -156,11 +160,6 @@ func change_camera_to_orbit():
 
 func _on_mission_complete(): 
 	is_mission_objectives_complete = true
-	# show the UI to land for a couple seconds
-	checkpoints_passed_overlay.visible = true
-	GlobalAudio.play_objectives_complete_sfx()
-	await get_tree().create_timer(Constants.WAITTIME.OBJECTIVES_PASSED).timeout
-	checkpoints_passed_overlay.visible = false
 
 func on_player_crash(location: String):
 	player_crashed_overlay.visible = true

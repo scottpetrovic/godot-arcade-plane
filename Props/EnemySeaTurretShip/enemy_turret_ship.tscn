@@ -32,7 +32,7 @@ shape = SubResource("BoxShape3D_r2bfp")
 [node name="AIShooter" type="Node" parent="." node_paths=PackedStringArray("bullet_spawn_point")]
 script = ExtResource("3_x4h72")
 bullet_spawn_point = NodePath("../ShipMesh/Gun/BulletSpawnPoint")
-shoot_delay = 0.1
+shoot_delay = 0.4
 
 [node name="ShootTimer" type="Timer" parent="AIShooter"]
 wait_time = 0.1

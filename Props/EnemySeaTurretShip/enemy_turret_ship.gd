@@ -6,7 +6,7 @@ signal enemy_died(enemy)
 
 
 var _player_reference: Node3D
-var attack_range = 760.0  # How close the enemy needs to be to attack (for future use)
+var attack_range = 100.0  # How close the enemy needs to be to attack (for future use)
 var health = 8
 var points_value: int = 5132 # player gets points
 

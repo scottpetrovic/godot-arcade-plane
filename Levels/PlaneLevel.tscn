@@ -48,7 +48,8 @@ script = ExtResource("4_kr0vk")
 
 [node name="EnemiesManager" type="Node" parent="."]
 script = ExtResource("6_fbuhu")
-num_simple_sea_enemies = 34
+num_air_simple_enemies = 1
+num_simple_sea_enemies = 0
 
 [node name="SpawnArea" type="Area3D" parent="EnemiesManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 265.06, 69.339, 21.202)
@@ -68,3 +69,5 @@ mesh = SubResource("CylinderMesh_j6duj")
 script = ExtResource("9_oqi7h")
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("9_g81iq")]
+
+[editable path="UI"]

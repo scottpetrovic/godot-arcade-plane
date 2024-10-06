@@ -37,6 +37,11 @@ radar_target="Enemies to destory"
 radar_objective="Objects to fly through"
 radar_prominent_point="Important places to note such as home base"
 
+[gui]
+
+theme/custom="res://Theme/MainTheme.tres"
+theme/custom_font="res://Theme/Rajdhani-Bold-Main.ttf"
+
 [input]
 
 throttle_up={
