@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://mvtsty7f7en6"]
+[gd_scene load_steps=12 format=3 uid="uid://mvtsty7f7en6"]
 
 [ext_resource type="PackedScene" uid="uid://c5d1ae6y4sbdv" path="res://Enemies/EnemyAir/SimpleAirEnemy.glb" id="1_3ilad"]
 [ext_resource type="Script" path="res://Enemies/BaseEnemy.gd" id="1_dc8vq"]
 [ext_resource type="Script" path="res://Enemies/EnemyAir/enemy_movement.gd" id="2_03eva"]
-[ext_resource type="Script" path="res://Character/health_system.gd" id="2_6kfbs"]
 [ext_resource type="Shader" path="res://Enemies/EnemyAir/SimpleAirEnemy.gdshader" id="3_4yo2o"]
 [ext_resource type="Script" path="res://Enemies/EnemyAir/simple_ai_shooter.gd" id="3_witci"]
 [ext_resource type="Script" path="res://Enemies/EnemyLineOfSight.gd" id="4_lunia"]
@@ -41,9 +40,6 @@ script = ExtResource("2_03eva")
 
 [node name="EnemyStateMachine" type="Node" parent="."]
 script = ExtResource("7_b2d06")
-
-[node name="HealthSystem" type="Node" parent="."]
-script = ExtResource("2_6kfbs")
 
 [node name="SimpleAIShooter" type="Node" parent="." node_paths=PackedStringArray("bullet_spawn_point")]
 script = ExtResource("3_witci")

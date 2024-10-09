@@ -1,3 +1,5 @@
+# Enemies that mostly just stay in the same place
+# because of this, they don't need a full state machine
 class_name BasicStationaryEnemyMovement
 extends Node
 
@@ -6,7 +8,6 @@ signal enemy_died(enemy)
 @onready var enemy_reference: BaseEnemy = $".."
 @onready var gun: MeshInstance3D = $"../ShipMesh/Gun"
 var _player_reference: Node3D
-
 
 
 func attack_when_ready():

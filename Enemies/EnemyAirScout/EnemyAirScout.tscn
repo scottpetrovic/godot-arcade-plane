@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfs2bysish47g"]
+[gd_scene load_steps=9 format=3 uid="uid://dfs2bysish47g"]
 
 [ext_resource type="PackedScene" uid="uid://bimj6h0mb7mg" path="res://Enemies/EnemyAirScout/enemy-air-scout.glb" id="1_lyh57"]
 [ext_resource type="Script" path="res://Enemies/BaseEnemy.gd" id="1_q8lak"]
 [ext_resource type="Script" path="res://Enemies/EnemyAir/enemy_state_machine.gd" id="2_vsthr"]
 [ext_resource type="Script" path="res://Enemies/EnemyAir/enemy_movement.gd" id="3_ci047"]
 [ext_resource type="Script" path="res://Enemies/EnemyAir/simple_ai_shooter.gd" id="3_r5bv4"]
-[ext_resource type="Script" path="res://Character/health_system.gd" id="4_1ygq6"]
 [ext_resource type="Script" path="res://Enemies/EnemyLineOfSight.gd" id="7_s31rp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_44aga"]
@@ -24,9 +23,6 @@ script = ExtResource("3_ci047")
 
 [node name="EnemyStateMachine" type="Node" parent="."]
 script = ExtResource("2_vsthr")
-
-[node name="HealthSystem" type="Node" parent="."]
-script = ExtResource("4_1ygq6")
 
 [node name="SimpleAIShooter" type="Node" parent="." node_paths=PackedStringArray("bullet_spawn_point")]
 script = ExtResource("3_r5bv4")

@@ -1,7 +1,7 @@
 class_name BaseEnemy
 extends CharacterBody3D
 
-@onready var health_system: HealthSystem = $HealthSystem
+@onready var health_system: HealthSystem
 
 @export var starting_health: float = 3.0 # overrride in inspector
 @export var points_value: int = 300 # override in inspector
@@ -12,8 +12,13 @@ var player: Player
 signal enemy_died(enemy)
 
 func _ready():
+	# configure health system for managing health
+	health_system = HealthSystem.new()
+	add_child(health_system)
 	health_system.death.connect(lost_all_health)
 	health_system.set_starting_health(starting_health)
+	
+	# set default name for enemy type
 	name = enemy_name
 
 func _process(delta: float) -> void:
