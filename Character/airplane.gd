@@ -22,6 +22,3 @@ func _physics_process(delta: float) -> void:
 
 func hit() -> void:
 	health_system.take_damage(1.0)
-
-func collided_with_fuel_can() -> void:
-	fuel_system.refuel(20)

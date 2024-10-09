@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://mvtsty7f7en6"]
+[gd_scene load_steps=10 format=3 uid="uid://mvtsty7f7en6"]
 
 [ext_resource type="PackedScene" uid="uid://c5d1ae6y4sbdv" path="res://Props/EnemyAir/SimpleAirEnemy.glb" id="1_3ilad"]
 [ext_resource type="Script" path="res://Props/EnemyAir/simple_air_enemy.gd" id="1_sgorc"]
+[ext_resource type="Script" path="res://Character/health_system.gd" id="2_6kfbs"]
 [ext_resource type="Shader" path="res://Props/EnemyAir/SimpleAirEnemy.gdshader" id="3_4yo2o"]
 [ext_resource type="Script" path="res://Props/EnemyAir/simple_ai_shooter.gd" id="3_witci"]
 
@@ -31,6 +32,9 @@ size = Vector3(46.8252, 41.6885, 53.9863)
 
 [node name="SimpleAirEnemy" type="CharacterBody3D" groups=["radar_target"]]
 script = ExtResource("1_sgorc")
+
+[node name="HealthSystem" type="Node" parent="."]
+script = ExtResource("2_6kfbs")
 
 [node name="SimpleAirEnemy" parent="." instance=ExtResource("1_3ilad")]
 transform = Transform3D(-0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 0.0136306, 0, 0.0865579)
