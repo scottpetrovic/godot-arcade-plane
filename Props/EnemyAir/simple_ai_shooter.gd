@@ -4,7 +4,7 @@ extends Node
 @export var bullet_spawn_point: Marker3D # this could be different for each enemy type
 
 @export var Bullet = preload("res://Props/Bullet/Bullet.tscn")
-
+@export var attack_range = 25.0  # How close the enemy needs to be to attack (for future use)
 var can_shoot = true
 
 # make sure to check inspector in case this was overwritten
