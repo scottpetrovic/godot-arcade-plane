@@ -1,6 +1,6 @@
 extends Panel
 
-var player: CharacterBody3D  # Reference to the player (airplane)
+var player: Player  # Reference to the player (airplane)
 var full_health_size: int # width when fuel bar is full
 
 func _ready() -> void:
@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 		player = GameManager.get_player()
 		return	
 	
-	var player_health_perc: float = player.get_node("HealthSystem").health_percentage()
+	var player_health_perc: float = player.health_system.health_percentage()
 	size.x = full_health_size * player_health_perc
 
 func oscillate_fuel_bar(oscillate: bool) -> void:

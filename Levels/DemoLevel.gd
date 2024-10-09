@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var airplane: CharacterBody3D = $Airplane
+@onready var airplane: Player = $Airplane
 
 var is_mission_objectives_complete: bool = false
 
@@ -72,7 +72,7 @@ func is_player_done_landing() -> bool:
 	# airplane is currently on landing strip
 	# airplane has come to a stop
 	if environment.is_player_on_landing_pad():
-		if airplane.get_node("FlightController").forward_speed < 0.01:
+		if airplane.flight_controller.forward_speed < 0.01:
 			return true
 	return false
 
@@ -86,7 +86,7 @@ func update_hud(delta: float):
 
 func apply_speed_lines():
 	# if going more than 85% speed, turn on speed lines to help indicate speed
-	var plane_speed_percentage = airplane.get_node("FlightController").forward_speed / airplane.get_node("FlightController").max_flight_speed
+	var plane_speed_percentage = airplane.flight_controller.forward_speed / airplane.flight_controller.max_flight_speed
 	if plane_speed_percentage > 0.85:
 		$UI.turn_on_speed_lines()
 	else:
@@ -96,7 +96,7 @@ func camera_screenshake():
 	
 	# if plane is going 90% speed or more, do a constant screen shake to show speed
 	# TODO: airplane needs to send a signal when reaching this treshold
-	if (airplane.get_node("FlightController").forward_speed / airplane.get_node("FlightController").max_flight_speed) > .9:
+	if (airplane.flight_controller.forward_speed / airplane.flight_controller.max_flight_speed) > .9:
 		$Camera/ScreenShake.start_constant_shake(0.02)
 	else:
 		$Camera/ScreenShake.stop_constant_shake()
@@ -119,7 +119,7 @@ func _process(delta: float) -> void:
 func level_complete():
 	# make sure to only call this one time
 	if training_complete_overlay.visible == false:
-		airplane.get_node("FlightController").set_allow_movement(false)
+		airplane.flight_controller.set_allow_movement(false)
 		training_complete_overlay.visible = true
 		GlobalAudio.start_level_complete()
 		change_camera_to_orbit()
@@ -153,7 +153,7 @@ func on_player_crash(location: String):
 	change_camera_to_orbit()
 	$UI/HUD.visible = false # hide plane instruments at top
 	$Camera/ScreenShake.camera_shake_impulse(1.3, 0.4)
-	airplane.get_node("FlightController").set_allow_movement(false)
+	airplane.flight_controller.set_allow_movement(false)
 
 	if location == 'ground':
 		explosion_effects = ground_debris.instantiate()

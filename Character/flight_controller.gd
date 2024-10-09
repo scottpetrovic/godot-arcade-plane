@@ -1,3 +1,4 @@
+class_name FlightController
 extends Node
 
 # Flight parameters

@@ -1,6 +1,6 @@
 extends Panel
 
-var player: Node3D  # Reference to the player (airplane)
+var player: Player  # Reference to the player (airplane)
 var full_fuel_size: int # width when fuel bar is full
 
 func _ready() -> void:
@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 		player = GameManager.get_player()
 		return	
 	
-	var remaining_fuel_percentage: float = player.get_node("FuelSystem").current_fuel /  player.get_node("FuelSystem").total_fuel
+	var remaining_fuel_percentage: float = player.fuel_system.current_fuel /  player.fuel_system.total_fuel
 	size.x = full_fuel_size * remaining_fuel_percentage
 	
 

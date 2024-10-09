@@ -19,9 +19,9 @@ func _body_entered(body: Node3D):
 	
 	if body.name == 'Airplane':
 		is_player_on_landing_strip = true
-		var plane_current_speed: float = body.get_node("FlightController").forward_speed
+		var plane_current_speed: float = (body as Player).flight_controller.forward_speed
 		
-		var plane_landing_angle = body.get_node("FlightInstruments").calculate_level_angle()
+		var plane_landing_angle =  (body as Player).flight_instruments.calculate_level_angle()
 		
 		# if we landed and we are at over a 90 degree angle, we crashed
 		# cannot land upside or at a 90 degreee angle

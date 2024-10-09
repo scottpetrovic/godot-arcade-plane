@@ -1,6 +1,6 @@
 extends Node3D
 
-var player: Node3D
+var player: Player
 var start_splash_height: float = 3.0
 
 func _ready():
@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 func update_splash_transform() -> void:
 
 	# we probably haven't taken off, so don't show
-	if player.get_node("FlightController").forward_speed < player.get_node("FlightController").takeoff_speed:
+	if player.flight_controller.forward_speed < player.flight_controller.takeoff_speed:
 		visible = false
 		return
 

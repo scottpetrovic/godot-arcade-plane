@@ -1,3 +1,4 @@
+class_name FuelSystem
 extends Node
 
 var total_fuel: float = 100.0

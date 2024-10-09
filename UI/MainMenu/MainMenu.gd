@@ -1,11 +1,11 @@
 extends Node3D
 
-@export var airplane: CharacterBody3D
+@export var airplane: Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobalAudio.start_music_theme()
-	airplane.get_node("FlightController").target_speed = 0.01
+	airplane.flight_controller.target_speed = 0.01
 
 # Called when an input event is detected.
 func _input(event: InputEvent) -> void:

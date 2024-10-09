@@ -1,3 +1,4 @@
+class_name HealthSystem
 extends Node
 
 var total_health: float = 100.0

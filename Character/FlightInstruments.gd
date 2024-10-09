@@ -1,3 +1,4 @@
+class_name FlightInstruments
 extends Node
 
 @export var airplane: CharacterBody3D

@@ -1,7 +1,7 @@
 extends Label
 
 var speed_multiplier = 20.0 # magic number that looks better on UI
-var player: Node3D  # Reference to the player (airplane)
+var player: Player  # Reference to the player (airplane)
 
 func _process(delta: float) -> void:
 	
@@ -9,4 +9,4 @@ func _process(delta: float) -> void:
 		player = GameManager.get_player()
 		return	
 		
-	text = str(int(player.get_node("FlightController").forward_speed * speed_multiplier)).pad_zeros(3)# + ' MPH'
+	text = str(int(player.flight_controller.forward_speed * speed_multiplier)).pad_zeros(3)# + ' MPH'
