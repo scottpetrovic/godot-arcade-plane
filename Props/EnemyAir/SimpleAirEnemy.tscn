@@ -1,10 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://mvtsty7f7en6"]
+[gd_scene load_steps=11 format=3 uid="uid://mvtsty7f7en6"]
 
 [ext_resource type="PackedScene" uid="uid://c5d1ae6y4sbdv" path="res://Props/EnemyAir/SimpleAirEnemy.glb" id="1_3ilad"]
 [ext_resource type="Script" path="res://Props/EnemyAir/simple_air_enemy.gd" id="1_sgorc"]
 [ext_resource type="Script" path="res://Character/health_system.gd" id="2_6kfbs"]
 [ext_resource type="Shader" path="res://Props/EnemyAir/SimpleAirEnemy.gdshader" id="3_4yo2o"]
 [ext_resource type="Script" path="res://Props/EnemyAir/simple_ai_shooter.gd" id="3_witci"]
+[ext_resource type="Script" path="res://Props/EnemyAir/line_of_sight.gd" id="4_lunia"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g36n3"]
+size = Vector3(8.32056, 2.89258, 4.06445)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sf7gk"]
+size = Vector3(46.8252, 41.6885, 53.9863)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ulpyw"]
 render_priority = 0
@@ -24,40 +31,11 @@ height = 4.913
 radial_segments = 8
 rings = 8
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_g36n3"]
-size = Vector3(8.32056, 2.89258, 4.06445)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_sf7gk"]
-size = Vector3(46.8252, 41.6885, 53.9863)
-
 [node name="SimpleAirEnemy" type="CharacterBody3D" groups=["radar_target"]]
 script = ExtResource("1_sgorc")
 
 [node name="HealthSystem" type="Node" parent="."]
 script = ExtResource("2_6kfbs")
-
-[node name="SimpleAirEnemy" parent="." instance=ExtResource("1_3ilad")]
-transform = Transform3D(-0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 0.0136306, 0, 0.0865579)
-
-[node name="EngineTrailRight" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0.351797, 0.661384, 3.21864)
-mesh = SubResource("CylinderMesh_jxf3t")
-skeleton = NodePath("../SimpleAirEnemy")
-
-[node name="EngineTrailLeft" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -0.443558, 0.661384, 3.21864)
-mesh = SubResource("CylinderMesh_jxf3t")
-skeleton = NodePath("../SimpleAirEnemy")
-
-[node name="EngineTrailRight2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0.351797, -0.666663, 3.21864)
-mesh = SubResource("CylinderMesh_jxf3t")
-skeleton = NodePath("../SimpleAirEnemy")
-
-[node name="EngineTrailLeft2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -0.443558, -0.666663, 3.21864)
-mesh = SubResource("CylinderMesh_jxf3t")
-skeleton = NodePath("../SimpleAirEnemy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.519531)
@@ -71,6 +49,7 @@ bullet_spawn_point = NodePath("../BulletSpawnPoint")
 
 [node name="LineOfSight" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.35275)
+script = ExtResource("4_lunia")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfSight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26.6946)
@@ -78,3 +57,28 @@ shape = SubResource("BoxShape3D_sf7gk")
 
 [node name="BulletSpawnPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.33317)
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="SimpleAirEnemy" parent="Model" instance=ExtResource("1_3ilad")]
+transform = Transform3D(-0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 0.0136306, 0, 0.0865579)
+
+[node name="EngineTrailRight" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0.351797, 0.661384, 3.21864)
+mesh = SubResource("CylinderMesh_jxf3t")
+skeleton = NodePath("../SimpleAirEnemy")
+
+[node name="EngineTrailLeft" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -0.443558, 0.661384, 3.21864)
+mesh = SubResource("CylinderMesh_jxf3t")
+skeleton = NodePath("../SimpleAirEnemy")
+
+[node name="EngineTrailRight2" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0.351797, -0.666663, 3.21864)
+mesh = SubResource("CylinderMesh_jxf3t")
+skeleton = NodePath("../SimpleAirEnemy")
+
+[node name="EngineTrailLeft2" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -0.443558, -0.666663, 3.21864)
+mesh = SubResource("CylinderMesh_jxf3t")
+skeleton = NodePath("../SimpleAirEnemy")

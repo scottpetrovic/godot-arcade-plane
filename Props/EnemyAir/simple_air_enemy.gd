@@ -11,11 +11,11 @@ enum State {PATROL, PURSUE, RETURN, ATTACK}  # Added ATTACK state for future imp
 @export var distance_to_travel = 60.0  # Units
 @export var attack_range = 25.0  # How close the enemy needs to be to attack (for future use)
 @onready var simple_ai_shooter: Node = $SimpleAIShooter
-@onready var line_of_sight: Area3D = $LineOfSight
+@onready var line_of_sight: EnemyLineOfSight = $LineOfSight
 
 var current_distance = 0.0
 var current_state = State.PATROL
-var player: CharacterBody3D
+var player: Player
 var patrol_starting_position: Vector3 = Vector3.ZERO
 var player_in_line_of_sight: bool = false
 
@@ -26,11 +26,21 @@ signal enemy_died(enemy)
 func _ready():
 	health_system.death.connect(lost_all_health)
 	health_system.set_starting_health(3.0)
-	
-	line_of_sight.body_entered.connect(_on_line_of_sight_body_entered)
-	line_of_sight.body_exited.connect(_on_line_of_sight_body_exited)
+
+	line_of_sight.found_player_visuals.connect(_spotted_player)
+	line_of_sight.lost_player_visuals.connect(_lost_player)
+
 
 	name = "Air Seaman"
+	
+func _spotted_player() -> void:
+	print('spotted player visuals', player_in_line_of_sight)
+	player_in_line_of_sight = true
+
+	
+func _lost_player() -> void:
+	player_in_line_of_sight = false
+
 
 func hit() -> void:
 	health_system.take_damage(1.0)
@@ -54,21 +64,11 @@ func lost_all_health():
 	queue_free()  # The enemy removes itself from the scene
 
 
-func _on_line_of_sight_body_entered(body: Node3D):
-	if body == player:
-		player_in_line_of_sight = true
-		current_state = State.PURSUE
-
-func _on_line_of_sight_body_exited(body: Node3D):
-	if body == player:
-		player_in_line_of_sight = false
-		current_state = State.RETURN
-
 func check_for_player_if_not_exist():
 	if is_instance_valid(player) == false:
 		player = GameManager.get_player()
 
-func check_for_starting_position():
+func initialize_starting_position_if_not_done():
 	# intialize patrol position for when the 
 	# enemy needs to return. Doing this in ready() 
 	# seems to start as 0,0,0 since position is set
@@ -78,31 +78,43 @@ func check_for_starting_position():
 
 func _process(delta):
 	check_for_player_if_not_exist()
-	check_for_starting_position()
+	initialize_starting_position_if_not_done()
 	
 	# State Machine Flow:
 	# 1. Each frame, execute behavior based on current state
 	# 2. Check conditions for state transitions after executing behavior
+	#print(current_state)
 	match current_state:
 		State.PATROL:
 			patrol_movement(delta)
+			check_if_player_is_seen() # PURSUE if we see player
 		State.PURSUE:
 			pursue_player()
-			check_return_to_pursue_or_patrol()  # Check if should transition to RETURN
-			check_attack_range()  # Future: Check if close enough to attack
+			check_if_lost_player_visuals()  # RETURN back to patrol if we lost player
+			check_if_we_can_attack()  # ATTACK player if we are close enough
 		State.RETURN:
 			return_to_patrol()
+			check_if_player_is_seen() # PURSUE if we see player on our return
 		State.ATTACK:
-			attack_player()  # Future: Implement attack behavior
-			check_return_to_pursue_or_patrol()
-		
-func check_return_to_pursue_or_patrol() -> void:
-	# we need to wait a bit anyway before we can attack again
-	# so go back to pursuing
+			pursue_player()
+			attack_player()
+			check_if_we_are_out_of_shooting_range() # PURSUE is we are out of attacking range
+
+func check_if_player_is_seen():
 	if player_in_line_of_sight:
 		current_state = State.PURSUE
-	else:
+
+func check_if_we_are_out_of_shooting_range():
+	if player and global_position.distance_to(player.global_position) > attack_range:
+		current_state = State.PURSUE
+
+func check_if_lost_player_visuals():
+	if player_in_line_of_sight == false:
 		current_state = State.RETURN
+
+func check_if_we_can_attack():
+	if player and global_position.distance_to(player.global_position) <= attack_range:
+		current_state = State.ATTACK
 
 func patrol_movement(delta):
 	# Move in the current direction
@@ -146,9 +158,7 @@ func return_to_patrol():
 		# Once back at patrol center, resume patrolling
 		current_state = State.PATROL
 
-func check_attack_range():
-	if player and global_position.distance_to(player.global_position) <= attack_range:
-		current_state = State.ATTACK
+
 
 func attack_player():
 	simple_ai_shooter.shoot()

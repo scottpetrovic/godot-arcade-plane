@@ -12,7 +12,7 @@ func _body_entered(body:Node3D) -> void:
 	
 	# player picked up fuel can
 	# play sound effect, then remove fuel can
-	if body.is_class("Player"):
+	if body is Player:
 		(body as Player).fuel_system.refuel(20.0)
 		visible = false
 		sfx.play()
