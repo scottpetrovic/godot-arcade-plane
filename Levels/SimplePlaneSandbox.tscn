@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://b268yya28qpq3"]
+
+[ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Character/airplane.tscn" id="1_du1x6"]
+[ext_resource type="Script" path="res://Effects/Camera/CameraFollow.gd" id="2_vhu4v"]
+[ext_resource type="Shader" path="res://Environment/Materials/TestGrid.gdshader" id="3_pr18u"]
+[ext_resource type="Script" path="res://Levels/Sandbox/city_builder.gd" id="4_pm3ua"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vilnx"]
+
+[sub_resource type="Sky" id="Sky_8bsli"]
+sky_material = SubResource("ProceduralSkyMaterial_vilnx")
+
+[sub_resource type="Environment" id="Environment_6it76"]
+background_mode = 2
+sky = SubResource("Sky_8bsli")
+ambient_light_source = 2
+ambient_light_color = Color(0.95, 0.95, 0.95, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dobx7"]
+render_priority = 0
+shader = ExtResource("3_pr18u")
+shader_parameter/subdivisions = 32.0
+shader_parameter/grid_width = 0.02
+shader_parameter/background_color = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/background_color_two = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/grid_color = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/dashed_scale_x = 0.02
+shader_parameter/dashed_scale_y = 0.02
+shader_parameter/dashed_count_x = 1.0
+shader_parameter/dashed_count_y = 1.0
+shader_parameter/point_width = 0.021
+shader_parameter/point_color = Color(0, 0, 0, 1)
+shader_parameter/point_scale_x = 0.05
+shader_parameter/point_scale_y = 0.05
+shader_parameter/inside_width = 0.01
+shader_parameter/inside_subdivisions = 6.0
+shader_parameter/inside_color = Color(0.4, 0.4, 0.4, 1)
+shader_parameter/in_dashed_scale_x = 0.3
+shader_parameter/in_dashed_scale_y = 0.3
+shader_parameter/in_dashed_count_x = 6.0
+shader_parameter/in_dashed_count_y = 6.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_2wu83"]
+material = SubResource("ShaderMaterial_dobx7")
+size = Vector2(1000, 1000)
+orientation = 1
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ececn"]
+
+[node name="SimplePlaneSandbox" type="Node3D"]
+
+[node name="Airplane" parent="." instance=ExtResource("1_du1x6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -9.4486)
+
+[node name="Marker3D" type="Marker3D" parent="Airplane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24793, 3.28496)
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -9.4486)
+script = ExtResource("2_vhu4v")
+target = NodePath("../Airplane/Marker3D")
+
+[node name="Static Environment" type="Node" parent="."]
+
+[node name="PrimaryLight" type="DirectionalLight3D" parent="Static Environment"]
+transform = Transform3D(0.659634, 0.038549, 0.750597, -0.751587, 0.0338327, 0.658766, 0, -0.998684, 0.0512901, 2.53716, 3.32658, 0)
+shadow_enabled = true
+
+[node name="SecondaryLight" type="DirectionalLight3D" parent="Static Environment"]
+transform = Transform3D(0.736381, -0.0347012, -0.675677, 0.676568, 0.0377691, 0.735411, 0, -0.998684, 0.0512901, -2.44585, 3.32658, 0)
+light_color = Color(0.106022, 0.466334, 0.834748, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Static Environment"]
+environment = SubResource("Environment_6it76")
+
+[node name="Ground Plane" type="StaticBody3D" parent="Static Environment"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Static Environment/Ground Plane"]
+mesh = SubResource("QuadMesh_2wu83")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Static Environment/Ground Plane"]
+shape = SubResource("WorldBoundaryShape3D_ececn")
+
+[node name="CityGeneration" type="Node3D" parent="."]
+script = ExtResource("4_pm3ua")
