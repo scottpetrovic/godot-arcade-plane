@@ -1,13 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3ovo2it7nbnh"]
+[gd_scene load_steps=16 format=3 uid="uid://d3ovo2it7nbnh"]
 
 [ext_resource type="Script" path="res://Character/airplane.gd" id="1_wihbf"]
 [ext_resource type="PackedScene" uid="uid://d3qn3es4bmao8" path="res://Character/Airplane_Mesh.tscn" id="2_j34yd"]
 [ext_resource type="AudioStream" uid="uid://c5bmui870wk38" path="res://Character/plane-engine.mp3" id="3_610pa"]
+[ext_resource type="Script" path="res://Character/fuel_system.gd" id="3_fwucw"]
 [ext_resource type="Script" path="res://Character/EngineSound.gd" id="4_874ub"]
 [ext_resource type="Script" path="res://Character/BulletShooter.gd" id="5_3arig"]
+[ext_resource type="Script" path="res://Character/health_system.gd" id="5_f5cdy"]
 [ext_resource type="AudioStream" uid="uid://b8gb10volhjm" path="res://Assets/SoundFX/laser-shot.wav" id="6_aojr6"]
 [ext_resource type="Script" path="res://Character/FXParticleTrails.gd" id="7_p2f2j"]
 [ext_resource type="Script" path="res://Character/FlightInstruments.gd" id="8_pncxi"]
+[ext_resource type="Script" path="res://Character/airplane_mesh.gd" id="9_dt02h"]
+[ext_resource type="Script" path="res://Character/flight_controller.gd" id="9_oymp2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsjsx"]
 radius = 0.259621
@@ -19,7 +23,7 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Plane_Mesh/Landing_Gear_Back:rotation")
+tracks/0/path = NodePath("PlaneMesh/Landing_Gear_Back:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -31,7 +35,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Plane_Mesh/Landing_Gear_Back:position")
+tracks/1/path = NodePath("PlaneMesh/Landing_Gear_Back:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -43,7 +47,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Plane_Mesh/Landing_Gear_Right:rotation")
+tracks/2/path = NodePath("PlaneMesh/Landing_Gear_Right:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -55,7 +59,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Plane_Mesh/Landing_Gear_Left:rotation")
+tracks/3/path = NodePath("PlaneMesh/Landing_Gear_Left:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -67,7 +71,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Plane_Mesh/Landing_Gear_Left:position")
+tracks/4/path = NodePath("PlaneMesh/Landing_Gear_Left:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -85,19 +89,19 @@ _data = {
 [node name="Airplane" type="CharacterBody3D"]
 script = ExtResource("1_wihbf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.91068e-15, 4.37114e-08, 1, 1, -4.37114e-08, 2.12779e-21, 4.37114e-08, 1, -4.37114e-08, 0.0113626, 0.271996, -0.0221037)
-shape = SubResource("CapsuleShape3D_gsjsx")
+[node name="FlightController" type="Node" parent="." node_paths=PackedStringArray("plane_mesh")]
+script = ExtResource("9_oymp2")
+plane_mesh = NodePath("../PlaneMesh")
 
-[node name="Plane_Mesh" parent="." instance=ExtResource("2_j34yd")]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, -0.0835133)
+[node name="FuelSystem" type="Node" parent="."]
+script = ExtResource("3_fwucw")
 
-[node name="EngineSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_610pa")
-volume_db = -17.802
-pitch_scale = 0.82
-parameters/looping = true
-script = ExtResource("4_874ub")
+[node name="FlightInstruments" type="Node" parent="." node_paths=PackedStringArray("airplane")]
+script = ExtResource("8_pncxi")
+airplane = NodePath("..")
+
+[node name="HealthSystem" type="Node" parent="."]
+script = ExtResource("5_f5cdy")
 
 [node name="BulletShooter" type="Node3D" parent="."]
 script = ExtResource("5_3arig")
@@ -113,11 +117,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.394647, 0.178619, -0.264707
 [node name="BulletSound" type="AudioStreamPlayer2D" parent="BulletShooter"]
 stream = ExtResource("6_aojr6")
 
-[node name="FXParticleTrails" type="Node" parent="."]
-script = ExtResource("7_p2f2j")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91068e-15, 4.37114e-08, 1, 1, -4.37114e-08, 2.12779e-21, 4.37114e-08, 1, -4.37114e-08, 0.0113626, 0.271996, -0.0221037)
+shape = SubResource("CapsuleShape3D_gsjsx")
 
-[node name="FlightInstruments" type="Node" parent="."]
-script = ExtResource("8_pncxi")
+[node name="PlaneMesh" parent="." node_paths=PackedStringArray("plane", "animation_player") instance=ExtResource("2_j34yd")]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, -0.0835133)
+script = ExtResource("9_dt02h")
+plane = NodePath("..")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="EngineSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_610pa")
+volume_db = -17.802
+pitch_scale = 0.82
+parameters/looping = true
+script = ExtResource("4_874ub")
+
+[node name="FXParticleTrails" type="Node" parent="." node_paths=PackedStringArray("plane_mesh")]
+script = ExtResource("7_p2f2j")
+plane_mesh = NodePath("../PlaneMesh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

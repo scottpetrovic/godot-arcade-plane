@@ -9,5 +9,5 @@ func _process(delta: float) -> void:
 		return	
 
 	var altitude_multiplier = 5.0 # magic number that looks better on UI
-	var altitude_string = str(int(player.get_altitude() * altitude_multiplier))
+	var altitude_string = str(int(player.get_node("FlightInstruments").calculate_altitude() * altitude_multiplier))
 	text = altitude_string.pad_zeros(5) # + ' FT'

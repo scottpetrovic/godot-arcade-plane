@@ -6,9 +6,9 @@ var base_audio_pitch = 0.8 # engine is barely on
 
 func _process(_delta: float) -> void:
 
-	if airplane.is_engine_on():
+	if airplane.get_node("FlightController").is_engine_on():
 		# calculate pitch
-		var power_percentage = airplane.forward_speed / airplane.max_flight_speed
+		var power_percentage = airplane.get_node("FlightController").forward_speed / airplane.get_node("FlightController").max_flight_speed
 		
 		# kind of like turning the sound off
 		if power_percentage < 0.01:

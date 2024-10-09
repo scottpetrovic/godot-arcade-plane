@@ -13,7 +13,7 @@ enum State {PATROL, PURSUE, RETURN, ATTACK}  # Added ATTACK state for future imp
 
 var current_distance = 0.0
 var current_state = State.PATROL
-var player: Node3D = null
+var player: CharacterBody3D
 var patrol_starting_position: Vector3 = Vector3.ZERO
 var player_in_line_of_sight: bool = false
 

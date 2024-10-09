@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 		player = GameManager.get_player()
 		return	
 	
-	var remaining_fuel_percentage: float = player.current_fuel /  player.total_fuel
+	var remaining_fuel_percentage: float = player.get_node("FuelSystem").current_fuel /  player.get_node("FuelSystem").total_fuel
 	size.x = full_fuel_size * remaining_fuel_percentage
 	
 

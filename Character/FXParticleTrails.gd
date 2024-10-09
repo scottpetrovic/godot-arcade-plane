@@ -5,7 +5,7 @@ var air_particles: GPUParticles3D
 var air_particles_2: GPUParticles3D
 
 var air_particles_scene: PackedScene = load("res://Effects/Particles/PlaneParticleTrail.tscn")
-@onready var plane_mesh: Node3D = $"../Plane_Mesh"
+@export var plane_mesh: Node3D
 @onready var airplane: CharacterBody3D = $".."
 
 
@@ -17,7 +17,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# turn on air particle trail on wings when we are going max speed!
-	var is_going_max_speed =  airplane.target_speed == airplane.max_flight_speed
+	var is_going_max_speed =  airplane.get_node("FlightController").target_speed == airplane.get_node("FlightController").max_flight_speed
 	air_particles.emitting = is_going_max_speed
 	air_particles_2.emitting = is_going_max_speed
 

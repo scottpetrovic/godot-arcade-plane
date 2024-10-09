@@ -9,4 +9,4 @@ func _process(delta: float) -> void:
 		player = GameManager.get_player()
 		return	
 		
-	text = str(int(player.forward_speed * speed_multiplier)).pad_zeros(3)# + ' MPH'
+	text = str(int(player.get_node("FlightController").forward_speed * speed_multiplier)).pad_zeros(3)# + ' MPH'

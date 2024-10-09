@@ -14,10 +14,10 @@ func _on_body_entered(body: Node3D) -> void:
 			ignoring_area_entered = false
 			return
 		
-		body.open_landing_gears(true)
+		body.get_node("PlaneMesh").open_landing_gears(true)
 
 
 func _on_body_exited(body: Node3D) -> void:
 	if body.name == 'Airplane':
 		ignoring_area_entered = false
-		body.open_landing_gears(false)
+		body.get_node("PlaneMesh").open_landing_gears(false)

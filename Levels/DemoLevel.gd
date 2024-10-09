@@ -72,7 +72,7 @@ func is_player_done_landing() -> bool:
 	# airplane is currently on landing strip
 	# airplane has come to a stop
 	if environment.is_player_on_landing_pad():
-		if airplane.forward_speed < 0.01:
+		if airplane.get_node("FlightController").forward_speed < 0.01:
 			return true
 	return false
 
@@ -81,38 +81,22 @@ func update_hud(delta: float):
 	elapsed_time += delta
 	time_label.text = GameManager.format_elapsed_time(elapsed_time)
 
-	update_speed_indicator()
 	apply_speed_lines()
 
 
 func apply_speed_lines():
 	# if going more than 85% speed, turn on speed lines to help indicate speed
-	var plane_speed_percentage = airplane.forward_speed / airplane.max_flight_speed
+	var plane_speed_percentage = airplane.get_node("FlightController").forward_speed / airplane.get_node("FlightController").max_flight_speed
 	if plane_speed_percentage > 0.85:
 		$UI.turn_on_speed_lines()
 	else:
 		$UI.turn_off_speed_lines()
 
-
-func update_speed_indicator():
-	
-	# find out min and max for speed indicator
-	# 0 degrees is facing straight up
-	var min_angle_for_indicator = -83
-	var max_angle_for_indicator = 83
-	var total_angle_values = abs(min_angle_for_indicator) + abs(max_angle_for_indicator)
-	
-	# create ratio to help map angle facing and current speed
-	var speed_indicator_multiplier = 13.7 # magic number
-	var conversion_ratio: float = (airplane.max_flight_speed * speed_indicator_multiplier) / total_angle_values
-	speed_indicator.rotation_degrees = min_angle_for_indicator + (airplane.forward_speed*speed_indicator_multiplier*conversion_ratio)
-
-
 func camera_screenshake():
 	
 	# if plane is going 90% speed or more, do a constant screen shake to show speed
 	# TODO: airplane needs to send a signal when reaching this treshold
-	if (airplane.forward_speed / airplane.max_flight_speed) > .9:
+	if (airplane.get_node("FlightController").forward_speed / airplane.get_node("FlightController").max_flight_speed) > .9:
 		$Camera/ScreenShake.start_constant_shake(0.02)
 	else:
 		$Camera/ScreenShake.stop_constant_shake()
@@ -130,11 +114,12 @@ func _process(delta: float) -> void:
 		level_complete()
 	
 	camera_screenshake()
+	update_hud(delta)
 
 func level_complete():
 	# make sure to only call this one time
 	if training_complete_overlay.visible == false:
-		airplane.set_allow_movement(false)
+		airplane.get_node("FlightController").set_allow_movement(false)
 		training_complete_overlay.visible = true
 		GlobalAudio.start_level_complete()
 		change_camera_to_orbit()
@@ -168,7 +153,7 @@ func on_player_crash(location: String):
 	change_camera_to_orbit()
 	$UI/HUD.visible = false # hide plane instruments at top
 	$Camera/ScreenShake.camera_shake_impulse(1.3, 0.4)
-	airplane.set_allow_movement(false)
+	airplane.get_node("FlightController").set_allow_movement(false)
 
 	if location == 'ground':
 		explosion_effects = ground_debris.instantiate()

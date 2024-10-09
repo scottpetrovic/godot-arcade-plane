@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 func update_splash_transform() -> void:
 
 	# we probably haven't taken off, so don't show
-	if player.forward_speed < player.takeoff_speed:
+	if player.get_node("FlightController").forward_speed < player.get_node("FlightController").takeoff_speed:
 		visible = false
 		return
 

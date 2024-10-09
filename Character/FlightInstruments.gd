@@ -1,6 +1,6 @@
 extends Node
 
-@onready var airplane: CharacterBody3D = $".."
+@export var airplane: CharacterBody3D
 
 var level_angle: float = 0.0
 var pitch_angle: float = 0.0
@@ -37,18 +37,10 @@ func calculate_level_angle() -> int:
 	return abs(level_angle) # in degrees
 
 
-func calculate_altitude() -> void:
+func calculate_altitude() -> float:
 	altitude = airplane.global_transform.origin.y
+	return altitude
 
 func calculate_airspeed() -> void:
 	# Assuming the airplane script has a 'forward_speed' property
 	airspeed = airplane.forward_speed
-
-func get_pitch_angle() -> float:
-	return pitch_angle
-
-func get_altitude() -> float:
-	return altitude
-
-func get_airspeed() -> float:
-	return airspeed

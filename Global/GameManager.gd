@@ -20,7 +20,7 @@ var is_level_2_finished: bool = false
 var level_2_best_time: float = 0.0 #  0 == not beat
 
 # different objects at different levels need to reference this
-var _player_reference: Node3D
+var _player_reference: CharacterBody3D
 
 var BulletObjectHitParticle = preload("res://Effects/Particles/BulletObjectHitParticle/BulletObjectHitParticle.tscn")
 var BulletObjectDebrisParticles = preload("res://Effects/Particles/ExplosionDebrisParticles/ExplosionDebrisParticles.tscn")
@@ -34,10 +34,10 @@ func get_destruction_points() -> int:
 func add_destruction_points(points: int)-> void:
 	_current_level_destruction_points += points
 
-func get_player() -> Node3D:
+func get_player() -> CharacterBody3D:
 	return _player_reference
 	
-func set_player(player_object: Node3D) -> void:
+func set_player(player_object: CharacterBody3D) -> void:
 	_player_reference = player_object
 
 func set_current_map(cur_map: String):
