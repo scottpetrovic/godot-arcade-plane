@@ -1,12 +1,12 @@
 extends Node
 
-@export var simple_air_enemy: PackedScene  = load("res://Props/EnemyAir/SimpleAirEnemy.tscn")
+@export var simple_air_enemy: PackedScene  = load("res://Enemies/EnemyAir/SimpleAirEnemy.tscn")
 @export var num_air_simple_enemies: int = 3
 
-@export var simple_sea_enemy: PackedScene  = load("res://Props/EnemySeaTurretShip/enemy_turret_ship.tscn")
+@export var simple_sea_enemy: PackedScene  = load("res://Enemies/EnemySeaTurretShip/enemy_turret_ship.tscn")
 @export var num_simple_sea_enemies: int = 3
 
-@export var simple_air_scout_enemy: PackedScene  = load("res://Props/EnemyAirScout/EnemyAirScout.tscn")
+@export var simple_air_scout_enemy: PackedScene  = load("res://Enemies/EnemyAirScout/EnemyAirScout.tscn")
 @export var num_air_simple_scout_enemies: int = 3
 
 @onready var spawn_area: Area3D = $SpawnArea

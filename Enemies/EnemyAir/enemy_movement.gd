@@ -1,22 +1,19 @@
+class_name BasicFlyingEnemyMovement
 extends Node
 
 @onready var enemy_state_machine: EnemyStateMachine = $"../EnemyStateMachine"
+@onready var enemy: CharacterBody3D = $".."
+@onready var simple_ai_shooter: Node = $"../SimpleAIShooter"
 
 @export var patrol_speed = 6.0  # Units per second
 @export var pursuit_speed = 8.0  # Units per second
 @export var turn_angle = 30.0  # Degrees
 @export var distance_to_travel = 60.0  # Units
-@export var enemy: CharacterBody3D
-
-@export var simple_ai_shooter: Node
 
 var player: Player
 var patrol_starting_position: Vector3 = Vector3.ZERO
 var current_distance = 0.0
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
 func check_for_player_if_not_exist():
 	if is_instance_valid(player) == false:
@@ -38,7 +35,7 @@ func _process(delta: float) -> void:
 			enemy_state_machine.State.ATTACK:
 				pursue_player()
 				simple_ai_shooter.shoot()
-				
+
 
 func initialize_starting_position_if_not_done():
 	# intialize patrol position for when the 
@@ -47,6 +44,7 @@ func initialize_starting_position_if_not_done():
 	# after the object is added to stage
 	if patrol_starting_position == Vector3(0,0,0):
 		patrol_starting_position = enemy.global_position
+
 
 func patrol_movement(delta):
 	# Move in the current direction
@@ -60,6 +58,7 @@ func patrol_movement(delta):
 	if current_distance >= distance_to_travel:
 		await turn()
 		current_distance = 0.0
+
 
 func turn():
 	var target_rotation = 0.0

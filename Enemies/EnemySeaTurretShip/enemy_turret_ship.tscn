@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://x8283o2aecy8"]
+[gd_scene load_steps=9 format=3 uid="uid://x8283o2aecy8"]
 
-[ext_resource type="PackedScene" uid="uid://4klurw1dwtnh" path="res://Props/EnemySeaTurretShip/EnemySeaTurretShip.glb" id="1_1x4e0"]
-[ext_resource type="Script" path="res://Props/EnemySeaTurretShip/enemy_turret_ship.gd" id="1_yvr4b"]
+[ext_resource type="PackedScene" uid="uid://4klurw1dwtnh" path="res://Enemies/EnemySeaTurretShip/EnemySeaTurretShip.glb" id="1_1x4e0"]
+[ext_resource type="Script" path="res://Enemies/BaseEnemy.gd" id="1_j8e6l"]
 [ext_resource type="Script" path="res://Character/health_system.gd" id="2_dj6ce"]
-[ext_resource type="Script" path="res://Props/EnemyAir/simple_ai_shooter.gd" id="3_x4h72"]
+[ext_resource type="Script" path="res://Enemies/EnemyMovementStationary.gd" id="2_vurj3"]
+[ext_resource type="Script" path="res://Enemies/EnemyAir/simple_ai_shooter.gd" id="3_x4h72"]
+[ext_resource type="Script" path="res://Enemies/EnemyLineOfSight.gd" id="4_841me"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i4ksl"]
 size = Vector3(2.89478, 1.15649, 10.7607)
@@ -12,7 +14,10 @@ size = Vector3(2.89478, 1.15649, 10.7607)
 size = Vector3(122.605, 41.6885, 147.072)
 
 [node name="EnemyTurretShip" type="CharacterBody3D" groups=["radar_target"]]
-script = ExtResource("1_yvr4b")
+script = ExtResource("1_j8e6l")
+
+[node name="EnemyMovement" type="Node" parent="."]
+script = ExtResource("2_vurj3")
 
 [node name="HealthSystem" type="Node" parent="."]
 script = ExtResource("2_dj6ce")
@@ -29,16 +34,17 @@ shape = SubResource("BoxShape3D_i4ksl")
 
 [node name="LineOfSight" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.8607, -3.35275)
+script = ExtResource("4_841me")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfSight"]
 shape = SubResource("BoxShape3D_r2bfp")
 
-[node name="AIShooter" type="Node" parent="." node_paths=PackedStringArray("bullet_spawn_point")]
+[node name="SimpleAIShooter" type="Node" parent="." node_paths=PackedStringArray("bullet_spawn_point")]
 script = ExtResource("3_x4h72")
-bullet_spawn_point = NodePath("../ShipMesh/Gun/BulletSpawnPoint")
 shoot_delay = 0.4
+bullet_spawn_point = NodePath("../ShipMesh/Gun/BulletSpawnPoint")
 
-[node name="ShootTimer" type="Timer" parent="AIShooter"]
+[node name="ShootTimer" type="Timer" parent="SimpleAIShooter"]
 wait_time = 0.1
 one_shot = true
 

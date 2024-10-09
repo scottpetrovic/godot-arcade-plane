@@ -4,11 +4,10 @@ extends Node
 # State Machine: Defines possible states for the enemy aircraft
 enum State {PATROL, PURSUE, RETURN, ATTACK}  # Added ATTACK state for future implementation
 
-@export var line_of_sight: EnemyLineOfSight
-@export var enemy: CharacterBody3D
-@export var enemy_movement: Node
-@export var simple_ai_shooter: Node
-
+@onready var enemy: CharacterBody3D = $".."
+@onready var enemy_movement: Node = $"../EnemyMovement"
+@onready var simple_ai_shooter: Node = $"../SimpleAIShooter"
+@onready var line_of_sight: EnemyLineOfSight = $"../LineOfSight"
 
 var current_state = State.PATROL
 var player_in_line_of_sight: bool = false

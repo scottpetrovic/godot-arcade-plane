@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bimj6h0mb7mg"
-path="res://.godot/imported/enemy-air-scout.glb-e5cbc166c79c3f2c27af5a7e83309420.scn"
+uid="uid://4klurw1dwtnh"
+path="res://.godot/imported/EnemySeaTurretShip.glb-9d99a01e994915590e8d0067924e46e3.scn"
 
 [deps]
 
-source_file="res://Props/EnemyAirScout/enemy-air-scout.glb"
-dest_files=["res://.godot/imported/enemy-air-scout.glb-e5cbc166c79c3f2c27af5a7e83309420.scn"]
+source_file="res://Enemies/EnemySeaTurretShip/EnemySeaTurretShip.glb"
+dest_files=["res://.godot/imported/EnemySeaTurretShip.glb-9d99a01e994915590e8d0067924e46e3.scn"]
 
 [params]
 

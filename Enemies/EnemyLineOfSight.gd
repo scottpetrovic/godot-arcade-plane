@@ -10,7 +10,6 @@ func _ready() -> void:
 
 func _on_line_of_sight_body_entered(body: Node3D):
 	if body is Player:
-		print('found player visuals')
 		emit_signal("found_player_visuals")
 
 func _on_line_of_sight_body_exited(body: Node3D):

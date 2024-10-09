@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=3 uid="uid://mvtsty7f7en6"]
 
-[ext_resource type="PackedScene" uid="uid://c5d1ae6y4sbdv" path="res://Props/EnemyAir/SimpleAirEnemy.glb" id="1_3ilad"]
-[ext_resource type="Script" path="res://Props/EnemyAir/simple_air_enemy.gd" id="1_sgorc"]
-[ext_resource type="Script" path="res://Props/EnemyAir/enemy_movement.gd" id="2_03eva"]
+[ext_resource type="PackedScene" uid="uid://c5d1ae6y4sbdv" path="res://Enemies/EnemyAir/SimpleAirEnemy.glb" id="1_3ilad"]
+[ext_resource type="Script" path="res://Enemies/BaseEnemy.gd" id="1_dc8vq"]
+[ext_resource type="Script" path="res://Enemies/EnemyAir/enemy_movement.gd" id="2_03eva"]
 [ext_resource type="Script" path="res://Character/health_system.gd" id="2_6kfbs"]
-[ext_resource type="Shader" path="res://Props/EnemyAir/SimpleAirEnemy.gdshader" id="3_4yo2o"]
-[ext_resource type="Script" path="res://Props/EnemyAir/simple_ai_shooter.gd" id="3_witci"]
-[ext_resource type="Script" path="res://Props/EnemyAir/line_of_sight.gd" id="4_lunia"]
-[ext_resource type="Script" path="res://Props/EnemyAir/enemy_state_machine.gd" id="7_b2d06"]
+[ext_resource type="Shader" path="res://Enemies/EnemyAir/SimpleAirEnemy.gdshader" id="3_4yo2o"]
+[ext_resource type="Script" path="res://Enemies/EnemyAir/simple_ai_shooter.gd" id="3_witci"]
+[ext_resource type="Script" path="res://Enemies/EnemyLineOfSight.gd" id="4_lunia"]
+[ext_resource type="Script" path="res://Enemies/EnemyAir/enemy_state_machine.gd" id="7_b2d06"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g36n3"]
 size = Vector3(8.32056, 2.89258, 4.06445)
@@ -34,32 +34,29 @@ radial_segments = 8
 rings = 8
 
 [node name="SimpleAirEnemy" type="CharacterBody3D" groups=["radar_target"]]
-script = ExtResource("1_sgorc")
+script = ExtResource("1_dc8vq")
 
-[node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("enemy", "simple_ai_shooter")]
+[node name="EnemyMovement" type="Node" parent="."]
 script = ExtResource("2_03eva")
-enemy = NodePath("..")
-simple_ai_shooter = NodePath("../SimpleAIShooter")
 
-[node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("line_of_sight", "enemy", "enemy_movement", "simple_ai_shooter")]
+[node name="EnemyStateMachine" type="Node" parent="."]
 script = ExtResource("7_b2d06")
-line_of_sight = NodePath("../LineOfSight")
-enemy = NodePath("..")
-enemy_movement = NodePath("../EnemyMovement")
-simple_ai_shooter = NodePath("../SimpleAIShooter")
 
 [node name="HealthSystem" type="Node" parent="."]
 script = ExtResource("2_6kfbs")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.519531)
-shape = SubResource("BoxShape3D_g36n3")
 
 [node name="SimpleAIShooter" type="Node" parent="." node_paths=PackedStringArray("bullet_spawn_point")]
 script = ExtResource("3_witci")
 bullet_spawn_point = NodePath("../BulletSpawnPoint")
 
 [node name="ShootTimer" type="Timer" parent="SimpleAIShooter"]
+
+[node name="BulletSpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.33317)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.519531)
+shape = SubResource("BoxShape3D_g36n3")
 
 [node name="LineOfSight" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.35275)
@@ -68,9 +65,6 @@ script = ExtResource("4_lunia")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfSight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26.6946)
 shape = SubResource("BoxShape3D_sf7gk")
-
-[node name="BulletSpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.33317)
 
 [node name="Model" type="Node3D" parent="."]
 

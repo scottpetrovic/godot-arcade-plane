@@ -4,7 +4,7 @@ signal enemy_died(enemy)
 @onready var health_system: HealthSystem = $HealthSystem
 
 @onready var line_of_sight: Area3D = $LineOfSight
-@onready var ai_shooter: Node = $AIShooter
+@onready var ai_shooter: Node = $SimpleAIShooter
 
 
 var _player_reference: Node3D

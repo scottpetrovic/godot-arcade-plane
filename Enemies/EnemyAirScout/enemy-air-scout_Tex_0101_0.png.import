@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d7hhneu8n7yu"
-path.s3tc="res://.godot/imported/EnemySeaTurretShip_ZC_Qianting01_D_LOD1.png-3080d73c13e9be5d0aaccf92d5ea8a5c.s3tc.ctex"
+uid="uid://cwraltktu1p44"
+path.s3tc="res://.godot/imported/enemy-air-scout_Tex_0101_0.png-89b93b2ca423acfa6e0deca4675a019f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "0dc5daccf5460935a7d24f16f9a0483a"
+"md5": "d6014d80ff7526656031007de4e672cf"
 }
 
 [deps]
 
-source_file="res://Props/EnemySeaTurretShip/EnemySeaTurretShip_ZC_Qianting01_D_LOD1.png"
-dest_files=["res://.godot/imported/EnemySeaTurretShip_ZC_Qianting01_D_LOD1.png-3080d73c13e9be5d0aaccf92d5ea8a5c.s3tc.ctex"]
+source_file="res://Enemies/EnemyAirScout/enemy-air-scout_Tex_0101_0.png"
+dest_files=["res://.godot/imported/enemy-air-scout_Tex_0101_0.png-89b93b2ca423acfa6e0deca4675a019f.s3tc.ctex"]
 
 [params]
 

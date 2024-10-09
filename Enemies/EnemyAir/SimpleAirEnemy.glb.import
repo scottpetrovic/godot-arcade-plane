@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c5d1ae6y4sbdv"
-path="res://.godot/imported/SimpleAirEnemy.glb-f18d10f75a3e4ba2e460976472c3c464.scn"
+path="res://.godot/imported/SimpleAirEnemy.glb-7ac48f950064f42a3704b6ee162b1f17.scn"
 
 [deps]
 
-source_file="res://Props/EnemyAir/SimpleAirEnemy.glb"
-dest_files=["res://.godot/imported/SimpleAirEnemy.glb-f18d10f75a3e4ba2e460976472c3c464.scn"]
+source_file="res://Enemies/EnemyAir/SimpleAirEnemy.glb"
+dest_files=["res://.godot/imported/SimpleAirEnemy.glb-7ac48f950064f42a3704b6ee162b1f17.scn"]
 
 [params]
 

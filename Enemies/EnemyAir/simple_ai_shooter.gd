@@ -1,14 +1,14 @@
 extends Node
 
 @onready var shoot_timer: Timer = $ShootTimer
-@export var bullet_spawn_point: Marker3D # this could be different for each enemy type
-
-@export var Bullet = preload("res://Props/Bullet/Bullet.tscn")
-@export var attack_range = 25.0  # How close the enemy needs to be to attack (for future use)
-var can_shoot = true
 
 # make sure to check inspector in case this was overwritten
 @export var shoot_delay = 0.3
+@export var Bullet = preload("res://Props/Bullet/Bullet.tscn")
+@export var attack_range = 25.0  # How close the enemy needs to be to attack (for future use)
+@export var bullet_spawn_point: Marker3D
+
+var can_shoot = true
 
 func _ready():
 	shoot_timer.wait_time = shoot_delay
