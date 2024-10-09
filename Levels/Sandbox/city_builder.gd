@@ -10,6 +10,9 @@ extends Node3D
 @export var generation_seed: int = 0
 @export var building_margin: float = 0.5  # Margin between buildings
 
+@onready var road_generation: Node3D = $"../RoadGeneration"
+
+
 var rng: RandomNumberGenerator
 var buildings: Array = []
 
@@ -17,6 +20,8 @@ enum BuildingType { CUBE, CYLINDER, PYRAMID, L_SHAPE, U_SHAPE, SKYSCRAPER }
 
 func _ready():
 	generate_cityscape()
+	road_generation.generate_roads(city_size, block_size, ground_height_offset)
+ 
 
 func generate_cityscape():
 	rng = RandomNumberGenerator.new()
