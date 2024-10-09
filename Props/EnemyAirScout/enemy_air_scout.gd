@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@onready var health_system: HealthSystem = $HealthSystem
+
 # State Machine: Defines possible states for the enemy aircraft
 enum State {PATROL, PURSUE, RETURN, ATTACK}  # Added ATTACK state for future implementation
 
@@ -21,15 +23,7 @@ var points_value: int = 214 # player gets points
 
 signal enemy_died(enemy)
 
-var health = 2
-
-func hit() -> void:
-	health -= 1
-	
-	if health <= 0:
-		die()
-
-func die():
+func lost_all_health():
 	emit_signal("enemy_died", self)
 	GameManager.add_destruction_points(points_value)
 	GameManager.create_explosion(self.global_position)
@@ -44,9 +38,15 @@ func die():
 	
 	queue_free()  # The enemy removes itself from the scene
 
+func hit() -> void:
+	health_system.take_damage(1.0)
+
+
 func _ready():
 	name = "Air Scout"
-
+	
+	health_system.death.connect(lost_all_health)
+	health_system.set_starting_health(2.0)
 	line_of_sight.body_entered.connect(_on_line_of_sight_body_entered)
 	line_of_sight.body_exited.connect(_on_line_of_sight_body_exited)
 

@@ -1,19 +1,30 @@
 extends CharacterBody3D
 signal enemy_died(enemy)
 
+@onready var health_system: HealthSystem = $HealthSystem
+
 @onready var line_of_sight: Area3D = $LineOfSight
 @onready var ai_shooter: Node = $AIShooter
 
 
 var _player_reference: Node3D
 var attack_range = 100.0  # How close the enemy needs to be to attack (for future use)
-var health = 8
 var points_value: int = 5132 # player gets points
 
 # blender uses diferent xyz directions than Godot
 # this is needed when doing look at to point things at right direction
 # 90 degrees converted to radians
 var blender_to_godot_adjustment := deg_to_rad(90) 
+
+
+func _ready() -> void:
+	health_system.death.connect(lost_all_health)
+	health_system.set_starting_health(12.0)
+
+
+func hit() -> void:
+	health_system.take_damage(1.0)
+
 
 func attack_when_ready():
 	
@@ -32,19 +43,14 @@ func _process(delta: float) -> void:
 	gun_follow_player()
 	attack_when_ready()
 
+
 func gun_follow_player() -> void:
 	var gun: MeshInstance3D = $ShipMesh/Gun
 	gun.look_at(_player_reference.global_position)
 	gun.rotate_object_local(Vector3.RIGHT, blender_to_godot_adjustment)
 
 
-func hit() -> void:
-	health -= 1
-	
-	if health <= 0:
-		die()
-
-func die():
+func lost_all_health():
 	emit_signal("enemy_died", self)
 	GameManager.add_destruction_points(points_value)
 	GameManager.create_explosion(self.global_position)

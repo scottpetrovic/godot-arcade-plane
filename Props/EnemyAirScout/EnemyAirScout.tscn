@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfs2bysish47g"]
+[gd_scene load_steps=7 format=3 uid="uid://dfs2bysish47g"]
 
 [ext_resource type="PackedScene" uid="uid://bimj6h0mb7mg" path="res://Props/EnemyAirScout/enemy-air-scout.glb" id="1_lyh57"]
 [ext_resource type="Script" path="res://Props/EnemyAirScout/enemy_air_scout.gd" id="1_q8lak"]
 [ext_resource type="Script" path="res://Props/EnemyAir/simple_ai_shooter.gd" id="3_r5bv4"]
+[ext_resource type="Script" path="res://Character/health_system.gd" id="4_1ygq6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_44aga"]
 size = Vector3(3, 2.77527, 5.90137)
@@ -12,6 +13,9 @@ size = Vector3(46.8252, 41.6885, 53.9863)
 
 [node name="EnemyAirScout" type="CharacterBody3D"]
 script = ExtResource("1_q8lak")
+
+[node name="HealthSystem" type="Node" parent="."]
+script = ExtResource("4_1ygq6")
 
 [node name="enemy-air-scout" parent="." groups=["radar_target"] instance=ExtResource("1_lyh57")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
