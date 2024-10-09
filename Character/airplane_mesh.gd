@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var plane: CharacterBody3D
+@export var plane: Player
 @export var animation_player: AnimationPlayer
 
 var airplane_original_scale: float
@@ -13,11 +13,14 @@ func open_landing_gears(value: bool) -> void:
 
 func _ready() -> void:
 	airplane_original_scale = scale.y
+	
+func _process(delta: float) -> void:
+	rotate_propellor(delta)
 
 func rotate_propellor(delta: float) -> void:
 	# rotate propellor based off forward speed
 	var propellor_speed_multiplier: float = 3.0
-	var rotate_amount = delta * plane.forward_speed * propellor_speed_multiplier
+	var rotate_amount = delta * plane.flight_controller.forward_speed * propellor_speed_multiplier
 	get_node("Propellor").rotate( Vector3.FORWARD, rotate_amount)
 
 func squash_and_stretch(delta: float) -> void:

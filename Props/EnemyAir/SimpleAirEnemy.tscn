@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://mvtsty7f7en6"]
+[gd_scene load_steps=13 format=3 uid="uid://mvtsty7f7en6"]
 
 [ext_resource type="PackedScene" uid="uid://c5d1ae6y4sbdv" path="res://Props/EnemyAir/SimpleAirEnemy.glb" id="1_3ilad"]
 [ext_resource type="Script" path="res://Props/EnemyAir/simple_air_enemy.gd" id="1_sgorc"]
+[ext_resource type="Script" path="res://Props/EnemyAir/enemy_movement.gd" id="2_03eva"]
 [ext_resource type="Script" path="res://Character/health_system.gd" id="2_6kfbs"]
 [ext_resource type="Shader" path="res://Props/EnemyAir/SimpleAirEnemy.gdshader" id="3_4yo2o"]
 [ext_resource type="Script" path="res://Props/EnemyAir/simple_ai_shooter.gd" id="3_witci"]
@@ -35,10 +36,16 @@ rings = 8
 [node name="SimpleAirEnemy" type="CharacterBody3D" groups=["radar_target"]]
 script = ExtResource("1_sgorc")
 
-[node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("line_of_sight", "enemy", "simple_ai_shooter")]
+[node name="EnemyMovement" type="Node" parent="." node_paths=PackedStringArray("enemy", "simple_ai_shooter")]
+script = ExtResource("2_03eva")
+enemy = NodePath("..")
+simple_ai_shooter = NodePath("../SimpleAIShooter")
+
+[node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("line_of_sight", "enemy", "enemy_movement", "simple_ai_shooter")]
 script = ExtResource("7_b2d06")
 line_of_sight = NodePath("../LineOfSight")
 enemy = NodePath("..")
+enemy_movement = NodePath("../EnemyMovement")
 simple_ai_shooter = NodePath("../SimpleAIShooter")
 
 [node name="HealthSystem" type="Node" parent="."]

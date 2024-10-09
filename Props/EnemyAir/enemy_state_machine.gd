@@ -6,6 +6,7 @@ enum State {PATROL, PURSUE, RETURN, ATTACK}  # Added ATTACK state for future imp
 
 @export var line_of_sight: EnemyLineOfSight
 @export var enemy: CharacterBody3D
+@export var enemy_movement: Node
 @export var simple_ai_shooter: Node
 
 
@@ -80,4 +81,4 @@ func check_if_we_can_attack():
 		current_state = State.ATTACK
 
 func _distance_to_starting_patrol_position() -> float :
-	return (enemy.patrol_starting_position - enemy.global_position).length()
+	return (enemy_movement.patrol_starting_position - enemy.global_position).length()
