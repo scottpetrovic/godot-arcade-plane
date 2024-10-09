@@ -7,6 +7,6 @@ func _ready() -> void:
 	area_3d.body_entered.connect(_body_entered)
 
 func _body_entered(body: Node3D):
-	if body.name == "Airplane" :
+	if body.is_class("Player"):
 		EventBus.emit_signal("player_crashed", "ground")
 		return

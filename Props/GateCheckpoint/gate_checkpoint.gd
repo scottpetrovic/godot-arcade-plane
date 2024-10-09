@@ -9,7 +9,7 @@ func _ready() -> void:
 	self.body_entered.connect(body_enter)
 	
 func body_enter(body: Node3D) -> void:
-	if body.name == "Airplane":
+	if body.is_class("Player"):
 		is_checked = true
 
 		# change the color of the gate. we need to make the material

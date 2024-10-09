@@ -21,12 +21,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.4794, 0, 3.266)
 [node name="Airplane" parent="." instance=ExtResource("4_ta1sr")]
 transform = Transform3D(0.999292, 0, -0.0376205, 0, 1, 0, 0.0376205, 0, 0.999292, -0.101195, 1.86236, 5.21982)
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("airplane")]
 transform = Transform3D(-0.611259, -0.0866441, 0.786673, -0.0389977, 0.996079, 0.0794062, -0.790469, 0.0178593, -0.612241, 0.700955, 2.23178, 4.73481)
 h_offset = 0.545
 current = true
 far = 39.71
 script = ExtResource("6_yuge5")
+airplane = NodePath("../Airplane")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

@@ -1,7 +1,6 @@
 extends Camera3D
 
-@onready var airplane: CharacterBody3D = $"../Airplane"
-
+@export var airplane: CharacterBody3D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

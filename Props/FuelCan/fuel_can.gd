@@ -5,7 +5,6 @@ extends Node3D
 @onready var area_3d: Area3D = $Area3D
 @onready var sfx: AudioStreamPlayer2D = $SFX
 
-
 func _ready():
 	area_3d.body_entered.connect(_body_entered)
 
@@ -13,8 +12,8 @@ func _body_entered(body:Node3D) -> void:
 	
 	# player picked up fuel can
 	# play sound effect, then remove fuel can
-	if body.name == "Airplane":
-		body.collided_with_fuel_can()
+	if body.is_class("Player"):
+		(body as Player).fuel_system.refuel(20.0)
 		visible = false
 		sfx.play()
 		await sfx.finished
