@@ -1,7 +1,7 @@
 extends Node
 
 @onready var shoot_timer: Timer = $ShootTimer
-@export var bullet_spawn_point: Marker3D # $"../BulletSpawnPoint"
+@export var bullet_spawn_point: Marker3D # this could be different for each enemy type
 
 @export var Bullet = preload("res://Plane/Bullet/Bullet.tscn")
 

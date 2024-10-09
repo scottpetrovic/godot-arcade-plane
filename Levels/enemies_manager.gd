@@ -1,11 +1,13 @@
 extends Node
 
 @export var simple_air_enemy: PackedScene  = load("res://Props/EnemyAir/SimpleAirEnemy.tscn")
-@export var num_air_simple_enemies: int = 0
+@export var num_air_simple_enemies: int = 3
 
 @export var simple_sea_enemy: PackedScene  = load("res://Props/EnemySeaTurretShip/enemy_turret_ship.tscn")
-@export var num_simple_sea_enemies: int = 1
+@export var num_simple_sea_enemies: int = 3
 
+@export var simple_air_scout_enemy: PackedScene  = load("res://Props/EnemyAirScout/EnemyAirScout.tscn")
+@export var num_air_simple_scout_enemies: int = 3
 
 @onready var spawn_area: Area3D = $SpawnArea
 @onready var enemies_container: Node = $EnemiesContainer
@@ -20,6 +22,9 @@ func spawn_initial_enemies():
 		
 	for i in range(num_simple_sea_enemies):
 		spawn_enemy(simple_sea_enemy, true)
+		
+	for i in range(num_air_simple_scout_enemies):
+		spawn_enemy(simple_air_scout_enemy, false)
 	
 
 func spawn_enemy(enemy_scene: PackedScene, place_on_floor: bool):

@@ -3,11 +3,11 @@ extends CharacterBody3D
 # State Machine: Defines possible states for the enemy aircraft
 enum State {PATROL, PURSUE, RETURN, ATTACK}  # Added ATTACK state for future implementation
 
-@export var patrol_speed = 6.0  # Units per second
+@export var patrol_speed = 18.0  # Units per second
 @export var pursuit_speed = 8.0  # Units per second
 @export var turn_angle = 30.0  # Degrees
-@export var distance_to_travel = 60.0  # Units
-@export var attack_range = 25.0  # How close the enemy needs to be to attack (for future use)
+@export var distance_to_travel = 120.0  # Units
+@export var attack_range = 30.0  # How close the enemy needs to be to attack (for future use)
 @onready var simple_ai_shooter: Node = $SimpleAIShooter
 @onready var line_of_sight: Area3D = $LineOfSight
 
@@ -17,7 +17,7 @@ var player: Node3D = null
 var patrol_starting_position: Vector3 = Vector3.ZERO
 var player_in_line_of_sight: bool = false
 
-var points_value: int = 1000 # player gets points
+var points_value: int = 214 # player gets points
 
 signal enemy_died(enemy)
 
@@ -34,10 +34,7 @@ func die():
 	GameManager.add_destruction_points(points_value)
 	GameManager.create_explosion(self.global_position)
 	
-	# 10% chance a fuel can will be dropped
-	if randf() <= 0.10:
-		GameManager.create_fuel_can(self.global_position)
-		
+	
 	# do small screen shake to help with effect
 	# strength, duration	
 	var distance_to_player = global_position.distance_to(player.global_position)
@@ -48,10 +45,10 @@ func die():
 	queue_free()  # The enemy removes itself from the scene
 
 func _ready():
+	name = "Air Scout"
+
 	line_of_sight.body_entered.connect(_on_line_of_sight_body_entered)
 	line_of_sight.body_exited.connect(_on_line_of_sight_body_exited)
-
-	name = "Air Seaman"
 
 
 func _on_line_of_sight_body_entered(body: Node3D):
