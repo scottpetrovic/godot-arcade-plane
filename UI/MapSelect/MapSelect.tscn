@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dp5thgtq6njn6"]
 
-[ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="1_eslx1"]
+[ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://MainTheme.tres" id="1_eslx1"]
 [ext_resource type="Script" path="res://UI/MapSelect/MapSelect.gd" id="1_ouq5t"]
 
 [node name="MapSelect" type="Node3D"]

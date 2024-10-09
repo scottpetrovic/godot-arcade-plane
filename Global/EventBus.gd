@@ -6,6 +6,3 @@ extends Node
 signal player_crashed(location: String)
 
 signal all_objectives_complete()
-
-signal skydiver_landed_on_target(points: float)
-signal skydiver_landed_off_target()

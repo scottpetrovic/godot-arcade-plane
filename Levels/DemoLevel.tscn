@@ -1,0 +1,74 @@
+[gd_scene load_steps=13 format=3 uid="uid://dk0av4tlip45w"]
+
+[ext_resource type="Script" path="res://Levels/DemoLevel.gd" id="1_1av5s"]
+[ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Character/airplane.tscn" id="2_csgv2"]
+[ext_resource type="Script" path="res://Effects/Camera/CameraFollow.gd" id="3_55mkc"]
+[ext_resource type="Script" path="res://Effects/Camera/FX_ScreenShake.gd" id="4_0jffm"]
+[ext_resource type="PackedScene" uid="uid://bm15sseqvqdwl" path="res://UI/InGame/InGameUIElements.tscn" id="5_02igj"]
+[ext_resource type="Script" path="res://Levels/enemies_manager.gd" id="6_j5bk4"]
+[ext_resource type="PackedScene" uid="uid://c1va3jn6i0rm2" path="res://Effects/Particles/WaterSpeedSplash/water_speed_splash.tscn" id="7_7ann4"]
+[ext_resource type="Script" path="res://Effects/direction_pointer.gd" id="8_tloud"]
+[ext_resource type="PackedScene" uid="uid://bnhfe25p6jhpc" path="res://Environment/Sky.tscn" id="9_xymlx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1rrbf"]
+size = Vector3(163.855, 65.7424, 205.234)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpshr"]
+albedo_color = Color(1, 0.0559123, 0.305167, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_j6duj"]
+material = SubResource("StandardMaterial3D_xpshr")
+top_radius = 0.0
+bottom_radius = 0.4
+height = 3.0
+
+[node name="PlaneLevel" type="Node3D"]
+script = ExtResource("1_1av5s")
+
+[node name="Airplane" parent="." instance=ExtResource("2_csgv2")]
+transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -23.9878, 2.23225, 1.46834)
+slide_on_ceiling = false
+
+[node name="CameraTarget" type="Node3D" parent="Airplane"]
+transform = Transform3D(1, 0, 2.23517e-07, 0, 1, 0, -2.23517e-07, 0, 1, -0.272616, 0.818029, 4.36149)
+
+[node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(0.195552, 0, -0.980693, 0, 1, 0, 0.980693, 0, 0.195552, -28.7889, 3.25894, 1.84443)
+current = true
+fov = 66.6
+far = 3000.0
+script = ExtResource("3_55mkc")
+target = NodePath("../Airplane/CameraTarget")
+
+[node name="ScreenShake" type="Node3D" parent="Camera"]
+transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 0, 0, 1, -0.698183, 0.79687, 6.15439)
+script = ExtResource("4_0jffm")
+
+[node name="UI" parent="." instance=ExtResource("5_02igj")]
+
+[node name="EnemiesManager" type="Node" parent="."]
+script = ExtResource("6_j5bk4")
+num_air_simple_enemies = 1
+num_simple_sea_enemies = 1
+num_air_simple_scout_enemies = 1
+
+[node name="SpawnArea" type="Area3D" parent="EnemiesManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 265.06, 69.339, 21.202)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemiesManager/SpawnArea"]
+shape = SubResource("BoxShape3D_1rrbf")
+
+[node name="EnemiesContainer" type="Node" parent="EnemiesManager"]
+
+[node name="WaterSpeedSplash" parent="." instance=ExtResource("7_7ann4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+
+[node name="DirectionPointer" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CylinderMesh_j6duj")
+script = ExtResource("8_tloud")
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("9_xymlx")]
+
+[editable path="UI"]

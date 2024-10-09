@@ -32,11 +32,7 @@ func _ready() -> void:
 	# time_score.text += " (" + str(time_points) + ") PTS"
 	objectives_score.text = str(GameManager.current_level_objectives_score) + " PTS"
 	
-	if GameManager.current_vehicle == Constants.VEHICLE.SKYDIVER:
-		landing_score.text = str( int(GameManager.current_level_landing_score)) + " PTS"
-	elif GameManager.current_vehicle == Constants.VEHICLE.AIRPLANE:
-		landing_score.text = str( int(GameManager.current_level_landing_score)) + " PTS"
-	
+	landing_score.text = str( int(GameManager.current_level_landing_score)) + " PTS"
 
 	total_score.text = str(int(GameManager.current_level_objectives_score + GameManager.current_level_landing_score + time_points)) 
 	total_score.text += " PTS"

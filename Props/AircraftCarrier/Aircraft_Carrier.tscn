@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bc7flfj4e2c14" path="res://Props/AircraftCarrier/aircraft_carrier_mesh.tscn" id="1_6s1ql"]
 [ext_resource type="Script" path="res://Props/Runway/Runway.gd" id="2_n1y8k"]
 [ext_resource type="Script" path="res://Props/AircraftCarrier/landing_proximity_indicator.gd" id="3_uwvaf"]
-[ext_resource type="PackedScene" uid="uid://d3qn3es4bmao8" path="res://Plane/Airplane_Mesh.tscn" id="4_15g5h"]
+[ext_resource type="PackedScene" uid="uid://d3qn3es4bmao8" path="res://Character/Airplane_Mesh.tscn" id="4_15g5h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bdlhb"]
 size = Vector3(8.91533, 18.8159, 17.4218)

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://UI/MainMenu/MainMenu.gd" id="1_hxtm5"]
 [ext_resource type="PackedScene" uid="uid://cl861nerpvmo8" path="res://Props/AircraftCarrier/Aircraft_Carrier.tscn" id="1_qfpby"]
 [ext_resource type="PackedScene" uid="uid://f5q3lvkkp6et" path="res://Environment/Ocean/Ocean.tscn" id="2_bqd8t"]
-[ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Plane/airplane.tscn" id="4_ta1sr"]
+[ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Character/airplane.tscn" id="4_ta1sr"]
 [ext_resource type="Script" path="res://UI/MainMenu/CameraMovement.gd" id="6_yuge5"]
 [ext_resource type="Texture2D" uid="uid://c67q4xuh2de08" path="res://Assets/UI/TAKE-OFF-8-16-2024.png" id="7_tibdh"]
 [ext_resource type="PackedScene" uid="uid://bnhfe25p6jhpc" path="res://Environment/Sky.tscn" id="10_j6bcm"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://xulxfupki51m"]
 
-[ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://Theme/MainTheme.tres" id="1_aifyh"]
+[ext_resource type="Theme" uid="uid://b6n1yoly1eyhl" path="res://MainTheme.tres" id="1_aifyh"]
 [ext_resource type="Script" path="res://UI/MissionEndOverview/MissionEndOverview.gd" id="1_n6hbo"]
 [ext_resource type="Shader" path="res://UI/MissionEndOverview/MissionEndOverview.gdshader" id="2_5gcm8"]
 [ext_resource type="Texture2D" uid="uid://stpxkenrfd85" path="res://UI/MissionEndOverview/background-tiled.png" id="2_86wni"]

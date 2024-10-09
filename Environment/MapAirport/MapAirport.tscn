@@ -59,18 +59,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.21932, 15.3529, 148.044)
 [node name="GateCheckpoint5" parent="PlaneGateManager" instance=ExtResource("6_osbfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.21932, 18.8821, 181.107)
 
-[node name="SkyDivingGateManager" type="Node3D" parent="."]
-script = ExtResource("8_km4je")
-
-[node name="GateCheckpoint" parent="SkyDivingGateManager" instance=ExtResource("6_osbfy")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -17.886, 50, -1.54)
-
-[node name="GateCheckpoint2" parent="SkyDivingGateManager" instance=ExtResource("6_osbfy")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -17.886, 100, -1.54)
-
-[node name="GateCheckpoint3" parent="SkyDivingGateManager" instance=ExtResource("6_osbfy")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -17.886, 150, -1.54)
-
 [node name="StartPositions" type="Node3D" parent="."]
 
 [node name="Plane1" type="Node3D" parent="StartPositions"]

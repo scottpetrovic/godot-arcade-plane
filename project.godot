@@ -39,8 +39,8 @@ radar_prominent_point="Important places to note such as home base"
 
 [gui]
 
-theme/custom="res://Theme/MainTheme.tres"
-theme/custom_font="res://Theme/Rajdhani-Bold-Main.ttf"
+theme/custom="res://MainTheme.tres"
+theme/custom_font="res://Assets/Fonts/Rajdhani-Bold-Main.ttf"
 
 [input]
 

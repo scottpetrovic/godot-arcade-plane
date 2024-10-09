@@ -41,10 +41,6 @@ func _body_entered(body: Node3D):
 				landing_score = 11
 			GameManager.current_level_landing_score = landing_score
 
-	
-	if body.name == "PlayerSkydiver":
-		EventBus.emit_signal("skydiver_landed_off_target")
-		return
 
 func _body_exited(body: Node3D):
 	if body.name == 'Airplane':

@@ -13,9 +13,7 @@ func _input(event: InputEvent) -> void:
 	# bypass selections for now and just go to airplane and aircraft carrier level
 	if event is InputEventMouseButton or event is InputEventKey:
 		GameManager.set_current_map(Constants.MAP.AIRCRAFTCARRIER)
-		GameManager.set_current_vehicle(Constants.VEHICLE.AIRPLANE)
 		GameManager.go_to_next_level()
-
 	return
 
 	# go to in-game when anything is pressed
