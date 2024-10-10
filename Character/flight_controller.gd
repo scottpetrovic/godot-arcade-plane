@@ -7,7 +7,7 @@ var max_flight_speed: int = 12 # Maximum airspeed
 var turn_speed: float = 0.35 # Turn rate when going at lower speeds
 var active_turn_speed: float = turn_speed # turning rate will decrease faster plane is going
 var pitch_speed: float = 0.5 # Climb/dive rate
-var throttle_delta: int = 15 # Throttle change speed
+var throttle_delta: int = 20 # Throttle change speed
 var acceleration: float = 5.0 # Acceleration/deceleration
 
 # Current flight state
@@ -23,6 +23,10 @@ var lerp_speed_modifier: float = 3.0
 var parent_body: CharacterBody3D
 @export var plane_mesh: Node3D
 
+var gravity: float = 9.8 # Gravity strength
+var terminal_velocity: float = 53.0 # Maximum falling speed
+var vertical_velocity: float = 0.0
+
 func _ready() -> void:
 	parent_body = get_parent() as CharacterBody3D
 
@@ -34,7 +38,8 @@ func process_flight(delta: float) -> void:
 	get_input(delta)
 	update_speed(delta)
 	rotate_aircraft(delta)
-	update_velocity()
+	update_velocity(delta)
+	apply_gravity(delta) # make sure this goes after update_velocity
 
 
 func get_input(delta: float) -> void:
@@ -54,8 +59,21 @@ func get_input(delta: float) -> void:
 func update_speed(delta: float) -> void:
 	forward_speed = lerp(forward_speed, target_speed, acceleration * delta)
 
-func update_velocity() -> void:
-	parent_body.velocity = -parent_body.transform.basis.z * forward_speed
+func update_velocity(delta: float) -> void:
+	var velocity = -parent_body.transform.basis.z * forward_speed
+	parent_body.velocity = velocity
+
+
+func apply_gravity(delta: float) -> void:
+	# apply gravity if we are not flying...and also going too slow
+	var is_flying: bool = forward_speed >= takeoff_speed
+	if not is_flying and not parent_body.is_on_floor():
+		vertical_velocity -= gravity * delta
+		vertical_velocity = max(vertical_velocity, -terminal_velocity)
+	else:
+		vertical_velocity = 0.0  # Reset vertical velocity when flying or on the ground
+
+	parent_body.velocity += Vector3.UP * vertical_velocity
 
 func rotate_aircraft(delta: float) -> void:
 	update_active_turn_speed()
