@@ -33,6 +33,84 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, -0.208445, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlaneMesh/Landing_Gear_Left:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.06995e-09, 3.77326e-12, -0.00708604), Vector3(-5.21965e-09, 9.02057e-11, -0.034575)]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlaneMesh/Landing_Gear_Back:rotation:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.186698, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlaneMesh/Landing_Gear_Back:rotation:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-2.67024e-09, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlaneMesh/Landing_Gear_Back:rotation:z")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-2.85227e-08, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PlaneMesh/Landing_Gear_Right:rotation:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-2.35132e-06, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PlaneMesh/Landing_Gear_Right:rotation:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(3.14159, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PlaneMesh/Landing_Gear_Right:rotation:z")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1.42203, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_rrdoy"]
 resource_name = "landing_gear_up"
@@ -40,62 +118,59 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlaneMesh/Landing_Gear_Back:rotation")
+tracks/0/path = NodePath("PlaneMesh/Landing_Gear_Right:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.97),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.530179, -2.40278e-08, -8.85073e-08)]
+"values": [Vector3(7.47549e-08, -3.14159, -1.43038), Vector3(0, -3.14159, -3.15905)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PlaneMesh/Landing_Gear_Back:position")
+tracks/1/path = NodePath("PlaneMesh/Landing_Gear_Left:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.97),
+"times": PackedFloat32Array(0, 1.96667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.00204349, 0.298476, -0.103187), Vector3(-0.00204347, 0.298476, 0.0202655)]
+"values": [Vector3(0, 0, 0), Vector3(-1.4134e-07, 2.04125e-07, -1.93035)]
 }
-tracks/2/type = "value"
+tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PlaneMesh/Landing_Gear_Right:rotation")
+tracks/2/path = NodePath("PlaneMesh/Landing_Gear_Back:rotation:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.97),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(7.47549e-08, -3.14159, -1.43038), Vector3(0, -3.14159, -3.15905)]
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.173974, -0.25, 0, 0.25, 0, 1.28832, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.96667)
 }
-tracks/3/type = "value"
+tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PlaneMesh/Landing_Gear_Left:rotation")
+tracks/3/path = NodePath("PlaneMesh/Landing_Gear_Back:rotation:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.97),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-1.50515e-07, 1.38955e-07, -1.49097)]
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-2.31428e-09, -0.25, 0, 0.25, 0, -3.90714e-07, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.96667)
 }
-tracks/4/type = "value"
+tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("PlaneMesh/Landing_Gear_Left:position")
+tracks/4/path = NodePath("PlaneMesh/Landing_Gear_Back:rotation:z")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 1.06667, 1.97),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.00204349, 0.298476, -0.103187), Vector3(0.129166, 0.455617, -0.103187), Vector3(0.270866, 0.453894, -0.103187)]
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-2.65377e-08, -0.25, 0, 0.25, 0, -5.2024e-07, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.96667)
 }
 
 [sub_resource type="Animation" id="Animation_2usq4"]
@@ -162,11 +237,21 @@ stream = ExtResource("6_aojr6")
 transform = Transform3D(1.91068e-15, 4.37114e-08, 1, 1, -4.37114e-08, 2.12779e-21, 4.37114e-08, 1, -4.37114e-08, 1.01377e-16, 0.0530583, 2.31925e-09)
 shape = SubResource("CapsuleShape3D_gsjsx")
 
-[node name="PlaneMesh" parent="." node_paths=PackedStringArray("plane", "animation_player") instance=ExtResource("2_j34yd")]
+[node name="PlaneMesh" parent="." node_paths=PackedStringArray("plane", "animation_player", "flight_controller") instance=ExtResource("2_j34yd")]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, -0.208445, 0)
 script = ExtResource("9_dt02h")
 plane = NodePath("..")
 animation_player = NodePath("../AnimationPlayer")
+flight_controller = NodePath("../FlightController")
+
+[node name="Landing_Gear_Back" parent="PlaneMesh" index="1"]
+transform = Transform3D(1, 2.80271e-08, -2.62384e-09, -2.80271e-08, 0.982622, -0.185615, -2.62402e-09, 0.185615, 0.982622, -0.00204352, 0.129481, -0.291262)
+
+[node name="Landing_Gear_Left" parent="PlaneMesh" index="2"]
+transform = Transform3D(0.999975, 0.00708598, 3.77326e-12, -0.00708598, 0.999975, 1.06995e-09, 3.80851e-12, -1.06995e-09, 1, 0.299169, 0.197133, -0.103187)
+
+[node name="Landing_Gear_Right" parent="PlaneMesh" index="3"]
+transform = Transform3D(-0.14822, -0.988954, 1.50996e-07, -0.988954, 0.14822, 2.35132e-06, -2.34773e-06, 1.99184e-07, -1, -0.251448, 0.208125, 0.0334829)
 
 [node name="EngineSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_610pa")
@@ -183,3 +268,5 @@ plane_mesh = NodePath("../PlaneMesh")
 libraries = {
 "": SubResource("AnimationLibrary_u80ly")
 }
+
+[editable path="PlaneMesh"]
