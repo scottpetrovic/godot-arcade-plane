@@ -22,3 +22,11 @@ func _physics_process(delta: float) -> void:
 
 func hit() -> void:
 	health_system.take_damage(1.0)
+	
+func float_on_water() -> void:
+	global_position.y = 0 # move to water height
+	animation_player.play("water_float")
+	
+	# stop propellor by changing speed
+	flight_controller.forward_speed = 0
+	flight_controller.target_speed = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d3ovo2it7nbnh"]
+[gd_scene load_steps=18 format=3 uid="uid://d3ovo2it7nbnh"]
 
 [ext_resource type="Script" path="res://Character/airplane.gd" id="1_wihbf"]
 [ext_resource type="PackedScene" uid="uid://d3qn3es4bmao8" path="res://Character/Airplane_Mesh.tscn" id="2_j34yd"]
@@ -81,12 +81,47 @@ tracks/4/keys = {
 "values": [Vector3(-0.00204349, 0.298476, -0.103187), Vector3(0.129166, 0.455617, -0.103187), Vector3(0.270866, 0.453894, -0.103187)]
 }
 
+[sub_resource type="Animation" id="Animation_2usq4"]
+resource_name = "water_float"
+length = 1.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlaneMesh:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.1876, 0), Vector3(0, -0.379977, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yllyq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlaneMesh:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.208445, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u80ly"]
 _data = {
-"landing_gear_up": SubResource("Animation_rrdoy")
+"RESET": SubResource("Animation_yllyq"),
+"landing_gear_up": SubResource("Animation_rrdoy"),
+"water_float": SubResource("Animation_2usq4")
 }
 
 [node name="Airplane" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.214764, 0)
 script = ExtResource("1_wihbf")
 
 [node name="FlightController" type="Node" parent="." node_paths=PackedStringArray("plane_mesh")]
@@ -118,11 +153,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.394647, 0.178619, -0.264707
 stream = ExtResource("6_aojr6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.91068e-15, 4.37114e-08, 1, 1, -4.37114e-08, 2.12779e-21, 4.37114e-08, 1, -4.37114e-08, 0.0113626, 0.271996, -0.0221037)
+transform = Transform3D(1.91068e-15, 4.37114e-08, 1, 1, -4.37114e-08, 2.12779e-21, 4.37114e-08, 1, -4.37114e-08, 1.01377e-16, 0.0530583, 2.31925e-09)
 shape = SubResource("CapsuleShape3D_gsjsx")
 
 [node name="PlaneMesh" parent="." node_paths=PackedStringArray("plane", "animation_player") instance=ExtResource("2_j34yd")]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, -0.0835133)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, -0.208445, 0)
 script = ExtResource("9_dt02h")
 plane = NodePath("..")
 animation_player = NodePath("../AnimationPlayer")

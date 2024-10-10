@@ -148,6 +148,7 @@ func _on_mission_complete():
 
 func on_player_crash(location: String):
 	player_crashed_overlay.visible = true
+	airplane.float_on_water()
 	GlobalAudio.start_crashed_music()
 	GlobalAudio.play_explosion_sfx()
 	change_camera_to_orbit()

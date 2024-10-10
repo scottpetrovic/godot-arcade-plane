@@ -51,7 +51,7 @@ orientation = 1
 [node name="SimplePlaneSandbox" type="Node3D"]
 
 [node name="Airplane" parent="." instance=ExtResource("1_du1x6")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.10477, -9.4486)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 2.10477, -9.4486)
 
 [node name="Marker3D" type="Marker3D" parent="Airplane"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24793, 3.28496)
