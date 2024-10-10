@@ -8,45 +8,92 @@ extends Node3D
 @export var height_variation_step: float = 2.5
 @export var ground_height_offset: float = 0.1
 @export var generation_seed: int = 0
-@export var building_margin: float = 0.5  # Margin between buildings
-
-@onready var road_generation: Node3D = $"../RoadGeneration"
+@export var building_margin: float = 0.5
+@export var alley_width: float = 2.0
+@export var large_building_chance: float = 0.6  # Chance of a 1x2 block building
 
 
 var rng: RandomNumberGenerator
-var buildings: Array = []
+var occupied_blocks: Array = []
 
 enum BuildingType { CUBE, CYLINDER, PYRAMID, L_SHAPE, U_SHAPE, SKYSCRAPER }
 
 func _ready():
 	generate_cityscape()
-	road_generation.generate_roads(city_size, block_size, ground_height_offset)
- 
+
 
 func generate_cityscape():
 	rng = RandomNumberGenerator.new()
 	rng.seed = generation_seed if generation_seed != 0 else randi()
 	print("Using seed: ", rng.seed)
 	
-	var building_size = block_size - road_width - (building_margin * 2)
+	occupied_blocks = []
+	for _i in range(city_size):
+		occupied_blocks.append([])
+		for _j in range(city_size):
+			occupied_blocks[_i].append(false)
 	
 	for x in range(city_size):
 		for z in range(city_size):
-			var pos_x = x * block_size
-			var pos_z = z * block_size
+			if not occupied_blocks[x][z]:
+				if rng.randf() < large_building_chance and (x < city_size - 1 or z < city_size - 1):
+					generate_large_building(x, z)
+				else:
+					generate_block(x, z)
+
+	add_special_structures()
+
+func generate_large_building(x: int, z: int):
+	var is_horizontal = x < city_size - 1 and not occupied_blocks[x+1][z]
+	var is_vertical = z < city_size - 1 and not occupied_blocks[x][z+1]
+	
+	if is_horizontal and (not is_vertical or rng.randf() < 0.5):
+		# Create horizontal 1x2 building
+		occupied_blocks[x][z] = true
+		occupied_blocks[x+1][z] = true
+		var building_size = Vector3(block_size * 2 - road_width, generate_building_height(), block_size - road_width)
+		var building = create_building(building_size, choose_building_type())
+		building.position = Vector3(
+			x * block_size + block_size - road_width / 2,
+			building_size.y / 2 + ground_height_offset,
+			z * block_size + block_size / 2
+		)
+		add_child(building)
+	elif is_vertical:
+		# Create vertical 1x2 building
+		occupied_blocks[x][z] = true
+		occupied_blocks[x][z+1] = true
+		var building_size = Vector3(block_size - road_width, generate_building_height(), block_size * 2 - road_width)
+		var building = create_building(building_size, choose_building_type())
+		building.position = Vector3(
+			x * block_size + block_size / 2,
+			building_size.y / 2 + ground_height_offset,
+			z * block_size + block_size - road_width / 2
+		)
+		add_child(building)
+	else:
+		# If we can't create a large building, create a normal block
+		generate_block(x, z)
+
+func generate_block(x: int, z: int):
+	occupied_blocks[x][z] = true
+	var sub_block_size = (block_size - road_width - (2 * building_margin) - alley_width) / 2
+	var block_start_x = x * block_size + road_width / 2 + building_margin
+	var block_start_z = z * block_size + road_width / 2 + building_margin
+
+	for i in range(2):
+		for j in range(2):
+			var pos_x = block_start_x + i * (sub_block_size + alley_width)
+			var pos_z = block_start_z + j * (sub_block_size + alley_width)
 			
 			var height = generate_building_height()
 			var building_type = choose_building_type()
-			var building = create_building(Vector3(block_size - road_width, height, block_size - road_width), building_type)
-			
-			# Add small random offset to position
-			var offset_x = rng.randf_range(-0.5, 0.5)
-			var offset_z = rng.randf_range(-0.5, 0.5)
+			var building = create_building(Vector3(sub_block_size, height, sub_block_size), building_type)
 			
 			building.position = Vector3(
-				pos_x + road_width / 2 + offset_x, 
+				pos_x + sub_block_size / 2, 
 				height / 2 + ground_height_offset, 
-				pos_z + road_width / 2 + offset_z
+				pos_z + sub_block_size / 2
 			)
 			
 			add_child(building)
@@ -226,38 +273,6 @@ func create_skyscraper(size: Vector3) -> Node3D:
 	
 	return skyscraper
 
-func replace_with_cluster(building):
-	var num_buildings = rng.randi_range(2, 3)
-	var original_size = building["size"]
-	var cluster_size = Vector2(original_size.x, original_size.z)
-	var positions = generate_cluster_positions(num_buildings, cluster_size)
-	
-	for pos in positions:
-		var size = Vector3(pos.size.x, generate_building_height(), pos.size.y)
-		var building_type = choose_building_type()
-		var new_building = create_building(size, building_type)
-		var world_pos = building["node"].position
-		new_building.position = Vector3(world_pos.x + pos.position.x - cluster_size.x/2, 
-										size.y/2 + ground_height_offset, 
-										world_pos.z + pos.position.y - cluster_size.y/2)
-		buildings.append({"node": new_building, "position": building["position"], "size": size})
-
-func generate_cluster_positions(num_buildings: int, cluster_size: Vector2) -> Array:
-	var positions = []
-	var min_building_size = 5.0
-	
-	for i in range(num_buildings):
-		var size = Vector2(
-			rng.randf_range(min_building_size, cluster_size.x - min_building_size),
-			rng.randf_range(min_building_size, cluster_size.y - min_building_size)
-		)
-		var position = Vector2(
-			rng.randf_range(0, cluster_size.x - size.x),
-			rng.randf_range(0, cluster_size.y - size.y)
-		)
-		positions.append({"position": position, "size": size})
-	
-	return positions
 
 func create_ac_unit(building_size: Vector3) -> CSGBox3D:
 	var ac_unit = CSGBox3D.new()
@@ -287,6 +302,7 @@ func generate_building_height() -> float:
 	var base_height = rng.randf_range(min_building_height, max_building_height)
 	var variation = rng.randf_range(-3, 3) * height_variation_step
 	return clamp(base_height + variation, min_building_height, max_building_height)
+	
 
 func add_special_structures():
 	# Add a tall landmark building
@@ -296,15 +312,16 @@ func add_special_structures():
 	var landmark_z = city_size * block_size * 0.75
 	landmark.position = Vector3(landmark_x, landmark_size.y / 2 + ground_height_offset, landmark_z)
 	add_child(landmark)
-
+	
+	
 func clear_cityscape():
 	for child in get_children():
 		child.queue_free()
-	buildings.clear()
 
 func regenerate_cityscape():
 	clear_cityscape()
 	generate_cityscape()
+
 
 func regenerate_with_seed(new_seed: int):
 	generation_seed = new_seed

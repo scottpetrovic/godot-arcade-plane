@@ -36,6 +36,7 @@ func process_flight(delta: float) -> void:
 	rotate_aircraft(delta)
 	update_velocity()
 
+
 func get_input(delta: float) -> void:
 	if Input.is_action_pressed("throttle_up"):
 		target_speed = min(forward_speed + throttle_delta * delta, max_flight_speed)
