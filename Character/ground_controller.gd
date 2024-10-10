@@ -18,6 +18,8 @@ var lateral_velocity: Vector3 = Vector3.ZERO
 # References
 var parent_body: Player
 var flight_controller: FlightController
+@export var tire_squeal_sfx: AudioStreamPlayer2D
+
 
 # Preload the skid mark scene
 @export var skid_mark_scene: PackedScene
@@ -31,6 +33,14 @@ func process_ground_movement(delta: float) -> void:
 	apply_drift_and_skid(delta)
 	update_velocity()
 	handle_skid_marks(delta)
+	handle_sfx()
+	
+func handle_sfx() -> void:
+	if _currently_skidding():
+		if tire_squeal_sfx.playing == false:
+			tire_squeal_sfx.play()
+	else:
+		tire_squeal_sfx.stop()
 
 func apply_ground_friction(delta: float) -> void:
 	lateral_velocity *= pow(ground_friction, delta * 60)
@@ -44,6 +54,7 @@ func apply_drift_and_skid(delta: float) -> void:
 	lateral_velocity += drift_velocity * delta
 	
 	if forward_speed > skid_threshold:
+
 		var skid_factor = (forward_speed - skid_threshold) / (flight_controller.get_max_flight_speed() - skid_threshold)
 		skid_factor = min(skid_factor, 1.0)
 		lateral_velocity += right_direction * (turn_input * skid_factor * 0.5 * forward_speed * delta)
@@ -56,25 +67,26 @@ func update_velocity() -> void:
 	var blended_velocity = forward_velocity + lateral_velocity
 	parent_body.velocity = blended_velocity.normalized() * forward_velocity.length()
 
+func _currently_skidding() -> bool:
+	return lateral_velocity.length() > skid_mark_threshold and parent_body.is_on_floor()
+
 func handle_skid_marks(delta: float) -> void:
 	time_since_last_mark += delta
 	
-	if lateral_velocity.length() > skid_mark_threshold and parent_body.is_on_floor():
+	if _currently_skidding():
 		if time_since_last_mark >= mark_spawn_interval:
-			
 			# spawn a skid mark for back tire
 			var back_wheel_position = parent_body.get_wheel_location("BACK")
 			spawn_skid_mark(back_wheel_position)
 #
-			#var right_wheel_position = parent_body.get_wheel_location("RIGHT")
-			#spawn_skid_mark(right_wheel_position)
+			var right_wheel_position = parent_body.get_wheel_location("RIGHT")
+			spawn_skid_mark(right_wheel_position)
 			
-			# this is hack since our left wheel origin point is at 0,0,0
-			#var left_wheel_position = right_wheel_position
-			#left_wheel_position.x += 0.5
-			#spawn_skid_mark(left_wheel_position)
+			var left_wheel_position =  parent_body.get_wheel_location("LEFT")
+			spawn_skid_mark(left_wheel_position)
 		
 			time_since_last_mark = 0.0
+
 
 func spawn_skid_mark(position_to_place: Vector3) -> void:
 	if skid_mark_scene:
@@ -88,8 +100,6 @@ func spawn_skid_mark(position_to_place: Vector3) -> void:
 		var ground_normal = get_ground_normal(position_to_place)
 		var travel_direction = -parent_body.global_transform.basis.z
 		skid_mark.global_transform = align_with_normal_and_direction(skid_mark.global_transform, ground_normal, travel_direction)
-
-
 
 
 func get_ground_normal(position: Vector3) -> Vector3:
@@ -108,5 +118,11 @@ func align_with_normal_and_direction(transform: Transform3D, normal: Vector3, di
 	transform.basis = transform.basis.orthonormalized()
 	return transform
 
-func reset_lateral_velocity() -> void:
-	lateral_velocity = Vector3.ZERO
+	
+# we probably started flying, so reset ground related things
+func stop_ground_movement() -> void:
+	lateral_velocity = Vector3.ZERO # reset lateral velocity
+	
+	if tire_squeal_sfx.playing:
+		tire_squeal_sfx.stop()
+	

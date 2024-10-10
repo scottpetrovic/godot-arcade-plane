@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d3ovo2it7nbnh"]
+[gd_scene load_steps=21 format=3 uid="uid://d3ovo2it7nbnh"]
 
 [ext_resource type="Script" path="res://Character/airplane.gd" id="1_wihbf"]
 [ext_resource type="Script" path="res://Character/ground_controller.gd" id="2_5qk4h"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Character/FlightInstruments.gd" id="8_pncxi"]
 [ext_resource type="Script" path="res://Character/airplane_mesh.gd" id="9_dt02h"]
 [ext_resource type="Script" path="res://Character/flight_controller.gd" id="9_oymp2"]
+[ext_resource type="AudioStream" uid="uid://dnfgqs0idbjav" path="res://Assets/SoundFX/tires_squal_loop.wav" id="15_jacl2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsjsx"]
 radius = 0.259621
@@ -201,8 +202,9 @@ _data = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.214764, 0)
 script = ExtResource("1_wihbf")
 
-[node name="GroundController" type="Node" parent="."]
+[node name="GroundController" type="Node" parent="." node_paths=PackedStringArray("tire_squeal_sfx")]
 script = ExtResource("2_5qk4h")
+tire_squeal_sfx = NodePath("../TireSquealSFX")
 skid_mark_scene = ExtResource("3_tye3c")
 
 [node name="FlightController" type="Node" parent="." node_paths=PackedStringArray("plane_mesh")]
@@ -244,15 +246,6 @@ plane = NodePath("..")
 animation_player = NodePath("../AnimationPlayer")
 flight_controller = NodePath("../FlightController")
 
-[node name="Landing_Gear_Back" parent="PlaneMesh" index="1"]
-transform = Transform3D(1, 2.80271e-08, -2.62384e-09, -2.80271e-08, 0.982622, -0.185615, -2.62402e-09, 0.185615, 0.982622, -0.00204352, 0.129481, -0.291262)
-
-[node name="Landing_Gear_Left" parent="PlaneMesh" index="2"]
-transform = Transform3D(0.999975, 0.00708598, 3.77326e-12, -0.00708598, 0.999975, 1.06995e-09, 3.80851e-12, -1.06995e-09, 1, 0.299169, 0.197133, -0.103187)
-
-[node name="Landing_Gear_Right" parent="PlaneMesh" index="3"]
-transform = Transform3D(-0.14822, -0.988954, 1.50996e-07, -0.988954, 0.14822, 2.35132e-06, -2.34773e-06, 1.99184e-07, -1, -0.251448, 0.208125, 0.0334829)
-
 [node name="EngineSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_610pa")
 volume_db = -17.802
@@ -269,4 +262,6 @@ libraries = {
 "": SubResource("AnimationLibrary_u80ly")
 }
 
-[editable path="PlaneMesh"]
+[node name="TireSquealSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_jacl2")
+volume_db = -9.123

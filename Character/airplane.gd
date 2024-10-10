@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		ground_controller.process_ground_movement(delta)
 	else:
-		ground_controller.reset_lateral_velocity()
+		ground_controller.stop_ground_movement()
 	
 	move_and_slide()
 
@@ -44,7 +44,6 @@ func get_wheel_location(type: String) -> Vector3:
 		"BACK":
 			return (plane_mesh.get_node("Landing_Gear_Back") as Node3D).global_position
 		"LEFT":
-			print('returning left position')
 			return (plane_mesh.get_node("Landing_Gear_Left") as Node3D).global_position
 		"RIGHT":
 			return (plane_mesh.get_node("Landing_Gear_Right") as Node3D).global_position
