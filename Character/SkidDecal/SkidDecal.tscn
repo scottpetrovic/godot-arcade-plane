@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://75bkv80bxpqa"]
+
+[ext_resource type="Script" path="res://Character/SkidDecal/skid_decal.gd" id="1_e7iw1"]
+
+[node name="SkidDecal" type="MeshInstance3D"]
+script = ExtResource("1_e7iw1")

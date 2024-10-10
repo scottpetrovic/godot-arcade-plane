@@ -4,6 +4,7 @@ extends CharacterBody3D
 
 # Child nodes
 @onready var flight_controller: FlightController = $FlightController
+@onready var ground_controller: GroundController = $GroundController
 @onready var fuel_system: FuelSystem = $FuelSystem
 @onready var health_system: HealthSystem = $HealthSystem
 @onready var flight_instruments: FlightInstruments = $FlightInstruments
@@ -18,6 +19,13 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	flight_controller.process_flight(delta)
+	
+	# add additional logic for movement if we are on ground
+	if is_on_floor():
+		ground_controller.process_ground_movement(delta)
+	else:
+		ground_controller.reset_lateral_velocity()
+	
 	move_and_slide()
 
 func hit() -> void:
@@ -30,3 +38,15 @@ func float_on_water() -> void:
 	# stop propellor by changing speed
 	flight_controller.forward_speed = 0
 	flight_controller.target_speed = 0
+
+func get_wheel_location(type: String) -> Vector3:
+	match type:
+		"BACK":
+			return (plane_mesh.get_node("Landing_Gear_Back") as Node3D).global_position
+		"LEFT":
+			print('returning left position')
+			return (plane_mesh.get_node("Landing_Gear_Left") as Node3D).global_position
+		"RIGHT":
+			return (plane_mesh.get_node("Landing_Gear_Right") as Node3D).global_position
+
+	return Vector3(0,0,0)

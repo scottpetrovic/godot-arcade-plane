@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://d3ovo2it7nbnh"]
+[gd_scene load_steps=20 format=3 uid="uid://d3ovo2it7nbnh"]
 
 [ext_resource type="Script" path="res://Character/airplane.gd" id="1_wihbf"]
+[ext_resource type="Script" path="res://Character/ground_controller.gd" id="2_5qk4h"]
 [ext_resource type="PackedScene" uid="uid://d3qn3es4bmao8" path="res://Character/Airplane_Mesh.tscn" id="2_j34yd"]
 [ext_resource type="AudioStream" uid="uid://c5bmui870wk38" path="res://Character/plane-engine.mp3" id="3_610pa"]
 [ext_resource type="Script" path="res://Character/fuel_system.gd" id="3_fwucw"]
+[ext_resource type="PackedScene" uid="uid://75bkv80bxpqa" path="res://Character/SkidDecal/SkidDecal.tscn" id="3_tye3c"]
 [ext_resource type="Script" path="res://Character/EngineSound.gd" id="4_874ub"]
 [ext_resource type="Script" path="res://Character/BulletShooter.gd" id="5_3arig"]
 [ext_resource type="Script" path="res://Character/health_system.gd" id="5_f5cdy"]
@@ -16,6 +18,21 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsjsx"]
 radius = 0.259621
 height = 1.07402
+
+[sub_resource type="Animation" id="Animation_yllyq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlaneMesh:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.208445, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_rrdoy"]
 resource_name = "landing_gear_up"
@@ -98,21 +115,6 @@ tracks/0/keys = {
 "values": [Vector3(0, -0.1876, 0), Vector3(0, -0.379977, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_yllyq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlaneMesh:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -0.208445, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u80ly"]
 _data = {
 "RESET": SubResource("Animation_yllyq"),
@@ -123,6 +125,10 @@ _data = {
 [node name="Airplane" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.214764, 0)
 script = ExtResource("1_wihbf")
+
+[node name="GroundController" type="Node" parent="."]
+script = ExtResource("2_5qk4h")
+skid_mark_scene = ExtResource("3_tye3c")
 
 [node name="FlightController" type="Node" parent="." node_paths=PackedStringArray("plane_mesh")]
 script = ExtResource("9_oymp2")
