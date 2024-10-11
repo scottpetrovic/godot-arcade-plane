@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://x8283o2aecy8"]
 
-[ext_resource type="PackedScene" uid="uid://4klurw1dwtnh" path="res://Enemies/EnemySeaTurretShip/EnemySeaTurretShip.glb" id="1_1x4e0"]
 [ext_resource type="Script" path="res://Enemies/BaseEnemy.gd" id="1_j8e6l"]
 [ext_resource type="Script" path="res://Enemies/EnemyMovementStationary.gd" id="2_vurj3"]
 [ext_resource type="Script" path="res://Enemies/EnemyAir/simple_ai_shooter.gd" id="3_x4h72"]
+[ext_resource type="PackedScene" uid="uid://dvsakwoew6sus" path="res://Enemies/EnemySeaTurretShip/ship-large.glb" id="4_5urjo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i4ksl"]
 size = Vector3(2.89478, 1.15649, 10.7607)
@@ -14,12 +14,6 @@ script = ExtResource("1_j8e6l")
 [node name="EnemyStationaryMovement" type="Node" parent="."]
 script = ExtResource("2_vurj3")
 
-[node name="ShipMesh" parent="." instance=ExtResource("1_1x4e0")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.86941, 0)
-
-[node name="BulletSpawnPoint" type="Marker3D" parent="ShipMesh/Gun" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, -8.53013, -1.6571)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.287209, 0)
 shape = SubResource("BoxShape3D_i4ksl")
@@ -27,10 +21,14 @@ shape = SubResource("BoxShape3D_i4ksl")
 [node name="SimpleAIShooter" type="Node" parent="." node_paths=PackedStringArray("bullet_spawn_point")]
 script = ExtResource("3_x4h72")
 shoot_delay = 0.4
-bullet_spawn_point = NodePath("../ShipMesh/Gun/BulletSpawnPoint")
+bullet_spawn_point = NodePath("../BulletSpawnPoint")
 
 [node name="ShootTimer" type="Timer" parent="SimpleAIShooter"]
 wait_time = 0.1
 one_shot = true
 
-[editable path="ShipMesh"]
+[node name="ship_mesh" parent="." instance=ExtResource("4_5urjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.05969, 0)
+
+[node name="BulletSpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.00557428, 3.20743, 1.99128)

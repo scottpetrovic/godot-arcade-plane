@@ -6,8 +6,10 @@ extends Node
 signal enemy_died(enemy)
 @onready var simple_ai_shooter: Node = $"../SimpleAIShooter"
 @onready var enemy_reference: BaseEnemy = $".."
-@onready var gun: MeshInstance3D = $"../ShipMesh/Gun"
+# @onready var gun: MeshInstance3D = $"../ShipMesh/Gun"
 var _player_reference: Node3D
+
+@onready var bullet_spawn_point: Marker3D = $"../BulletSpawnPoint"
 
 
 func attack_when_ready():
@@ -33,12 +35,13 @@ func _process(delta: float) -> void:
 	attack_when_ready()
 
 func gun_follow_player() -> void:
-	
-	# blender uses diferent xyz directions than Godot
-	# this is needed when doing look at to point things at right direction
-	# 90 degrees converted to radians
-	var blender_to_godot_adjustment := deg_to_rad(90) 
+	#
+	## blender uses diferent xyz directions than Godot
+	## this is needed when doing look at to point things at right direction
+	## 90 degrees converted to radians
+	#var blender_to_godot_adjustment := deg_to_rad(90) 
 
+	bullet_spawn_point.look_at(_player_reference.global_position)
 
-	gun.look_at(_player_reference.global_position)
-	gun.rotate_object_local(Vector3.RIGHT, blender_to_godot_adjustment)
+	#gun.look_at(_player_reference.global_position)
+	#gun.rotate_object_local(Vector3.RIGHT, blender_to_godot_adjustment)
