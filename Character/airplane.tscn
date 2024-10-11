@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d3ovo2it7nbnh"]
+[gd_scene load_steps=24 format=3 uid="uid://d3ovo2it7nbnh"]
 
 [ext_resource type="Script" path="res://Character/airplane.gd" id="1_wihbf"]
 [ext_resource type="Script" path="res://Character/ground_controller.gd" id="2_5qk4h"]
@@ -15,6 +15,8 @@
 [ext_resource type="Script" path="res://Character/airplane_mesh.gd" id="9_dt02h"]
 [ext_resource type="Script" path="res://Character/flight_controller.gd" id="9_oymp2"]
 [ext_resource type="AudioStream" uid="uid://dnfgqs0idbjav" path="res://Assets/SoundFX/tires_squal_loop.wav" id="15_jacl2"]
+[ext_resource type="Script" path="res://Character/aiming_cursor.gd" id="16_bpmlf"]
+[ext_resource type="Texture2D" uid="uid://dts8p6fafmnjv" path="res://Assets/UI/crosshair021.png" id="17_a5qkf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsjsx"]
 radius = 0.259621
@@ -198,6 +200,12 @@ _data = {
 "water_float": SubResource("Animation_2usq4")
 }
 
+[sub_resource type="SphereMesh" id="SphereMesh_nfw7v"]
+radius = 0.1
+height = 0.2
+radial_segments = 12
+rings = 12
+
 [node name="Airplane" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.214764, 0)
 script = ExtResource("1_wihbf")
@@ -265,3 +273,15 @@ libraries = {
 [node name="TireSquealSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_jacl2")
 volume_db = -9.123
+
+[node name="AimingCursor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53147, -10.6666)
+script = ExtResource("16_bpmlf")
+
+[node name="ReferenceSphere" type="MeshInstance3D" parent="AimingCursor"]
+visible = false
+mesh = SubResource("SphereMesh_nfw7v")
+skeleton = NodePath("../..")
+
+[node name="Cursor2D" type="Sprite2D" parent="AimingCursor"]
+texture = ExtResource("17_a5qkf")
