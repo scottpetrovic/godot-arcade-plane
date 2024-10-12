@@ -6,11 +6,13 @@ extends Node
 signal enemy_died(enemy)
 @onready var simple_ai_shooter: Node = $"../SimpleAIShooter"
 @onready var enemy_reference: BaseEnemy = $".."
-# @onready var gun: MeshInstance3D = $"../ShipMesh/Gun"
 var _player_reference: Node3D
 
-@onready var bullet_spawn_point: Marker3D = $"../BulletSpawnPoint"
+# make sure the spawn point is oriented with the z axis facing the 
+# direction you want to shoot
+@export var bullet_spawn_point: Marker3D
 
+@export var cannon_mesh: MeshInstance3D
 
 func attack_when_ready():
 	
@@ -18,14 +20,8 @@ func attack_when_ready():
 	if in_attack_range:
 		simple_ai_shooter.shoot()
 
-func check_for_player_if_not_exist():
-	if is_instance_valid(_player_reference) == false:
-		_player_reference = GameManager.get_player()
-
 func _process(delta: float) -> void:
 	
-	check_for_player_if_not_exist()	
-
 	# make sure we have player reference before potentially acting on it
 	if is_instance_valid(_player_reference) == false:
 		_player_reference = GameManager.get_player()
@@ -39,9 +35,9 @@ func gun_follow_player() -> void:
 	## blender uses diferent xyz directions than Godot
 	## this is needed when doing look at to point things at right direction
 	## 90 degrees converted to radians
-	#var blender_to_godot_adjustment := deg_to_rad(90) 
+	var blender_to_godot_adjustment := deg_to_rad(-90) 
 
-	bullet_spawn_point.look_at(_player_reference.global_position)
+	cannon_mesh.look_at(_player_reference.global_position)
 
 	#gun.look_at(_player_reference.global_position)
-	#gun.rotate_object_local(Vector3.RIGHT, blender_to_godot_adjustment)
+	cannon_mesh.rotate_object_local(Vector3.RIGHT, blender_to_godot_adjustment)

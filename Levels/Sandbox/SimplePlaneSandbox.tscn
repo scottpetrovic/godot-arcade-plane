@@ -1,11 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://b268yya28qpq3"]
+[gd_scene load_steps=14 format=3 uid="uid://b268yya28qpq3"]
 
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Character/airplane.tscn" id="1_du1x6"]
 [ext_resource type="Script" path="res://Effects/Camera/CameraFollow.gd" id="2_vhu4v"]
+[ext_resource type="Script" path="res://Effects/Camera/FX_ScreenShake.gd" id="3_akjx7"]
 [ext_resource type="Shader" path="res://Environment/Materials/TestGrid.gdshader" id="3_pr18u"]
 [ext_resource type="Script" path="res://Levels/Sandbox/city_builder.gd" id="4_pm3ua"]
 [ext_resource type="Script" path="res://Levels/Sandbox/road_generation.gd" id="5_i44mw"]
-[ext_resource type="PackedScene" uid="uid://pb3jtfvihkup" path="res://Enemies/EnemyAirTanker/EnemyAirTanker.tscn" id="6_etvu2"]
+[ext_resource type="PackedScene" uid="uid://cbxt2worosdqq" path="res://Enemies/TurretItem/turret_item.tscn" id="7_nljf4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vilnx"]
 
@@ -63,6 +64,10 @@ fov = 50.0
 script = ExtResource("2_vhu4v")
 target = NodePath("../Airplane/Marker3D")
 
+[node name="ScreenShake" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 0, 0, 1, -0.698183, 0.79687, 6.15439)
+script = ExtResource("3_akjx7")
+
 [node name="Static Environment" type="Node" parent="."]
 
 [node name="PrimaryLight" type="DirectionalLight3D" parent="Static Environment"]
@@ -93,5 +98,10 @@ script = ExtResource("4_pm3ua")
 visible = false
 script = ExtResource("5_i44mw")
 
-[node name="LargeTankShip" parent="." instance=ExtResource("6_etvu2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.359175, -1.5946, 55.2178)
+[node name="TurretItem" parent="." instance=ExtResource("7_nljf4")]
+
+[node name="TurretItem2" parent="." instance=ExtResource("7_nljf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.8205, 0.275248, 17.0818)
+
+[node name="TurretItem3" parent="." instance=ExtResource("7_nljf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5945, 0.275248, -42.6202)
