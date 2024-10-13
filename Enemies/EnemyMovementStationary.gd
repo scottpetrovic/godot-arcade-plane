@@ -1,11 +1,11 @@
 # Enemies that mostly just stay in the same place
 # because of this, they don't need a full state machine
-class_name BasicStationaryEnemyMovement
+class_name BasicTurretMovement
 extends Node
 
 signal enemy_died(enemy)
 @onready var simple_ai_shooter: Node = $"../SimpleAIShooter"
-@onready var enemy_reference: BaseEnemy = $".."
+@onready var enemy_reference: TurretEnemy = $".."
 var _player_reference: Node3D
 
 # make sure the spawn point is oriented with the z axis facing the 

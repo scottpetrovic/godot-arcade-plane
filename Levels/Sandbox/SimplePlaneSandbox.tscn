@@ -99,4 +99,4 @@ visible = false
 script = ExtResource("5_i44mw")
 
 [node name="EnemyAirTanker" parent="." instance=ExtResource("7_n2x4n")]
-transform = Transform3D(0.495838, 0, -0.868415, 0, 1, 0, 0.868415, 0, 0.495838, 1.97955, 15.4268, 85.2437)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.7384, 61.2628)

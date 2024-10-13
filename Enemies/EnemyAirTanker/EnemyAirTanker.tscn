@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ccoy7e8scaabn" path="res://Enemies/EnemyAirTanker/craft_cargoA.glb" id="1_2pnpa"]
 [ext_resource type="Script" path="res://Enemies/EnemyAirTanker/enemy_air_tanker.gd" id="1_wbbfs"]
-[ext_resource type="PackedScene" uid="uid://cbxt2worosdqq" path="res://Enemies/TurretItem/turret_item.tscn" id="2_nmcay"]
+[ext_resource type="PackedScene" uid="uid://cbxt2worosdqq" path="res://Enemies/TurretEnemy/TurretEnemy.tscn" id="2_nmcay"]
 [ext_resource type="Script" path="res://Enemies/EnemyAirTanker/simple_patrol_movement.gd" id="2_r6pe1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5hibp"]
@@ -22,20 +22,20 @@ shape = SubResource("BoxShape3D_5hibp")
 
 [node name="TurretManager" type="Node3D" parent="."]
 
-[node name="TurretItem" parent="TurretManager" instance=ExtResource("2_nmcay")]
+[node name="TurretEnemy" parent="TurretManager" instance=ExtResource("2_nmcay")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0246408, 8.31288, -4.1754)
 
-[node name="TurretItem3" parent="TurretManager" instance=ExtResource("2_nmcay")]
+[node name="TurretEnemy3" parent="TurretManager" instance=ExtResource("2_nmcay")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4.34879, 4.94349, -9.50854)
 
-[node name="TurretItem4" parent="TurretManager" instance=ExtResource("2_nmcay")]
+[node name="TurretEnemy4" parent="TurretManager" instance=ExtResource("2_nmcay")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4.34879, 4.94349, -4.28329)
 
-[node name="TurretItem5" parent="TurretManager" instance=ExtResource("2_nmcay")]
+[node name="TurretEnemy5" parent="TurretManager" instance=ExtResource("2_nmcay")]
 transform = Transform3D(4.37114e-08, 1, 8.74228e-08, 1, -4.37114e-08, 0, 3.82137e-15, 8.74228e-08, -1, 4.40605, 4.94349, -4.28329)
 
-[node name="TurretItem6" parent="TurretManager" instance=ExtResource("2_nmcay")]
+[node name="TurretEnemy6" parent="TurretManager" instance=ExtResource("2_nmcay")]
 transform = Transform3D(4.37114e-08, 1, 8.74228e-08, 1, -4.37114e-08, 0, 3.82137e-15, 8.74228e-08, -1, 4.40605, 4.94349, -9.50854)
 
-[node name="TurretItem2" parent="TurretManager" instance=ExtResource("2_nmcay")]
+[node name="TurretEnemy2" parent="TurretManager" instance=ExtResource("2_nmcay")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0246408, 8.31288, 3.48347)
