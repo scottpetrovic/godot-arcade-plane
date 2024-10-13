@@ -7,13 +7,20 @@ extends Node
 
 @export var patrol_speed = 6.0  # Units per second
 @export var pursuit_speed = 8.0  # Units per second
-@export var turn_angle = 30.0  # Degrees
 @export var distance_to_travel = 60.0  # Units
 
 var player: Player
 var patrol_starting_position: Vector3 = Vector3.ZERO
 var current_distance = 0.0
+var turn_angle = 0.0  # Degrees
 
+
+func _ready() -> void:
+	
+	# every patrol will be a circle, but this randomized how big the
+	# circle will be a bit
+	var possible_angles: Array[float] = [20.0, -20.0, 30.0, -30.0, 45.0, -45.0]
+	turn_angle = possible_angles[randi() % possible_angles.size()]
 
 func check_for_player_if_not_exist():
 	if is_instance_valid(player) == false:
