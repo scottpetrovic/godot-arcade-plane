@@ -13,12 +13,32 @@ var _player_reference: Node3D
 @export var bullet_spawn_point: Marker3D
 
 @export var cannon_mesh: MeshInstance3D
+@export var line_of_sight: EnemyLineOfSight
+
+var player_in_line_of_sight: bool = false
+
+
+func _ready() -> void:
+	# field of view signals
+	if is_instance_valid(line_of_sight):
+		line_of_sight.found_player_visuals.connect(_spotted_player)
+		line_of_sight.lost_player_visuals.connect(_lost_player)
+	else:
+		print('Warning: object does not have line of sight object: ', get_parent().name)
 
 func attack_when_ready():
 	
 	var in_attack_range: bool = enemy_reference.global_position.distance_to(_player_reference.global_position) <= simple_ai_shooter.attack_range
 	if in_attack_range:
 		simple_ai_shooter.shoot()
+
+func _spotted_player() -> void:
+	player_in_line_of_sight = true
+
+
+func _lost_player() -> void:
+	player_in_line_of_sight = false
+
 
 func _process(delta: float) -> void:
 	
@@ -27,11 +47,15 @@ func _process(delta: float) -> void:
 		_player_reference = GameManager.get_player()
 		return
 	
-	gun_follow_player()
-	attack_when_ready()
+	if player_in_line_of_sight:
+		gun_follow_player()
+		attack_when_ready()
 
 func gun_follow_player() -> void:
-	#
+	
+	if is_instance_valid(cannon_mesh) == false:
+		return
+	
 	## blender uses diferent xyz directions than Godot
 	## this is needed when doing look at to point things at right direction
 	## 90 degrees converted to radians

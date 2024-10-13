@@ -6,7 +6,7 @@
 [ext_resource type="Shader" path="res://Environment/Materials/TestGrid.gdshader" id="3_pr18u"]
 [ext_resource type="Script" path="res://Levels/Sandbox/city_builder.gd" id="4_pm3ua"]
 [ext_resource type="Script" path="res://Levels/Sandbox/road_generation.gd" id="5_i44mw"]
-[ext_resource type="PackedScene" uid="uid://cbxt2worosdqq" path="res://Enemies/TurretItem/turret_item.tscn" id="7_nljf4"]
+[ext_resource type="PackedScene" uid="uid://cl4n1jrd5qmw8" path="res://Enemies/EnemyAirTanker/EnemyAirTanker.tscn" id="7_n2x4n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vilnx"]
 
@@ -98,10 +98,5 @@ script = ExtResource("4_pm3ua")
 visible = false
 script = ExtResource("5_i44mw")
 
-[node name="TurretItem" parent="." instance=ExtResource("7_nljf4")]
-
-[node name="TurretItem2" parent="." instance=ExtResource("7_nljf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.8205, 0.275248, 17.0818)
-
-[node name="TurretItem3" parent="." instance=ExtResource("7_nljf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5945, 0.275248, -42.6202)
+[node name="EnemyAirTanker" parent="." instance=ExtResource("7_n2x4n")]
+transform = Transform3D(0.495838, 0, -0.868415, 0, 1, 0, 0.868415, 0, 0.495838, 1.97955, 15.4268, 85.2437)

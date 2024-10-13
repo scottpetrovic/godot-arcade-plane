@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cq4d85ecgxsno"
-path="res://.godot/imported/ship-ocean-liner.glb-1035da3ce8b2dd632d669e7cd3838080.scn"
+uid="uid://ccoy7e8scaabn"
+path="res://.godot/imported/craft_cargoA.glb-8ce994bd5d435e21c880803c0d7bdb65.scn"
 
 [deps]
 
-source_file="res://Enemies/EnemyAirTanker/ship-ocean-liner.glb"
-dest_files=["res://.godot/imported/ship-ocean-liner.glb-1035da3ce8b2dd632d669e7cd3838080.scn"]
+source_file="res://Enemies/EnemyAirTanker/craft_cargoA.glb"
+dest_files=["res://.godot/imported/craft_cargoA.glb-8ce994bd5d435e21c880803c0d7bdb65.scn"]
 
 [params]
 

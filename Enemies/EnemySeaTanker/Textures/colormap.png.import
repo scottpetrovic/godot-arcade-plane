@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://qarj46lbgiju"
-path.s3tc="res://.godot/imported/colormap.png-4edc8d18b14f36f78c95710432941c00.s3tc.ctex"
+path.s3tc="res://.godot/imported/colormap.png-880eb6f2e7edc663fdaf20c7bbcf0e60.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Enemies/EnemyAirTanker/Textures/colormap.png"
-dest_files=["res://.godot/imported/colormap.png-4edc8d18b14f36f78c95710432941c00.s3tc.ctex"]
+source_file="res://Enemies/EnemySeaTanker/Textures/colormap.png"
+dest_files=["res://.godot/imported/colormap.png-880eb6f2e7edc663fdaf20c7bbcf0e60.s3tc.ctex"]
 
 [params]
 

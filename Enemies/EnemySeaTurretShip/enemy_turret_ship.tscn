@@ -1,8 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://x8283o2aecy8"]
+[gd_scene load_steps=4 format=3 uid="uid://x8283o2aecy8"]
 
 [ext_resource type="Script" path="res://Enemies/BaseEnemy.gd" id="1_j8e6l"]
-[ext_resource type="Script" path="res://Enemies/EnemyMovementStationary.gd" id="2_vurj3"]
-[ext_resource type="Script" path="res://Enemies/EnemyAir/simple_ai_shooter.gd" id="3_x4h72"]
 [ext_resource type="PackedScene" uid="uid://dvsakwoew6sus" path="res://Enemies/EnemySeaTurretShip/ship-large.glb" id="4_5urjo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i4ksl"]
@@ -11,24 +9,9 @@ size = Vector3(5.88626, 4.05276, 16.2383)
 [node name="EnemyTurretShip" type="CharacterBody3D" groups=["radar_target"]]
 script = ExtResource("1_j8e6l")
 
-[node name="EnemyStationaryMovement" type="Node" parent="."]
-script = ExtResource("2_vurj3")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.269791, 1.73535, -0.910156)
 shape = SubResource("BoxShape3D_i4ksl")
 
-[node name="SimpleAIShooter" type="Node" parent="." node_paths=PackedStringArray("bullet_spawn_point")]
-script = ExtResource("3_x4h72")
-shoot_delay = 0.4
-bullet_spawn_point = NodePath("../BulletSpawnPoint")
-
-[node name="ShootTimer" type="Timer" parent="SimpleAIShooter"]
-wait_time = 0.1
-one_shot = true
-
 [node name="ship_mesh" parent="." instance=ExtResource("4_5urjo")]
 transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, -1.05969, 0)
-
-[node name="BulletSpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.00557428, 4.70145, 2.69866)

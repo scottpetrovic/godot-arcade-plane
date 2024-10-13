@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbxt2worosdqq"]
+[gd_scene load_steps=8 format=3 uid="uid://cbxt2worosdqq"]
 
 [ext_resource type="Script" path="res://Enemies/BaseEnemy.gd" id="1_mky0s"]
 [ext_resource type="PackedScene" uid="uid://der7c5m8gw46l" path="res://Enemies/TurretItem/turret.glb" id="2_5egro"]
 [ext_resource type="Script" path="res://Enemies/EnemyAir/simple_ai_shooter.gd" id="3_uo5wg"]
 [ext_resource type="Script" path="res://Enemies/EnemyMovementStationary.gd" id="4_jrrt6"]
+[ext_resource type="Script" path="res://Enemies/EnemyLineOfSight.gd" id="4_r1fqp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dnswq"]
 radius = 0.82459
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vyysv"]
+size = Vector3(46.8252, 23.8447, 53.9863)
 
 [node name="TurretItem" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275247, 0)
@@ -34,9 +38,18 @@ bullet_spawn_point = NodePath("../turret/Cannon/BulletSpawnPoint")
 wait_time = 0.1
 one_shot = true
 
-[node name="EnemyStationaryMovement" type="Node" parent="." node_paths=PackedStringArray("bullet_spawn_point", "cannon_mesh")]
+[node name="EnemyStationaryMovement" type="Node" parent="." node_paths=PackedStringArray("bullet_spawn_point", "cannon_mesh", "line_of_sight")]
 script = ExtResource("4_jrrt6")
 bullet_spawn_point = NodePath("../turret/Cannon/BulletSpawnPoint")
 cannon_mesh = NodePath("../turret/Cannon")
+line_of_sight = NodePath("../LineOfSight")
+
+[node name="LineOfSight" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7155, -0.275247, -1.19642)
+script = ExtResource("4_r1fqp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LineOfSight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.1201, 0)
+shape = SubResource("BoxShape3D_vyysv")
 
 [editable path="turret"]
