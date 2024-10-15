@@ -1,12 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://b268yya28qpq3"]
+[gd_scene load_steps=11 format=3 uid="uid://b268yya28qpq3"]
 
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Character/airplane.tscn" id="1_du1x6"]
 [ext_resource type="Script" path="res://Effects/Camera/CameraFollow.gd" id="2_vhu4v"]
 [ext_resource type="Script" path="res://Effects/Camera/FX_ScreenShake.gd" id="3_akjx7"]
 [ext_resource type="Shader" path="res://Environment/Materials/TestGrid.gdshader" id="3_pr18u"]
-[ext_resource type="Script" path="res://Levels/Sandbox/city_builder.gd" id="4_pm3ua"]
-[ext_resource type="Script" path="res://Levels/Sandbox/road_generation.gd" id="5_i44mw"]
-[ext_resource type="PackedScene" uid="uid://cl4n1jrd5qmw8" path="res://Enemies/EnemyAirTanker/EnemyAirTanker.tscn" id="7_n2x4n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vilnx"]
 
@@ -89,14 +86,3 @@ skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Static Environment/Ground Plane"]
 shape = SubResource("WorldBoundaryShape3D_ececn")
-
-[node name="CityGeneration" type="Node3D" parent="."]
-visible = false
-script = ExtResource("4_pm3ua")
-
-[node name="RoadGeneration" type="Node3D" parent="."]
-visible = false
-script = ExtResource("5_i44mw")
-
-[node name="EnemyAirTanker" parent="." instance=ExtResource("7_n2x4n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.7384, 129.207)

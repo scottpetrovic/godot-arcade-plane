@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://dfs2bysish47g"]
 
 [ext_resource type="Script" path="res://Enemies/BaseEnemy.gd" id="1_q8lak"]
-[ext_resource type="Script" path="res://Enemies/EnemyAir/enemy_state_machine.gd" id="2_vsthr"]
-[ext_resource type="Script" path="res://Enemies/EnemyAir/enemy_movement.gd" id="3_ci047"]
-[ext_resource type="Script" path="res://Enemies/EnemyAir/simple_ai_shooter.gd" id="3_r5bv4"]
+[ext_resource type="Script" path="res://Enemies/EnemyAirBasic/enemy_state_machine.gd" id="2_vsthr"]
+[ext_resource type="Script" path="res://Enemies/EnemyAirBasic/enemy_movement.gd" id="3_ci047"]
+[ext_resource type="Script" path="res://Enemies/simple_ai_shooter.gd" id="3_r5bv4"]
 [ext_resource type="PackedScene" uid="uid://bnkn8wbjo3gwm" path="res://Enemies/EnemyAirScout/boat-sail-a.glb" id="6_4ogmh"]
 [ext_resource type="Script" path="res://Enemies/EnemyLineOfSight.gd" id="7_s31rp"]
 

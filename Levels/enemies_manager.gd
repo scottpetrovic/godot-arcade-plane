@@ -1,13 +1,13 @@
 extends Node
 
-@export var simple_air_enemy: PackedScene  = load("res://Enemies/EnemyAir/SimpleAirEnemy.tscn")
-@export var num_air_simple_enemies: int = 3
+@export var air_basic_enemy: PackedScene
+@export var air_basic_enemy_count: int = 3
 
-@export var simple_sea_enemy: PackedScene  = load("res://Enemies/EnemySeaTurretShip/enemy_turret_ship.tscn")
-@export var num_simple_sea_enemies: int = 3
+@export var sea_turret_ship: PackedScene
+@export var num_sea_turret_ship: int = 3
 
-@export var simple_air_scout_enemy: PackedScene  = load("res://Enemies/EnemyAirScout/EnemyAirScout.tscn")
-@export var num_air_simple_scout_enemies: int = 3
+@export var air_scout_enemy: PackedScene
+@export var num_air_scout_enemies: int = 3
 
 @onready var spawn_area: Area3D = $SpawnArea
 @onready var enemies_container: Node = $EnemiesContainer
@@ -17,14 +17,14 @@ func _ready():
 	GameManager.current_level_remaining_enemies = get_enemy_count()
 
 func spawn_initial_enemies():
-	for i in range(num_air_simple_enemies):
-		spawn_enemy(simple_air_enemy, false)
+	for i in range(air_basic_enemy_count):
+		spawn_enemy(air_basic_enemy, false)
 		
-	for i in range(num_simple_sea_enemies):
-		spawn_enemy(simple_sea_enemy, true)
+	for i in range(num_sea_turret_ship):
+		spawn_enemy(sea_turret_ship, true)
 		
-	for i in range(num_air_simple_scout_enemies):
-		spawn_enemy(simple_air_scout_enemy, false)
+	for i in range(num_air_scout_enemies):
+		spawn_enemy(air_scout_enemy, false)
 	
 
 func spawn_enemy(enemy_scene: PackedScene, place_on_floor: bool):

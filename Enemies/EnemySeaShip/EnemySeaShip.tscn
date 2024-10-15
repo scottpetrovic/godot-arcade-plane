@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://x8283o2aecy8"]
+
+[ext_resource type="Script" path="res://Enemies/BaseEnemy.gd" id="1_j8e6l"]
+[ext_resource type="PackedScene" uid="uid://db8rh51ewee2u" path="res://Enemies/EnemySeaShip/sea-ship.glb" id="2_4ikyy"]
+[ext_resource type="PackedScene" uid="uid://cbxt2worosdqq" path="res://Enemies/TurretEnemy/TurretEnemy.tscn" id="3_ikx46"]
+[ext_resource type="PackedScene" uid="uid://c685vj1kuggrc" path="res://Effects/ShipWakeEffect/ShipWakeEffect.tscn" id="4_fh4oo"]
+[ext_resource type="Script" path="res://Enemies/EnemyAirTanker/simple_patrol_movement.gd" id="5_1ig08"]
+[ext_resource type="Script" path="res://Effects/simple_floating_fx.gd" id="6_8ov35"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i4ksl"]
+size = Vector3(5.78962, 3.20595, 10.0535)
+
+[node name="EnemySeaShip" type="CharacterBody3D" groups=["radar_target"]]
+script = ExtResource("1_j8e6l")
+starting_health = 20.0
+points_value = 1530
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.254411, 0.927463, 1.18039)
+shape = SubResource("BoxShape3D_i4ksl")
+
+[node name="sea-ship" parent="." instance=ExtResource("2_4ikyy")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -8.25172, -0.896859, -4.85331)
+
+[node name="TurretEnemy" parent="." instance=ExtResource("3_ikx46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.34971, 3.11278)
+
+[node name="ShipWakeEffect" parent="." instance=ExtResource("4_fh4oo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.3908)
+
+[node name="SimplePatrolMovement" type="Node" parent="."]
+script = ExtResource("5_1ig08")
+
+[node name="SimpleFloatingFX" type="Node" parent="."]
+script = ExtResource("6_8ov35")

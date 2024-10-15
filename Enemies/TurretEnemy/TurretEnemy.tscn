@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Enemies/TurretEnemy/TurretEnemy.gd" id="1_1hjus"]
 [ext_resource type="PackedScene" uid="uid://der7c5m8gw46l" path="res://Enemies/TurretEnemy/turret.glb" id="2_5egro"]
-[ext_resource type="Script" path="res://Enemies/EnemyAir/simple_ai_shooter.gd" id="3_uo5wg"]
+[ext_resource type="Script" path="res://Enemies/simple_ai_shooter.gd" id="3_uo5wg"]
 [ext_resource type="Script" path="res://Enemies/EnemyMovementStationary.gd" id="4_jrrt6"]
 [ext_resource type="Script" path="res://Enemies/EnemyLineOfSight.gd" id="4_r1fqp"]
 
