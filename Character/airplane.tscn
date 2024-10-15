@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d3ovo2it7nbnh"]
+[gd_scene load_steps=27 format=3 uid="uid://d3ovo2it7nbnh"]
 
 [ext_resource type="Script" path="res://Character/airplane.gd" id="1_wihbf"]
 [ext_resource type="Script" path="res://Character/ground_controller.gd" id="2_5qk4h"]
@@ -17,10 +17,18 @@
 [ext_resource type="AudioStream" uid="uid://dnfgqs0idbjav" path="res://Assets/SoundFX/tires_squal_loop.wav" id="15_jacl2"]
 [ext_resource type="Script" path="res://Character/aiming_cursor.gd" id="16_bpmlf"]
 [ext_resource type="Texture2D" uid="uid://dts8p6fafmnjv" path="res://Assets/UI/crosshair021.png" id="17_a5qkf"]
+[ext_resource type="Script" path="res://Character/Effects/character_ground_impact.gd" id="18_5vmap"]
+[ext_resource type="AudioStream" uid="uid://di6ad1x7gnbna" path="res://Assets/SoundFX/landing-squeal.mp3" id="19_ryq6c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsjsx"]
 radius = 0.259621
 height = 1.07402
+
+[sub_resource type="SphereMesh" id="SphereMesh_nfw7v"]
+radius = 0.1
+height = 0.2
+radial_segments = 12
+rings = 12
 
 [sub_resource type="Animation" id="Animation_yllyq"]
 length = 0.001
@@ -200,11 +208,8 @@ _data = {
 "water_float": SubResource("Animation_2usq4")
 }
 
-[sub_resource type="SphereMesh" id="SphereMesh_nfw7v"]
-radius = 0.1
-height = 0.2
-radial_segments = 12
-rings = 12
+[sub_resource type="BoxShape3D" id="BoxShape3D_edtbk"]
+size = Vector3(0.674072, 0.0758667, 0.767822)
 
 [node name="Airplane" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.214764, 0)
@@ -254,6 +259,18 @@ plane = NodePath("..")
 animation_player = NodePath("../AnimationPlayer")
 flight_controller = NodePath("../FlightController")
 
+[node name="AimingCursor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53147, -10.6666)
+script = ExtResource("16_bpmlf")
+
+[node name="ReferenceSphere" type="MeshInstance3D" parent="AimingCursor"]
+visible = false
+mesh = SubResource("SphereMesh_nfw7v")
+skeleton = NodePath("../..")
+
+[node name="Cursor2D" type="Sprite2D" parent="AimingCursor"]
+texture = ExtResource("17_a5qkf")
+
 [node name="EngineSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_610pa")
 volume_db = -17.802
@@ -274,14 +291,13 @@ libraries = {
 stream = ExtResource("15_jacl2")
 volume_db = -9.123
 
-[node name="AimingCursor" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53147, -10.6666)
-script = ExtResource("16_bpmlf")
+[node name="GroundImpactArea" type="Area3D" parent="."]
+script = ExtResource("18_5vmap")
 
-[node name="ReferenceSphere" type="MeshInstance3D" parent="AimingCursor"]
-visible = false
-mesh = SubResource("SphereMesh_nfw7v")
-skeleton = NodePath("../..")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundImpactArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.190898, 0.230103)
+shape = SubResource("BoxShape3D_edtbk")
 
-[node name="Cursor2D" type="Sprite2D" parent="AimingCursor"]
-texture = ExtResource("17_a5qkf")
+[node name="tire_squeal_sfx" type="AudioStreamPlayer3D" parent="GroundImpactArea"]
+stream = ExtResource("19_ryq6c")
+volume_db = -35.229
