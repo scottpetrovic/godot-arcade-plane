@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://coa3qsc7c3ul7"]
+
+[ext_resource type="Script" path="res://UI/InGame/character_messages.gd" id="1_14x5g"]
+[ext_resource type="Texture2D" uid="uid://nxks5gqb1bov" path="res://Assets/UI/instructor-portrait.png" id="2_x7nep"]
+[ext_resource type="Shader" path="res://UI/InGame/ScanLines2D.gdshader" id="3_0oswa"]
+[ext_resource type="FontFile" uid="uid://col6ye2p2vtpq" path="res://Assets/Fonts/Rajdhani-Bold-Main.ttf" id="4_7120l"]
+[ext_resource type="AudioStream" uid="uid://fxfbpsjbg52c" path="res://Assets/SoundFX/intercom.wav" id="5_hil2v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ap54c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ffdnq"]
+shader = ExtResource("3_0oswa")
+shader_parameter/base_scanline_count = 150.0
+shader_parameter/scanline_animation_speed = 1.0
+shader_parameter/scanline_animation_intensity = 20.0
+
+[node name="PortraitMessageLayout" type="HBoxContainer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -172.436
+offset_top = -150.36
+offset_right = 347.564
+offset_bottom = -44.36
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(-1.99997, 51)
+theme_override_constants/separation = 10
+script = ExtResource("1_14x5g")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_ap54c")
+layout_mode = 2
+texture = ExtResource("2_x7nep")
+expand_mode = 2
+
+[node name="ScanLines" type="ColorRect" parent="TextureRect"]
+z_as_relative = false
+material = SubResource("ShaderMaterial_ffdnq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="TextureRect"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.288649, 0.392971, 0.649911, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.14, 0.214667, 0.28, 0.513726)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = -12.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.0904008, 0.268533, 0.644074, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("4_7120l")
+theme_override_font_sizes/font_size = 24
+text = "FOX MCCLOUD"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_7120l")
+theme_override_font_sizes/normal_font_size = 18
+text = "It's finally the big day. Enough of the simulator. It is time to fly!"
+shortcut_keys_enabled = false
+
+[node name="RevealSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_hil2v")
+volume_db = -15.42

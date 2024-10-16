@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bm15sseqvqdwl"]
+[gd_scene load_steps=32 format=3 uid="uid://bm15sseqvqdwl"]
 
 [ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="1_2e51c"]
 [ext_resource type="Script" path="res://UI/InGame/InGameUI.gd" id="1_sy6e0"]
@@ -25,11 +25,6 @@
 [ext_resource type="Texture2D" uid="uid://dw25pr6qxcb25" path="res://Assets/Icons/arrowRight.png" id="14_0w13k"]
 [ext_resource type="Script" path="res://UI/InGame/enemies_remaining_counter.gd" id="15_lkc1i"]
 [ext_resource type="Texture2D" uid="uid://rx1v4oi2y0e1" path="res://Assets/Icons/plane-icon.png" id="16_8m2i4"]
-[ext_resource type="Script" path="res://UI/InGame/character_messages.gd" id="16_dbuwa"]
-[ext_resource type="Texture2D" uid="uid://nxks5gqb1bov" path="res://Assets/UI/instructor-portrait.png" id="16_wssrx"]
-[ext_resource type="Shader" path="res://UI/InGame/ScanLines2D.gdshader" id="28_74jb8"]
-[ext_resource type="FontFile" uid="uid://col6ye2p2vtpq" path="res://Assets/Fonts/Rajdhani-Bold-Main.ttf" id="28_lyfj3"]
-[ext_resource type="AudioStream" uid="uid://fxfbpsjbg52c" path="res://Assets/SoundFX/intercom.wav" id="30_a3jr6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elflq"]
 bg_color = Color(0.470076, 0.470076, 0.470076, 1)
@@ -70,14 +65,6 @@ shader_parameter/mask_size = 0.13
 shader_parameter/mask_edge = 0.68
 shader_parameter/animation_speed = 15.413
 shader_parameter/noise = SubResource("NoiseTexture2D_0gvof")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ap54c"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ffdnq"]
-shader = ExtResource("28_74jb8")
-shader_parameter/base_scanline_count = 150.0
-shader_parameter/scanline_animation_speed = 1.0
-shader_parameter/scanline_animation_intensity = 20.0
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -473,86 +460,3 @@ text = "C"
 [node name="Label" type="Label" parent="PlayControlsLayout/HBoxContainer5"]
 layout_mode = 2
 text = "Fire Bullets"
-
-[node name="PortraitMessageLayout" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -172.436
-offset_top = -150.36
-offset_right = 347.564
-offset_bottom = -44.36
-grow_horizontal = 2
-grow_vertical = 0
-pivot_offset = Vector2(-1.99997, 51)
-theme_override_constants/separation = 10
-script = ExtResource("16_dbuwa")
-
-[node name="TextureRect" type="TextureRect" parent="PortraitMessageLayout"]
-material = SubResource("ShaderMaterial_ap54c")
-layout_mode = 2
-texture = ExtResource("16_wssrx")
-expand_mode = 2
-
-[node name="ScanLines" type="ColorRect" parent="PortraitMessageLayout/TextureRect"]
-z_as_relative = false
-material = SubResource("ShaderMaterial_ffdnq")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect2" type="ColorRect" parent="PortraitMessageLayout/TextureRect"]
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.288649, 0.392971, 0.649911, 1)
-
-[node name="ColorRect" type="ColorRect" parent="PortraitMessageLayout"]
-layout_mode = 2
-size_flags_horizontal = 3
-color = Color(0.14, 0.214667, 0.28, 0.513726)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PortraitMessageLayout/ColorRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 10.0
-offset_right = -12.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 0
-
-[node name="Label" type="Label" parent="PortraitMessageLayout/ColorRect/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0.0904008, 0.268533, 0.644074, 1)
-theme_override_constants/outline_size = 15
-theme_override_fonts/font = ExtResource("28_lyfj3")
-theme_override_font_sizes/font_size = 24
-text = "FOX MCCLOUD"
-
-[node name="RichTextLabel" type="RichTextLabel" parent="PortraitMessageLayout/ColorRect/VBoxContainer"]
-clip_contents = false
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("28_lyfj3")
-theme_override_font_sizes/normal_font_size = 18
-text = "It's finally the big day. Enough of the simulator. It is time to fly!"
-shortcut_keys_enabled = false
-
-[node name="RevealSFX" type="AudioStreamPlayer2D" parent="PortraitMessageLayout"]
-stream = ExtResource("30_a3jr6")
-volume_db = -15.42
