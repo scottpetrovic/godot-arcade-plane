@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://mvtsty7f7en6"]
+[gd_scene load_steps=10 format=3 uid="uid://mvtsty7f7en6"]
 
 [ext_resource type="Script" path="res://Enemies/BaseEnemy.gd" id="1_dc8vq"]
 [ext_resource type="Script" path="res://Enemies/EnemyAirBasic/enemy_movement.gd" id="2_03eva"]
 [ext_resource type="Script" path="res://Enemies/simple_ai_shooter.gd" id="3_witci"]
 [ext_resource type="Script" path="res://Enemies/EnemyLineOfSight.gd" id="4_lunia"]
 [ext_resource type="PackedScene" uid="uid://dmjcaypt1otbn" path="res://Enemies/EnemyAirBasic/air-basic.glb" id="6_6hvhs"]
+[ext_resource type="PackedScene" uid="uid://c0ccvidlup2vd" path="res://Effects/Particles/EnginePropulsionParticles/EnginePropulsionParticles.tscn" id="7_2qp3s"]
 [ext_resource type="Script" path="res://Enemies/EnemyAirBasic/enemy_state_machine.gd" id="7_b2d06"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g36n3"]
@@ -45,3 +46,11 @@ shape = SubResource("BoxShape3D_sf7gk")
 
 [node name="air-basic" parent="." instance=ExtResource("6_6hvhs")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="EnginePropulsionParticles" parent="." instance=ExtResource("7_2qp3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.607457, 0.557296, 1.80294)
+jet_radius = 0.3
+
+[node name="EnginePropulsionParticles2" parent="." instance=ExtResource("7_2qp3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.584412, 0.557296, 1.80294)
+jet_radius = 0.3

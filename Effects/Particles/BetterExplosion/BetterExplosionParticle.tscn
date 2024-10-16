@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://b57fe8tahov1o"]
+[gd_scene load_steps=22 format=3 uid="uid://b57fe8tahov1o"]
 
 [ext_resource type="Script" path="res://Effects/Particles/BetterExplosion/better_explosion_particle.gd" id="1_3pxsl"]
 [ext_resource type="Material" uid="uid://dmvjn5i84narn" path="res://Effects/Particles/BetterExplosion/BetterExplosionParticleMaterial.tres" id="1_e330x"]
 [ext_resource type="Shader" uid="uid://c4fbo8hfnyc14" path="res://Effects/Particles/BetterExplosion/ShaderStreaks.tres" id="2_206mr"]
+[ext_resource type="AudioStream" uid="uid://cjh424c0x0yvw" path="res://Assets/SoundFX/explosion.mp3" id="4_fjgkg"]
 
 [sub_resource type="Curve" id="Curve_fng3u"]
 _data = [Vector2(0.36828, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -114,3 +115,5 @@ process_material = SubResource("ParticleProcessMaterial_netpe")
 draw_pass_1 = SubResource("QuadMesh_lwkkr")
 
 [node name="SFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_fjgkg")
+volume_db = -13.296

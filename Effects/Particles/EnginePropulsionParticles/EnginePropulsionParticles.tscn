@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0ccvidlup2vd"]
+
+[ext_resource type="Script" path="res://Effects/Particles/EnginePropulsionParticles/engine_propulsion_particles.gd" id="1_aw61e"]
+
+[sub_resource type="Gradient" id="Gradient_dtkvr"]
+offsets = PackedFloat32Array(0, 0.402685, 0.993289)
+colors = PackedColorArray(1, 1, 1, 0.380392, 0.835294, 0.360784, 0.705882, 0.721569, 0.638035, 0.390076, 0.784494, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2fgsr"]
+gradient = SubResource("Gradient_dtkvr")
+
+[sub_resource type="Curve" id="Curve_0fr4j"]
+_data = [Vector2(0, 1), 0.0, -1.21233, 0, 0, Vector2(1, 0.053398), -1.03226, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_q2imb"]
+curve = SubResource("Curve_0fr4j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tg13v"]
+direction = Vector3(0, 0, 1)
+spread = 3.051
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_q2imb")
+color_ramp = SubResource("GradientTexture1D_2fgsr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_012q2"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_dyqn2"]
+material = SubResource("StandardMaterial3D_012q2")
+radius = 0.3
+height = 0.5
+radial_segments = 12
+rings = 12
+
+[node name="EnginePropulsionParticles" type="GPUParticles3D"]
+amount = 30
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_tg13v")
+draw_pass_1 = SubResource("SphereMesh_dyqn2")
+script = ExtResource("1_aw61e")

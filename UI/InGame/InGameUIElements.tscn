@@ -235,14 +235,10 @@ script = ExtResource("7_ltfgx")
 
 [node name="SpeedLabel" type="Label" parent="HUD"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -961.872
-offset_top = 72.0
-offset_right = -911.872
-offset_bottom = 101.0
-grow_horizontal = 0
+offset_left = 62.0
+offset_top = 73.0
+offset_right = 117.0
+offset_bottom = 93.0
 theme_override_colors/font_color = Color(0.836545, 0.89153, 0.932312, 1)
 theme_override_fonts/font = ExtResource("8_3qvgt")
 theme_override_font_sizes/font_size = 11

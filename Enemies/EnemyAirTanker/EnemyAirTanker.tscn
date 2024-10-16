@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cl4n1jrd5qmw8"]
+[gd_scene load_steps=9 format=3 uid="uid://cl4n1jrd5qmw8"]
 
 [ext_resource type="PackedScene" uid="uid://ccoy7e8scaabn" path="res://Enemies/EnemyAirTanker/craft_cargoA.glb" id="1_2pnpa"]
 [ext_resource type="Script" path="res://Enemies/EnemyAirTanker/enemy_air_tanker.gd" id="1_wbbfs"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Enemies/EnemyAirTanker/simple_patrol_movement.gd" id="2_r6pe1"]
 [ext_resource type="Script" path="res://Enemies/EnemyAirTanker/EnemyFrigateSpawner.gd" id="5_ay26x"]
 [ext_resource type="PackedScene" uid="uid://dfs2bysish47g" path="res://Enemies/EnemyAirScout/EnemyAirScout.tscn" id="6_k24cv"]
+[ext_resource type="PackedScene" uid="uid://c0ccvidlup2vd" path="res://Effects/Particles/EnginePropulsionParticles/EnginePropulsionParticles.tscn" id="7_7p2qy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5hibp"]
 size = Vector3(15.8447, 8.61792, 23.5286)
@@ -48,3 +49,13 @@ script = ExtResource("5_ay26x")
 enemy_scene = ExtResource("6_k24cv")
 
 [node name="SpawnTimer" type="Timer" parent="EnemySpawner"]
+
+[node name="EnginePropulsionParticles" parent="." instance=ExtResource("7_7p2qy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.22465, 2.83364, 12.2018)
+jet_radius = 1.5
+length_life = 7.0
+
+[node name="EnginePropulsionParticles2" parent="." instance=ExtResource("7_7p2qy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.06006, 2.83364, 12.2018)
+jet_radius = 1.5
+length_life = 7.0

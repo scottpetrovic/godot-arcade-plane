@@ -114,6 +114,4 @@ func create_explosion(starting_position: Vector3) -> void:
 
 	# attach sound effect node to explosion instance
 	var audio_player: AudioStreamPlayer3D = instance_explosion.get_node("SFX")
-	audio_player.stream = preload("res://Assets/SoundFX/explosion.mp3")
-	audio_player.volume_db = 6.0 # make it louder
 	audio_player.play()
