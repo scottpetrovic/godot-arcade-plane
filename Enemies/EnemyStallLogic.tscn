@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://drvcilsaof748"]
+
+[ext_resource type="Script" path="res://Enemies/enemy_crash_logic.gd" id="1_08t6a"]
+
+[node name="EnemyStallLogic" type="Node3D"]
+script = ExtResource("1_08t6a")

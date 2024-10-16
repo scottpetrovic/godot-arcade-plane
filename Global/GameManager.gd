@@ -25,8 +25,9 @@ var _player_reference: Player
 var BulletObjectHitParticle = preload("res://Effects/Particles/BulletObjectHitParticle/BulletObjectHitParticle.tscn")
 var BulletObjectDebrisParticles = preload("res://Effects/Particles/ExplosionDebrisParticles/ExplosionDebrisParticles.tscn")
 var NicerExplosionParticles = preload("res://Effects/Particles/BetterExplosion/BetterExplosionParticle.tscn")
-
 var FuelCanScene = preload("res://Props/FuelCan/FuelCan.tscn")
+var ObjectOnFireParticles = preload("res://Effects/Particles/ObjectOnFireParticles/object_on_fire_particles.tscn")
+
 
 func get_destruction_points() -> int:
 	return _current_level_destruction_points
@@ -115,3 +116,9 @@ func create_explosion(starting_position: Vector3) -> void:
 	# attach sound effect node to explosion instance
 	var audio_player: AudioStreamPlayer3D = instance_explosion.get_node("SFX")
 	audio_player.play()
+	
+func create_stall_smoke_effects(object_ref: Node3D) -> void:
+	var instance_smoke: ObjectOnFireParticles = ObjectOnFireParticles.instantiate()
+	get_tree().root.add_child(instance_smoke)
+	instance_smoke.set_object_to_follow(object_ref)
+	

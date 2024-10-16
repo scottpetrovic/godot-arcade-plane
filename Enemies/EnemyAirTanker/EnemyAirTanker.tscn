@@ -15,7 +15,7 @@ size = Vector3(15.8447, 8.61792, 22.8483)
 [node name="EnemyAirTanker" type="CharacterBody3D" groups=["radar_target"]]
 script = ExtResource("1_wbbfs")
 
-[node name="EnemyCrashMovement" type="Node" parent="."]
+[node name="EnemyStallLogic" type="Node" parent="."]
 script = ExtResource("2_n3jsr")
 
 [node name="SimplePatrolMovement" type="Node" parent="."]

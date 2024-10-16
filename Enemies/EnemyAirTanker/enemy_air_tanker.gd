@@ -4,7 +4,8 @@ extends CharacterBody3D
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 
 @onready var simple_patrol_movement: SimplePatrolMovement = $SimplePatrolMovement
-@onready var enemy_crash_movement: Node = $EnemyCrashMovement
+@onready var enemy_stall_logic: Node = $EnemyStallLogic
+
 
 var points_value: int = 300 # override in inspector
 var player: Player
@@ -15,12 +16,16 @@ signal enemy_died(enemy)
 func _process(delta: float) -> void:
 	check_for_player_if_not_exist()
 	
-	if has_stalled && enemy_crash_movement.check_if_crashed_into_ground():
+	if has_stalled && enemy_stall_logic.check_if_crashed_into_ground():
 		die()
+		return
 	
 	if check_if_all_turrets_destroyed():
-		enemy_crash_movement.crash_towards_ground()
-		has_stalled = true
+		enemy_stall_logic.crash_towards_ground()
+		
+		if has_stalled == false:
+			has_stalled = true
+			enemy_stall_logic.create_smoke_effects() # add particle effects
 	else:
 		simple_patrol_movement.patrol_movement(delta)
 
