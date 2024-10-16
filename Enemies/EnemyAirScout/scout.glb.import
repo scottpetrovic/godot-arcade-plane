@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dobinlb1d6d2y"
-path="res://.godot/imported/boat-tug-b.glb-6c8f3f51c1b620e41adb87ea711cc2f1.scn"
+uid="uid://hfms6pa1mh7e"
+path="res://.godot/imported/scout.glb-c2a5d6d1138f5334041ad7472ab3b5f0.scn"
 
 [deps]
 
-source_file="res://Enemies/EnemyAirBasic/boat-tug-b.glb"
-dest_files=["res://.godot/imported/boat-tug-b.glb-6c8f3f51c1b620e41adb87ea711cc2f1.scn"]
+source_file="res://Enemies/EnemyAirScout/scout.glb"
+dest_files=["res://.godot/imported/scout.glb-c2a5d6d1138f5334041ad7472ab3b5f0.scn"]
 
 [params]
 

@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://Enemies/EnemyAirBasic/enemy_state_machine.gd" id="2_vsthr"]
 [ext_resource type="Script" path="res://Enemies/EnemyAirBasic/enemy_movement.gd" id="3_ci047"]
 [ext_resource type="Script" path="res://Enemies/simple_ai_shooter.gd" id="3_r5bv4"]
-[ext_resource type="PackedScene" uid="uid://bnkn8wbjo3gwm" path="res://Enemies/EnemyAirScout/boat-sail-a.glb" id="6_4ogmh"]
+[ext_resource type="PackedScene" uid="uid://hfms6pa1mh7e" path="res://Enemies/EnemyAirScout/scout.glb" id="6_fwhf6"]
 [ext_resource type="Script" path="res://Enemies/EnemyLineOfSight.gd" id="7_s31rp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_44aga"]
-size = Vector3(3, 6.9211, 5.20947)
+size = Vector3(2.36426, 0.958424, 2.40039)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8qho2"]
 size = Vector3(46.8252, 41.6885, 53.9863)
@@ -20,21 +20,25 @@ enemy_name = "Basic Turret Ship"
 
 [node name="EnemyMovement" type="Node" parent="."]
 script = ExtResource("3_ci047")
+patrol_speed = 8.0
+pursuit_speed = 4.0
 
 [node name="EnemyStateMachine" type="Node" parent="."]
 script = ExtResource("2_vsthr")
 
 [node name="SimpleAIShooter" type="Node" parent="." node_paths=PackedStringArray("bullet_spawn_point")]
 script = ExtResource("3_r5bv4")
+shoot_delay = 1.0
+attack_range = 15.0
 bullet_spawn_point = NodePath("../BulletSpawnPoint")
 
 [node name="ShootTimer" type="Timer" parent="SimpleAIShooter"]
 
 [node name="BulletSpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(0.998209, -0.059829, 0, 0.059829, 0.998209, 0, 0, 0, 1, 0, 1.44989, -4.33317)
+transform = Transform3D(0.998209, -0.059829, 0, 0.059829, 0.998209, 0, 0, 0, 1, 0, 0.512423, -2.65467)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3289, -0.245361)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.347562, -0.123596)
 shape = SubResource("BoxShape3D_44aga")
 
 [node name="LineOfSight" type="Area3D" parent="."]
@@ -45,5 +49,5 @@ script = ExtResource("7_s31rp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26.6946)
 shape = SubResource("BoxShape3D_8qho2")
 
-[node name="scout_mesh" parent="." instance=ExtResource("6_4ogmh")]
-transform = Transform3D(-1.3, 0, 1.96295e-07, 0, 1.3, 0, -1.96295e-07, 0, -1.3, 0, 0, 0)
+[node name="scout" parent="." instance=ExtResource("6_fwhf6")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)

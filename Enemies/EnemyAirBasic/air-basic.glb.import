@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://vvwx8v7hhpwi"
-path="res://.godot/imported/scout.glb-3370da550e74501fbdc4d0c277e185b2.scn"
+uid="uid://dmjcaypt1otbn"
+path="res://.godot/imported/air-basic.glb-f63b787b5a533d6e708b472bbf093437.scn"
 
 [deps]
 
-source_file="res://Blender/Enemies/scout.glb"
-dest_files=["res://.godot/imported/scout.glb-3370da550e74501fbdc4d0c277e185b2.scn"]
+source_file="res://Enemies/EnemyAirBasic/air-basic.glb"
+dest_files=["res://.godot/imported/air-basic.glb-f63b787b5a533d6e708b472bbf093437.scn"]
 
 [params]
 
