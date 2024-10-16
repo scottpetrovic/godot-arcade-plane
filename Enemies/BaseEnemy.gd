@@ -30,9 +30,9 @@ func hit() -> void:
 
 
 func lost_all_health():
-	emit_signal("enemy_died", self) # tell enemy manager
 	GameManager.add_destruction_points(points_value)
 	GameManager.create_explosion(self.global_position)
+	GameManager.current_level_remaining_enemies -= 1
 	
 	# 10% chance a fuel can will be dropped
 	if randf() <= 0.10:

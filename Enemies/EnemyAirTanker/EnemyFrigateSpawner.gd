@@ -18,7 +18,4 @@ func spawn_enemy():
 	if enemy_scene:
 		var enemy = enemy_scene.instantiate()
 		enemy.global_transform.origin = global_transform.origin
-		
-		# Add the enemy to the scene
-		get_tree().current_scene.add_child(enemy)
-		print("Enemy spawned at: ", enemy.global_transform.origin)
+		GameManager.create_enemy(enemy, enemy.global_transform.origin)

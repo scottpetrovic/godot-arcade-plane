@@ -99,6 +99,10 @@ func create_fuel_can(starting_position: Vector3) -> void:
 	get_tree().root.add_child(instance_fuelcan)
 	instance_fuelcan.global_position = starting_position
 
+func create_enemy(enemy_object: Node3D, pos: Vector3) -> void:
+	GameManager.current_level_remaining_enemies += 1 # keep track of enemies
+	get_tree().current_scene.add_child(enemy_object)
+	enemy_object.global_position = pos
 
 func create_explosion(starting_position: Vector3) -> void:
 	# create particle effects since we blew up
