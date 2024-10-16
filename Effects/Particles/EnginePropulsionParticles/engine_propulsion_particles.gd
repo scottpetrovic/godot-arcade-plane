@@ -5,11 +5,10 @@ extends GPUParticles3D
 		jet_radius = value
 		update_jet_size()
 
-@export var length_life: float = 2.0:
-	set(value):
-		lifetime = length_life
+@export var length_life: float = 2.0
 
 func _ready():
+	lifetime = length_life
 	create_unique_resources()
 	update_jet_size()
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfs2bysish47g"]
+[gd_scene load_steps=10 format=3 uid="uid://dfs2bysish47g"]
 
 [ext_resource type="Script" path="res://Enemies/BaseEnemy.gd" id="1_q8lak"]
 [ext_resource type="Script" path="res://Enemies/EnemyAirBasic/enemy_state_machine.gd" id="2_vsthr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Enemies/simple_ai_shooter.gd" id="3_r5bv4"]
 [ext_resource type="PackedScene" uid="uid://hfms6pa1mh7e" path="res://Enemies/EnemyAirScout/scout.glb" id="6_fwhf6"]
 [ext_resource type="Script" path="res://Enemies/EnemyLineOfSight.gd" id="7_s31rp"]
+[ext_resource type="PackedScene" uid="uid://c0ccvidlup2vd" path="res://Effects/Particles/EnginePropulsionParticles/EnginePropulsionParticles.tscn" id="7_t7wce"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_44aga"]
 size = Vector3(2.36426, 0.958424, 2.40039)
@@ -51,3 +52,13 @@ shape = SubResource("BoxShape3D_8qho2")
 
 [node name="scout" parent="." instance=ExtResource("6_fwhf6")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+
+[node name="EnginePropulsionParticles" parent="." instance=ExtResource("7_t7wce")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.330113, 0.277164, 0.889306)
+jet_radius = 0.2
+length_life = 0.2
+
+[node name="EnginePropulsionParticles2" parent="." instance=ExtResource("7_t7wce")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3258, 0.326339, 0.816959)
+jet_radius = 0.2
+length_life = 0.2
