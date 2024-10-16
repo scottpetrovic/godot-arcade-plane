@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d3ovo2it7nbnh"]
+[gd_scene load_steps=29 format=3 uid="uid://d3ovo2it7nbnh"]
 
 [ext_resource type="Script" path="res://Character/airplane.gd" id="1_wihbf"]
 [ext_resource type="Script" path="res://Character/ground_controller.gd" id="2_5qk4h"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://dts8p6fafmnjv" path="res://Assets/UI/crosshair021.png" id="17_a5qkf"]
 [ext_resource type="Script" path="res://Character/Effects/character_ground_impact.gd" id="18_5vmap"]
 [ext_resource type="AudioStream" uid="uid://di6ad1x7gnbna" path="res://Assets/SoundFX/landing-squeal.mp3" id="19_ryq6c"]
+[ext_resource type="Script" path="res://Character/review_view_camera_area.gd" id="20_4trkm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsjsx"]
 radius = 0.259621
@@ -211,6 +212,9 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_edtbk"]
 size = Vector3(0.674072, 0.0758667, 0.767822)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1e3pk"]
+size = Vector3(16.5361, 13.7578, 15.3529)
+
 [node name="Airplane" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.214764, 0)
 script = ExtResource("1_wihbf")
@@ -301,3 +305,11 @@ shape = SubResource("BoxShape3D_edtbk")
 [node name="tire_squeal_sfx" type="AudioStreamPlayer3D" parent="GroundImpactArea"]
 stream = ExtResource("19_ryq6c")
 volume_db = -35.229
+
+[node name="ReviewViewCameraArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.801623)
+script = ExtResource("20_4trkm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ReviewViewCameraArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.17645)
+shape = SubResource("BoxShape3D_1e3pk")

@@ -1,3 +1,4 @@
+class_name Bullet
 extends Area3D
 
 @onready var timer: Timer = $Timer
