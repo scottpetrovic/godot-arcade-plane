@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://b268yya28qpq3"]
+[gd_scene load_steps=13 format=3 uid="uid://b268yya28qpq3"]
 
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Character/airplane.tscn" id="1_du1x6"]
 [ext_resource type="Script" path="res://Effects/Camera/CameraFollow.gd" id="2_vhu4v"]
 [ext_resource type="Script" path="res://Effects/Camera/FX_ScreenShake.gd" id="3_akjx7"]
 [ext_resource type="Shader" path="res://Environment/Materials/TestGrid.gdshader" id="3_pr18u"]
+[ext_resource type="Script" path="res://Levels/Sandbox/player_screen_shake.gd" id="4_h1eti"]
 [ext_resource type="PackedScene" uid="uid://bm15sseqvqdwl" path="res://UI/InGame/InGameUIElements.tscn" id="5_7qxxv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vilnx"]
@@ -51,13 +52,13 @@ orientation = 1
 [node name="SimplePlaneSandbox" type="Node3D"]
 
 [node name="Airplane" parent="." instance=ExtResource("1_du1x6")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0.230635, -9.4486)
+transform = Transform3D(1, 0, 6.35732e-08, 0, 1, 0, -6.35732e-08, 0, 1, 2.9131e-07, 0.230635, -0.0132613)
 
 [node name="Marker3D" type="Marker3D" parent="Airplane"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84646e-07, 1.09629, 4.5342)
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.49596, -16.113)
+transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -2.9131e-07, 2.49596, 6.65114)
 fov = 50.0
 script = ExtResource("2_vhu4v")
 target = NodePath("../Airplane/Marker3D")
@@ -65,6 +66,9 @@ target = NodePath("../Airplane/Marker3D")
 [node name="ScreenShake" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 0, 0, 1, -0.698183, 0.79687, 6.15439)
 script = ExtResource("3_akjx7")
+
+[node name="PlayerScreenShake" type="Node" parent="Camera3D"]
+script = ExtResource("4_h1eti")
 
 [node name="Static Environment" type="Node" parent="."]
 

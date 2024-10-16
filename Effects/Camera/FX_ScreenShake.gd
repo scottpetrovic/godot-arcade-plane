@@ -1,3 +1,4 @@
+class_name ScreenShake
 extends Node
 
 # Constant screen shake variables

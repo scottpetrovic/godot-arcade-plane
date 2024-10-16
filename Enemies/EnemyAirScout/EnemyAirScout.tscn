@@ -13,7 +13,7 @@ size = Vector3(3, 6.9211, 5.20947)
 [sub_resource type="BoxShape3D" id="BoxShape3D_8qho2"]
 size = Vector3(46.8252, 41.6885, 53.9863)
 
-[node name="EnemyAirScout" type="CharacterBody3D"]
+[node name="EnemyAirScout" type="CharacterBody3D" groups=["radar_target"]]
 script = ExtResource("1_q8lak")
 starting_health = 8.0
 enemy_name = "Basic Turret Ship"

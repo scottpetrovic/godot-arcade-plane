@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bm15sseqvqdwl"]
+[gd_scene load_steps=40 format=3 uid="uid://bm15sseqvqdwl"]
 
 [ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="1_2e51c"]
 [ext_resource type="Script" path="res://UI/InGame/InGameUI.gd" id="1_sy6e0"]
@@ -25,6 +25,14 @@
 [ext_resource type="Texture2D" uid="uid://dw25pr6qxcb25" path="res://Assets/Icons/arrowRight.png" id="14_0w13k"]
 [ext_resource type="Script" path="res://UI/InGame/enemies_remaining_counter.gd" id="15_lkc1i"]
 [ext_resource type="Texture2D" uid="uid://rx1v4oi2y0e1" path="res://Assets/Icons/plane-icon.png" id="16_8m2i4"]
+[ext_resource type="Script" path="res://UI/InGame/speed_lines_camera_effect.gd" id="19_2sj1q"]
+[ext_resource type="Script" path="res://UI/InGame/pause_menu.gd" id="26_o8al2"]
+[ext_resource type="Script" path="res://UI/InGame/sandbox-ui-spawner.gd" id="27_2k4yc"]
+[ext_resource type="PackedScene" uid="uid://mvtsty7f7en6" path="res://Enemies/EnemyAirBasic/EnemyAirBasic.tscn" id="28_5o6ot"]
+[ext_resource type="PackedScene" uid="uid://dfs2bysish47g" path="res://Enemies/EnemyAirScout/EnemyAirScout.tscn" id="29_w62x7"]
+[ext_resource type="PackedScene" uid="uid://cl4n1jrd5qmw8" path="res://Enemies/EnemyAirTanker/EnemyAirTanker.tscn" id="30_5lxge"]
+[ext_resource type="PackedScene" uid="uid://x8283o2aecy8" path="res://Enemies/EnemySeaShip/EnemySeaShip.tscn" id="31_seegj"]
+[ext_resource type="PackedScene" uid="uid://cbxt2worosdqq" path="res://Enemies/TurretEnemy/TurretEnemy.tscn" id="32_2cy4o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elflq"]
 bg_color = Color(0.470076, 0.470076, 0.470076, 1)
@@ -325,7 +333,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_lock_ = true
+script = ExtResource("19_2sj1q")
 
 [node name="PlayerCrashedOverlay" type="CenterContainer" parent="."]
 visible = false
@@ -460,3 +468,55 @@ text = "C"
 [node name="Label" type="Label" parent="PlayControlsLayout/HBoxContainer5"]
 layout_mode = 2
 text = "Fire Bullets"
+
+[node name="PauseMenu" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.611765)
+script = ExtResource("26_o8al2")
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/CenterContainer"]
+layout_mode = 2
+script = ExtResource("27_2k4yc")
+air_basic_enemy = ExtResource("28_5o6ot")
+air_scout_enemy = ExtResource("29_w62x7")
+air_frigate_enemy = ExtResource("30_5lxge")
+sea_ship = ExtResource("31_seegj")
+turret_block = ExtResource("32_2cy4o")
+
+[node name="Spawn1Button" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Air Basic"
+
+[node name="Spawn2Button" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Air Scout"
+
+[node name="Spawn3Button" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sea Ship"
+
+[node name="Spawn4Button" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Air Tanker"
+
+[node name="Spawn5Button" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Basic Turret"
+
+[node name="ReloadButton" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Reload"

@@ -10,7 +10,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_5hibp"]
 size = Vector3(15.8447, 8.61792, 23.5286)
 
-[node name="EnemyAirTanker" type="CharacterBody3D"]
+[node name="EnemyAirTanker" type="CharacterBody3D" groups=["radar_target"]]
 script = ExtResource("1_wbbfs")
 
 [node name="SimplePatrolMovement" type="Node" parent="."]
