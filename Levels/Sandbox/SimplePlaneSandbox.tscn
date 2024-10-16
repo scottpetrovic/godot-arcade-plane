@@ -53,13 +53,13 @@ orientation = 1
 [node name="SimplePlaneSandbox" type="Node3D"]
 
 [node name="Airplane" parent="." instance=ExtResource("1_du1x6")]
-transform = Transform3D(1, 0, 6.35732e-08, 0, 1, 0, -6.35732e-08, 0, 1, 2.9131e-07, 0.230635, -0.0132613)
+transform = Transform3D(1, 0, 6.35732e-08, 0, 1, 0, -6.35732e-08, 0, 1, 2.9131e-07, 0.230635, 41.2419)
 
 [node name="Marker3D" type="Marker3D" parent="Airplane"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84646e-07, 1.09629, 4.5342)
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -2.9131e-07, 2.49596, 6.65114)
+transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -2.9131e-07, 2.49596, 47.9063)
 fov = 50.0
 script = ExtResource("2_vhu4v")
 target = NodePath("../Airplane/Marker3D")
@@ -74,11 +74,11 @@ script = ExtResource("4_h1eti")
 [node name="Static Environment" type="Node" parent="."]
 
 [node name="PrimaryLight" type="DirectionalLight3D" parent="Static Environment"]
-transform = Transform3D(0.659634, 0.038549, 0.750597, -0.751587, 0.0338327, 0.658766, 0, -0.998684, 0.0512901, 2.53716, 3.32658, 0)
+transform = Transform3D(0.659634, 0.038549, 0.750598, -0.751587, 0.0338327, 0.658766, 0, -0.998684, 0.0512901, 34.5372, 20.3266, 0)
 shadow_enabled = true
 
 [node name="SecondaryLight" type="DirectionalLight3D" parent="Static Environment"]
-transform = Transform3D(0.736381, -0.0347012, -0.675677, 0.676568, 0.0377691, 0.735411, 0, -0.998684, 0.0512901, -2.44585, 3.32658, 0)
+transform = Transform3D(0.736381, -0.0347012, -0.675677, 0.676568, 0.0377691, 0.735411, 0, -0.998684, 0.0512901, -81.4458, 23.3266, 0)
 light_color = Color(0.106022, 0.466334, 0.834748, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Static Environment"]

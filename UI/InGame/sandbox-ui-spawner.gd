@@ -48,7 +48,7 @@ func _spawn_2_press() -> void:
 func _spawn_3_press() -> void:
 	var enemy = sea_ship.instantiate()
 	var pos: Vector3 = find_random_position(enemy, false)
-
+	GameManager.create_enemy(enemy, pos)
 
 func _spawn_4_press() -> void:
 	var enemy = air_frigate_enemy.instantiate()
