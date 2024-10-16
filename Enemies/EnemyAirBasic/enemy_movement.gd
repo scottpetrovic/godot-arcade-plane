@@ -4,6 +4,8 @@ extends Node
 @onready var enemy_state_machine: EnemyStateMachine = $"../EnemyStateMachine"
 @onready var enemy: CharacterBody3D = $".."
 @onready var simple_ai_shooter: Node = $"../SimpleAIShooter"
+@onready var enemy_stall_logic: Node = $"../EnemyStallLogic"
+
 
 @export var patrol_speed = 6.0  # Units per second
 @export var pursuit_speed = 8.0  # Units per second
@@ -14,13 +16,13 @@ var patrol_starting_position: Vector3 = Vector3.ZERO
 var current_distance = 0.0
 var turn_angle = 0.0  # Degrees
 
-
 func _ready() -> void:
 	
 	# every patrol will be a circle, but this randomized how big the
 	# circle will be a bit
 	var possible_angles: Array[float] = [20.0, -20.0, 30.0, -30.0, 45.0, -45.0]
 	turn_angle = possible_angles[randi() % possible_angles.size()]
+
 
 func check_for_player_if_not_exist():
 	if is_instance_valid(player) == false:
@@ -35,6 +37,8 @@ func _process(delta: float) -> void:
 	match enemy_state_machine.current_state:
 			enemy_state_machine.State.PATROL:
 				patrol_movement(delta)
+			enemy_state_machine.State.STALL:
+				enemy_stall_logic.crash_towards_ground()
 			enemy_state_machine.State.PURSUE:
 				pursue_player()
 			enemy_state_machine.State.RETURN:
@@ -52,7 +56,6 @@ func initialize_starting_position_if_not_done():
 	if patrol_starting_position == Vector3(0,0,0):
 		patrol_starting_position = enemy.global_position
 
-
 func patrol_movement(delta):
 	# Move in the current direction
 	enemy.velocity = -enemy.global_transform.basis.z * patrol_speed
@@ -65,7 +68,6 @@ func patrol_movement(delta):
 	if current_distance >= distance_to_travel:
 		await turn()
 		current_distance = 0.0
-
 
 func turn():
 	var target_rotation = 0.0

@@ -3,22 +3,32 @@ extends CharacterBody3D
 @onready var turret_manager: Node3D = $TurretManager
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 
+@onready var simple_patrol_movement: SimplePatrolMovement = $SimplePatrolMovement
+@onready var enemy_crash_movement: Node = $EnemyCrashMovement
 
 var points_value: int = 300 # override in inspector
 var player: Player
+var has_stalled: bool = false
 
 signal enemy_died(enemy)
 
 func _process(delta: float) -> void:
 	check_for_player_if_not_exist()
-	if check_if_all_turrets_destroyed():
+	
+	if has_stalled && enemy_crash_movement.check_if_crashed_into_ground():
 		die()
-		
+	
+	if check_if_all_turrets_destroyed():
+		enemy_crash_movement.crash_towards_ground()
+		has_stalled = true
+	else:
+		simple_patrol_movement.patrol_movement(delta)
 
 		
 func die() -> void:
 	emit_signal("enemy_died", self) # tell enemy manager
 	GameManager.add_destruction_points(points_value)
+	GameManager.current_level_remaining_enemies -= 1
 	create_three_bb_explosions()
 	
 	# do small screen shake to help with effect

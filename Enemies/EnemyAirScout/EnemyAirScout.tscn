@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfs2bysish47g"]
+[gd_scene load_steps=11 format=3 uid="uid://dfs2bysish47g"]
 
 [ext_resource type="Script" path="res://Enemies/BaseEnemy.gd" id="1_q8lak"]
+[ext_resource type="Script" path="res://Enemies/enemy_crash_logic.gd" id="2_50sn7"]
 [ext_resource type="Script" path="res://Enemies/EnemyAirBasic/enemy_state_machine.gd" id="2_vsthr"]
 [ext_resource type="Script" path="res://Enemies/EnemyAirBasic/enemy_movement.gd" id="3_ci047"]
 [ext_resource type="Script" path="res://Enemies/simple_ai_shooter.gd" id="3_r5bv4"]
@@ -16,8 +17,11 @@ size = Vector3(46.8252, 41.6885, 53.9863)
 
 [node name="EnemyAirScout" type="CharacterBody3D" groups=["radar_target"]]
 script = ExtResource("1_q8lak")
-starting_health = 8.0
+starting_health = 15.0
 enemy_name = "Basic Turret Ship"
+
+[node name="EnemyStallLogic" type="Node" parent="."]
+script = ExtResource("2_50sn7")
 
 [node name="EnemyMovement" type="Node" parent="."]
 script = ExtResource("3_ci047")

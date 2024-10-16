@@ -8,13 +8,8 @@ extends Node
 @export var distance_to_travel = 160.0  # Units
 var current_distance = 0.0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	patrol_movement(delta)
-
 
 func patrol_movement(delta):
-	
 	
 	# Move in the current direction
 	enemy.velocity = -enemy.global_transform.basis.z * patrol_speed

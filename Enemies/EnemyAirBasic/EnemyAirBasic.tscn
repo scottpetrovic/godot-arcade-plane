@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://mvtsty7f7en6"]
+[gd_scene load_steps=11 format=3 uid="uid://mvtsty7f7en6"]
 
 [ext_resource type="Script" path="res://Enemies/BaseEnemy.gd" id="1_dc8vq"]
 [ext_resource type="Script" path="res://Enemies/EnemyAirBasic/enemy_movement.gd" id="2_03eva"]
+[ext_resource type="Script" path="res://Enemies/enemy_crash_logic.gd" id="2_742k0"]
 [ext_resource type="Script" path="res://Enemies/simple_ai_shooter.gd" id="3_witci"]
 [ext_resource type="Script" path="res://Enemies/EnemyLineOfSight.gd" id="4_lunia"]
 [ext_resource type="PackedScene" uid="uid://dmjcaypt1otbn" path="res://Enemies/EnemyAirBasic/air-basic.glb" id="6_6hvhs"]
@@ -16,6 +17,10 @@ size = Vector3(46.8252, 41.6885, 53.9863)
 
 [node name="SimpleAirEnemy" type="CharacterBody3D" groups=["radar_target"]]
 script = ExtResource("1_dc8vq")
+starting_health = 15.0
+
+[node name="EnemyStallLogic" type="Node" parent="."]
+script = ExtResource("2_742k0")
 
 [node name="EnemyMovement" type="Node" parent="."]
 script = ExtResource("2_03eva")

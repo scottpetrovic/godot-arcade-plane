@@ -68,7 +68,7 @@ func find_random_position(object: Node3D, is_in_air: bool = true) -> Vector3:
 	rng.randomize()
 		
 	var x = rng.randf_range(-40.0, 40.0)
-	var y = rng.randf_range(5.0, 10.0)
+	var y = rng.randf_range(20.0, 30.0)
 	var z = rng.randf_range(-30.0, -50.0)
 
 	if is_in_air:
