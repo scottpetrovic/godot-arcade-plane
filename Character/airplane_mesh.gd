@@ -5,8 +5,8 @@ extends Node3D
 
 @export var flight_controller: FlightController
 
-
 var airplane_original_scale: float
+var is_landing_gears_down: bool = true # we are starting on the ground
 
 func open_landing_gears(value: bool) -> void:
 	if value == false:
@@ -21,6 +21,23 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	rotate_propellor(delta)
 	update_aileron(delta)
+	landing_gear_logic()
+	
+func landing_gear_logic() -> void:
+	
+	var landing_gears_threshold: float = 7.0
+	
+	# if our landing gears are down and we are high enough, close them
+	if is_landing_gears_down && plane.global_position.y > landing_gears_threshold:
+		print('bring up landing gears')
+		is_landing_gears_down = false
+		open_landing_gears(false)
+		
+	# if our landing gears are up and we are close to the ground, open them
+	if is_landing_gears_down == false && plane.global_position.y <= landing_gears_threshold:
+		print('bring down landing gears')
+		is_landing_gears_down = true
+		open_landing_gears(true)
 	
 	
 func update_aileron(delta) -> void:

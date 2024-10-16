@@ -107,9 +107,6 @@ func set_allow_movement(enable: bool) -> void:
 func is_engine_on() -> bool:
 	return (forward_speed / max_flight_speed) > 0.01
 
-func open_landing_gears(value: bool) -> void:
-	plane_mesh.open_landing_gears(value)
-
 func set_throttle(throttle_percentage: float) -> void:
 	target_speed = throttle_percentage * max_flight_speed
 	forward_speed = throttle_percentage * max_flight_speed
