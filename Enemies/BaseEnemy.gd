@@ -6,6 +6,7 @@ extends CharacterBody3D
 @export var starting_health: float = 3.0 # overrride in inspector
 @export var points_value: int = 300 # override in inspector
 @export var enemy_name = "Base Enemy" # override in inspector
+@export var is_enemy_air_type: bool = true
 
 var player: Player
 
@@ -32,6 +33,10 @@ func hit() -> void:
 func lost_all_health():
 	GameManager.add_destruction_points(points_value)
 	GameManager.create_explosion(self.global_position)
+	
+	if is_enemy_air_type:
+		GameManager.create_crater(self.global_position)
+	
 	GameManager.current_level_remaining_enemies -= 1
 	
 	# 10% chance a fuel can will be dropped

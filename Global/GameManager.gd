@@ -27,7 +27,7 @@ var BulletObjectDebrisParticles = preload("res://Effects/Particles/ExplosionDebr
 var NicerExplosionParticles = preload("res://Effects/Particles/BetterExplosion/BetterExplosionParticle.tscn")
 var FuelCanScene = preload("res://Props/FuelCan/FuelCan.tscn")
 var ObjectOnFireParticles = preload("res://Effects/Particles/ObjectOnFireParticles/object_on_fire_particles.tscn")
-
+var CraterScene = preload("res://Props/Crater/Crater.tscn")
 
 func get_destruction_points() -> int:
 	return _current_level_destruction_points
@@ -116,7 +116,15 @@ func create_explosion(starting_position: Vector3) -> void:
 	# attach sound effect node to explosion instance
 	var audio_player: AudioStreamPlayer3D = instance_explosion.get_node("SFX")
 	audio_player.play()
+
+func create_crater(starting_position, scale_fac: float = 1.0) -> void:
+	var crator_instance: StaticBody3D = CraterScene.instantiate()
+	crator_instance.scale = Vector3(scale_fac,scale_fac,scale_fac)
 	
+	get_tree().root.add_child(crator_instance)
+	crator_instance.global_position = starting_position
+	crator_instance.global_position.y = 0 # make sure it is on ground
+
 func create_stall_smoke_effects(object_ref: Node3D) -> void:
 	var instance_smoke: ObjectOnFireParticles = ObjectOnFireParticles.instantiate()
 	get_tree().root.add_child(instance_smoke)
