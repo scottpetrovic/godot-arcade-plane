@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b268yya28qpq3"]
+[gd_scene load_steps=15 format=3 uid="uid://b268yya28qpq3"]
 
 [ext_resource type="PackedScene" uid="uid://d3ovo2it7nbnh" path="res://Character/airplane.tscn" id="1_du1x6"]
 [ext_resource type="Script" path="res://Effects/Camera/CameraFollow.gd" id="2_vhu4v"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Levels/Sandbox/player_screen_shake.gd" id="4_h1eti"]
 [ext_resource type="PackedScene" uid="uid://bm15sseqvqdwl" path="res://UI/InGame/InGameUIElements.tscn" id="5_7qxxv"]
 [ext_resource type="Script" path="res://Levels/Sandbox/sub_viewport.gd" id="7_bpjjm"]
+[ext_resource type="PackedScene" uid="uid://vdh8lsgw887b" path="res://Enemies/EnemyKaiju/Kaiju.tscn" id="8_wq2yi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vilnx"]
 
@@ -117,3 +118,6 @@ current = true
 script = ExtResource("7_bpjjm")
 
 [node name="TurnOnDelayTimer" type="Timer" parent="SubViewportContainer/SubViewport/ReviewMirrorCamera"]
+
+[node name="Kaiju" parent="." instance=ExtResource("8_wq2yi")]
+transform = Transform3D(0.5, 0, -0.866026, 0, 1, 0, 0.866026, 0, 0.5, 0, 0, -16.9405)
