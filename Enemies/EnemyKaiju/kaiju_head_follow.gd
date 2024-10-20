@@ -5,6 +5,9 @@ extends Node
 @onready var kaiju: AnimatableBody3D = $".."
 @onready var line_of_sight: EnemyLineOfSight = $"../kaiju-puppet/body_base/LineOfSight"
 
+@onready var animation_player_mouth: AnimationPlayer = $"../AnimationPlayerMouth"
+
+
 var _player_reference: Node3D
 var can_see_player: bool = false # helps us know when we can look at player
 
@@ -30,8 +33,12 @@ func _ready() -> void:
 func _see_player_visuals() -> void:
 	can_see_player = true
 	
+	# the audio gets played as part of the animation player
+	animation_player_mouth.play("mouth_open")
+	
 func _lost_player_visuals() -> void:
 	can_see_player = false
+	animation_player_mouth.stop()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
