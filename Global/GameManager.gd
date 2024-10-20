@@ -28,6 +28,8 @@ var NicerExplosionParticles = preload("res://Effects/Particles/BetterExplosion/B
 var FuelCanScene = preload("res://Props/FuelCan/FuelCan.tscn")
 var ObjectOnFireParticles = preload("res://Effects/Particles/ObjectOnFireParticles/object_on_fire_particles.tscn")
 var CraterScene = preload("res://Props/Crater/Crater.tscn")
+var KaijuEntranceParticles = preload("res://Effects/KaijuGroundBreakParticles/KaijuEmergeParticles.tscn")
+
 
 func get_destruction_points() -> int:
 	return _current_level_destruction_points
@@ -116,6 +118,12 @@ func create_explosion(starting_position: Vector3) -> void:
 	# attach sound effect node to explosion instance
 	var audio_player: AudioStreamPlayer3D = instance_explosion.get_node("SFX")
 	audio_player.play()
+
+func create_kaiju_entrance_particles(starting_position: Vector3) -> void:
+	var instance_expl: GPUParticles3D = KaijuEntranceParticles.instantiate()
+	get_tree().root.add_child(instance_expl)
+	instance_expl.global_position = starting_position
+	instance_expl.emitting = true
 
 func create_crater(starting_position, scale_fac: float = 1.0) -> void:
 	var crator_instance: StaticBody3D = CraterScene.instantiate()
