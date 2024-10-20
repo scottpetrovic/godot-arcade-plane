@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://vdh8lsgw887b"]
+[gd_scene load_steps=19 format=3 uid="uid://vdh8lsgw887b"]
 
 [ext_resource type="Script" path="res://Enemies/EnemyKaiju/kaiju.gd" id="1_uebqx"]
 [ext_resource type="PackedScene" uid="uid://bao73x40bfoly" path="res://Enemies/EnemyKaiju/kaiju-puppet.glb" id="2_bpbof"]
@@ -489,6 +489,50 @@ tracks/34/keys = {
 "points": PackedFloat32Array(0.945213, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/35/type = "bezier"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("kaiju-puppet/body_base/head:quaternion:x")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/36/type = "bezier"
+tracks/36/imported = false
+tracks/36/enabled = true
+tracks/36/path = NodePath("kaiju-puppet/body_base/head:quaternion:y")
+tracks/36/interp = 1
+tracks/36/loop_wrap = true
+tracks/36/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/37/type = "bezier"
+tracks/37/imported = false
+tracks/37/enabled = true
+tracks/37/path = NodePath("kaiju-puppet/body_base/head:quaternion:z")
+tracks/37/interp = 1
+tracks/37/loop_wrap = true
+tracks/37/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/38/type = "bezier"
+tracks/38/imported = false
+tracks/38/enabled = true
+tracks/38/path = NodePath("kaiju-puppet/body_base/head:quaternion:w")
+tracks/38/interp = 1
+tracks/38/loop_wrap = true
+tracks/38/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_0nnsp"]
 resource_name = "idle"
@@ -714,6 +758,156 @@ tracks/19/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(0.837804, -0.25, 0, 0.25, 0, 0.862491, -0.25, 0, 0.25, 0, 0.837804, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1.7367, 3.70361)
+}
+
+[sub_resource type="Animation" id="Animation_14mmt"]
+resource_name = "retreat"
+length = 3.0
+step = 0.25
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("kaiju-puppet/body_base")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("kaiju-puppet/body_base:quaternion:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.484504, -0.25, 0, 0.25, 0, 0.803504, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("kaiju-puppet/body_base:quaternion:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1.01531e-15, -0.25, 0, 0.25, 0, -7.10185e-13, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("kaiju-puppet/body_base:quaternion:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 4.23567e-08, -0.25, 0, 0.25, 0, 7.02461e-08, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("kaiju-puppet/body_base:quaternion:w")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.874789, -0.25, 0, 0.25, 0, 0.595299, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("kaiju-puppet/body_base/tail_1:quaternion:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.438646, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("kaiju-puppet/body_base/tail_1:quaternion:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1.30842e-09, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("kaiju-puppet/body_base/tail_1:quaternion:z")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -3.90437e-08, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("kaiju-puppet/body_base/tail_1:quaternion:w")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.89866, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("kaiju-puppet/body_base:position:x")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -4.90036e-07, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.5, 3)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("kaiju-puppet/body_base:position:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(5.06564, -0.25, 0, 0.25, 0, 5.06564, -0.25, 0, 0.25, 0, -10.1677, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.5, 3)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("kaiju-puppet/body_base:position:z")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 5.60536, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.5, 3)
+}
+tracks/12/type = "method"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("KaijuAnimationLogic")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"animation_callback_retreat"
+}, {
+"args": [],
+"method": &"animation_callback_destroy"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_wc3oy"]
@@ -992,159 +1186,248 @@ tracks/23/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_14mmt"]
-resource_name = "retreat"
+[sub_resource type="Animation" id="Animation_2qpt6"]
+resource_name = "emerge"
 length = 3.0
 step = 0.25
-tracks/0/type = "rotation_3d"
+tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = false
 tracks/0/path = NodePath("kaiju-puppet/body_base")
-tracks/0/interp = 2
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array()
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("kaiju-puppet/body_base:quaternion:x")
+tracks/1/path = NodePath("kaiju-puppet/body_base:position:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.484504, -0.25, 0, 0.25, 0, 0.803504, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1, 2)
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.75, 2.25)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("kaiju-puppet/body_base:quaternion:y")
+tracks/2/path = NodePath("kaiju-puppet/body_base:position:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1.01531e-15, -0.25, 0, 0.25, 0, -7.10185e-13, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1, 2)
+"points": PackedFloat32Array(-8.90044, -0.25, 0, 0.25, 0, 17.8441, -0.25, 0, 0.25, 0, 5.06564, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.75, 2.25)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("kaiju-puppet/body_base:quaternion:z")
+tracks/3/path = NodePath("kaiju-puppet/body_base:position:z")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 4.23567e-08, -0.25, 0, 0.25, 0, 7.02461e-08, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1, 2)
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.75, 2.25)
 }
-tracks/4/type = "bezier"
+tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("kaiju-puppet/body_base:quaternion:w")
+tracks/4/path = NodePath("KaijuAnimationLogic")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.874789, -0.25, 0, 0.25, 0, 0.595299, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1, 2)
+"times": PackedFloat32Array(2.97567, 2.99458),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"animation_callback_foot_stomp"
+}, {
+"args": [],
+"method": &"animation_callback_done_emerging"
+}]
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("kaiju-puppet/body_base/tail_1:quaternion:x")
+tracks/5/path = NodePath("kaiju-puppet/body_base/head:quaternion:x")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.438646, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-0.319596, -0.25, 0, 0.25, 0, -0.158763, -0.25, 0, 0.25, 0, 0.329424, -0.25, 0, 0.25, 0, 0.300182, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3)
 }
 tracks/6/type = "bezier"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("kaiju-puppet/body_base/tail_1:quaternion:y")
+tracks/6/path = NodePath("kaiju-puppet/body_base/head:quaternion:y")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1.30842e-09, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-1.40601e-15, -0.25, 0, 0.25, 0, -5.62243e-16, -0.25, 0, 0.25, 0, 7.40211e-11, -0.25, 0, 0.25, 0, 3.56917e-11, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3)
 }
 tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("kaiju-puppet/body_base/tail_1:quaternion:z")
+tracks/7/path = NodePath("kaiju-puppet/body_base/head:quaternion:z")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -3.90437e-08, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-2.794e-08, -0.25, 0, 0.25, 0, -1.40529e-08, -0.25, 0, 0.25, 0, 2.86433e-08, -0.25, 0, 0.25, 0, 2.6264e-08, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3)
 }
 tracks/8/type = "bezier"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("kaiju-puppet/body_base/tail_1:quaternion:w")
+tracks/8/path = NodePath("kaiju-puppet/body_base/head:quaternion:w")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.89866, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.947554, -0.25, 0, 0.25, 0, 0.987317, -0.25, 0, 0.25, 0, 0.944182, -0.25, 0, 0.25, 0, 0.953882, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3)
 }
 tracks/9/type = "bezier"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("kaiju-puppet/body_base:position:x")
+tracks/9/path = NodePath("kaiju-puppet/body_base/tail_1:quaternion:x")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -4.90036e-07, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1.5, 3)
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-0.413128, -0.25, 0, 0.25, 0, -0.415832, -0.25, 0, 0.25, 0, 0.371381, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.758078, 1.50808, 2.25)
 }
 tracks/10/type = "bezier"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("kaiju-puppet/body_base:position:y")
+tracks/10/path = NodePath("kaiju-puppet/body_base/tail_1:quaternion:y")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(5.06564, -0.25, 0, 0.25, 0, 5.06564, -0.25, 0, 0.25, 0, -10.1677, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1.5, 3)
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -2.1135e-11, -0.25, 0, 0.25, 0, -2.17912e-12, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.758078, 1.50808, 2.25)
 }
 tracks/11/type = "bezier"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("kaiju-puppet/body_base:position:z")
+tracks/11/path = NodePath("kaiju-puppet/body_base/tail_1:quaternion:z")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 5.60536, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1.5, 3)
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-3.61168e-08, -0.25, 0, 0.25, 0, -3.63788e-08, -0.25, 0, 0.25, 0, 3.24711e-08, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.758078, 1.50808, 2.25)
 }
-tracks/12/type = "method"
+tracks/12/type = "bezier"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("KaijuAnimationLogic")
+tracks/12/path = NodePath("kaiju-puppet/body_base/tail_1:quaternion:w")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(2, 3),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"animation_callback_retreat"
-}, {
-"args": [],
-"method": &"animation_callback_destroy"
-}]
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0.910673, -0.25, 0, 0.25, 0, 0.909441, -0.25, 0, 0.25, 0, 0.928481, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.758078, 1.50808, 2.25)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("kaiju-puppet/body_base/leg_r/ankle_r/foot_r:quaternion:x")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-0.321112, -0.25, 0, 0.25, 0, -0.526776, -0.25, 0, 0.25, 0, -0.781453, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.754039, 2.25)
+}
+tracks/14/type = "bezier"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("kaiju-puppet/body_base/leg_r/ankle_r/foot_r:quaternion:y")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-0.0680863, -0.25, 0, 0.25, 0, -0.0993169, -0.25, 0, 0.25, 0, -0.140621, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.754039, 2.25)
+}
+tracks/15/type = "bezier"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("kaiju-puppet/body_base/leg_r/ankle_r/foot_r:quaternion:z")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.152143, -0.25, 0, 0.25, 0, 0.132885, -0.25, 0, 0.25, 0, 0.0894927, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.754039, 2.25)
+}
+tracks/16/type = "bezier"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("kaiju-puppet/body_base/leg_r/ankle_r/foot_r:quaternion:w")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.932257, -0.25, 0, 0.25, 0, 0.833657, -0.25, 0, 0.25, 0, 0.601289, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.754039, 2.25)
+}
+tracks/17/type = "bezier"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("kaiju-puppet/body_base:quaternion:x")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.160631, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.75, 2.25, 3)
+}
+tracks/18/type = "bezier"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("kaiju-puppet/body_base:quaternion:y")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -3.37449e-16, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.75, 2.25, 3)
+}
+tracks/19/type = "bezier"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("kaiju-puppet/body_base:quaternion:z")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1.40428e-08, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.75, 2.25, 3)
+}
+tracks/20/type = "bezier"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("kaiju-puppet/body_base:quaternion:w")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0.987015, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.75, 2.25, 3)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_27qlc"]
 _data = {
 "RESET": SubResource("Animation_3s8c5"),
+"emerge": SubResource("Animation_2qpt6"),
 "idle": SubResource("Animation_0nnsp"),
 "retreat": SubResource("Animation_14mmt"),
 "walk": SubResource("Animation_wc3oy")
@@ -1162,38 +1445,45 @@ metadata/_edit_lock_ = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="body_base" parent="kaiju-puppet" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.06564, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.90044, 0)
+rotation_edit_mode = 1
+
+[node name="head" parent="kaiju-puppet/body_base" index="2"]
+transform = Transform3D(1, 5.29953e-08, 1.77984e-08, -5.29953e-08, 0.797278, 0.603612, 1.77984e-08, -0.603612, 0.797278, -0.03482, 3.39859, 2.95342)
 rotation_edit_mode = 1
 
 [node name="jaw" parent="kaiju-puppet/body_base/head" index="0"]
 transform = Transform3D(1.71887, 0, 0, 0, 1.70397, 0.225827, 0, -0.225827, 1.70397, 0.000840131, 0.892052, 0.815825)
 
 [node name="leg_l" parent="kaiju-puppet/body_base" index="3"]
-transform = Transform3D(1.71887, 0, 0, 0, 0.694131, -1.57248, 0, 1.57248, 0.694131, 2.18597, 0.0870085, -0.412473)
+transform = Transform3D(1.71887, 0, 0, 0, 0.694132, -1.57248, 0, 1.57248, 0.694132, 2.18597, 0.0870085, -0.412473)
 rotation_edit_mode = 1
 
 [node name="ankle_l" parent="kaiju-puppet/body_base/leg_l" index="0"]
-transform = Transform3D(0.99328, -0.00112354, 0.115728, 0.0714129, 0.79284, -0.605232, -0.0910737, 0.609429, 0.787592, 0.426903, 0.264476, 1.54372)
+transform = Transform3D(0.99328, -0.00112353, 0.115728, 0.0714129, 0.79284, -0.605232, -0.0910738, 0.609429, 0.787592, 0.426903, 0.264476, 1.54372)
 rotation_edit_mode = 1
+
+[node name="foot_l" parent="kaiju-puppet/body_base/leg_l/ankle_l" index="0"]
+transform = Transform3D(0.99328, 0.112156, 0.0285527, -0.00112352, -0.237355, 0.971422, 0.115728, -0.964927, -0.235634, 0.0561185, -0.0519371, 1.13806)
 
 [node name="leg_r" parent="kaiju-puppet/body_base" index="4"]
 transform = Transform3D(1, 0, 0, 0, 0.40383, -0.914834, 0, 0.914834, 0.40383, -2.27968, 0.087009, -0.412473)
 rotation_edit_mode = 1
 
 [node name="ankle_r" parent="kaiju-puppet/body_base/leg_r" index="0"]
-transform = Transform3D(1.62336, 0.562759, 0.0502588, -0.40801, 1.27342, -1.08003, -0.390834, 1.00808, 1.33624, -0.63354, 0.454601, 2.65345)
+transform = Transform3D(1.62336, 0.562759, 0.0502582, -0.408011, 1.27342, -1.08002, -0.390834, 1.00808, 1.33624, -0.63354, 0.454601, 2.65345)
 rotation_edit_mode = 1
 
 [node name="foot_r" parent="kaiju-puppet/body_base/leg_r/ankle_r" index="0"]
-transform = Transform3D(0.944433, 0.112156, -0.308977, 0.3274, -0.237355, 0.914588, 0.0292394, -0.964927, -0.260886, -0.0937999, -0.0582099, 1.12217)
+transform = Transform3D(0.945018, -0.23536, -0.227036, 0.326116, 0.729747, 0.60093, 0.0242438, -0.641931, 0.766379, -0.0937994, -0.05821, 1.12217)
 rotation_edit_mode = 1
 
 [node name="tail_1" parent="kaiju-puppet/body_base" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0156507, -0.700619, -2.54828)
+transform = Transform3D(1, 6.60147e-08, 2.96357e-08, -6.60147e-08, 0.664538, 0.747255, 2.96357e-08, -0.747255, 0.664538, 0.0156507, -0.700619, -2.54828)
 rotation_edit_mode = 1
 
 [node name="tail_2" parent="kaiju-puppet/body_base/tail_1" index="0"]
-transform = Transform3D(0.957705, 0, -0.287752, 0, 1, 0, 0.287752, 0, 0.957705, 2.98023e-08, 0.480019, -3.20013)
+transform = Transform3D(0.96057, 0, 0.27804, 0, 1, 0, -0.27804, 0, 0.96057, 2.98023e-08, 0.480019, -3.20013)
 rotation_edit_mode = 1
 
 [node name="LineOfSight" type="Area3D" parent="kaiju-puppet/body_base" index="6"]
@@ -1210,8 +1500,9 @@ script = ExtResource("3_n6suy")
 [node name="KaijuHeadFollow" type="Node" parent="."]
 script = ExtResource("5_nufkf")
 
-[node name="KaijuAnimationLogic" type="Node" parent="."]
+[node name="KaijuAnimationLogic" type="Node" parent="." node_paths=PackedStringArray("audio_stream_player_3d")]
 script = ExtResource("5_yb06f")
+audio_stream_player_3d = NodePath("../AudioStreamPlayer3D")
 
 [node name="AnimationPlayerMouth" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1219,6 +1510,7 @@ libraries = {
 }
 
 [node name="AnimationPlayerMovement" type="AnimationPlayer" parent="."]
+active = false
 libraries = {
 "": SubResource("AnimationLibrary_27qlc")
 }

@@ -5,6 +5,7 @@ extends VBoxContainer
 @onready var spawn_3_button: Button = $Spawn3Button
 @onready var spawn_4_button: Button = $Spawn4Button
 @onready var spawn_5_button: Button = $Spawn5Button
+@onready var spawn_6_button: Button = $Spawn6Button
 
 @onready var reload_button: Button = $ReloadButton
 
@@ -15,6 +16,7 @@ extends VBoxContainer
 @export var air_frigate_enemy: PackedScene
 @export var sea_ship: PackedScene
 @export var turret_block: PackedScene
+@export var kaiju: PackedScene
 
 
 
@@ -24,6 +26,7 @@ func _ready() -> void:
 	spawn_3_button.pressed.connect(_spawn_3_press)
 	spawn_4_button.pressed.connect(_spawn_4_press)
 	spawn_5_button.pressed.connect(_spawn_5_press)
+	spawn_6_button.pressed.connect(_spawn_6_press)
 	
 	reload_button.pressed.connect(reload_scene)
 
@@ -62,6 +65,10 @@ func _spawn_5_press() -> void:
 	var pos: Vector3 = find_random_position(enemy, false)
 	GameManager.create_enemy(enemy, pos)
 
+func _spawn_6_press() -> void:
+	var enemy = kaiju.instantiate()
+	var pos: Vector3 = find_random_position(enemy, false)
+	GameManager.create_enemy(enemy, pos)
 
 func find_random_position(object: Node3D, is_in_air: bool = true) -> Vector3:
 	var rng = RandomNumberGenerator.new()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bm15sseqvqdwl"]
+[gd_scene load_steps=41 format=3 uid="uid://bm15sseqvqdwl"]
 
 [ext_resource type="Texture2D" uid="uid://qtk77yfmaknw" path="res://Assets/UI/speedometer.png" id="1_2e51c"]
 [ext_resource type="Script" path="res://UI/InGame/InGameUI.gd" id="1_sy6e0"]
@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://cl4n1jrd5qmw8" path="res://Enemies/EnemyAirTanker/EnemyAirTanker.tscn" id="30_5lxge"]
 [ext_resource type="PackedScene" uid="uid://x8283o2aecy8" path="res://Enemies/EnemySeaShip/EnemySeaShip.tscn" id="31_seegj"]
 [ext_resource type="PackedScene" uid="uid://cbxt2worosdqq" path="res://Enemies/TurretEnemy/TurretEnemy.tscn" id="32_2cy4o"]
+[ext_resource type="PackedScene" uid="uid://vdh8lsgw887b" path="res://Enemies/EnemyKaiju/Kaiju.tscn" id="34_0pvo0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elflq"]
 bg_color = Color(0.470076, 0.470076, 0.470076, 1)
@@ -492,6 +493,7 @@ air_scout_enemy = ExtResource("29_w62x7")
 air_frigate_enemy = ExtResource("30_5lxge")
 sea_ship = ExtResource("31_seegj")
 turret_block = ExtResource("32_2cy4o")
+kaiju = ExtResource("34_0pvo0")
 
 [node name="Spawn1Button" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -512,6 +514,10 @@ text = "Air Tanker"
 [node name="Spawn5Button" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Basic Turret"
+
+[node name="Spawn6Button" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Kaiju"
 
 [node name="ReloadButton" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
 layout_mode = 2

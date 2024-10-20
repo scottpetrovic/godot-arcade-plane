@@ -3,14 +3,12 @@ extends AnimatableBody3D
 @export var starting_health = 50
 @onready var kaiju_movement: Node = $KaijuMovement
 
-
 var is_dead: bool = false
 
 signal retreat()
 
 func _ready() -> void:
 	self.add_to_group('radar_target')
-	GameManager.current_level_remaining_enemies += 1
 
 	add_child(health_system)
 	health_system.death.connect(lost_all_health)

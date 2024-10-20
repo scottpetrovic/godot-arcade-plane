@@ -7,9 +7,14 @@ extends Node
 @export var move_time: float = 20.0
 @export var turn_time: float = 5.0
 
-enum State { IDLE, MOVING, LOOKING, TURNING, RETREAT }
+@onready var kaiju_animation_logic: Node = $"../KaijuAnimationLogic"
 
-var current_state: State = State.IDLE
+
+# emerging happens when the enemy is first created
+# retreating happens when the enemy "dies" and goes into the ground
+enum State { EMERGE, IDLE, MOVING, LOOKING, TURNING, RETREAT }
+
+var current_state: State = State.EMERGE
 var current_direction: Vector3
 var tween: Tween
 
@@ -18,12 +23,22 @@ func _ready():
 	current_direction = get_forward_direction()
 
 	kaiju_body.retreat.connect(_retreat)
+	kaiju_animation_logic.done_emerging_animation.connect(_done_emerging)
+
+func _done_emerging() -> void:
+	change_state(State.IDLE)
 	
 func _retreat() -> void:
 	change_state(State.RETREAT)
 
 func _process(delta):
+	
+	# conditions that would trigger changing state
 	match current_state:
+		State.EMERGE:
+			# we will get a signal from animation logic
+			# to know when to change from this state
+			pass
 		State.IDLE:
 			change_state(State.MOVING)
 		State.MOVING:
@@ -37,6 +52,8 @@ func _process(delta):
 				change_state(State.MOVING)
 
 func change_state(new_state: State):
+	# animations that happen with new state
+	# when tweens are done, they often go to next state
 	current_state = new_state
 	match current_state:
 		State.MOVING:
