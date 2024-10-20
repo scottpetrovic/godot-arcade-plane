@@ -8,8 +8,6 @@ extends AnimatableBody3D
 # then, add logic to only look at player within vision cone
 
 
-
-
 func _ready() -> void:
 	self.add_to_group('radar_target')
 

@@ -1,10 +1,10 @@
 extends Node
 
 @onready var kaiju_body: AnimatableBody3D = $".."
-@export var move_distance: float = 5.0
+@export var move_distance: float = 15.0
 @export var turn_angle: float = 30.0
 @export var look_time: float = 6.0
-@export var move_time: float = 5.0
+@export var move_time: float = 20.0
 @export var turn_time: float = 5.0
 
 enum State { IDLE, MOVING, LOOKING, TURNING }
