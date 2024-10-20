@@ -7,7 +7,7 @@ extends Node
 @export var move_time: float = 20.0
 @export var turn_time: float = 5.0
 
-enum State { IDLE, MOVING, LOOKING, TURNING }
+enum State { IDLE, MOVING, LOOKING, TURNING, RETREAT }
 
 var current_state: State = State.IDLE
 var current_direction: Vector3
@@ -16,6 +16,11 @@ var tween: Tween
 func _ready():
 	# Initialize the current_direction based on the kaiju's initial rotation
 	current_direction = get_forward_direction()
+
+	kaiju_body.retreat.connect(_retreat)
+	
+func _retreat() -> void:
+	change_state(State.RETREAT)
 
 func _process(delta):
 	match current_state:
