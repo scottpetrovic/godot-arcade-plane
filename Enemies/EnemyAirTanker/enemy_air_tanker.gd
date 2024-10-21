@@ -65,7 +65,7 @@ func create_three_bb_explosions() -> void:
 	
 	# Create explosions at all positions simultaneously
 	for position in explosion_positions:
-		GameManager.create_explosion(position)
+		ObjectSpawner.create_explosion(position)
 
 func check_for_player_if_not_exist():
 	if is_instance_valid(player) == false:
