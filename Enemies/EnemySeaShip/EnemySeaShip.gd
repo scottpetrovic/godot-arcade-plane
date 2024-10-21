@@ -53,7 +53,7 @@ func gun_follow_player() -> void:
 func lost_all_health():
 	emit_signal("enemy_died", self)
 	GameManager.add_destruction_points(points_value)
-	GameManager.create_explosion(self.global_position)
+	ObjectSpawner.create_explosion(self.global_position)
 
 	# calculate screen shake amount  based on distance to camera
 	# do small screen shake to help with effect

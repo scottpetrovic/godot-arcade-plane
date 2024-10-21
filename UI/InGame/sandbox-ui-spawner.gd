@@ -56,36 +56,35 @@ func reload_scene() -> void:
 func _spawn_1_press() -> void:
 	var enemy = air_basic_enemy.instantiate()
 	var pos: Vector3 = find_random_position(enemy, true)
-	GameManager.create_enemy(enemy, pos)
+	ObjectSpawner.create_enemy(enemy, pos)
 
 
 func _spawn_2_press() -> void:
 	var enemy = air_scout_enemy.instantiate()
 	var pos: Vector3 = find_random_position(enemy, true)
-	GameManager.create_enemy(enemy, pos)
+	ObjectSpawner.create_enemy(enemy, pos)
 
 
 func _spawn_3_press() -> void:
 	var enemy = sea_ship.instantiate()
 	var pos: Vector3 = find_random_position(enemy, false)
-	GameManager.create_enemy(enemy, pos)
+	ObjectSpawner.create_enemy(enemy, pos)
 
 func _spawn_4_press() -> void:
 	var enemy = air_frigate_enemy.instantiate()
 	var pos: Vector3 = find_random_position(enemy, true)
-	print(pos)
-	GameManager.create_enemy(enemy, pos)
+	ObjectSpawner.create_enemy(enemy, pos)
 
 
 func _spawn_5_press() -> void:
 	var enemy = turret_block.instantiate()
 	var pos: Vector3 = find_random_position(enemy, false)
-	GameManager.create_enemy(enemy, pos)
+	ObjectSpawner.create_enemy(enemy, pos)
 
 func _spawn_6_press() -> void:
 	var enemy = kaiju.instantiate()
 	var pos: Vector3 = find_random_position(enemy, false)
-	GameManager.create_enemy(enemy, pos)
+	ObjectSpawner.create_enemy(enemy, pos)
 
 func find_random_position(object: Node3D, is_in_air: bool = true) -> Vector3:
 	var rng = RandomNumberGenerator.new()

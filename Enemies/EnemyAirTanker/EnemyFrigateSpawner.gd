@@ -18,4 +18,4 @@ func spawn_enemy():
 	if enemy_scene:
 		var enemy = enemy_scene.instantiate()
 		enemy.global_transform.origin = global_transform.origin
-		GameManager.create_enemy(enemy, enemy.global_transform.origin)
+		ObjectSpawner.create_enemy(enemy, enemy.global_transform.origin)

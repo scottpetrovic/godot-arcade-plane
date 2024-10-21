@@ -32,16 +32,16 @@ func hit() -> void:
 
 func lost_all_health():
 	GameManager.add_destruction_points(points_value)
-	GameManager.create_explosion(self.global_position)
+	ObjectSpawner.create_explosion(self.global_position)
 	
 	if is_enemy_air_type:
-		GameManager.create_crater(self.global_position)
+		ObjectSpawner.create_crater(self.global_position)
 	
 	GameManager.current_level_remaining_enemies -= 1
 	
 	# 10% chance a fuel can will be dropped
 	if randf() <= 0.10:
-		GameManager.create_fuel_can(self.global_position)
+		ObjectSpawner.create_fuel_can(self.global_position)
 		
 	# do small screen shake to help with effect
 	# strength, duration	

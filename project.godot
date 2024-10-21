@@ -21,6 +21,7 @@ GlobalAudio="*res://Global/GlobalAudio.tscn"
 GameManager="*res://Global/GameManager.gd"
 Constants="*res://Global/Constants.gd"
 EventBus="*res://Global/EventBus.gd"
+ObjectSpawner="*res://Global/ObjectSpawner.gd"
 
 [display]
 

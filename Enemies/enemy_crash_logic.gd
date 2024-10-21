@@ -26,7 +26,7 @@ func check_to_spawn_stall_fx():
 		create_smoke_effects()
 
 func create_smoke_effects() -> void:
-	GameManager.create_stall_smoke_effects(enemy)
+	ObjectSpawner.create_stall_smoke_effects(enemy)
 
 func crash_towards_ground() -> void:
 	enemy.rotation = crash_direction

@@ -29,8 +29,8 @@ func 	start_animations() -> void:
 	# once we begin. This will help the model start underground
 	# if we don't do this, there will be a quick ghost at 0,0,0
 	animation_player_movement.active = true
-	GameManager.create_kaiju_entrance_particles(kaiju.global_position)
-	GameManager.create_crater(kaiju.global_position, 3.0)
+	ObjectSpawner.create_kaiju_entrance_particles(kaiju.global_position)
+	ObjectSpawner.create_crater(kaiju.global_position, 3.0)
 
 func _see_player_visuals() -> void:
 	# the audio gets played as part of the animation player
@@ -42,7 +42,7 @@ func _lost_player_visuals() -> void:
 	animation_player_mouth.stop()
 
 func animation_callback_retreat() -> void:
-	GameManager.create_crater(kaiju.global_position, 3.0)
+	ObjectSpawner.create_crater(kaiju.global_position, 3.0)
 
 func animation_callback_roar() -> void:
 	var main_camera: Camera3D = get_viewport().get_camera_3d()

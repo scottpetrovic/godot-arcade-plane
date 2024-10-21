@@ -35,7 +35,7 @@ func die() -> void:
 	GameManager.add_destruction_points(points_value)
 	GameManager.current_level_remaining_enemies -= 1
 	create_three_bb_explosions()
-	GameManager.create_crater(global_position, 3.0)
+	ObjectSpawner.create_crater(global_position, 3.0)
 	
 	# do small screen shake to help with effect
 	# strength, duration	
