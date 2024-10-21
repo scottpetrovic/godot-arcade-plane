@@ -393,7 +393,7 @@ offset_top = -230.245
 offset_right = 166.0
 offset_bottom = -40.245
 grow_vertical = 0
-theme_override_constants/separation = 5
+theme_override_constants/separation = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PlayControlsLayout"]
 layout_mode = 2
@@ -497,6 +497,7 @@ kaiju = ExtResource("34_0pvo0")
 
 [node name="SpawnEnemiesLayout" type="VBoxContainer" parent="PauseMenu/CenterContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 15
 
 [node name="EnemiesLabel" type="Label" parent="PauseMenu/CenterContainer/HBoxContainer/SpawnEnemiesLayout"]
 layout_mode = 2
@@ -528,6 +529,7 @@ text = "Kaiju"
 
 [node name="OtherButtonsLayout" type="VBoxContainer" parent="PauseMenu/CenterContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 15
 
 [node name="Label" type="Label" parent="PauseMenu/CenterContainer/HBoxContainer/OtherButtonsLayout"]
 layout_mode = 2
