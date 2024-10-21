@@ -1,16 +1,15 @@
-[gd_resource type="VisualShader" load_steps=36 format=3 uid="uid://1w724y41m3o0"]
+[gd_resource type="VisualShader" load_steps=35 format=3 uid="uid://1w724y41m3o0"]
 
 [ext_resource type="Texture2D" uid="uid://dejyelvefho0c" path="res://Effects/Particles/BetterExplosion/Textures/T_VFX_Noise_44xainv.png" id="1_dweqs"]
-[ext_resource type="Texture2D" uid="uid://i5g5yt271dpi" path="res://Effects/Particles/BetterExplosion/Textures/T_PerlinNoise_46_inv.png" id="1_eu4q2"]
-[ext_resource type="Texture2D" uid="uid://duqqjub8nycbg" path="res://Effects/Particles/BetterExplosion/Textures/T_cloudy_noise_211c.png" id="1_mlbtr"]
+[ext_resource type="Texture2D" uid="uid://ermogdeivcf2" path="res://Effects/Particles/BetterExplosion/Textures/T_vfx_hit122.jpg" id="2_v3dby"]
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_ehy1i"]
-size = Vector2(524, 118)
+size = Vector2(524, 416)
 title = "Dark Base Color"
 attached_nodes = PackedInt32Array(2, 3)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_5flf2"]
-size = Vector2(964, 838)
+size = Vector2(964, 1136)
 title = "Emissive Bright Color"
 attached_nodes = PackedInt32Array(4, 7, 8, 9, 6, 5, 18)
 
@@ -24,7 +23,7 @@ texture_type = 1
 linked_parent_graph_frame = 16
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_sr503"]
-size = Vector2(944, 498)
+size = Vector2(944, 656)
 title = "Cloud Dissolver"
 attached_nodes = PackedInt32Array(13, 14, 17, 19, 20)
 
@@ -45,7 +44,7 @@ operator = 2
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_w6sqd"]
 expanded_output_ports = [0]
 linked_parent_graph_frame = 11
-texture = ExtResource("1_mlbtr")
+texture = ExtResource("2_v3dby")
 texture_type = 1
 
 [sub_resource type="VisualShaderNodeProximityFade" id="VisualShaderNodeProximityFade_8s14s"]
@@ -124,7 +123,6 @@ input_name = "normal"
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ojrix"]
 expanded_output_ports = [0]
-texture = ExtResource("1_eu4q2")
 texture_type = 1
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_ujw6v"]
@@ -271,6 +269,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-637.742, 434.516)
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_veg2t")
 nodes/vertex/2/position = Vector2(-320, 200)
 nodes/vertex/3/node = SubResource("VisualShaderNodeInput_atxwe")
