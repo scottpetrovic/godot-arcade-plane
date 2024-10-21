@@ -557,3 +557,7 @@ min_value = 0.2
 max_value = 0.4
 step = 0.1
 value = 0.4
+
+[node name="SpawnWaypointButton" type="Button" parent="PauseMenu/CenterContainer/HBoxContainer/OtherButtonsLayout"]
+layout_mode = 2
+text = "Spawn Gate"

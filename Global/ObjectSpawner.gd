@@ -8,11 +8,17 @@ var ObjectOnFireParticles = preload("res://Effects/Particles/ObjectOnFireParticl
 var CraterScene = preload("res://Props/Crater/Crater.tscn")
 var KaijuEntranceParticles = preload("res://Effects/KaijuGroundBreakParticles/KaijuEmergeParticles.tscn")
 
+var GateCheckpoint = preload("res://Props/GateCheckpoint/GateCheckpoint.tscn")
 
 func create_fuel_can(starting_position: Vector3) -> void:
 	var instance_fuelcan = FuelCanScene.instantiate()
 	get_tree().root.add_child(instance_fuelcan)
 	instance_fuelcan.global_position = starting_position
+
+func create_gate_checkpoint(starting_position: Vector3) -> void:
+	var instance = GateCheckpoint.instantiate()
+	get_tree().root.add_child(instance)
+	instance.global_position = starting_position
 
 func create_enemy(enemy_object: Node3D, pos: Vector3) -> void:
 	GameManager.current_level_remaining_enemies += 1 # keep track of enemies

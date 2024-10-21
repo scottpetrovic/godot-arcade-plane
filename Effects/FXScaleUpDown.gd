@@ -6,6 +6,7 @@ var time_now = 0
 @export var starting_scale = 1.0
 
 func _process(delta):
+
 	time_now += delta 
 	var time_elapsed = time_now - time_start
 	
