@@ -1,13 +1,16 @@
-extends VBoxContainer
+extends HBoxContainer
 
-@onready var spawn_1_button: Button = $Spawn1Button
-@onready var spawn_2_button: Button = $Spawn2Button
-@onready var spawn_3_button: Button = $Spawn3Button
-@onready var spawn_4_button: Button = $Spawn4Button
-@onready var spawn_5_button: Button = $Spawn5Button
-@onready var spawn_6_button: Button = $Spawn6Button
+@onready var spawn_1_button: Button = $SpawnEnemiesLayout/Spawn1Button
+@onready var spawn_2_button: Button = $SpawnEnemiesLayout/Spawn2Button
+@onready var spawn_3_button: Button = $SpawnEnemiesLayout/Spawn3Button
+@onready var spawn_4_button: Button = $SpawnEnemiesLayout/Spawn4Button
+@onready var spawn_5_button: Button = $SpawnEnemiesLayout/Spawn5Button
+@onready var spawn_6_button: Button = $SpawnEnemiesLayout/Spawn6Button
 
-@onready var reload_button: Button = $ReloadButton
+@onready var reload_button: Button = $OtherButtonsLayout/ReloadButton
+@onready var gun_mode_button: CheckButton = $OtherButtonsLayout/GunModeButton
+@onready var shoot_delay_slider: HSlider = $OtherButtonsLayout/HBoxContainer/ShootDelaySlider
+
 
 
 # objects to create
@@ -28,8 +31,22 @@ func _ready() -> void:
 	spawn_5_button.pressed.connect(_spawn_5_press)
 	spawn_6_button.pressed.connect(_spawn_6_press)
 	
+	gun_mode_button.toggled.connect(_gun_mode_toggle)
+	shoot_delay_slider.drag_ended.connect(_gun_shoot_delay_changed)
+	
 	reload_button.pressed.connect(reload_scene)
 
+func _gun_shoot_delay_changed(_change_status: bool) -> void:
+	#print(shoot_delay_slider.value)
+	GameManager.curent_player_shoot_delay_time = shoot_delay_slider.value
+
+func _gun_mode_toggle(toggled_status) -> void:
+	
+	# if yes, we are going to turn on our double shooters
+	if toggled_status:
+		GameManager.current_player_shoot_mode = GameManager.ShootType.DOUBLE
+	else:
+		GameManager.current_player_shoot_mode = GameManager.ShootType.SINGLE
 
 func reload_scene() -> void:
 	var current_scene_path = get_tree().current_scene.scene_file_path

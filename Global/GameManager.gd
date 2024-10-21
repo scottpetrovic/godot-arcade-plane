@@ -1,5 +1,14 @@
 extends Node
 
+var BulletObjectHitParticle = preload("res://Effects/Particles/BulletObjectHitParticle/BulletObjectHitParticle.tscn")
+var BulletObjectDebrisParticles = preload("res://Effects/Particles/ExplosionDebrisParticles/ExplosionDebrisParticles.tscn")
+var NicerExplosionParticles = preload("res://Effects/Particles/BetterExplosion/BetterExplosionParticle.tscn")
+var FuelCanScene = preload("res://Props/FuelCan/FuelCan.tscn")
+var ObjectOnFireParticles = preload("res://Effects/Particles/ObjectOnFireParticles/object_on_fire_particles.tscn")
+var CraterScene = preload("res://Props/Crater/Crater.tscn")
+var KaijuEntranceParticles = preload("res://Effects/KaijuGroundBreakParticles/KaijuEmergeParticles.tscn")
+
+
 # keep track of global things that need to persist between scenes
 var current_level_time: float = 0.0 # store in seconds
 var current_level_success_status: bool = false
@@ -22,14 +31,10 @@ var level_2_best_time: float = 0.0 #  0 == not beat
 # different objects at different levels need to reference this
 var _player_reference: Player
 
-var BulletObjectHitParticle = preload("res://Effects/Particles/BulletObjectHitParticle/BulletObjectHitParticle.tscn")
-var BulletObjectDebrisParticles = preload("res://Effects/Particles/ExplosionDebrisParticles/ExplosionDebrisParticles.tscn")
-var NicerExplosionParticles = preload("res://Effects/Particles/BetterExplosion/BetterExplosionParticle.tscn")
-var FuelCanScene = preload("res://Props/FuelCan/FuelCan.tscn")
-var ObjectOnFireParticles = preload("res://Effects/Particles/ObjectOnFireParticles/object_on_fire_particles.tscn")
-var CraterScene = preload("res://Props/Crater/Crater.tscn")
-var KaijuEntranceParticles = preload("res://Effects/KaijuGroundBreakParticles/KaijuEmergeParticles.tscn")
-
+# keep track of what upgrades we have achieved
+enum ShootType { SINGLE, DOUBLE}
+var current_player_shoot_mode = ShootType.SINGLE
+var curent_player_shoot_delay_time = 0.2
 
 func get_destruction_points() -> int:
 	return _current_level_destruction_points

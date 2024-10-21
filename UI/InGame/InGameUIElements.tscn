@@ -467,7 +467,6 @@ layout_mode = 2
 text = "Fire Bullets"
 
 [node name="PauseMenu" type="ColorRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -485,8 +484,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/CenterContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/CenterContainer"]
 layout_mode = 2
+theme_override_constants/separation = 50
 script = ExtResource("27_2k4yc")
 air_basic_enemy = ExtResource("28_5o6ot")
 air_scout_enemy = ExtResource("29_w62x7")
@@ -495,30 +495,63 @@ sea_ship = ExtResource("31_seegj")
 turret_block = ExtResource("32_2cy4o")
 kaiju = ExtResource("34_0pvo0")
 
-[node name="Spawn1Button" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+[node name="SpawnEnemiesLayout" type="VBoxContainer" parent="PauseMenu/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="EnemiesLabel" type="Label" parent="PauseMenu/CenterContainer/HBoxContainer/SpawnEnemiesLayout"]
+layout_mode = 2
+text = "Enemies to spawn"
+
+[node name="Spawn1Button" type="Button" parent="PauseMenu/CenterContainer/HBoxContainer/SpawnEnemiesLayout"]
 layout_mode = 2
 text = "Air Basic"
 
-[node name="Spawn2Button" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+[node name="Spawn2Button" type="Button" parent="PauseMenu/CenterContainer/HBoxContainer/SpawnEnemiesLayout"]
 layout_mode = 2
 text = "Air Scout"
 
-[node name="Spawn3Button" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+[node name="Spawn3Button" type="Button" parent="PauseMenu/CenterContainer/HBoxContainer/SpawnEnemiesLayout"]
 layout_mode = 2
 text = "Sea Ship"
 
-[node name="Spawn4Button" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+[node name="Spawn4Button" type="Button" parent="PauseMenu/CenterContainer/HBoxContainer/SpawnEnemiesLayout"]
 layout_mode = 2
 text = "Air Tanker"
 
-[node name="Spawn5Button" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+[node name="Spawn5Button" type="Button" parent="PauseMenu/CenterContainer/HBoxContainer/SpawnEnemiesLayout"]
 layout_mode = 2
 text = "Basic Turret"
 
-[node name="Spawn6Button" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+[node name="Spawn6Button" type="Button" parent="PauseMenu/CenterContainer/HBoxContainer/SpawnEnemiesLayout"]
 layout_mode = 2
 text = "Kaiju"
 
-[node name="ReloadButton" type="Button" parent="PauseMenu/CenterContainer/VBoxContainer"]
+[node name="OtherButtonsLayout" type="VBoxContainer" parent="PauseMenu/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/CenterContainer/HBoxContainer/OtherButtonsLayout"]
+layout_mode = 2
+text = "other things to control"
+
+[node name="ReloadButton" type="Button" parent="PauseMenu/CenterContainer/HBoxContainer/OtherButtonsLayout"]
 layout_mode = 2
 text = "Reload"
+
+[node name="GunModeButton" type="CheckButton" parent="PauseMenu/CenterContainer/HBoxContainer/OtherButtonsLayout"]
+layout_mode = 2
+text = "Double Gun"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/CenterContainer/HBoxContainer/OtherButtonsLayout"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/CenterContainer/HBoxContainer/OtherButtonsLayout/HBoxContainer"]
+layout_mode = 2
+text = "Shoot delay"
+
+[node name="ShootDelaySlider" type="HSlider" parent="PauseMenu/CenterContainer/HBoxContainer/OtherButtonsLayout/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+min_value = 0.2
+max_value = 0.4
+step = 0.1
+value = 0.4

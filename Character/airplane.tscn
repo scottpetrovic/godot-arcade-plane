@@ -241,11 +241,14 @@ script = ExtResource("5_f5cdy")
 [node name="BulletShooter" type="Node3D" parent="."]
 script = ExtResource("5_3arig")
 
-[node name="MuzzleLeft" type="Node3D" parent="BulletShooter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.424638, 0.197004, -0.264707)
+[node name="MuzzleLeft" type="Marker3D" parent="BulletShooter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.424638, 0.0388775, -0.264707)
 
-[node name="MuzzleRight" type="Node3D" parent="BulletShooter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.394647, 0.178619, -0.264707)
+[node name="MuzzleRight" type="Marker3D" parent="BulletShooter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.394647, 0.0204925, -0.264707)
+
+[node name="MuzzleCenter" type="Marker3D" parent="BulletShooter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00123143, 0.066168, -0.574964)
 
 [node name="ShootTimer" type="Timer" parent="BulletShooter"]
 
